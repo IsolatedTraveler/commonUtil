@@ -7,6 +7,7 @@ export let layerIndex // 弹出层id
   , zb_filter // 影响表数据的form表单检索信息
   , zb_change_cols // form表单数据变更影响的cols
   , select_key // col是select列
+  , select_key_yxj
   , tr_key
   , tr_templet_key
   , col_change_cols
