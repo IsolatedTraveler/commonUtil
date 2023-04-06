@@ -14,5 +14,9 @@ export let elem // table元素
   , dataChange // 列数据更改触发的事件
   , done // table加载完执行的功能
   , editCheckData // 校验table数据是否合法
-  , selectData // table表单中select列获取数据方式
+  , selectData // table表单中select列相关规则
   , isEdit // 是否开启编辑功能  默认开启   false 不开启
+  , skin // 自定义表格样式
+  , autoHeight // 是否自动设置高度
+  , primaryCol // 判断是否空行列名
+  , errorTimeOut = 300000 // 错误提示行标识多久

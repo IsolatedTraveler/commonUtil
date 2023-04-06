@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { data, done, elem, layerIndex, name, watch, addField, elem_p, elem_t, combogrid, selectData, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck } from "../../var/index";
+import { data, done, elem, name, watch, addField, elem_p, elem_t, combogrid, selectData, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck, skin, autoHeight, primaryCol, errorTimeOut } from "../../var/index";
 import { setCols } from "./setCol";
 import { setWatch } from "./setWatch";
 
 export function initConfig(config) {
-  layerIndex = commonUtil.layerLoading()
   elem = config.elem
   name = config.filter
   done = config.done
   data = config.data || []
+  primaryCol = config.primaryCol
   watch = setWatch(config.watch)
   addField = config.addField
   elem_t = $(elem)
@@ -26,4 +26,7 @@ export function initConfig(config) {
   enterAdd = config.enterAdd
   rowClick = config.rowClick
   rowCheck = config.rowCheck
+  skin = config.skin
+  autoHeight = config.autoHeight
+  errorTimeOut = config.errorTimeOut || errorTimeOut
 }
