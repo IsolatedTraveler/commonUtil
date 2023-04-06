@@ -10,8 +10,15 @@ export function getElem() {
 export function getTrElem(i) {
   return elem_t_b.find(`tr[data-index="${i}"]`)
 }
+export function getTrElemLast(i) {
+  let tr = getTrElem(i)
+  return tr[0] ? tr : elem_t_b.find(`tr[data-index]:last-child`)
+}
 export function getInputElem(tr, name) {
   return tr.find(`[name="${name}"]`)
+}
+export function getInputElems(tr) {
+  return tr.find(commonUtil.kbjbg)
 }
 export function getTrIndex(i, msg) {
   if (i === null || i === undefined) {
