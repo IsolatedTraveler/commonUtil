@@ -1,6 +1,6 @@
 import { combogrid, combogrid_key, elem, third_combgrid } from "../../var/index";
 import { getInputElem } from "../other/getElem";
-import { updateRow } from "./updateRow";
+import { updateRow } from "../prop/updateRow";
 
 export function renderCombogrids(tr, i) {
   return combogrid_key ? getCombogrid().then(() => {
