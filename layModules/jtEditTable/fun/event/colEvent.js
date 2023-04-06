@@ -1,5 +1,6 @@
 import { isInit } from "../../var/index"
 import { addRow } from "../other/addRow"
+import { getInputElems } from "../other/getElem"
 
 export function editCol(e) {
   if (isInit) {
@@ -9,7 +10,7 @@ export function editCol(e) {
 }
 export function colKeyup(e) {
   if (isInit && e.keyCode === 13) {
-    let tr = $(e.target).parents('tr'), lastElem = tr.find(commonUtil.kbjbg).last()[0]
+    let tr = $(e.target).parents('tr'), lastElem = getInputElems(tr).last()[0]
     if (e.target == lastElem || e.target.parentElement == lastElem) {
       setTimeout(() => {
         let tr1 = $(d.activeElement).parents('tr')
@@ -22,7 +23,7 @@ export function colKeyup(e) {
 }
 export function lastRowColKeyup(e) {
   if (isInit && e.keyCode === 13) {
-    let tr = $(e.target).parents('tr'), lastElem = tr.find(commonUtil.kbjbg).last()[0]
+    let tr = $(e.target).parents('tr'), lastElem = getInputElems(tr).last()[0]
     if (e.target == lastElem || e.target.parentElement == lastElem) {
       addRow()
     }
