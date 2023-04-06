@@ -1,10 +1,12 @@
-import { skin_bar, skin_temp } from "../../var/index"
+import { addField, def_data_tr, skin_bar, skin_temp, tr_templet_key } from "../../var/index"
 
 export function setCol(col = {}) {
   let {field, templet, toolbar, skin = ''} = col
   skin = [skin]
   if (field) {
+    def_data_tr[field] = ''
     if (templet) {
+      tr_templet_key[field] = col.templet_col || {}
       skin.push(skin_temp)
     }
   }
@@ -15,6 +17,13 @@ export function setCol(col = {}) {
   return col
 }
 export function setCols(arr = []) {
+  def_data_tr = {}
+  tr_templet_key = {}
+  if (addField) {
+    addField.forEach(key => {
+      def_data_tr[key] = ''
+    })
+  }
   return arr.map((it = []) => {
     return it.map(setCol)
   })

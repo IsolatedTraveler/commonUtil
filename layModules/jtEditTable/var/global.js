@@ -8,6 +8,7 @@ export let layerIndex // 弹出层id
   , zb_change_cols // form表单数据变更影响的cols
   , select_key // col是select列
   , tr_key
+  , tr_templet_key
   , col_change_cols
   , zb_data = {} // 影响表数据的from表单数据
   , date_key_obj // col是date列相关规则 

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { data, done, elem, name, watch, addField, elem_p, elem_t, combogrid, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck, skin, autoHeight, primaryCol, errorTimeOut, selectData } from "../../var/index";
+import { data, done, elem, name, watch, addField, elem_p, elem_t, combogrid, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck, skin, autoHeight, primaryCol, errorTimeOut, selectData, tr_key, def_data_tr } from "../../var/index";
+import { initCombogrid } from "./initCombogrid";
 import { initSelectConfig } from "./initSelectConfig";
 import { setCols } from "./setCol";
 import { setWatch } from "./setWatch";
@@ -14,8 +15,6 @@ export function initConfig(config) {
   addField = config.addField
   elem_t = $(elem)
   elem_p = elem_t.parent()
-  combogrid = config.combogrid
-  cols = setCols(config.cols)
   glzb = config.glzb || '#xz'
   elem_f = $(glzb)
   dataChange = config.dataChange
@@ -29,5 +28,8 @@ export function initConfig(config) {
   skin = config.skin
   autoHeight = config.autoHeight
   errorTimeOut = config.errorTimeOut || errorTimeOut
+  cols = setCols(config.cols)
   selectData = initSelectConfig(config.selectData)
+  combogrid = initCombogrid(config.combogrid)
+  tr_key = Object.keys(def_data_tr)
 }
