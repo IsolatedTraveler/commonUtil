@@ -1,5 +1,5 @@
 import { isInit } from "../../var/index"
-import { addRow } from "../other/addRow"
+import { addRow } from "../prop/addRow"
 import { getInputElems } from "../other/getElem"
 
 export function editCol(e) {

@@ -1,4 +1,4 @@
-import { elem_t_s } from "../../var"
+import { elem_t_s } from "../../var/index"
 import { getTrElemLast } from "./getElem"
 
 export function scroll(i) {

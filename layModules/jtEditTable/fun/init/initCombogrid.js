@@ -1,4 +1,4 @@
-import { combogrid_key, def_data_tr, tr_templet_key } from "../../var"
+import { combogrid_key, def_data_tr, tr_templet_key } from "../../var/index"
 
 export function initCombogrid(d) {
   if (d) {
