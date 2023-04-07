@@ -10,10 +10,10 @@ export function initCombogrid(d) {
         console.error(`comborgrid[key]中的key(${key})必须等于combogrid[key].showElem(${data.showElem})或combogrid[key].showElem为空`)
       } else {
         def_data_tr[key] = ''
-        tr_templet_key[key] = {}
+        tr_templet_key.name[key] = true
         if (data.mcElem) {
           def_data_tr[data.mcElem] = ''
-          tr_templet_key[key].name = [data.mcElem]
+          tr_templet_key.name[data.showElem] = true
         }
       }
     })

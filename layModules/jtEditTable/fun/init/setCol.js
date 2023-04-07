@@ -6,7 +6,14 @@ export function setCol(col = {}) {
   if (field) {
     def_data_tr[field] = ''
     if (templet) {
-      tr_templet_key[field] = col.templet_col || {}
+      let {name = [], nameH = []} = col.templet_col || {}
+      name.forEach(key => {
+        tr_templet_key.name[key] = true
+      })
+      nameH.forEach(key => {
+        tr_templet_key.nameH[key] = true
+      })
+
       skin.push(skin_temp)
     }
   }
@@ -18,7 +25,7 @@ export function setCol(col = {}) {
 }
 export function setCols(arr = []) {
   def_data_tr = {}
-  tr_templet_key = {}
+  tr_templet_key = {name: {}, nameH: {}}
   if (addField) {
     addField.forEach(key => {
       def_data_tr[key] = ''
