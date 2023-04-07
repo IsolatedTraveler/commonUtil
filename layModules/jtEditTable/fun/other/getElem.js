@@ -4,7 +4,7 @@ import { data, elem_p, elem_t_b, elem_t_box, elem_t_s, elem_t_v, selected_tr } f
 export function getElem() {
   elem_t_v = elem_p.find('>.layui-table-view')
   elem_t_box = elem_t_v.find('>.layui-table-box')
-  elem_t_s = elem_t_b.find('>.layui-table-body,>.layui-table-fixed>.layui-table-body')
+  elem_t_s = elem_t_box.find('>.layui-table-body,>.layui-table-fixed>.layui-table-body')
   elem_t_b = elem_t_s.find('>table>tbody')
 }
 export function getTrElem(i) {

@@ -5,9 +5,9 @@ export function initCombogrid(d) {
     combogrid_key = Object.keys(d)
     combogrid_key.forEach(key => {
       let data = d[key]
-      data.valElem = data.valElem || key
-      if (data.valElem !== key) {
-        console.error(`comborgrid[key]中的key必须等于combogrid[key].valElem或combogrid[key].valElem为空`)
+      data.showElem = data.showElem || key
+      if (data.showElem !== key) {
+        console.error(`comborgrid[key]中的key(${key})必须等于combogrid[key].showElem(${data.showElem})或combogrid[key].showElem为空`)
       } else {
         def_data_tr[key] = ''
         tr_templet_key[key] = {}
