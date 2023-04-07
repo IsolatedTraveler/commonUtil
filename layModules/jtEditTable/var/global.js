@@ -15,6 +15,7 @@ export let layerIndex // 弹出层id
   , date_key_obj // col是date列相关规则 
   , combogrid_key // col是combogrid列
   , def_data_tr = {} // 行默认数据
+  , select_option = {}
   function cs(a, key) {
     a = a * 5
     let b = [], c = [], d = [], e = [], f = []

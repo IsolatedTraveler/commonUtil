@@ -11,4 +11,5 @@ export function zbFormEvent(e) {
       return renderSelects(i, zb_change_cols[key])
     })).finally(closeZzc)
   }
+  zb_data[key] = v
 }
