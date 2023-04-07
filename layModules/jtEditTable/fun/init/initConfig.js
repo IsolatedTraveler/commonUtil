@@ -7,7 +7,7 @@ import { setWatch } from "./setWatch";
 
 export function initConfig(config) {
   elem = config.elem
-  name = config.filter
+  name = config.name
   done = config.done
   data = config.data || []
   primaryCol = config.primaryCol

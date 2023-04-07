@@ -5,7 +5,7 @@ import { getInputElems } from "../other/getElem"
 export function editCol(e) {
   if (isInit) {
     let el = $(e.currentTarget), tr = el.parents('tr[data-index]').eq(0), i = tr.attr('data-index'), key = el.attr('name')
-    console.log(i, key) 
+    console.log(i, key)
   }
 }
 export function colKeyup(e) {

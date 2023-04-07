@@ -8,6 +8,5 @@ export function init(config) {
   openZzc()
   initThird()
   initConfig(config)
-  initEvent()
-  initTable().finally(closeZzc)
+  initTable().then(closeZzc).then(initEvent)
 }

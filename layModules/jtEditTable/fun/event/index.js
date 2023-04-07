@@ -3,9 +3,8 @@ import { colKeyup, editCol, lastRowColKeyup } from "./colEvent";
 import { editRow, rowEvent } from "./rowEvent";
 import { zbFormEvent } from "./zbFormEvent";
 export function initEvent() {
-  let filter = `row(${name})`
-  third_table.on(filter, rowEvent)
-  third_table.on(filter, editRow)
+  third_table.on(`row(${name})`, rowEvent)
+  third_table.on(`edit(${name})`, editRow)
   elem_p.on('change', '[name]:not([laydate])', editCol)
   elem_p.on('keyup', commonUtil.kbjbg, colKeyup)
   if (enterAdd) {
