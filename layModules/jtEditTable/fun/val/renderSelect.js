@@ -23,7 +23,7 @@ export function renderSelects(i, keys, tr) {
   }``
   return Promise.resolve()
 }
-function renderSelect(key, tr, o, arr) {
+export function renderSelect(key, tr, o, arr) {
   let i = tr.attr('data-index'), option = selectData[key], elem = getInputElem(tr, key)
   if (option.getData || option.data) {
     return renderSelectOption(elem, option, o, tr, i, key, arr)

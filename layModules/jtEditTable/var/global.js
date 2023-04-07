@@ -16,3 +16,4 @@ export let layerIndex // 弹出层id
   , combogrid_key // col是combogrid列
   , def_data_tr = {} // 行默认数据
   , select_option = {}
+  , table_resolve
