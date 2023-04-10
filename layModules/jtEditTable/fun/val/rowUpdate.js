@@ -1,4 +1,4 @@
-import { data, def_data_tr, selectData, tr_key, tr_templet_key } from "../../var/index"
+import { data, date_key_obj, def_data_tr, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
 import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
 import { closeZzc, openZzc } from "../other/zzc"
 import { dealVal } from "./dealVal"
@@ -17,8 +17,10 @@ function setColValue(key, v, i, tr) {
   if (selectData?.[key]) {
     let keys = []
     return renderSelect(key, tr, v, keys).then(() => renderSelects(i, keys, tr))
-  } else if (tr_templet_key && tr_templet_key.name && tr_templet_key.name[key]) {
-    getInputElem(tr, key).val(v)
+  } else if (date_key_obj[key] || (tr_templet_key && tr_templet_key.name && tr_templet_key.name[key])) {
+    let td = getInputElem(tr, key).parents('td'), param = {}
+    param[key] = v
+    third_form.val(td, param)
   } else if (tr_templet_key && tr_templet_key.nameH && tr_templet_key.nameH[key]) {
     tr.find(`[nameH="${key}"]`).html(v)
   } else {
