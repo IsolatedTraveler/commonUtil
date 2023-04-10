@@ -1,4 +1,4 @@
-import { combogrid, combogrid_key, elem, third_combgrid } from "../../var/index";
+import { combogrid, combogrid_key, data, elem, third_combgrid } from "../../var/index";
 import { getInputElem } from "../other/getElem";
 import { updateRow } from "../prop/updateRow";
 
@@ -17,7 +17,7 @@ function renderCombogrid(tr, i, key) {
     mcElem,
     selected(res) {
       return combogridDealData(res.data, elem, i, option.selected).then(d => {
-        return updateRow(d, i)
+        return updateRow(Object.assign({}, data[i], d), i)
       })
     }
   })

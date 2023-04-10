@@ -17,12 +17,10 @@ function setColValue(key, v, i, tr) {
   if (selectData?.[key]) {
     let keys = []
     return renderSelect(key, tr, v, keys).then(() => renderSelects(i, keys, tr))
-  } else if (tr_templet_key) {
-    if (tr_templet_key.name && tr_templet_key.name[key]) {
-      getInputElem(tr, key).val(v)
-    } else if (tr_templet_key.nameH && tr_templet_key.nameH[key]) {
-      tr.find(`[nameH="${key}"]`).html(v)
-    }
+  } else if (tr_templet_key && tr_templet_key.name && tr_templet_key.name[key]) {
+    getInputElem(tr, key).val(v)
+  } else if (tr_templet_key && tr_templet_key.nameH && tr_templet_key.nameH[key]) {
+    tr.find(`[nameH="${key}"]`).html(v)
   } else {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -33,7 +31,7 @@ function setColValue(key, v, i, tr) {
   return Promise.resolve()
 }
 function getChangeCols(d, o, i) {
-  let tr = getTrElem(i)
+  let tr = getTrElem(i) 
   tr_key.forEach(key => {
     if (d[key] !== o[key]) {
       setColValue(key, dealVal(d[key]), i, tr)
