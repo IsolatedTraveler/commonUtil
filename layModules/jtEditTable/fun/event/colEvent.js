@@ -1,12 +1,14 @@
 import { isInit } from "../../var/index"
 import { addRow } from "../prop/addRow"
 import { getInputElems } from "../other/getElem"
+import { formChange } from "../val/form"
 
 export function editCol(e) {
   if (isInit) {
     let el = $(e.currentTarget), tr = el.parents('tr[data-index]').eq(0), i = tr.attr('data-index'), key = el.attr('name')
-    console.log(i, key)
+    formChange(tr, i, e.currentTarget, key)
   }
+  return Promise.resolve()
 }
 export function colKeyup(e) {
   if (isInit && e.keyCode === 13) {

@@ -1,5 +1,7 @@
-import { data } from "../../var/index";
+import { data, select_key_yxj } from "../../var/index";
 import { dealVal } from "./dealVal";
+import { renderSelects } from "./renderSelect";
+import { setColValue } from "./rowUpdate";
 
 export function formChange(tr, i, elem, key) {
   let trData = data[i]
@@ -9,6 +11,12 @@ export function formChange(tr, i, elem, key) {
       let mc = el.attr('jt-mc')
       if (mc) {
         trData[mc] = v ? el.next().find('input').val() : ''
+      }
+    }
+    if (v != trData[key]) {
+      setColValue(key, v, i, tr)
+      if (select_key_yxj?.[key]?.c) {
+        return renderSelects(i, select_key_yxj[key].c, tr)
       }
     }
   }

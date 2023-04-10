@@ -1,4 +1,4 @@
-import { data, date_key_obj, def_data_tr, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
+import { data, dataChange, date_key_obj, def_data_tr, isInit, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
 import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
 import { closeZzc, openZzc } from "../other/zzc"
 import { dealVal } from "./dealVal"
@@ -13,7 +13,10 @@ export function rowUpdate(d, i) {
     getChangeCols(d, old, i)
   }).finally(closeZzc)
 }
-function setColValue(key, v, i, tr) {
+export function setColValue(key, v, i, tr) {
+  if (key == 'sxrq') {
+    console.warn(v)
+  }
   if (selectData?.[key]) {
     let keys = []
     return renderSelect(key, tr, v, keys).then(() => renderSelects(i, keys, tr))
@@ -32,11 +35,19 @@ function setColValue(key, v, i, tr) {
   }
   return Promise.resolve()
 }
-function getChangeCols(d, o, i) {
-  let tr = getTrElem(i) 
+function getChangeCols(d, o, i, tr) {
+  let v = JSON.parse(JSON.stringify(d))
+  tr = tr || getTrElem(i)
   tr_key.forEach(key => {
     if (d[key] !== o[key]) {
       setColValue(key, dealVal(d[key]), i, tr)
+      if (isInit) {
+        dataChange(key, v, o[key], i, tr)
+      }
     }
   })
+  if (isInit) {
+    isInit = false
+    getChangeCols(v, d, i, tr)
+  }
 }
