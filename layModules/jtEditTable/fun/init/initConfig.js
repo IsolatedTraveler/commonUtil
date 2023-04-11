@@ -2,7 +2,7 @@
 import { data, done, elem, name, watch, addField, elem_p, elem_t, combogrid, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck, skin, autoHeight, primaryCol, errorTimeOut, selectData, tr_key, def_data_tr } from "../../var/index";
 import { initCombogrid } from "./initCombogrid";
 import { initSelectConfig } from "./initSelectConfig";
-import { setCols } from "./setCol";
+import { setCols, setTemple } from "./setCol";
 import { setWatch } from "./setWatch";
 
 export function initConfig(config) {
@@ -31,5 +31,7 @@ export function initConfig(config) {
   cols = setCols(config.cols)
   selectData = initSelectConfig(config.selectData)
   combogrid = initCombogrid(config.combogrid)
+  setTemple(config.templet?.name, 'name')
+  setTemple(config.templet?.nameH, 'nameH')
   tr_key = Object.keys(def_data_tr)
 }
