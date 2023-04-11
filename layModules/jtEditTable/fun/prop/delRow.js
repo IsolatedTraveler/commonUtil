@@ -2,6 +2,7 @@ import { forbidAdd, selected_tr, third_layer,data } from "../../var/index";
 import { fixedPosition } from "../other/fixedPosition";
 import { getTrElem } from "../other/getElem";
 import { getTrIndex } from "../other/getElem";
+import { trDataV } from "../val/trDataV";
 import { updateRow } from "./updateRow";
 
 export function rowDel(i) {
@@ -17,7 +18,7 @@ export function rowDel(i) {
         el.attr('data-index', i)
         elmes.each((i,e) => {
           let key = $(e).parents('td').eq(0).attr('data-field'), xh = (e.innerHTML - 1).toString()
-          data[i][key] = xh
+          trDataV(i, key, xh)
           e.innerHTML = xh
         })
       })

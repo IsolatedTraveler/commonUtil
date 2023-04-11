@@ -1,5 +1,6 @@
-import { data, elem_p, isInit, rowCheck, rowClick, selected_tr, skinSelected, skin_selected } from "../../var/index";
+import { elem_p, isInit, rowCheck, rowClick, selected_tr, skinSelected, skin_selected } from "../../var/index";
 import { getRowData } from "../prop/getRowData";
+import { trDataV } from "../val/trDataV";
 
 export function rowEvent(res) {
   if (isInit) {
@@ -18,6 +19,6 @@ export function rowEvent(res) {
 export function editRow(res) {
   if (isInit) {
     let key = res.field, i = res.tr.attr('data-index'), v = res.value
-    data[i][key] = v
+    trDataV(i, key, v)
   }
 }

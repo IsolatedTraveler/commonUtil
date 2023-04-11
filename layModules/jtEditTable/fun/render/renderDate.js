@@ -1,8 +1,9 @@
-import { data, date_key_obj, isInit, third_laydate } from "../../var/index"
+import { date_key_obj, isInit, third_laydate } from "../../var/index"
 import { formChange } from "../val/form"
+import { trDataV } from "../val/trDataV"
 
 export function renderDate(tr, i) {
-  let trData = data[i]
+  let trData = trDataV(i)
   tr.find('[laydate]').each((i, elem) => {
     let el = $(elem), name = el.attr('name'), option = {
       elem,

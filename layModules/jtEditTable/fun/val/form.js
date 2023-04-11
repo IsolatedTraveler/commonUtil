@@ -1,10 +1,11 @@
-import { data, select_key_yxj } from "../../var/index";
+import { select_key_yxj } from "../../var/index";
 import { dealVal } from "./dealVal";
 import { renderSelects } from "../render/renderSelect";
 import { setColValue } from "./rowUpdate";
+import { trDataV } from "./trDataV";
 
 export function formChange(tr, i, elem, key) {
-  let trData = data[i]
+  let trData = trDataV(i)
   if (key) {
     let el = $(elem), v = dealVal(el.val())
     if (elem.tagName === 'SELECT') {

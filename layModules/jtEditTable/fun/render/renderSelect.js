@@ -1,11 +1,12 @@
 import { data, elem_p, selectData, select_key_yxj, select_option, zb_data } from "../../var/index";
 import { getInputElem } from "../other/getElem";
 import { dealVal } from "../val/dealVal";
+import { trDataV } from "../val/trDataV";
 
 export function renderSelects(i, keys, tr) {
   if (keys && keys.length) {
     tr = tr || elem_p.find(`[data-index=${i}]`)
-    let trData = data[i], min = 100
+    let trData = trDataV(i), min = 100
     keys.forEach(key => min = Math.min(min,select_key_yxj[key].yxj))
     let not = keys.filter(key => select_key_yxj[key].yxj > min)
     keys = keys.filter(key => select_key_yxj[key].yxj = min)
@@ -33,8 +34,8 @@ export function renderSelect(key, tr, o, arr) {
   }
 }
 function renderSelectOption(elem, option, value, tr, i, key, arr) {
-  let old = data[i][key]
-  return getSelectData(key, option, value, tr, data[i]).then(({data, value}) => {
+  let old = trDataV(i, key)
+  return getSelectData(key, option, value, tr, trDataV(i)).then(({data, value}) => {
     return commonUtil.setSelectOption({
       valId: option.valId || 'id',
       showId: option.showId || 'mc',

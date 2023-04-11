@@ -3,20 +3,18 @@ import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
 import { closeZzc, openZzc } from "../other/zzc"
 import { dealVal } from "./dealVal"
 import { renderSelect, renderSelects } from "../render/renderSelect"
+import { trDataV } from "./trDataV"
 
 export function rowUpdate(d, i) {
   openZzc()
   return getTrIndex(i, '未获取到要更新的操作行').then(i => {
-    let old = data[i]
+    let old = trDataV(i)
     d = Object.assign({}, def_data_tr, d)
-    data[i] = d
+    trDataV(i, undefined, d)
     getChangeCols(d, old, i)
   }).finally(closeZzc)
 }
 export function setColValue(key, v, i, tr) {
-  if (key == 'sxrq') {
-    console.warn(v)
-  }
   if (selectData?.[key]) {
     let keys = []
     return renderSelect(key, tr, v, keys).then(() => renderSelects(i, keys, tr))

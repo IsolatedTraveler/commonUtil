@@ -1,4 +1,4 @@
-import { autoHeight, done, elem_t_s, elem_t_v, isInit } from "../../var/index"
+import { autoHeight, done, elem_t_s, elem_t_v } from "../../var/index"
 import { endRender } from "../render/render"
 export function loaded() {
   if (autoHeight) {
@@ -7,6 +7,5 @@ export function loaded() {
     elem_t_s.css(auto)
   }
   done && done()
-  endRender
-  console.log(isInit)
+  endRender()
 }
