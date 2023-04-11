@@ -1,18 +1,17 @@
-import { data, dataChange, date_key_obj, def_data_tr, isInit, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
+import { dataChange, date_key_obj, def_data_tr, isInit, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
 import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
-import { closeZzc, openZzc } from "../other/zzc"
-import { dealVal } from "./dealVal"
+import { endRender, startRender } from "../render/render"
 import { renderSelect, renderSelects } from "../render/renderSelect"
 import { trDataV } from "./trDataV"
 
 export function rowUpdate(d, i) {
-  openZzc()
+  startRender()
   return getTrIndex(i, '未获取到要更新的操作行').then(i => {
     let old = trDataV(i)
     d = Object.assign({}, def_data_tr, d)
     trDataV(i, undefined, d)
     getChangeCols(d, old, i)
-  }).finally(closeZzc)
+  }).finally(endRender)
 }
 export function setColValue(key, v, i, tr) {
   if (selectData?.[key]) {
@@ -33,21 +32,27 @@ export function setColValue(key, v, i, tr) {
   }
   return Promise.resolve()
 }
-function getChangeCols(d, o, i, tr) {
+export function getChangeCols(d, o, i, tr, keys) {
   let v = JSON.parse(JSON.stringify(d))
+  keys = keys || tr_key
   tr = tr || getTrElem(i)
-  tr_key.forEach(key => {
-    if (d[key] !== o[key]) {
-      setColValue(key, dealVal(d[key]), i, tr)
-      if (isInit) {
-        dataChange(key, v, o[key], i, tr)
-      }
-    }
+  keys.forEach(key => {
+    setChangeColV(i, key, v, o, tr)
   })
-  if (isInit) {
-    isInit = false
-    getChangeCols(v, d, i, tr)
-  } else {
-    isInit = true
+  if (dataChange) {
+    if (isInit) {
+      isInit = false
+      getChangeCols(v, d, i, tr)
+    } else {
+      isInit = true
+    }
+  }
+}
+export function setChangeColV(i, key, v, o, tr) {
+  if (v[key] != o[key]) {
+    setColValue(key, v[key], i, tr);
+    if (isInit && dataChange) {
+      dataChange(key, v[key], o[key], i, tr);
+    }
   }
 }

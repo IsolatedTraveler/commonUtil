@@ -1,5 +1,5 @@
-import { date_key_obj, isInit, third_laydate } from "../../var/index"
-import { formChange } from "../val/form"
+import { date_key_obj, third_laydate } from "../../var/index"
+import { getChangeCols } from "../val/rowUpdate"
 import { trDataV } from "../val/trDataV"
 
 export function renderDate(tr, i) {
@@ -9,11 +9,9 @@ export function renderDate(tr, i) {
       elem,
       value: trData[name],
       done(v) {
-        el.val(v)
-        i = tr.attr('data-index')
-        if (isInit) {
-          formChange(tr, i, elem, name)
-        }
+        let o = JSON.parse(JSON.stringify(trDataV(i)))
+        trDataV(i, name, o)
+        getChangeCols(trDataV[i], o, i, tr, [name])
       }
     }
     if (!date_key_obj[name]) {
