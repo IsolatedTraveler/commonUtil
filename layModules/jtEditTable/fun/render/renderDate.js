@@ -4,14 +4,14 @@ import { trDataV } from "../val/trDataV"
 
 export function renderDate(tr, i) {
   let trData = trDataV(i)
-  tr.find('[laydate]').each((i, elem) => {
+  tr.find('[laydate]').each((j, elem) => {
     let el = $(elem), name = el.attr('name'), option = {
       elem,
       value: trData[name],
       done(v) {
         let o = JSON.parse(JSON.stringify(trDataV(i)))
-        trDataV(i, name, o)
-        getChangeCols(trDataV[i], o, i, tr, [name])
+        trDataV(i, name, v)
+        getChangeCols(trDataV(i), o, i, tr, [name])
       }
     }
     if (!date_key_obj[name]) {
