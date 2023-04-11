@@ -1,6 +1,6 @@
 import { data, elem_p, selectData, select_key_yxj, select_option, zb_data } from "../../var/index";
 import { getInputElem } from "../other/getElem";
-import { dealVal } from "./dealVal";
+import { dealVal } from "../val/dealVal";
 
 export function renderSelects(i, keys, tr) {
   if (keys && keys.length) {

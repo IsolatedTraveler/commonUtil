@@ -2,6 +2,7 @@
 import { combogrid, combogrid_key, data, elem, isInit, third_combgrid } from "../../var/index";
 import { getInputElem } from "../other/getElem";
 import { updateRow } from "../prop/updateRow";
+import { endRender, startRender } from "./render";
 
 export function renderCombogrids(tr, i) {
   return combogrid_key ? getCombogrid().then(() => {
@@ -17,12 +18,10 @@ function renderCombogrid(tr, i, key) {
     valElem,
     mcElem,
     selected(res) {
-      isInit = false
+      startRender()
       return combogridDealData(res.data, elem, i, option.selected).then(d => {
-        return updateRow(Object.assign({}, data[i], d), i).then(() => {
-          isInit = true
-        })
-      })
+        return updateRow(Object.assign({}, data[i], d), i)
+      }).finally(endRender)
     }
   })
 }

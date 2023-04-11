@@ -1,6 +1,6 @@
 import { data, select_key_yxj } from "../../var/index";
 import { dealVal } from "./dealVal";
-import { renderSelects } from "./renderSelect";
+import { renderSelects } from "../render/renderSelect";
 import { setColValue } from "./rowUpdate";
 
 export function formChange(tr, i, elem, key) {

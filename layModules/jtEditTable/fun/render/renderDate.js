@@ -1,5 +1,5 @@
 import { data, date_key_obj, isInit, third_laydate } from "../../var/index"
-import { formChange } from "./form"
+import { formChange } from "../val/form"
 
 export function renderDate(tr, i) {
   let trData = data[i]

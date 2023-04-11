@@ -1,5 +1,5 @@
 import { autoHeight, done, elem_t_s, elem_t_v, isInit } from "../../var/index"
-import { closeZzc } from "../other/zzc"
+import { endRender } from "../render/render"
 export function loaded() {
   if (autoHeight) {
     let auto = {height: 'auto'}
@@ -7,7 +7,6 @@ export function loaded() {
     elem_t_s.css(auto)
   }
   done && done()
-  closeZzc()
-  isInit = true
+  endRender
   console.log(isInit)
 }

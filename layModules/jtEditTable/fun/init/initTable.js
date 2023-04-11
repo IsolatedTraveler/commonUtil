@@ -1,9 +1,9 @@
 import { cols, data, elem, elem_p, eTable, limit, name, select_key, skin, table_resolve, third_form, third_table } from "../../var/index"
 import { loaded } from "../initReload/loaded"
 import { getElem, getTrElem } from "../other/getElem"
-import { renderCombogrids } from "../val/renderCombogrid"
-import { renderDate } from "../val/renderDate"
-import { renderSelects } from "../val/renderSelect"
+import { renderCombogrids } from "../render/renderCombogrid"
+import { renderDate } from "../render/renderDate"
+import { renderSelects } from "../render/renderSelect"
 
 export function initTable() {
   return new Promise((resolve, reject) => {

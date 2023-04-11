@@ -2,7 +2,7 @@ import { data, dataChange, date_key_obj, def_data_tr, isInit, selectData, third_
 import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
 import { closeZzc, openZzc } from "../other/zzc"
 import { dealVal } from "./dealVal"
-import { renderSelect, renderSelects } from "./renderSelect"
+import { renderSelect, renderSelects } from "../render/renderSelect"
 
 export function rowUpdate(d, i) {
   openZzc()
@@ -49,5 +49,7 @@ function getChangeCols(d, o, i, tr) {
   if (isInit) {
     isInit = false
     getChangeCols(v, d, i, tr)
+  } else {
+    isInit = true
   }
 }

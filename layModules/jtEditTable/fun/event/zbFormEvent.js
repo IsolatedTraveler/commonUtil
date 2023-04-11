@@ -1,7 +1,7 @@
 import { data, isInit, zb_change_cols, zb_data } from "../../var/index";
 import { closeZzc, openZzc } from "../other/zzc";
 import { dealVal } from "../val/dealVal";
-import { renderSelects } from "../val/renderSelect";
+import { renderSelects } from "../render/renderSelect";
 
 export function zbFormEvent(e) {
   let elem = $(e.currentTarget), key = elem.attr('name'), v = dealVal(elem.val())
