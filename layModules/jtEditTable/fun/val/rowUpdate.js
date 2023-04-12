@@ -1,4 +1,4 @@
-import { dataChange, date_key_obj, def_data_tr, isInit, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
+import { changeData, dataChange, date_key_obj, def_data_tr, isInit, selectData, third_form, tr_key, tr_templet_key } from "../../var/index"
 import { getInputElem, getTrElem, getTrIndex } from "../other/getElem"
 import { endRender, startRender } from "../render/render"
 import { renderSelect, renderSelects } from "../render/renderSelect"
@@ -33,13 +33,13 @@ export function setColValue(key, v, i, tr) {
   return Promise.resolve()
 }
 export function getChangeCols(d, o, i, tr, keys) {
-  let v = JSON.parse(JSON.stringify(d))
+  let v = JSON.parse(JSON.stringify(d)), change
   keys = keys || tr_key
   tr = tr || getTrElem(i)
   keys.forEach(key => {
-    setChangeColV(i, key, v, o, tr)
+    change = setChangeColV(i, key, v, o, tr) || change
   })
-  if (dataChange) {
+  if (change) {
     if (isInit) {
       isInit = false
       getChangeCols(v, d, i, tr)
@@ -51,8 +51,14 @@ export function getChangeCols(d, o, i, tr, keys) {
 export function setChangeColV(i, key, v, o, tr) {
   if (v[key] != o[key]) {
     setColValue(key, v[key], i, tr);
-    if (isInit && dataChange) {
-      dataChange(key, v[key], o[key], i, tr);
+    if (isInit) {
+      if (changeData[key]) {
+        changeData[key](v, o[key], i, tr, key);
+        return true
+      } else if (dataChange) {
+        dataChange(key, v, o[key], i, tr);
+        return true
+      }
     }
   }
 }

@@ -20,3 +20,4 @@ export let elem // table元素
   , autoHeight // 是否自动设置高度
   , primaryCol // 判断是否空行列名
   , errorTimeOut = 300000 // 错误提示行标识多久
+  , changeData = {}
