@@ -1,6 +1,6 @@
 import { primaryCol } from "../../var/index"
 
-export function setWatch(d) {
+export function initWatch(d) {
   if (d) {
     d = d.filter(it => it)
     if (!d[0]) {

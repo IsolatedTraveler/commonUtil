@@ -2,8 +2,8 @@
 import { data, done, elem, name, watch, addField, elem_p, elem_t, combogrid, cols, elem_f, glzb, dataChange, forbidAdd, isEdit, editCheckData, limit, enterAdd, rowClick, rowCheck, skin, autoHeight, primaryCol, errorTimeOut, selectData, tr_key, def_data_tr, changeData } from "../../var/index";
 import { initCombogrid } from "./initCombogrid";
 import { initSelectConfig } from "./initSelectConfig";
-import { setCols, setTemple } from "./setCol";
-import { setWatch } from "./setWatch";
+import { initCols, initTemple } from "./initCols";
+import { initWatch } from "./initWatch";
 
 export function initConfig(config) {
   elem = config.elem
@@ -11,7 +11,7 @@ export function initConfig(config) {
   done = config.done
   data = config.data || []
   primaryCol = config.primaryCol
-  watch = setWatch(config.watch)
+  watch = initWatch(config.watch)
   addField = config.addField
   elem_t = $(elem)
   elem_p = elem_t.parent()
@@ -29,10 +29,10 @@ export function initConfig(config) {
   autoHeight = config.autoHeight
   changeData = config.changeData || changeData
   errorTimeOut = config.errorTimeOut || errorTimeOut
-  cols = setCols(config.cols)
+  cols = initCols(config.cols)
   selectData = initSelectConfig(config.selectData)
   combogrid = initCombogrid(config.combogrid)
-  setTemple(config.templet?.name, 'name')
-  setTemple(config.templet?.nameH, 'nameH')
+  initTemple(config.templet?.name, 'name')
+  initTemple(config.templet?.nameH, 'nameH')
   tr_key = Object.keys(def_data_tr)
 }

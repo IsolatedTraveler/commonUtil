@@ -2,7 +2,7 @@ import { elem_p, isInit, rowCheck, rowClick, selected_tr, skinSelected, skin_sel
 import { getRowData } from "../prop/getRowData";
 import { trDataV } from "../val/trDataV";
 
-export function rowEvent(res) {
+export function eventClickRow(res) {
   if (isInit) {
     let i = selected_tr ? selected_tr.index : 0
     elem_p.find(skinSelected).removeClass(skin_selected)
@@ -16,7 +16,7 @@ export function rowEvent(res) {
     }
   }
 }
-export function editRow(res) {
+export function eventEditRow(res) {
   if (isInit) {
     let key = res.field, i = res.tr.attr('data-index'), v = res.value
     trDataV(i, key, v)

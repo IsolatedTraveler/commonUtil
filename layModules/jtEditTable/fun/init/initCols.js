@@ -1,6 +1,6 @@
 import { addField, changeData, def_data_tr, skin_bar, skin_temp, tr_templet_key } from "../../var/index"
 
-export function setCol(col = {}) {
+export function initCol(col = {}) {
   let {field, templet, toolbar, skin = '', change} = col
   skin = [skin]
   if (field) {
@@ -19,7 +19,7 @@ export function setCol(col = {}) {
   col.skin = skin.filter(it => it).join(' ')
   return col
 }
-export function setCols(arr = []) {
+export function initCols(arr = []) {
   def_data_tr = {}
   tr_templet_key = {name: {}, nameH: {}}
   if (addField) {
@@ -28,10 +28,10 @@ export function setCols(arr = []) {
     })
   }
   return arr.map((it = []) => {
-    return it.map(setCol)
+    return it.map(initCol)
   })
 }
-export function setTemple(arr, key) {
+export function initTemple(arr, key) {
   if (arr) {
     arr.forEach(it => {
       tr_templet_key[key][it] = true

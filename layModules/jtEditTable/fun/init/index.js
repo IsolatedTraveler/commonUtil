@@ -1,4 +1,4 @@
-import { initEvent } from "../event/index";
+import { initEvent } from "./initEvent";
 import { closeZzc, openZzc } from "../other/zzc";
 import { initConfig } from "./initConfig";
 import { renderTable } from "../render/renderTable";

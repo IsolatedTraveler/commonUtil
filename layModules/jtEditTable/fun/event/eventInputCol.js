@@ -3,7 +3,7 @@ import { closeZzc, openZzc } from "../other/zzc";
 import { dealVal } from "../val/dealVal";
 import { renderSelects } from "../render/renderSelect";
 
-export function zbFormEvent(e) {
+export function eventEidtInputCol(e) {
   let elem = $(e.currentTarget), key = elem.attr('name'), v = dealVal(elem.val())
   if (isInit && v !== zb_data[key]) {
     openZzc()
