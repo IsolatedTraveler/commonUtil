@@ -1,11 +1,11 @@
 import { initEvent } from "./initEvent";
-import {  openZzc } from "../other/zzc";
 import { initConfig } from "./initConfig";
 import { renderTable } from "../render/renderTable";
 import { initThird } from "./initThird";
+import { startRender } from "../other/changeIsInit";
 
 export function init(config) {
-  openZzc()
+  startRender()
   initThird()
   initConfig(config)
   renderTable().then(initEvent)
