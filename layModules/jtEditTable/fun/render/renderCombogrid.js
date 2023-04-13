@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import { combogrid, combogrid_key, data, elem, isInit, third_combgrid, tr_key } from "../../var/index";
+import { combogrid, combogrid_key,  elem, third_combgrid, tr_key } from "../../var/index";
 import { getInputElem } from "../other/getElem";
-import { updateRow } from "../prop/updateRow";
 import { trDataV } from "../val/trDataV";
 import { endRender, startRender } from "../other/changeIsInit";
-import { valGetChanges } from "../val/valCol";
+import { valChanges } from "../val/valCol";
 
 export function renderCombogrids(tr, i) {
   return combogrid_key ? getCombogrid().then(() => {
@@ -23,8 +21,9 @@ function renderCombogrid(tr, i, key) {
       startRender()
       return combogridDealData(res.data, elem, i, option.selected).then(d => {
         let trData = trDataV(i)
-        return valGetChanges(tr_key, Object.assign({}, trData, d), trData, i, tr)
-      }).finally(endRender)
+        console.log(d, tr_key)
+        return valChanges(tr_key, Object.assign({}, trData, d), trData, i, tr)
+      }).finally(() => endRender())
     }
   })
 }

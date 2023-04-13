@@ -11,9 +11,9 @@ export function initCombogrid(d) {
       } else {
         def_data_tr[key] = ''
         tr_templet_key.name[key] = true
-        if (data.mcElem) {
-          def_data_tr[data.mcElem] = ''
-          tr_templet_key.name[data.showElem] = true
+        if (data.valElem) {
+          def_data_tr[data.valElem] = ''
+          tr_templet_key.name[data.valElem] = true
         }
       }
     })
