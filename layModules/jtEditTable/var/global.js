@@ -1,5 +1,6 @@
 export let layerIndex // 弹出层id
   , isInit // 是否初始化完成
+  , isInit_arr = []
   , selected_tr // 选中行
   , eTable // 表格对象
   , zzc_arr = []
