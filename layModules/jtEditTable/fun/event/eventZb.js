@@ -9,7 +9,7 @@ export function eventZbEditInputCol(e) {
     openZzc()
     Promise.all(data.map((it, i) => {
       return renderSelects(i, zb_change_cols[key])
-    })).finally(closeZzc)
+    })).finally(() => closeZzc())
   }
   zb_data[key] = v
 }
