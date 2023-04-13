@@ -10,7 +10,6 @@ export function eventEditColTd(res) {
   return Promise.resolve()
 }
 export function eventEditInputCol(e) {
-  let el = $(e.currentTarget), tr = el.parents('tr[data-index]').eq(0), i = tr.attr('data-index'), key = el.attr('name')
   if (isInit) {
     let el = $(e.currentTarget), tr = el.parents('tr[data-index]').eq(0), i = tr.attr('data-index'), key = el.attr('name')
     return valCol(tr, i, key, el.val())
