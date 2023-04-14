@@ -5,7 +5,7 @@ import { initThird } from "./initThird";
 import { startRender } from "../other/changeIsInit";
 
 export function init(config) {
-  startRender()
+  startRender('init')
   initThird()
   initConfig(config)
   renderTable().then(initEvent)

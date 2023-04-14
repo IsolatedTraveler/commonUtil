@@ -7,5 +7,5 @@ export function tableLoaded() {
     elem_t_s.css(auto)
   }
   done && done()
-  endRender()
+  endRender('init reload')
 }

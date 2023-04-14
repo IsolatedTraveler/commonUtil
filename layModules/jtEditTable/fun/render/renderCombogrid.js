@@ -1,7 +1,6 @@
 import { combogrid, combogrid_key,  elem, third_combgrid, tr_key } from "../../var/index";
 import { getInputElem } from "../other/getElem";
 import { trDataV } from "../val/trDataV";
-import { endRender, startRender } from "../other/changeIsInit";
 import { valChanges } from "../val/valCol";
 
 export function renderCombogrids(tr, i) {
@@ -18,12 +17,10 @@ function renderCombogrid(tr, i, key) {
     valElem,
     mcElem,
     selected(res) {
-      startRender()
       return combogridDealData(res.data, elem, i, option.selected).then(d => {
         let trData = trDataV(i)
-        console.log(d, tr_key)
         return valChanges(tr_key, Object.assign({}, trData, d), trData, i, tr)
-      }).finally(() => endRender())
+      })
     }
   })
 }

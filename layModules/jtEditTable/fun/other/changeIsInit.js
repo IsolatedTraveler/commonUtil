@@ -2,13 +2,13 @@
 import { isInit, isInit_arr } from "../../var/index";
 import { closeZzc, openZzc } from "./zzc";
 
-export function startRender() {
+export function startRender(name) {
   isInit_arr.pop()
   isInit = !!isInit_arr.length
-  openZzc()
+  openZzc('start ' + name)
 }
-export function endRender() {
+export function endRender(name) {
   isInit_arr.push(true)
   isInit = true
-  closeZzc()
+  closeZzc('end ' + name)
 }

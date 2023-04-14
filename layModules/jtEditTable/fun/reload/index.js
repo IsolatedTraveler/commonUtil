@@ -1,11 +1,13 @@
-/* eslint-disable no-unused-vars */
-import { data, done, eTable, forbidAdd, primaryCol, table_resolve } from "../../var/index";
+import { data, done, eTable, forbidAdd } from "../../var/index";
+// eslint-disable-next-line no-unused-vars
+import { table_resolve } from "../../var/index";
+import { tableLoaded } from "../initReload/tableLoaded";
 import { fixedPosition } from "../other/fixedPosition";
 import { openZzc } from "../other/zzc";
 import { addRow } from "../prop/addRow";
 
 export function reload(cdata) {
-  openZzc()
+  openZzc('reload')
   return new Promise((resolve, reject) => {
     data = []
     table_resolve = resolve
@@ -16,5 +18,6 @@ export function reload(cdata) {
     return fixedPosition(data.length - 1)
   }).then(() => {
     done && done()
+    tableLoaded()
   })
 }

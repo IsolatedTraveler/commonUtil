@@ -3,37 +3,35 @@ import { getInputElem } from "../other/getElem";
 import { dealVal } from "../val/dealVal";
 import { trDataV } from "../val/trDataV";
 
-export function renderSelects(i, keys, tr) {
+export function renderSelects(i, keys, tr, obj) {
   if (keys && keys.length) {
     tr = tr || elem_p.find(`[data-index=${i}]`)
-    let trData = trDataV(i), min = 100
+    let trData = obj || trDataV(i), min = 100
     keys.forEach(key => min = Math.min(min,select_key_yxj[key].yxj))
     let not = keys.filter(key => select_key_yxj[key].yxj > min)
     keys = keys.filter(key => select_key_yxj[key].yxj = min)
     if (keys && keys.length) {
       Promise.all(keys.map(key => {
         let option = selectData[key], o = dealVal(trData[key]), v = dealVal(o || option.default)
-        if (v && option.showId) {
-          if (key !== option.showName) {
-            return renderSelect(key, tr, v, not)
-          }
+        if (v != o[key] && key != option.showName) {
+          return renderSelect(key, tr, v, not, obj)
         }
         return bindSelectEvent(i, key, tr)
-      })).then(() => renderSelects(i, not, tr))
+      })).then(() => renderSelects(i, not, tr, obj))
     }
-  }``
+  }
   return Promise.resolve()
 }
-export function renderSelect(key, tr, o, arr) {
+export function renderSelect(key, tr, v, arr, obj) {
   let i = tr.attr('data-index'), option = selectData[key], elem = getInputElem(tr, key)
   if (option.getData || option.data) {
-    return renderSelectOption(elem, option, o, tr, i, key, arr)
+    return renderSelectOption(elem, option, v, tr, i, key, arr, obj)
   } else {
     console.error(`selectData[${key}]中缺少获取options的方法`)
     return Promise.resolve()
   }
 }
-function renderSelectOption(elem, option, value, tr, i, key, arr) {
+function renderSelectOption(elem, option, value, tr, i, key, arr, obj) {
   let old = trDataV(i, key)
   return getSelectData(key, option, value, tr, trDataV(i)).then(({data, value}) => {
     return commonUtil.setSelectOption({
@@ -45,6 +43,11 @@ function renderSelectOption(elem, option, value, tr, i, key, arr) {
       value
     }, true).then(() => {
       if (elem.val() != old) {
+        if (obj) {
+          obj[key] = elem.val()
+        } else {
+          data[i] = elem.val()
+        }
         arr.push(...(select_key_yxj[key].c || []))
       }
     })

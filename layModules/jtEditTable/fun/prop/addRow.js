@@ -1,25 +1,15 @@
-import { data, primaryCol } from "../../var/index"
+import { data } from "../../var/index"
 import { fixedPosition } from "../other/fixedPosition"
 import { closeZzc, openZzc } from "../other/zzc"
-import { rowDel } from "./delRow"
-import { dealAddRow } from "./updateRow"
+import { judgeAdd } from "../reload/addRow"
 
 export function addRow(cdata) {
-  openZzc()
+  openZzc('addRow')
   if (!Array.isArray(cdata)) {
     cdata = [cdata]
   }
-  return dealAddRow(cdata).then(() => {
-    let i = 0, len = data.length - 1
-    return Promise.all(data.map((it, j) => {
-      if (!it[primaryCol] && len !== j) {
-        return rowDel(i)
-      } else {
-        i++
-      }
-    }).filter(it => it))
-  }).then(() => {
+  return judgeAdd(cdata).finally(() => {
     fixedPosition(data.length - 1)
-    closeZzc()
+    closeZzc('addRow')
   })
 }

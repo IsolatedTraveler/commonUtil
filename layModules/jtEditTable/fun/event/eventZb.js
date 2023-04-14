@@ -6,10 +6,10 @@ import { renderSelects } from "../render/renderSelect";
 export function eventZbEditInputCol(e) {
   let elem = $(e.currentTarget), key = elem.attr('name'), v = dealVal(elem.val())
   if (isInit && v !== zb_data[key]) {
-    openZzc()
+    openZzc('eventZbEditInputCol')
     Promise.all(data.map((it, i) => {
       return renderSelects(i, zb_change_cols[key])
-    })).finally(() => closeZzc())
+    })).finally(() => closeZzc('eventZbEditInputCol'))
   }
   zb_data[key] = v
 }

@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
-import { cols, data, elem, elem_p, eTable, limit, name, select_key, skin, table_resolve, third_form, third_table } from "../../var/index"
+import { cols, data, eTable, elem, elem_p, limit, name, select_key, skin, table_resolve, third_table, tr_key } from "../../var/index"
 import { tableLoaded } from "../initReload/tableLoaded"
 import { getElem, getTrElem } from "../other/getElem"
+import { setColVal } from "../val/valCol"
 import { renderCombogrids } from "./renderCombogrid"
 import { renderDates } from "./renderDate"
 import { renderSelects } from "./renderSelect"
@@ -27,13 +27,14 @@ export function tableDone(res, pageNumber, rowCount) {
   getElem()
   return Promise.all(rData.map((trData, i) => {
     return renderTr(start + i, trData)
-  })).then(() => {
+  })).finally(() => {
+    console.log(eTable)
     table_resolve && table_resolve()
   })
 }
 export function renderTr(i, data) {
   let tr = getTrElem(i)
-  third_form.render('', tr)
-  third_form.val(tr, data)
-  return Promise.all([renderDates(tr, i), renderCombogrids(tr, i), renderSelects(i, select_key, tr)])
+  return Promise.all(tr_key.map(key => setColVal(i, key, tr, data))).then(() => {
+    return Promise.all([renderDates(tr, i), renderCombogrids(tr, i), renderSelects(i, select_key, tr)])
+  })
 }
