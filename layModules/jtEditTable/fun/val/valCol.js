@@ -30,9 +30,9 @@ function val(i, key, v, o, tr, judge) {
     return setColVal(i, key, tr, v, judge).then((res) => {
       if (isInit) {
         if (changeData[key]) {
-          return changeData[key](v, o, i, tr, key);
+          return changeData[key](v, o, i, tr, key) || true;
         } else if (dataChange) {
-          return dataChange(key, v, o, i, tr);
+          return dataChange(key, v, o, i, tr) || true;
         }
       }
     })
