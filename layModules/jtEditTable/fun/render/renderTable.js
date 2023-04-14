@@ -1,6 +1,7 @@
 import { cols, data, eTable, elem, elem_p, limit, name, select_key, skin, table_resolve, third_table, tr_key } from "../../var/index"
 import { tableLoaded } from "../initReload/tableLoaded"
 import { getElem, getTrElem } from "../other/getElem"
+import { trDataV } from "../val/trDataV"
 import { setColVal } from "../val/valCol"
 import { renderCombogrids } from "./renderCombogrid"
 import { renderDates } from "./renderDate"
@@ -32,8 +33,9 @@ export function tableDone(res, pageNumber, rowCount) {
     table_resolve && table_resolve()
   })
 }
-export function renderTr(i, data) {
+function renderTr(i, data) {
   let tr = getTrElem(i)
+  trDataV(i, undefined, data)
   return Promise.all(tr_key.map(key => setColVal(i, key, tr, data))).then(() => {
     return Promise.all([renderDates(tr, i), renderCombogrids(tr, i), renderSelects(i, select_key, tr)])
   })
