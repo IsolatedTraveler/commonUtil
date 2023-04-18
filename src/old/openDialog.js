@@ -1,7 +1,7 @@
 import { that } from "../var/init";
 import { openPopIndex } from "../var/old";
 function getBtns(b, filter, id) {
-  let btns = b.find('iframe')[0].contentWindow.$(`[layer-filter="${filter}"]`)
+  let btns = b.find('iframe')[0].contentWindow.$(`[layer-filter~="${filter}"]`)
   return btns.length > 1 ? btns.filter(id) : btns
 }
 function getEvent(e, id) {
@@ -13,12 +13,13 @@ function getEvent(e, id) {
 function getBtnEvent(len, id) {
   var btnEvent = {cancel: getEvent('btn_cancel', id)}
   for(let i = 2; i < len; i++) {
-    btnEvent['btn' + i] = getBtnEvent('btn_' + (i - 1), id)
+    btnEvent['btn' + i] = getEvent('btn_' + (i - 1), id)
   }
+  btnEvent['btn' + len] = getEvent('btn_last', id)
   return btnEvent
 }
 export function openDialog(url, data, width, height, id, btn = ['保存', '放弃', '关闭']) {
-  var btnEvent = getBtnEvent(btn,length, id)
+  var btnEvent = getBtnEvent(btn.length, id)
   if (url.indexOf("xtcs.html") > -1) {
     var mkbh = that.getBrowserParam('cssz', 'mkbh')
     return that.showxtcs(mkbh)
