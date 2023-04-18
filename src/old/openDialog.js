@@ -51,7 +51,6 @@ export function openDialog(url, data, width, height, id, btn = ['保存', '放�
 }
 export function setOpenPopIndex(i) {
   openPopIndex = i
-  console.log(openPopIndex)
 }
 export function closeOpenPopChild() {
   w.parent.layui.layer.close(openPopIndex)

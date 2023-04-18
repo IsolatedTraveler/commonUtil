@@ -38,7 +38,6 @@ export function getCommonDic(dics) {
     }
     //是否添加一个空选项
     var addnull = dics.addnull;
-    //console.log("result=="+result)
     var data = that.dicget(dicKey);
     data = that.convertKeysToLowerCase(data);
     data = that.filterDicData(data);
