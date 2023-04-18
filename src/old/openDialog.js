@@ -11,8 +11,8 @@ function getEvent(e, id) {
   }
 }
 function getBtnEvent(len, id) {
-  var btnEvent = {cancel: getEvent('btn_cancel', id)}
-  for(let i = 2; i < len; i++) {
+  var btnEvent = { cancel: getEvent('btn_cancel', id) }
+  for (let i = 2; i < len; i++) {
     btnEvent['btn' + i] = getEvent('btn_' + (i - 1), id)
   }
   btnEvent['btn' + len] = getEvent('btn_last', id)
@@ -33,7 +33,7 @@ export function openDialog(url, data, width, height, id, btn = ['保存', '放�
     return new Promise((resolve, reject) => {
       that.openPop({
         url,
-        data: {page_source: 'layer'},
+        data: { page_source: 'layer' },
         btn,
         area: [width, height],
         success(elem, index) {
@@ -50,7 +50,8 @@ export function openDialog(url, data, width, height, id, btn = ['保存', '放�
   }
 }
 export function setOpenPopIndex(i) {
-  openPopIndex = i 
+  openPopIndex = i
+  console.log(openPopIndex)
 }
 export function closeOpenPopChild() {
   w.parent.layui.layer.close(openPopIndex)
