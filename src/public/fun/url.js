@@ -1,14 +1,21 @@
-import {urlFace, urlImg, urlUpload, urlBase, urlHost, urlTp} from '../../var/url'
-import {val} from './init'
-import {setPageTemp} from './deeps'
-import {that} from '../../var/init'
+import { urlFace, urlImg, urlUpload, urlBase, urlHost, urlTp } from '../../var/url'
+import { val } from './init'
+import { setPageTemp } from './deeps'
+import { that, urlRegV } from '../../var/init'
 function setBaseUrl() {
-  let name = val('webName'), path = ''
+  let name = val('webName'), reg, url = w.location.href, matchArr
   if (name) {
-    path = w.location.pathname.split(name)
-    path = ('/' + (path[0] || '') + name + '/').replace(/\/{2}/g, '/')
+    reg = new RegExp(urlRegV + '|' + name)
+  } else {
+    reg = new RegExp(urlRegV)
   }
-  return urlBase = w.location.origin + path
+  urlBase = url.split(reg)[0]
+  matchArr = url.match(reg)
+  if (matchArr && matchArr[0] == name) {
+    urlBase = urlBase + name
+  }
+  urlBase = (urlBase + '/').replace(/\/+/g, '/')
+  return urlBase
 }
 function setHostUrl() {
   let name = val('hostName')
@@ -30,7 +37,7 @@ function setTpUrl() {
 function setImgUrl() {
   return urlImg = dealsUrl('rest/downLoadFileById/', that.getServiceUrl())
 }
-function setFaceUrl() { 
+function setFaceUrl() {
   return urlFace = dealsUrl('/rest/facedetect', that.getConfig('faceurl') || that.getServiceUrl())
 }
 function setUploadUrl() {
