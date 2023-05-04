@@ -7,7 +7,7 @@ import { rowDel } from "./delRow";
 export function judgeAdd(addData) {
   let arr 
   if (primaryCol) {
-    addData = addData.filter(it => it[primaryCol])
+    addData = addData.filter((it = {}) => it[primaryCol])
     let i = 0
     arr = data.map((it, j) => {
       if (!it[primaryCol]) {

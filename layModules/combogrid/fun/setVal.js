@@ -48,6 +48,8 @@ export function setV(res1) {
       } else {
         vSet(res)
       }
+    } else {
+      reset()
     }
   } else {
     vSet(res1.data)

@@ -1,10 +1,12 @@
 import { isInit } from "../../var/index"
 import { getInputElems } from "../other/getElem"
+import { trDataV } from "../val/trDataV"
 import { valCol } from "../val/valCol"
 
 export function eventEditColTd(res) {
   if (isInit) {
-    let key = res.field, tr = res.tr, i = tr.attr('data-index'), v = res.value
+    let key = res.field, tr = res.tr, i = tr.attr('data-index'), v = res.value, trData = trDataV(i)
+    trData[key] = res.oldValue
     return valCol(tr, i, key, v)
   }
   return Promise.resolve()

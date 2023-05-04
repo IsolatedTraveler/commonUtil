@@ -39,7 +39,7 @@ export function getParamsUrl(obj, url){
   if (keys.length) {
     url += '?' + keys.map(key => {
       let v = obj[key]
-      v = v === null ? '' : v
+      v = (v === null || v === undefined) ? '' : v
       return key + '=' + encodeURIComponent(typeof v === 'object' ? JSON.stringify(v) : v)
     }).join('&')
   }

@@ -1,5 +1,7 @@
-import { dataConfig } from "../../var/ajax";
-import { getAjax } from "./ajax";
+// eslint-disable-next-line no-unused-vars
+import { session } from "../../reWrite/fun/init";
+import { Authorization, dataConfig, jqUrl } from "../../var/ajax";
+import { commonHttppost, getAjax } from "./ajax";
 import { setPageTemp } from "./deeps";
 
 function setConfig() {
@@ -9,6 +11,22 @@ export function getConfig(key) {
   setPageTemp(dataConfig, setConfig)
   return key ? dataConfig[key] : dataConfig
 }
+export function getToken() {
+  let magic = getConfig('magic')
+  Authorization = session('Authorization') || magic.Authorization
+  if (Authorization && Authorization == magic.Authorization) {
+    setToken(magic.user)
+  } else {
+    // 校验token是否临近过期，如果是需替换，如果否不做任何处理
+  }
+}
+function setToken(param) {
+  session('Authorization', Authorization)
+  let res = commonHttppost(jqUrl, {}, {param, isNotGetUser: true})
+  Authorization = res.Authorization
+  session('Authorization', Authorization)
+}
 export default {
-  getConfig
+  getConfig,
+  getToken
 }

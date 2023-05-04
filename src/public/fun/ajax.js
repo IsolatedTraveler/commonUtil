@@ -1,4 +1,4 @@
-import { ajaxTimeOut } from "../../var/ajax";
+import { Authorization, ajaxTimeOut, jqUrl } from "../../var/ajax";
 import { alertMsg, getParamsUrl, loaded, loading } from "./init";
 import { dealsUrl, getBaseUrl } from "./url";
 import { that } from '../../var/init'
@@ -52,6 +52,7 @@ function dealAjaxData(data, {isNotGetUser} = {}) {
 }
 function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async = false, errCallBack, callBack) {
   let i, v
+  type === 'POST' && url != jqUrl && that.getToken()
   if (option.isShowLoad) {
     i = loading()
   }
@@ -70,6 +71,9 @@ function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async 
     url,
     async,
     data,
+    headers: {
+      Authorization
+    },
     contentType: 'application/json; charset=utf-8',
     timeOut: ajaxTimeOut,
     cache: false,

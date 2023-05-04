@@ -1,7 +1,7 @@
 
 export let that, webName, webNameReg, jse, promiseResove, promiseCore, BASE64, loadElem, msgElem, loadMsg, closeLoadEd
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
-  , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
+  , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
     // 库所在位置
     libSite: '/lib',
     // 自定义网站更目录
