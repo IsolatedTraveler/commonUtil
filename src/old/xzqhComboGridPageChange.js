@@ -6,30 +6,29 @@ export function xzqhComboGridPageChange(gridObject, param) {
   $(pager).pagination({
     displayMsg: "",
     onBeforeRefresh: function () {},
-    onRefresh: function (pageNumber, pageSize) {
+    onRefresh: function (page, size) {
       try {
-        param.pageNumber = pageNumber;
-        param.pageSize = pageSize;
+        param.page = page;
+        param.size = size;
         loadXzqhComboGrigPageData(gridObject, param);
       } catch (e) {
         JsErrorTrace(e);
       }
     },
-    onChangePageSize: function (pageSize) {
+    onChangePageSize: function (size) {
       try {
-        param.pageNumber = 1;
-        param.pageSize = pageSize;
-        $(gridObject).combogrid("grid").datagrid("options").pageSize =
-          pageSize;
+        param.page = 1;
+        param.size = size;
+        $(gridObject).combogrid("grid").datagrid("options").pageSize = size;
         loadXzqhComboGrigPageData(gridObject, param);
       } catch (e) {
         JsErrorTrace(e);
       }
     },
-    onSelectPage: function (pageNumber, pageSize) {
+    onSelectPage: function (page, size) {
       try {
-        param.pageNumber = pageNumber;
-        param.pageSize = pageSize;
+        param.page = page;
+        param.size = size;
         loadXzqhComboGrigPageData(gridObject, param);
       } catch (e) {
         JsErrorTrace(e);
@@ -38,19 +37,19 @@ export function xzqhComboGridPageChange(gridObject, param) {
   });
 }
 export function loadXzqhComboGrigPageData(gridObject, params) {
-  if (params.pageNumber) {
+  if (params.page) {
     var pager = $(gridObject).combogrid("grid").datagrid("getPager"); // get the pager of datagrid
-    if (params.pageNumber != pager.pageNumber) {
+    if (params.page != pager.pageNumber) {
       pager.pagination({
-        pageNumber: params.pageNumber,
+        pageNumber: params.page,
       });
     }
   }
   var q = params.dm;
-  var pageNumber = params.pageNumber + "";
-  var pageSize = params.pageSize + "";
+  var page = params.page + "";
+  var size = params.size + "";
   if (q != "") {
-    var resultData = getXzqh(q, pageNumber, pageSize);
+    var resultData = getXzqh(q, page, size);
     if (resultData.total > 0) {
       $(gridObject).combogrid("setValue", q);
       $(gridObject).combogrid("grid").datagrid("loadData", resultData);
@@ -60,8 +59,8 @@ export function loadXzqhComboGrigPageData(gridObject, params) {
     }
   }
 }
-export function getXzqh(jsm, pageNumber, pageSize) {
-  var data = that.commonHttppost('/zs03-ywzd/xzqhgl/s-xzqh', {jsm, pageNumber, pageSize}).data || {}
+export function getXzqh(jsm, page, size) {
+  var data = that.commonHttppost('/zs03-ywzd/xzqhgl/s-xzqh', {jsm, page, size}).data || {}
   return {
     total: data.total,
     rows: data.list

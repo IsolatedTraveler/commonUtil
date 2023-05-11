@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import { session } from "../../reWrite/fun/init";
 import { Authorization, dataConfig, jqUrl } from "../../var/ajax";
+import { that } from "../../var/init";
 import { commonHttppost, getAjax } from "./ajax";
 import { setPageTemp } from "./deeps";
 
@@ -13,7 +13,7 @@ export function getConfig(key) {
 }
 export function getToken() {
   let magic = getConfig('magic')
-  Authorization = session('Authorization') || magic.Authorization
+  Authorization = that.session('Authorization') || magic.Authorization
   if (Authorization && Authorization == magic.Authorization) {
     setToken(magic.user)
   } else {
@@ -21,10 +21,10 @@ export function getToken() {
   }
 }
 function setToken(param) {
-  session('Authorization', Authorization)
+  that.session('Authorization', Authorization)
   let res = commonHttppost(jqUrl, {}, {param, isNotGetUser: true})
   Authorization = res.Authorization
-  session('Authorization', Authorization)
+  that.session('Authorization', Authorization)
 }
 export default {
   getConfig,
