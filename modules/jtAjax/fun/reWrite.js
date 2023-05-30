@@ -1,4 +1,4 @@
-import {user} from '../../../src/var/user'
+import {user} from '../../../global/var/user'
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
      // eslint-disable-next-line no-import-assign
