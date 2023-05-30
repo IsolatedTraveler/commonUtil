@@ -5,39 +5,13 @@
  */
 
 "use strict";
-const buildSrc = require('./task/src'), buildModule = require('./task/module'), buildOld = require('./task/old')
-, buildLay = require('./task/layModules')
+const buildSrc = require('./task/src'),
+  buildModule = require('./task/module'),
+  buildLay = require('./task/layModules')
 let version
-module.exports = function(g) {
-  version = g.config( "pkg.version" )
-  g.registerMultiTask('build:mod', 'build modules', async function() {
-    const done = this.async()
-    try {
-      await buildModule(g, version)
-      done()
-    } catch (e) {
-      done(e)
-    }
-  })
-  g.registerMultiTask('build:src', 'build src modules', async function() {
-    const done = this.async()
-    try {
-      await buildSrc(g, version)
-      done()
-    } catch (e) {
-      done(e)
-    }
-  })
-  g.registerMultiTask('build:old', 'build old modules', async function() {
-    const done = this.async()
-    try {
-      await buildOld(g, version)
-      done()
-    } catch (e) {
-      done(e)
-    }
-  })
-  g.registerMultiTask('build', 'build commonUtil modules', async function() {
+module.exports = function (g) {
+  version = g.config("pkg.version")
+  g.registerMultiTask('build', 'build commonUtil modules', async function () {
     const done = this.async()
     try {
       await buildSrc(g, version)
