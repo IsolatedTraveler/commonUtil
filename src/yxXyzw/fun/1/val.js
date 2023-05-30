@@ -1,4 +1,4 @@
-import { kbcs } from "../var/kbcs"
+import { kbcs } from "../../var/kbcs"
 
 export function val(key, v) {
   if (v === undefined || v === null) {

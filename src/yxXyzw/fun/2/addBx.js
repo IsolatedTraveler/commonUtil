@@ -1,5 +1,5 @@
-import { setBjbx, setHjbx, setQtbx } from "../public/setCs"
-import { kbcs } from "../var/kbcs"
+import { kbcs } from "../../var/kbcs"
+import { setBjbx, setHjbx, setQtbx } from "../1/setCs"
 
 export function addBx(val) {
   if (val == 10) {

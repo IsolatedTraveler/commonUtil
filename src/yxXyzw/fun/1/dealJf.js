@@ -1,5 +1,5 @@
-import { keys, len, vals } from "../var/gdcs"
-import { dcjfh, kbcs } from "../var/kbcs"
+import { keys, len, vals } from "../../var/gdcs"
+import { dcjfh, kbcs } from "../../var/kbcs"
 
 export function getZf() {
   var { mzbx, qtbx, hjbx, bjbx, dqjf, dqzf } = kbcs,
@@ -23,6 +23,6 @@ export function getZf() {
 }
 
 export function getDcjfh() {
-  dcjfh = dcjfh || eval(keys.join('+')) - eval(vals.filter(it => it < 0).join('+'))
+  dcjfh = dcjfh || keys.reduce((a, b) => a + b) - vals.filter(it => it < 0).reduce((a, b) => a + b)
   return dcjfh
 }

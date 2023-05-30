@@ -1,7 +1,7 @@
-import { addBx } from "../fun/addBx"
+import { setDqdbf, setDqjf, setDqzf } from "../fun/1/setCs"
+import { addBx } from "../fun/2/addBx"
 import { keys, len, vals } from "../var/gdcs"
 import { kbcs } from "../var/kbcs"
-import { setDqdbf, setDqjf, setDqzf } from "./setCs"
 
 export function addDqjf(v) {
   var dqjf = kbcs.dqjf + v

@@ -1,3 +1,4 @@
 import Class from "../core";
-import { getDbxx } from "../public/dealJf";
-Class.prototype.addDqjf = getDbxx
+import { getDbxx, getSyBxs } from "../public/dealJf";
+Class.prototype.getDbxx = getDbxx
+Class.prototype.getSyBxs = getSyBxs

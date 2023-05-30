@@ -1,6 +1,6 @@
-import { bl, dcjfh } from "../var/kbcs"
-import { getDcjfh, getZf } from "./dealJf"
-import { reSetCs, setCsObj } from "./setCs"
+import { bl, dcjfh } from "../../var/kbcs"
+import { getDcjfh, getZf } from "../1/dealJf"
+import { reSetCs, setCsObj } from "../1/setCs"
 
 export function getJfBl() {
   if (!bl) {

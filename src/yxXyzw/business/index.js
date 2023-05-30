@@ -1,3 +1,4 @@
-import './addJf.js'
-import './dealJf.js'
-import './setCs.js'
+import './addJf'
+import './dealJf'
+import './getCs'
+import './setCs'
