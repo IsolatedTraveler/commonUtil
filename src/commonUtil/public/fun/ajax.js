@@ -1,4 +1,4 @@
-import { Authorization, ajaxTimeOut, jqUrl } from "../../var/ajax";
+import { Authorization, ajaxTimeOut, jqUrl } from "../../../../global/var/ajax";
 import { alertMsg, getParamsUrl, loaded, loading } from "./init";
 import { dealsUrl, getBaseUrl } from "./url";
 import { that } from '../../var/init'

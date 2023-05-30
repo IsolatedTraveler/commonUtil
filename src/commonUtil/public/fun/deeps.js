@@ -1,4 +1,6 @@
 import { webName } from "../../var/init";
+import {setPageTemp} from "../../../../global/fun/pageTemp"
+export {setPageTemp} from "../../../../global/fun/pageTemp"
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
@@ -7,12 +9,6 @@ function elemLoaded(e, resolve, reject) {
   } else {
     reject({code: '-1', w: this.contentWindow, elem: this})
   }
-}
-export function setPageTemp(val, callBack, param) {
-  if (!val) {
-    return callBack(param)
-  }
-  return val
 }
 export function syncWhile(judgeFun, callBack, param, timeOut = 10, total = 20, i = 0) {
   if (i > total) {

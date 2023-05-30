@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { Authorization, dataConfig, jqUrl } from "../../var/ajax";
+import { Authorization, dataConfig, jqUrl } from "../../../../global/var/ajax";
 import { that } from "../../var/init";
 import { commonHttppost, getAjax } from "./ajax";
 import { setPageTemp } from "./deeps";

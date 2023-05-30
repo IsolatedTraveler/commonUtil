@@ -1,5 +1,6 @@
 import { that } from "../../var/init"
-
+import {uuid} from "../../../../global/fun/uuid"
+export {uuid} from "../../../../global/fun/uuid"
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
     return keys.map(key => it[key]).join('-')
@@ -153,13 +154,6 @@ export function debounce(fun, delay) {
       }, delay)
     })
   }
-}
-export function uuid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0,
-      v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
 }
 export default {
   unique,
