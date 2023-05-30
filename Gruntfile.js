@@ -16,7 +16,7 @@ module.exports = function(grunt) {
       dev: {
         src: [
           "src/",
-          // "global/",
+          "global/",
           "layModules/",
           'modules/'
         ]
