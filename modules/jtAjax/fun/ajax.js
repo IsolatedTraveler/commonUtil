@@ -1,4 +1,4 @@
-import { setPageTemp } from '../../../src/public/fun/deeps';
+import { setPageTemp } from "../../../global/fun/pageTemp";
 import {ajaxTimeOut, dataConfig} from '../../../src/var/ajax'
 import { dealNull } from './dealNull';
 function setConfig() {

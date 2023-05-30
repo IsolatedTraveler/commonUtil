@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../src/public/fun/deeps";
+import { setPageTemp } from "../../global/fun/pageTemp";
 
 // eslint-disable-next-line no-unused-vars
 const Class = function () {
