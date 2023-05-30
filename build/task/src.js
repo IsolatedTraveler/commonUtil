@@ -5,8 +5,7 @@ const {getCode, readDir} = require('../fun/public'), {ml, outMl} = require('../v
 // }
 // const {getCode, readDir} = require('../fun/public'), {ml, outMl} = require('../var/module'), path = require('path')
 module.exports = async function(grunt, version) {
-  let res = ['commonUtil']
-  // let res = await readDir(ml)
+  let res = await readDir(ml)
   if (res && res[0]) {
     let len = res.length
     for(let i = 0; i < len; i++) {
