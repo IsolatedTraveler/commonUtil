@@ -1,0 +1,1 @@
+export let copyObj = '[object Array]', copyArr = '[object Object]'
