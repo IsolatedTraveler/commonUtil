@@ -15,13 +15,12 @@ module.exports = function(grunt) {
 			},
       dev: {
         src: [
-          "src/**.js"
+          "src/",
+          // "global/",
+          "layModules/",
+          'modules/'
         ]
       }
-    },
-    watch: {
-      files: ['src/*'],
-      tasks: ['default']
     }
   })
   require('load-grunt-tasks')(grunt)
