@@ -11,7 +11,7 @@ function getAllUrl(url, lx) {
     return dealsUrl(url, that.getServiceUrl())
   }
 }
-function ajaxError({message, i}, {isShowLoad, msg} = {}, res) {
+function ajaxError({ message, i }, { isShowLoad, msg } = {}, res) {
   isShowLoad && loaded(i)
   if (msg) {
     alertMsg(msg + message)
@@ -25,11 +25,11 @@ function ajaxDealData(res, i, option, errCallBack, callBack) {
     }
     return callBack ? callBack(res) : res
   } else {
-    res = ajaxError({message: res.message, code: 0, i}, option, res)
+    res = ajaxError({ message: res.message, code: 0, i }, option, res)
     return errCallBack ? errCallBack(res) : res
   }
 }
-function dealAjaxData(data, {isNotGetUser} = {}) {
+function dealAjaxData(data, { isNotGetUser } = {}) {
   if (isNotGetUser) {
     return data
   } else {
@@ -56,10 +56,6 @@ function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async 
   if (option.isShowLoad) {
     i = loading()
   }
-  if (data.pageNumber && data.pageSize && !(data.page || data.size)) {
-    data.page = data.pageNumber
-    data.size = data.pageSize
-  }
   data = dealAjaxData(data, option)
   if (!option.contentType && type !== "GET") {
     data = JSON.stringify(data);
@@ -81,14 +77,14 @@ function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async 
       if (typeof res === 'string') {
         try {
           res = JSON.parse(res)
-        } catch(e) {
+        } catch (e) {
           // 
         }
       }
       v = ajaxDealData(res, i, option, errCallBack, callBack)
     },
     error(e) {
-      const res = {code: '-1', message: '网络连接超时', i}
+      const res = { code: '-1', message: '网络连接超时', i }
       v = errCallBack ? errCallBack(res, option, e) : res
     },
     ...config
@@ -103,17 +99,37 @@ export function ajaxSync(url, data, param, option, config, type = 'GET') {
     ajax(url, data, param, option, config, type, true, reject, resolve)
   }).catch(res => ajaxError(res, option, res))
 }
-export function getAjax(url, data, option={}, config) {
+export function getAjax(url, data, option = {}, config) {
   return AjaxASync(url, option.param, data, option, config)
 }
-export function getAjaxSync(url, data, option={}, config) {
+export function getAjaxSync(url, data, option = {}, config) {
   return ajaxSync(url, option.param, data, option, config)
 }
-export function commonHttppost(url, data, option={}, config) {
-  return AjaxASync(url, data, option.param, option, config, 'POST')
+export function commonHttppost(url, data, option = {}, config) {
+  return dealCsData(AjaxASync(url, data, option.param, option, config, 'POST'), url)
 }
-export function commonQueryAsyncHttppost_callback(url, data, option={}, config) {
-  return ajaxSync(url, data, option.param, option, config, 'POST')
+export function commonQueryAsyncHttppost_callback(url, data, option = {}, config) {
+  return dealCsData(ajaxSync(url, data, option.param, option, config, 'POST'), url)
+}
+function dealCsData(pro, url) {
+  if (pro.code) {
+    return getDealCsData(pro, url)
+  } else {
+    return pro.then(res => getDealCsData(res, url))
+  }
+}
+function getDealCsData(data, url) {
+  if (data.code == 500) {
+    layui.layer.alert('该接口返回数据不符合规范，请检查接口：' + url)
+    return { code: 1, data: [] }
+  } else if (data.code == 2) {
+    layui.layer.alert('请检查该接口必填校验：' + url)
+    return { code: 1, data: [] }
+  } else if (data.code == -1) {
+    layui.layer.alert('用于测试环境调试接口，请判断是否调试该接口：' + url)
+    return { code: 1, data: [] }
+  }
+  return data
 }
 export default {
   getAjax,

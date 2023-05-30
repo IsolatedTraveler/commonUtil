@@ -15,14 +15,34 @@ function format(fmt = 'yyyy/MM/dd') {
 }
 function addDay(num = 1) {
   num = Number(num)
+  if (num > parseInt(num)) {
+    return this.addHour(num * 24)
+  }
   let date  = new Date(this)
   date.setDate(date.getDate() + num)
   return date
 }
 function addHour(num = 1) {
   num = Number(num)
+  if (num > parseInt(num)) {
+    return this.addMinute(num * 60)
+  }
   let date  = new Date(this)
   date.setHours(date.getHours() + num)
+  return date
+}
+function addMinute(num) {
+  num = Number(num)
+  if (num > parseInt(num)) {
+    return this.addSeconds(num * 60)
+  }
+  let date  = new Date(this)
+  date.setMinutes(date.getMinutes() + num)
+  return date
+}
+function addSeconds(num) {
+  let date  = new Date(this)
+  date.setSeconds(date.getSeconds() + num)
   return date
 }
 function getMonthDays() {
@@ -79,6 +99,8 @@ Object.defineProperties(w.Date, {
   format,
   addDay,
   addHour,
+  addMinute,
+  addSeconds,
   getMonthDays,
   getYearDay,
   addMonth,
@@ -91,6 +113,8 @@ if (!Date.prototype.format) {
   Date.prototype.format = format
   Date.prototype.addDay = addDay
   Date.prototype.addHour = addHour
+  Date.prototype.addMinute = addMinute
+  Date.prototype.addSeconds = addSeconds
   Date.prototype.getMonthDays = getMonthDays
   Date.prototype.getYearDay = getYearDay
   Date.prototype.addMonth = addMonth

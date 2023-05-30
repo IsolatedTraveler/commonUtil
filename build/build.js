@@ -19,7 +19,7 @@ module.exports = function(g) {
       done(e)
     }
   })
-  g.registerMultiTask('build:src', 'build commonUtil modules', async function() {
+  g.registerMultiTask('build:src', 'build src modules', async function() {
     const done = this.async()
     try {
       await buildSrc(g, version)
