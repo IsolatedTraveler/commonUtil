@@ -1,3 +1,2 @@
-import './date.js'
-import './string.js'
+import '../../../global/w/index'
 import './event.js'
