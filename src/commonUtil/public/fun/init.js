@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { getParamsUrl, getUrlParams } from "../../../../global/ajax/fun/2/urlDeal"
-export { getParamsUrl, getUrlParams } from "../../../../global/ajax/fun/2/urlDeal"
+import { getParamsUrl, getUrlParams } from "../../../../global/base/fun/2/urlDeal"
+export { getParamsUrl, getUrlParams } from "../../../../global/base/fun/2/urlDeal"
 import assign from "../../extend/assign"
 import { initPop, that, webName, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
 import { debounce1, uuid } from "./base"
