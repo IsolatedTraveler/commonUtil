@@ -1,4 +1,4 @@
-import { AjaxASync } from "./ajax"
+import { ajaxASync } from "./ajax"
 import { getUploadUrl } from "./url"
 
 export function upload(data, name, lx = 'url', option = {}) {
@@ -12,7 +12,7 @@ export function upload(data, name, lx = 'url', option = {}) {
   } else {
     formData.append('file', data)
   }
-  return AjaxASync(option.url || getUploadUrl(), formData, {}, {}, {contentType: false, processData: false}, 'POST')
+  return ajaxASync(option.url || getUploadUrl(), formData, {}, {}, {contentType: false, processData: false}, 'POST')
 }
 export default {
   upload

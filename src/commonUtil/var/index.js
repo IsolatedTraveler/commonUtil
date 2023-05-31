@@ -1,7 +1,7 @@
 import './init'
 import './use'
 import '../../../global/ajax/var/ajax'
-import './url.js'
+import '../../../global/base/var/url'
 import './print.js'
 import '../../../global/base/var/user.js'
 import './login'

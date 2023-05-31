@@ -1,6 +1,6 @@
 import { that } from "../../var/init"
-import {uuid} from "../../../../global/base/fun/uuid"
-export {uuid} from "../../../../global/base/fun/uuid"
+import {uuid} from "../../../../global/base/fun/1/uuid"
+export {uuid} from "../../../../global/base/fun/1/uuid"
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
     return keys.map(key => it[key]).join('-')

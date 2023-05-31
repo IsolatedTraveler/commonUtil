@@ -1,22 +1,9 @@
-import { urlFace, urlImg, urlUpload, urlBase, urlHost, urlTp } from '../../var/url'
+import { urlFace, urlImg, urlUpload, urlHost, urlTp } from '../../../../global/base/var/url'
 import { val } from './init'
 import { setPageTemp } from './deeps'
-import { that, urlRegV } from '../../var/init'
-function setBaseUrl() {
-  let name = val('webName'), reg, url = w.location.href, matchArr
-  if (name) {
-    reg = new RegExp(urlRegV + '|' + name)
-  } else {
-    reg = new RegExp(urlRegV)
-  }
-  urlBase = url.split(reg)[0]
-  matchArr = url.match(reg)
-  if (matchArr && matchArr[0] == name) {
-    urlBase = urlBase + name
-  }
-  urlBase = (urlBase + '/').replace(/\/+/g, '/')
-  return urlBase
-}
+import { that } from '../../var/init'
+import { dealsUrl, getBaseUrl } from '../../../../global/ajax/fun/2/urlDeal'
+export { dealsUrl, getBaseUrl } from '../../../../global/ajax/fun/2/urlDeal'
 function setHostUrl() {
   let name = val('hostName')
   return urlHost = name ? (dealsUrl(name, getBaseUrl()) + '/') : getBaseUrl()
@@ -42,27 +29,6 @@ function setFaceUrl() {
 }
 function setUploadUrl() {
   return urlUpload = that.getConfig('url_common_file')
-}
-export function dealsUrl(url = '', base) {
-  if (!/^http[s]*:\/\//.test(url)) {
-    base = base ? new URL(base) : location
-    let path = base.pathname.split('/')
-    if (/^\.\//.test(url)) {
-      path.pop()
-      path.push(url.replace('./', ''))
-    } else if (/^..\//.test(url)) {
-      let v = url.split('/'), len = v.filter(it => it === '..').length
-      path.splice(-(len + 1))
-      path.push(...v.splice(len))
-    } else {
-      path.push(url.replace(/^\/|\/$/g, ''));
-    }
-    return base.origin + '/' + path.filter(it => it).join('/')
-  }
-  return url
-}
-export function getBaseUrl() {
-  return setPageTemp(urlBase, setBaseUrl)
 }
 export function getHostUrl() {
   return setPageTemp(urlHost, setHostUrl)

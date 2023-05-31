@@ -1,5 +1,6 @@
-
-export let that, webName, webNameReg, jse, promiseResove, promiseCore, BASE64, loadElem, msgElem, loadMsg, closeLoadEd
+import { that, urlRegV } from "../../../global/base/var/init"
+export { that, urlRegV } from "../../../global/base/var/init"
+export let webName, webNameReg, jse, promiseResove, promiseCore, BASE64, loadElem, msgElem, loadMsg, closeLoadEd
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
   , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
     // 库所在位置
@@ -20,8 +21,7 @@ export let that, webName, webNameReg, jse, promiseResove, promiseCore, BASE64, l
     name: 'commonUtil',
     isBase64: false,
     isPwd: true
-  },
-  urlRegV = '/webs/|/public/|/lib/|/.+\\[^/].js|/[^/]+\\.html'
+  }
 export default {
   initPop,
   that,

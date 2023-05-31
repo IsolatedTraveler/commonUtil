@@ -1,6 +1,6 @@
 import { webName } from "../../var/init";
-import {setPageTemp} from "../../../../global/base/fun/pageTemp"
-export {setPageTemp} from "../../../../global/base/fun/pageTemp"
+import {setPageTemp} from "../../../../global/base/fun/1/pageTemp"
+export {setPageTemp} from "../../../../global/base/fun/1/pageTemp"
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;

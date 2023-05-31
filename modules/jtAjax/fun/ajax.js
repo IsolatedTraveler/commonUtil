@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../../global/base/fun/pageTemp";
+import { setPageTemp } from "../../../global/base/fun/1/pageTemp";
 import {ajaxTimeOut, dataConfig} from '../../../global/ajax/var/ajax'
 import { dealNull } from './dealNull';
 function setConfig() {

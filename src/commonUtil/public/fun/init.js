@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import { getParamsUrl, getUrlParams } from "../../../../global/ajax/fun/2/urlDeal"
+export { getParamsUrl, getUrlParams } from "../../../../global/ajax/fun/2/urlDeal"
 import assign from "../../extend/assign"
 import { initPop, that, webName, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
 import { debounce1, uuid } from "./base"
@@ -26,39 +28,6 @@ export function val(name, value) {
   } else {
     initPop[name] = value
   }
-}
-export function getParamsUrl(obj, url){
-  if (url) {
-    url = new URL(url)
-    obj = Object.assign(getUrlParams(null, url),obj)
-    url = url.origin + url.pathname
-  } else {
-    url = url || ''
-  }
-  let keys = Object.keys(obj)
-  if (keys.length) {
-    url += '?' + keys.map(key => {
-      let v = obj[key]
-      v = (v === null || v === undefined) ? '' : v
-      return key + '=' + encodeURIComponent(typeof v === 'object' ? JSON.stringify(v) : v)
-    }).join('&')
-  }
-  return url
-}
-export function getUrlParams(key, url) {
-  url = url || location
-  var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam = {}
-  search.forEach(function(it) {
-    if (it) {
-      it = it.split('=')
-      try {
-        urlParam[it[0]] = decodeURIComponent(it[1])
-      } catch (e) {
-        urlParam[it[0]] = it[1];
-      }
-    }
-  })
-  return key ? urlParam[key] : urlParam
 }
 export function loading(msg) {
   if (d.body) {
