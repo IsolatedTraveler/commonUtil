@@ -16,8 +16,15 @@ AA-->AAC("String扩展")
 AA-->AAD("uuid")
 AA-->AAE("url处理")
 AA-->AAF("页面临时数据判断")
+
 A-->AB("主功能模块【src】")-->ABA("commonUtil")
-A-->AC("主功能依赖模块【modules】")
-A-->AD("依赖layui模块【layModules】")
+AB-->ABB("咸鱼之王yxXyzw")
+
+A-->AC("主功能依赖模块【modules】")-->ACA("依赖commonUtil")-->ACAA-->("解决自由浏览器兼容【browser】")
+ACA-->ACAB("兼容magic和jtphis的ajax请求")
+
+A-->AD("依赖layui模块【layModules】")-->ADA("下拉表格选择combogrid")
+AD-->ADB("编辑表格jtEditTable")
+
 A-->AE("vue模块【vue】")
 ```
