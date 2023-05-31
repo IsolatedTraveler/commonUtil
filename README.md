@@ -10,7 +10,13 @@
 ```mermaid
 graph LR
 
-A((A))
-B((B))
+A((模块说明))
+B((全局模块(global)))
+C((主功能模块(src)))
+D((主功能依赖模块(modules)))
+E((依赖于layui的模块(layModules)))
 A-->B
+A-->C
+A-->D
+A-->E
 ```
