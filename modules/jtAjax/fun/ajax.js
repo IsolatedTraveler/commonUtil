@@ -1,5 +1,5 @@
-import { setPageTemp } from "../../../global/fun/pageTemp";
-import {ajaxTimeOut, dataConfig} from '../../../global/var/ajax'
+import { setPageTemp } from "../../../global/base/fun/pageTemp";
+import {ajaxTimeOut, dataConfig} from '../../../global/ajax/var/ajax'
 import { dealNull } from './dealNull';
 function setConfig() {
   // eslint-disable-next-line no-import-assign

@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../global/fun/pageTemp";
+import { setPageTemp } from "../../global/base/fun/pageTemp";
 
 // eslint-disable-next-line no-unused-vars
 const Class = function () {
