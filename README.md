@@ -15,6 +15,7 @@ AA("全局模块【global】")
 AB("主功能模块【src】")
 AC("主功能依赖模块【modules】")
 AD("依赖layui模块【layModules】")
+AE("vue模块【vue】")
 AAA("$.ajax")
 AAB("Date扩展")
 AAC("String扩展")
@@ -26,6 +27,7 @@ A-->AA
 A-->AB
 A-->AC
 A-->AD
+A-->AE
 AA-->AAA
 AA-->AAB
 AA-->AAC
