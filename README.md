@@ -21,6 +21,7 @@ AAC("String扩展")
 AAD("uuid")
 AAE("url处理")
 AAF("页面临时数据判断")
+ABA("commonUtil")
 A-->AA
 A-->AB
 A-->AC
@@ -31,4 +32,5 @@ AA-->AAC
 AA-->AAD
 AA-->AAE
 AA-->AAF
+AB-->ABA
 ```
