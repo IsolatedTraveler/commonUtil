@@ -6,4 +6,11 @@
 |jqMode|设置不同的鉴权模式，现仅支持magic:header鉴权（该参数修改后，应在主程序同步提供鉴权方案）|
 |contentType|设置ajax:post提交数据方式(该参数修改后须同步修改主程序中的dealAjaxData)|
 
-2. 
+# 开发模块说明
+```mermaid
+graph LR
+
+A((A))
+B((B))
+A-->B
+```
