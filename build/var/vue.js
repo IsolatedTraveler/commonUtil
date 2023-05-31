@@ -1,6 +1,6 @@
-const path = require('path'), {ml, date, out} = require('./public'), name = 'vue'
+const path = require('path'), {ml, date} = require('./public'), name = 'vue'
 module.exports = {
   ml: path.resolve(ml, name),
-  outMl: path.resolve(out, name) + '\\',
+  outMl: path.resolve(ml, 'dist/' + name) + '\\',
   date
 }
