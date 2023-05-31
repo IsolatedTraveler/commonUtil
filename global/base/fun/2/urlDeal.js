@@ -1,7 +1,6 @@
 import { urlBase } from "../../var/url";
 import { setPageTemp } from "../1/pageTemp";
-import { that } from "../../var/init";
-import { urlRegV } from "../../../../src/commonUtil/var/init";
+import { that, urlRegV } from "../../var/init";
 export function setBaseUrl() {
   let name = that.val('webName') || '', reg, url = w.location.href, matchArr;
   if (name) {
