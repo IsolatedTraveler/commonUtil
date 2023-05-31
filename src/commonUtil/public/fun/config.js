@@ -1,16 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import { Authorization, dataConfig, jqUrl } from "../../../../global/ajax/var/ajax";
+import { getConfig } from "../../../../global/ajax/public/ajax";
+export { getConfig } from "../../../../global/ajax/public/ajax";
+import { Authorization, jqUrl } from "../../../../global/ajax/var/ajax";
 import { that } from "../../var/init";
-import { commonHttppost, getAjax } from "./ajax";
-import { setPageTemp } from "./deeps";
+import { commonHttppost } from "./ajax";
 
-function setConfig() {
-  return dataConfig = getAjax('/public/data/config.json', {v: new Date().getTime()}, {msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true})
-}
-export function getConfig(key) {
-  setPageTemp(dataConfig, setConfig)
-  return key ? dataConfig[key] : dataConfig
-}
 export function getToken(config) {
   let magic = getConfig('magic')
   Authorization = that.session('Authorization') || magic.Authorization
