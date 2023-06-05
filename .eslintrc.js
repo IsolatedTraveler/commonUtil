@@ -1,17 +1,17 @@
 module.exports = {
   "env": {
-      "browser": true,
-      "es6": true,
-      "node": true,
-      "es2021": true
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "es2021": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-      "ecmaVersion": 12
+    "ecmaVersion": 12
   },
   "rules": {
-      "no-unused-vars": ["error", {args: "none"}],
-      'no-import-assign': 'off'
+    "no-unused-vars": ["error", { args: "none" }],
+    'no-import-assign': 'off'
   },
   globals: {
     "$": true,
