@@ -8,11 +8,11 @@ export function upload(data, name, lx = 'url', option = {}) {
     for (let i = 0; i < bytes.length; i++) {
       ia[i] = bytes.charCodeAt(i)
     }
-    formData.append('file', new Blob([ia], {type: type}), name + '.' + type.split('/')[1])
+    formData.append('file', new Blob([ia], { type: type }), name)
   } else {
     formData.append('file', data)
   }
-  return ajaxASync(option.url || getUploadUrl(), formData, {}, {}, {contentType: false, processData: false}, 'POST')
+  return ajaxASync(option.url || getUploadUrl(), formData, {}, { isNotGetUser: true }, { contentType: false, processData: false }, 'POST')
 }
 export default {
   upload

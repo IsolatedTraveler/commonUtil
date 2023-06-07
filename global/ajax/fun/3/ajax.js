@@ -11,30 +11,10 @@ export function ajax(url, data = {}, param = {}, option = {}, config = {}, type,
   if (option.isShowLoad) {
     layerIndex = that.loading()
   }
-  data = that.dealAjaxData(data, option, type)
+  data = that.dealAjaxData(data, option, config, type)
   url = getAllUrl(url, option.urlType)
   url = getParamsUrl(param, url)
   $.ajax({
-    type,
-    url,
-    async,
-    data,
-    contentType,
-    timeOut: ajaxTimeOut,
-    cache: false,
-    success(res) {
-      if (typeof res === 'string') {
-        res = getAjaxRes(res)
-      }
-      value = ajaxDealData(res, layerIndex, option, errCallBack, callBack)
-    },
-    error(e) {
-      const res = { code: '-1', message: '网络连接超时', i: layerIndex };
-      value = errCallBack ? errCallBack(res, option, e) : res;
-    },
-    ...config
-  })
-  console.log({
     type,
     url,
     async,
