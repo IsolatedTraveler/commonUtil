@@ -1,4 +1,3 @@
-import { that } from "../var/init";
 
 export function dataGridPageChange(gridObject, url, param) {
   try {

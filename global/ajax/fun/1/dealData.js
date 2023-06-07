@@ -1,4 +1,3 @@
-import { that } from "../../../base/var/init";
 export function ajaxError({ message, i }, { isShowLoad, msg } = {}, res) {
   isShowLoad && that.loaded(i);
   if (msg) {

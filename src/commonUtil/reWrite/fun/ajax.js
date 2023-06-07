@@ -1,8 +1,8 @@
-import { BASE64, jse, that } from "../../var/init"
+import { BASE64, jse } from "../../var/init"
 import user from "../../../../global/base/var/user"
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
-     user = that.getUser() || {}
+    user = that.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
       czryjgid: user.jgid,
@@ -18,7 +18,7 @@ export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   } else if (isBase64) {
     return BASE64.encode(JSON.stringify(data))
   } else if (isJson) {
-    return {data: JSON.stringify(data)}
+    return { data: JSON.stringify(data) }
   }
   return data
 }
@@ -28,7 +28,7 @@ export function encryption(data) {
   }
   return {
     data
-    ,sstoken: JSON.stringify({certno: '1', sign: jse.encrypt(sha256(data))})
+    , sstoken: JSON.stringify({ certno: '1', sign: jse.encrypt(sha256(data)) })
   }
 }
 export default {

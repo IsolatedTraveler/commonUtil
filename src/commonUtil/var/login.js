@@ -1,4 +1,3 @@
-import { that } from "./init"
 export let winName = 'jt-index', rw, event = {
   alertPwd() {
     that.openPop({

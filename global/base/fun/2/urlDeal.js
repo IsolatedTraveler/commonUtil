@@ -1,6 +1,6 @@
 import { urlBase } from "../../var/url";
 import { setPageTemp } from "../1/pageTemp";
-import { that, urlRegV } from "../../var/init";
+import { urlRegV } from "../../var/init";
 export function setBaseUrl() {
   let name = that.val('webName') || '', reg, url = w.location.href, matchArr;
   if (name) {
@@ -49,7 +49,7 @@ export function getAllUrl(url, lx) {
 export function getUrlParams(key, url) {
   url = url || location;
   var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam = {};
-  search.forEach(function(it) {
+  search.forEach(function (it) {
     if (it) {
       it = it.split('=');
       try {
@@ -61,10 +61,10 @@ export function getUrlParams(key, url) {
   });
   return key ? urlParam[key] : urlParam
 }
-export function getParamsUrl(obj, url){
+export function getParamsUrl(obj, url) {
   if (url) {
     url = new URL(url);
-    obj = Object.assign(getUrlParams(null, url),obj);
+    obj = Object.assign(getUrlParams(null, url), obj);
     url = url.origin + url.pathname;
   } else {
     url = url || '';

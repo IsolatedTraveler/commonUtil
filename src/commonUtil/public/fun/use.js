@@ -1,6 +1,5 @@
 import { thirdBaseUrl, useHead, useSrcModule, useModule } from "../../var/use"
 import { val } from "./init"
-import { that } from "../../var/init"
 import { setPageTemp, syncWhile, ElemLoadEvent } from "./deeps"
 import { dealsUrl } from "./url"
 function setThirdBaseUrl() {
@@ -9,7 +8,7 @@ function setThirdBaseUrl() {
 }
 function useLoading(param) {
   let src = param.src, node = d.createElement('script')
-  useSrcModule[src] = {code: '0'}
+  useSrcModule[src] = { code: '0' }
   return new Promise((resolve, reject) => {
     node.async = true
     node.charset = 'utf-8'
@@ -29,7 +28,7 @@ function useLoadJudge(param) {
   return useSrcModule[param.src]
 }
 function useUrlLoadMods(callBack) {
-  callBack.call(that, function(n, v) {
+  callBack.call(that, function (n, v) {
     useModule[n] = v
   })
 }
@@ -39,7 +38,7 @@ export function use(arr, callBack) {
     arr = [arr]
   }
   arr = arr.map(it => {
-    return syncWhile(useLoadJudge, useLoading, {src: dealsUrl(typeof it === 'string'? it + '.js' : it.src, thirdBaseUrl)})
+    return syncWhile(useLoadJudge, useLoading, { src: dealsUrl(typeof it === 'string' ? it + '.js' : it.src, thirdBaseUrl) })
   })
   if (callBack) {
     Promise.all(arr).then(callBack)
@@ -51,7 +50,7 @@ export function define(deeps, callBack) {
   if (typeof deeps === 'function') {
     useUrlLoadMods(deeps)
   } else {
-    use(deeps, function() {
+    use(deeps, function () {
       useUrlLoadMods(callBack)
     })
   }

@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import { initPop, that, promiseResove, promiseCore } from "./var/init"
-import {dealsUrl, getBaseUrl, getJsUrl} from './public/fun/url'
-import {required, identity} from './public/fun/check'
+import { initPop, promiseResove, promiseCore } from "./var/init"
+import { dealsUrl, getBaseUrl, getJsUrl } from './public/fun/url'
+import { required, identity } from './public/fun/check'
 import { getName } from "./public/business/login"
 initPop.thirdBaseUrl = dealsUrl('./modules', getJsUrl(d))
 function setFormVerify() {
@@ -13,8 +13,8 @@ function setFormVerify() {
 function reWriteLayuiUse() {
   if (!layui.use1) {
     layui.use1 = layui.use
-    layui.use = function(a, b) {
-      layui.use1(a, function() {
+    layui.use = function (a, b) {
+      layui.use1(a, function () {
         if (layui.form) {
           setFormVerify()
         }
@@ -38,12 +38,12 @@ function getLayUi() {
     reWriteLayuiUse()
     return Promise.resolve()
   } else {
-    return that.use([{src: 'layui-v2.5.7/layui.js'}]).then(res => {
+    return that.use([{ src: 'layui-v2.5.7/layui.js' }]).then(res => {
       return getLayUi()
     })
   }
 }
-const Class = function(obj) {
+const Class = function (obj) {
   let pro = []
   that = this
   that.config(obj)
@@ -51,7 +51,7 @@ const Class = function(obj) {
   pro = [getLayUi()]
   if (w.jthisJsObject || w.wdphisJsObject) {
     const systemV = (w.jthisJsObject || w.wdphisJsObject), system = systemV.jthis || systemV.wdphis
-    that.getUser = function() {
+    that.getUser = function () {
       // eslint-disable-next-line no-unused-vars
       return JSON.parse(system.varget('0', 'ryxx'))
     }

@@ -1,4 +1,3 @@
-import { that } from "../var/init";
 
 export function getCommonCombobox(params) {
   try {
@@ -182,41 +181,41 @@ export function getCommonCombobox(params) {
     }
     //校验数据有效性
     $("#" + domId).next().children(":text").blur(function () {
-        try {
-          var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
-          if (pClosed) {
-            var textvalue = $("#" + domId).combobox("getText");
-            var combodata = $("#" + domId).combobox("getData");
-            var idvalue = $("#" + domId).combobox("getValue");
-            var setValue = "";
+      try {
+        var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
+        if (pClosed) {
+          var textvalue = $("#" + domId).combobox("getText");
+          var combodata = $("#" + domId).combobox("getData");
+          var idvalue = $("#" + domId).combobox("getValue");
+          var setValue = "";
 
-            $.each(combodata, function (i, n) {
-              if (textvalue == n[textField]) {
-                setValue = n[valueField];
-                return false;
+          $.each(combodata, function (i, n) {
+            if (textvalue == n[textField]) {
+              setValue = n[valueField];
+              return false;
+            } else {
+              if (flag) {
+                setValue = textvalue;
               } else {
-                if (flag) {
-                  setValue = textvalue;
-                } else {
-                  setValue = "";
-                }
-              }
-            });
-            if (setValue != idvalue || setValue == "") {
-              $("#" + domId).combobox("setValue", setValue);
-              if (flag == true) {
-                $("#" + domId).combobox("setText", textvalue);
-              }
-              if (required && $("#" + domId).combobox("getText") == "") {
-                //$("#"+domId).textbox("textbox").focus();
-                //return;
+                setValue = "";
               }
             }
+          });
+          if (setValue != idvalue || setValue == "") {
+            $("#" + domId).combobox("setValue", setValue);
+            if (flag == true) {
+              $("#" + domId).combobox("setText", textvalue);
+            }
+            if (required && $("#" + domId).combobox("getText") == "") {
+              //$("#"+domId).textbox("textbox").focus();
+              //return;
+            }
           }
-        } catch (e) {
-          JsErrorTrace(e);
         }
-      });
+      } catch (e) {
+        JsErrorTrace(e);
+      }
+    });
   } catch (e) {
     JsErrorTrace(e);
   }

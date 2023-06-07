@@ -1,4 +1,3 @@
-import { that } from "../var/init";
 
 export function convertKeysToLowerCase(obj) {
   try {

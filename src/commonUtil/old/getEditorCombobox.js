@@ -1,6 +1,5 @@
-import { that } from "../var/init";
 
-export function getEditorCombobox (params) {
+export function getEditorCombobox(params) {
   try {
     var data = params.data;
     var mrz = params.mrz;

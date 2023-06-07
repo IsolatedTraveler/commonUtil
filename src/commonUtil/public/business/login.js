@@ -1,25 +1,25 @@
 import { getHexMd5 } from "../../reWrite/business/login"
-import {  val } from "../fun/init"
+import { val } from "../fun/init"
 import { dealsUrl, getBaseUrl } from "../fun/url"
 import { setSelectOption } from "../layui/form"
-import { promiseResove, that, webNameReg } from "../../var/init"
+import { promiseResove, webNameReg } from "../../var/init"
 import { event, rw, winName } from "../../var/login"
 function bindEvent() {
   let form = layui.form, pwd = ''
   form.verify({
-    pass:function(value) {
+    pass: function (value) {
       pwd = value
     },
-    qrpass: function(value) {
+    qrpass: function (value) {
       if (value !== pwd) {
         return '两次密码输入不一致'
       }
     }
   })
-  form.on('submit(alertPwdSubmit)', function(res) {
+  form.on('submit(alertPwdSubmit)', function (res) {
     alertPwd(res.field)
   })
-  $('.jt-top [jt-event]').on('click', function(e) {
+  $('.jt-top [jt-event]').on('click', function (e) {
     event[this.getAttribute('jt-event')]()
     e.stopPropagation()
   })
@@ -29,7 +29,7 @@ function topRender(options) {
   $('#userInfo').html(`<span>机构：${user.jgmc}</span><span>账号：${user.yhm}</span><span>姓名：${user.xm}</span>`)
   $('#head img').attr('src', dealsUrl(data.icon, getBaseUrl()))
   $('#head span').html(data.title)
-  form.on('select(xtcd)', function(e){
+  form.on('select(xtcd)', function (e) {
     if (e.value) {
       let param = e.data
       param.id && routerByData(param)
@@ -69,7 +69,7 @@ export function getRouterW() {
 }
 export function getTopMenuId(id, sjid) {
   let menu = that.getMenu()
-  while(sjid !== '01' && sjid !== '' && sjid !== null) {
+  while (sjid !== '01' && sjid !== '' && sjid !== null) {
     id = sjid
     sjid = menu['cd-' + id].sjid
   }
@@ -80,15 +80,15 @@ export function routerByData(data, param) {
 }
 export function alertPwd(data) {
   return getHexMd5().then(e => {
-    return that.commonQueryAsyncHttppost_callback(val('alertMMUrl'), {jmm: w.hex_md5(data.jmm), mm: w.hex_md5(data.xmm)}).then(res => {
+    return that.commonQueryAsyncHttppost_callback(val('alertMMUrl'), { jmm: w.hex_md5(data.jmm), mm: w.hex_md5(data.xmm) }).then(res => {
       if (res.code == 1) {
-        layui.layer.msg('密码修改成功，即将退出，请重新登录', {time: 2000}, function() {
+        layui.layer.msg('密码修改成功，即将退出，请重新登录', { time: 2000 }, function () {
           that.logOut()
         })
       } else {
         layui.layer.alert('密码修改失败：' + res.message)
       }
-    }).catch(function() {
+    }).catch(function () {
       layui.layer.alert('未获取到当前用户信息，网络连接超时')
     })
   })

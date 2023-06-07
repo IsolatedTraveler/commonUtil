@@ -1,5 +1,4 @@
 import { setPageTemp } from "../../base/fun/1/pageTemp"
-import { that } from "../../base/var/init"
 import { ajaxError } from "../fun/1/dealData"
 import { ajax } from "../fun/3/ajax"
 import { dataConfig } from "../var/ajax"

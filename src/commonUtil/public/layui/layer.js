@@ -1,4 +1,3 @@
-import { that } from "../../var/init"
 import { getParamsUrl } from "../fun/init"
 import { dealsUrl } from "../fun/url"
 
@@ -19,14 +18,14 @@ export function openPop(options) {
     elem = content = $(options.elem)
     if (options.name) {
       let suc = options.success, name = options.name
-      options.success = function() {
+      options.success = function () {
         let d = Object.assign({}, options.defaultData, options.data)
         if (!options.data) {
           var v = that.setFormVal(name), keys = Object.keys(v)
           keys.forEach(key => {
             v[key] = ''
           })
-          d = Object.assign(v,  d)
+          d = Object.assign(v, d)
         }
         that.setFormVal(name, d)
         suc && suc()
@@ -55,7 +54,7 @@ export function openPop(options) {
     },
     yes(a, b, c) {
       if (options.yes) {
-        options.yes(a,b,c)
+        options.yes(a, b, c)
       } else {
         let btn = '[lay-submit]:not(jt-ignore)'
         if (elem) {
@@ -64,7 +63,7 @@ export function openPop(options) {
           btn = b.find('iframe')[0].contentWindow.$(btn)
         }
         if (btn[1]) {
-          btn = btn.filter(function(i, it) {
+          btn = btn.filter(function (i, it) {
             return $(it).attr('jt-trigger') == 'parent'
           })
         }

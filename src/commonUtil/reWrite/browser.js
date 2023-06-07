@@ -1,4 +1,3 @@
-import { that } from "../var/init"
 
 export function srcBaseBaseFunError() {
   layui.layer.msg('该方法依赖专有浏览器，请在专有浏览器中使用')

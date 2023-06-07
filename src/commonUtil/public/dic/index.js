@@ -1,5 +1,4 @@
-import {dic, ryxx} from "../../var/dic";
-import { that } from "../../var/init";
+import { dic, ryxx } from "../../var/dic";
 import { setPageTemp } from "../fun/deeps";
 function setDataBase(data) {
   data.obj[data.name] = {}
@@ -15,9 +14,9 @@ function setJgryxx(obj) {
   }
 }
 export function getJgryxx(jgid = '', bmid = '') {
-  setPageTemp(dic.dataBase, setDataBase, {obj: dic, name: 'dataBase'})
-  setPageTemp(dic.dataBase.ryxx, setDataBase, {obj: dic.dataBase, name: 'ryxx'})
-  let data = setPageTemp(dic.dataBase.ryxx[jgid + '-' + bmid], setJgryxx, {jgid, bmid, _n: jgid + '-' + bmid})
+  setPageTemp(dic.dataBase, setDataBase, { obj: dic, name: 'dataBase' })
+  setPageTemp(dic.dataBase.ryxx, setDataBase, { obj: dic.dataBase, name: 'ryxx' })
+  let data = setPageTemp(dic.dataBase.ryxx[jgid + '-' + bmid], setJgryxx, { jgid, bmid, _n: jgid + '-' + bmid })
   if (data.__proto__ === Promise.prototype) {
     return data
   } else {
@@ -28,26 +27,26 @@ export function getDic(ly, name) {
   if (dic[ly]) {
     return Promise.resolve(name ? dic[ly][name] : dic[ly])
   } else {
-    return that.getAjaxSync('/public/dic/' + ly + '.json', {version: new Date().getTime()}).then(res => {
+    return that.getAjaxSync('/public/dic/' + ly + '.json', { version: new Date().getTime() }).then(res => {
       dic[ly] = res
-      return  name ? res[name] : res
+      return name ? res[name] : res
     })
   }
 }
 export function renderDic(name = '', data = {}, def = 'common') {
   let dic = {}, dics = []
-  $('[jt-dic]').each(function(i, el) {
+  $('[jt-dic]').each(function (i, el) {
     let name = el.getAttribute('jt-dic')
     if (name) {
       name = name.split('|')
       let ly = name[1] ? name[0] : def, res = dic[ly]
       name = name[1] || name[0]
       if (!res) {
-        res = {ly, data: [{el, name}]}
+        res = { ly, data: [{ el, name }] }
         dic[ly] = res
         dics.push(res)
       } else {
-        res.data.push({el, name})
+        res.data.push({ el, name })
       }
     }
   })
@@ -65,7 +64,7 @@ export function renderDic(name = '', data = {}, def = 'common') {
             tip: elem.getAttribute('placeholder'),
             value: data[name] || ''
           })
-        } else if (that.renderDics[key]){
+        } else if (that.renderDics[key]) {
           return that.renderDics[key](elem)
         } else {
           console.error('jt-dic="' + key + '"该字典不存在，请确认')

@@ -1,4 +1,3 @@
-import { that } from "../../var/init";
 
 export {
   ajaxASync,
@@ -23,7 +22,6 @@ export function dealAjaxData(data, { isNotGetUser } = {}, { contentType } = {}, 
         czryxm: user.xm || user.username,
         superadmin: user.superadmin
       }, data)
-      return data
     } else {
       that.logOut()
     }

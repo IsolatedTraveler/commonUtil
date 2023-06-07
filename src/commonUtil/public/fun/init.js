@@ -2,7 +2,7 @@
 import { getParamsUrl, getUrlParams } from "../../../../global/base/fun/2/urlDeal"
 export { getParamsUrl, getUrlParams } from "../../../../global/base/fun/2/urlDeal"
 import assign from "../../extend/assign"
-import { initPop, that, webName, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
+import { initPop, webName, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
 import { debounce1, uuid } from "./base"
 import { setPageTemp, tempData } from "./deeps"
 function closeLoad() {
@@ -18,7 +18,7 @@ export function setLoadElem() {
   loadElem.innerHTML = '<p class="jt-loading"><span></span><span></span><span></span><span></span><span></span><span></span></p>'
   msgElem = d.createElement('p')
   loadElem.append(msgElem)
-  loadMsg = {msgs: []}
+  loadMsg = { msgs: [] }
   closeLoadEd = debounce1(closeLoad, 10)
   d.body.append(loadElem)
 }
@@ -53,7 +53,7 @@ export function alertMsg(msg, judge = true) {
   judge && layui.layer.alert(msg)
 }
 export function strToUrl(str, type) {
-  return URL.createObjectURL(new Blob([str], {type}))
+  return URL.createObjectURL(new Blob([str], { type }))
 }
 export function config(obj = {}) {
   Object.assign(initPop, obj)
@@ -72,12 +72,12 @@ export function init() {
     pro.push(that.loadPwdJs())
   }
   if (initPop.isBase64) {
-    pro.push(that.use([{src: './encryption/BASE64.js'}]).then(e => {
+    pro.push(that.use([{ src: './encryption/BASE64.js' }]).then(e => {
       BASE64 = new Base64()
     }))
   }
   if (initPop.isMd5) {
-    pro.push(that.use([{src: './encryption/md5.js'}]))
+    pro.push(that.use([{ src: './encryption/md5.js' }]))
   }
   if (promiseCore) {
     promiseResove = promiseCore.then(e => {
@@ -93,11 +93,11 @@ export function init() {
   return promiseResove
 }
 export function formatTreeData(data, id = 'id', pid = 'sjid', key = '') {
-  var result = [], map = {'_formatTreeData': data};
-  [].forEach.call(data, function(it) {
+  var result = [], map = { '_formatTreeData': data };
+  [].forEach.call(data, function (it) {
     map[key + it[id]] = it
   });
-  [].forEach.call(data, function(it) {
+  [].forEach.call(data, function (it) {
     var p = map[key + it[pid]]
     if (p) {
       p.children ? p.children.push(it) : p.children = [it]

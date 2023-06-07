@@ -1,7 +1,7 @@
 import { setPageTemp } from "../../public/fun/deeps";
 import { formatTreeData } from "../../public/fun/init";
-import { that, webNameReg } from "../../var/init";
-import {user, userInfo, menu} from "../../../../global/base/var/user";
+import { webNameReg } from "../../var/init";
+import { user, userInfo, menu } from "../../../../global/base/var/user";
 function setUserInfo() {
   userInfo = that.session('userinfo')
   if (!userInfo) {
@@ -25,7 +25,7 @@ function getMenuBySql() {
   return menu
 }
 function setMenu() {
-  menu = that.session('menu') 
+  menu = that.session('menu')
   return menu = dealMenu(setPageTemp(menu, getMenuBySql) || [])
 }
 export function dealMenu(menu) {

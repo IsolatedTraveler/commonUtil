@@ -1,7 +1,6 @@
 import { urlFace, urlImg, urlUpload, urlHost, urlTp } from '../../../../global/base/var/url'
 import { val } from './init'
 import { setPageTemp } from './deeps'
-import { that } from '../../var/init'
 import { dealsUrl, getBaseUrl } from '../../../../global/base/fun/2/urlDeal'
 export { dealsUrl, getBaseUrl } from '../../../../global/base/fun/2/urlDeal'
 function setHostUrl() {

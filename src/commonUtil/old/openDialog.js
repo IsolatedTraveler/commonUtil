@@ -1,4 +1,3 @@
-import { that } from "../var/init";
 import { openPopIndex } from "../var/old";
 function getBtns(b, filter, id) {
   let btns = b.find('iframe')[0].contentWindow.$(`[layer-filter~="${filter}"]`)

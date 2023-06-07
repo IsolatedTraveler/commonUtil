@@ -1,6 +1,5 @@
-import { that } from "../../var/init"
-import {uuid} from "../../../../global/base/fun/1/uuid"
-export {uuid} from "../../../../global/base/fun/1/uuid"
+import { uuid } from "../../../../global/base/fun/1/uuid"
+export { uuid } from "../../../../global/base/fun/1/uuid"
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
     return keys.map(key => it[key]).join('-')
@@ -76,7 +75,7 @@ export function calc(a, b, c, isNumber) {
         result = arr[1]
       }
       len -= result.length
-      for (let i = 0; i< len; i++) {
+      for (let i = 0; i < len; i++) {
         result = '0' + result
       }
       result = judge + '0.' + result
@@ -84,7 +83,7 @@ export function calc(a, b, c, isNumber) {
   }
   if (isNumber) {
     return Number(result)
-  } else{
+  } else {
     return result
   }
 }
@@ -109,7 +108,7 @@ export function toDecimalNumber(num, precision = 0, type = 1) {
 }
 export function throttle(fun, delay) {
   let time = null
-  return function() {
+  return function () {
     if (!time) {
       let args = arguments
       time = setTimeout(() => {
@@ -121,7 +120,7 @@ export function throttle(fun, delay) {
 }
 export function debounce1(fun, delay) {
   let time = null
-  return function() {
+  return function () {
     let args = arguments
     clearTimeout(time)
     time = setTimeout(() => {
@@ -131,7 +130,7 @@ export function debounce1(fun, delay) {
 }
 export function debounce(fun, delay) {
   let time = null, resReject = null
-  return function() {
+  return function () {
     let args = arguments
     return new Promise((resolve, reject) => {
       if (resReject) {

@@ -1,5 +1,5 @@
-import { that, urlRegV } from "../../../global/base/var/init"
-export { that, urlRegV } from "../../../global/base/var/init"
+import { urlRegV } from "../../../global/base/var/init"
+export { urlRegV } from "../../../global/base/var/init"
 export let webName, webNameReg, jse, promiseResove, promiseCore, BASE64, loadElem, msgElem, loadMsg, closeLoadEd
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
   , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
@@ -24,7 +24,6 @@ export let webName, webNameReg, jse, promiseResove, promiseCore, BASE64, loadEle
   }
 export default {
   initPop,
-  that,
   promiseResove,
   webName,
   webNameReg,

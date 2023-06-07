@@ -2,7 +2,6 @@
 import { getConfig } from "../../../../global/ajax/public/ajax";
 export { getConfig } from "../../../../global/ajax/public/ajax";
 import { Authorization, jqUrl } from "../../../../global/ajax/var/ajax";
-import { that } from "../../var/init";
 import { commonHttppost } from "./ajax";
 
 export function getToken(config) {
@@ -18,7 +17,7 @@ export function getToken(config) {
 }
 function setToken(param) {
   that.session('Authorization', Authorization)
-  let res = commonHttppost(jqUrl, {}, {param, isNotGetUser: true}, {headers: {Authorization}})
+  let res = commonHttppost(jqUrl, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
   Authorization = res.Authorization
   that.session('Authorization', Authorization)
 }

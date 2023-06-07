@@ -1,4 +1,3 @@
-import { that } from "../../../base/var/init";
 import { getAjaxRes } from "../../../base/fun/1/getAjaxRes";
 import { ajaxTimeOut, contentType, jqMode, jqModeUrl } from "../../var/ajax";
 import { ajaxDealData } from "../1/dealData";

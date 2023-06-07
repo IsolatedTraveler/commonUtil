@@ -1,11 +1,10 @@
-import { that } from "../var/init";
 
 export function xzqhComboGridPageChange(gridObject, param) {
-  
+
   var pager = $(gridObject).combogrid("grid").datagrid("getPager");
   $(pager).pagination({
     displayMsg: "",
-    onBeforeRefresh: function () {},
+    onBeforeRefresh: function () { },
     onRefresh: function (page, size) {
       try {
         param.page = page;
@@ -60,7 +59,7 @@ export function loadXzqhComboGrigPageData(gridObject, params) {
   }
 }
 export function getXzqh(jsm, page, size) {
-  var data = that.commonHttppost('/zs03-ywzd/xzqhgl/s-xzqh', {jsm, page, size}).data || {}
+  var data = that.commonHttppost('/zs03-ywzd/xzqhgl/s-xzqh', { jsm, page, size }).data || {}
   return {
     total: data.total,
     rows: data.list

@@ -1,7 +1,7 @@
-import {user} from '../../../global/base/var/user'
-export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
-  if (isGetUser) {
-     // eslint-disable-next-line no-import-assign
+import { user } from '../../../global/base/var/user'
+export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {}, { contentType } = {}, type) {
+  if (!isNotGetUser) {
+    // eslint-disable-next-line no-import-assign
     user = that.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
@@ -14,23 +14,22 @@ export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
     }, data)
   }
   if (isPwd) {
-    return that.encryption(data)
+    return encryption(data)
   } else if (isBase64) {
     return that.getBase64().encode(JSON.stringify(data))
   } else {
     return data
   }
 }
-export function encryption(data) {
+function encryption(data) {
   if (typeof data !== 'string') {
     data = JSON.stringify(data)
   }
   return {
     data
-    ,sstoken: JSON.stringify({certno: '1', sign: that.getJse().encrypt(sha256(data))})
+    , sstoken: JSON.stringify({ certno: '1', sign: that.getJse().encrypt(sha256(data)) })
   }
 }
 export default {
-  getPostData,
-  encryption
+  dealAjaxData
 }

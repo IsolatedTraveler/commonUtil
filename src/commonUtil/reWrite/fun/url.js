@@ -1,6 +1,5 @@
 import { urlServer } from "../../../../global/base/var/url"
 import { setPageTemp } from "../../public/fun/deeps"
-import { that } from "../../var/init"
 function getMainUrl(arr) {
   if (typeof arr === 'string') {
     arr = [arr]
