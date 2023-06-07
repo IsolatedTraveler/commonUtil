@@ -1,11 +1,6 @@
 
-import { getConfig, upload } from "./fun/ajax";
-import {
-  getAjax,
-  getAjaxSync,
-  commonHttppost,
-  commonQueryAsyncHttppost_callback
-} from "../../global/ajax/public/ajax";
+import { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxSync, upload } from "./fun/ajax";
+
 import { encryption, getPostData } from "./fun/reWrite";
 // eslint-disable-next-line no-unused-vars
 const Class = function () {
@@ -13,7 +8,6 @@ const Class = function () {
   that.getAjaxSync = getAjaxSync
   that.commonHttppost = commonHttppost
   that.commonQueryAsyncHttppost_callback = commonQueryAsyncHttppost_callback
-  that.getConfig = getConfig
   that.upload = upload
   that.getPostData = getPostData
   that.encryption = encryption

@@ -1,10 +1,11 @@
 import { setPageTemp } from "../../base/fun/1/pageTemp"
+import { that } from "../../base/var/init"
 import { ajaxError } from "../fun/1/dealData"
 import { ajax } from "../fun/3/ajax"
 import { dataConfig } from "../var/ajax"
 
 function setConfig() {
-  return dataConfig = getAjax('/public/data/config.json', {v: new Date().getTime()}, {msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true})
+  return dataConfig = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true })
 }
 export function ajaxASync(url, data, param, option, config, type = 'GET') {
   return ajax(url, data, param, option, config, type, false)
@@ -29,6 +30,19 @@ export function commonQueryAsyncHttppost_callback(url, data, option = {}, config
 export function getConfig(key) {
   setPageTemp(dataConfig, setConfig)
   return key ? dataConfig[key] : dataConfig
+}
+export function upload(data, name, lx = 'url', option = {}) {
+  let formData = new FormData()
+  if (lx === 'url') {
+    let a = data.split(','), type = a[0].match(/:(.*?);/)[1], bytes = window.atob(a[1]), ia = new Uint8Array(bytes.length)
+    for (let i = 0; i < bytes.length; i++) {
+      ia[i] = bytes.charCodeAt(i)
+    }
+    formData.append('file', new Blob([ia], { type: type }), name)
+  } else {
+    formData.append('file', data)
+  }
+  return ajaxASync(option.url || that.getUploadUrl(), formData, {}, { isNotGetUser: true }, { contentType: false, processData: false }, 'POST')
 }
 function dealCsData(pro, url) {
   if (pro.code) {

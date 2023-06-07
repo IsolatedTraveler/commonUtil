@@ -6,7 +6,8 @@ export {
   getAjax,
   getAjaxSync,
   commonHttppost,
-  commonQueryAsyncHttppost_callback
+  commonQueryAsyncHttppost_callback,
+  upload
 } from "../../../../global/ajax/public/ajax";
 
 export function dealAjaxData(data, { isNotGetUser } = {}, { contentType } = {}, type) {

@@ -1,7 +1,6 @@
 import Class from "../core";
-import { getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, dealAjaxData} from "../public/fun/ajax";
+import { getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, dealAjaxData, upload } from "../public/fun/ajax";
 import { getConfig, getToken } from "../public/fun/config";
-import { upload } from "../public/fun/upload";
 import { encryption, getPostData } from "../reWrite/fun/ajax";
 Class.prototype.getAjax = getAjax
 Class.prototype.getAjaxSync = getAjaxSync
