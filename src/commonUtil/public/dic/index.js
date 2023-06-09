@@ -27,7 +27,7 @@ export function getDic(ly, name) {
   if (dic[ly]) {
     return Promise.resolve(name ? dic[ly][name] : dic[ly])
   } else {
-    return that.getAjaxSync('/public/dic/' + ly + '.json', { version: new Date().getTime() }).then(res => {
+    return that.getAjaxSync('/public/dic/' + ly + '.json', { version: new Date().getTime() }, { urlType: 'origin', isNotGetUser: true }).then(res => {
       dic[ly] = res
       return name ? res[name] : res
     })
