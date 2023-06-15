@@ -33,6 +33,19 @@ export function getDic(ly, name) {
     })
   }
 }
+export function getDicV(ly, name, v) {
+  let data = dic[ly] && dic[ly][name]
+  if (data) {
+    if (!data.val) {
+      data.val = {}
+      data.data.forEach(({ id, mc }) => {
+        data.val[id] = mc
+      })
+    }
+    return data.val[v] || data.val.def || ''
+  }
+  return ''
+}
 export function renderDic(name = '', data = {}, def = 'common') {
   let dic = {}, dics = []
   $('[jt-dic]').each(function (i, el) {
@@ -100,5 +113,6 @@ export default {
   dic,
   renderDic,
   renderDics,
-  dics
+  dics,
+  getDicV
 }
