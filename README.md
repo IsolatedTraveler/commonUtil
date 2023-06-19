@@ -23,7 +23,8 @@ A-->AB("主功能模块【src】")-->ABA("【commonUtil】")
 AB-->ABB("咸鱼之王【yxXyzw】")
 
 A-->AC("主功能依赖模块【modules】")-->ACA("依赖commonUtil")-->ACAA("解决自由浏览器兼容【browser】")
-ACA-->ACAB("兼容magic和jtphis的ajax请求【jtAjax】")
+ACA-->ACAB("兼容jtphis(主)和magic(副)的ajax请求【jtAjax】")
+ACA-->ACAC("兼容magic(主)和jtphis(副)的ajax请求【hisAjax】")
 
 A-->AD("依赖layui模块【layModules】")-->ADA("【下拉表格选择combogrid】")
 AD-->ADB("编辑表格【jtEditTable】")
