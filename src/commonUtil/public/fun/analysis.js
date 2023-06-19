@@ -1,14 +1,14 @@
 export const analysis = {
-  sfzh(n) {
-    let l = n.length, r, s
+  sfzh(n = '', fgf = '-') {
+    let l = n.length, r = '', s = ''
     if (l === 15) {
-      r = '19' + n.substr(6, 6)
-      s = n.substr(12, 3)
+      r = '19' + n.substring(6, 12)
+      s = n.substring(12, 15)
     } else if (l === 18) {
-      r = n.substr(6, 8)
-      s = n.substr(14, 3)
+      r = n.substring(6, 14)
+      s = n.substring(14, 17)
     }
-    return {csrq: r.substr(0, 4) + '-' + r.substr(4, 2) + '-' + r.substr(6, 2), xb: s % 2 === 1 ? '1' : '2'}
+    return { csrq: r.substring(0, 4) + fgf + r.substring(4, 6) + fgf + r.substring(6, 8), xb: s % 2 === 1 ? '1' : '2' }
   }
 }
 export default {
