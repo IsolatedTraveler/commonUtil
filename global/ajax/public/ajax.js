@@ -52,13 +52,13 @@ function dealCsData(pro, url) {
 }
 function getDealCsData(data, url) {
   if (data.code == 500) {
-    layui.layer.alert('该接口返回数据不符合规范，请检查接口：' + url)
+    alert('该接口返回数据不符合规范，请检查接口：' + url)
     return { code: 1, data: [] }
   } else if (data.code == 2) {
-    layui.layer.alert('请检查该接口必填校验：' + url)
+    alert('请检查该接口必填校验：' + url)
     return { code: 1, data: [] }
   } else if (data.code == -1) {
-    layui.layer.alert('用于测试环境调试接口，请判断是否调试该接口：' + url)
+    alert('用于测试环境调试接口，请判断是否调试该接口：' + url)
     return { code: 1, data: [] }
   }
   return data
