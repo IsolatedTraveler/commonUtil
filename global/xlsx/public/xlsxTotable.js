@@ -2,7 +2,7 @@ import { readFile } from "../../file/public/readFile"
 import { getXlsxData } from "../fun/getXlsxData"
 import { xlsxType } from "../var/index"
 
-export function readXlsx(file, { names, isObj } = { isObj: true }) {
+export function readXlsx(file, { names, isObj = true } = {}) {
   let type = file.type
   return new Promise((resolve, reject) => {
     if (xlsxType.test(type)) {
@@ -15,7 +15,7 @@ export function readXlsx(file, { names, isObj } = { isObj: true }) {
       names = Object.assign([], res.shift(), names)
       return res.map(it => {
         var obj = {}
-        names.forEach((key, i) => obj[key] = it[i])
+        names.forEach((key, i) => obj[key] = it[i] + '')
         return obj
       })
     }
