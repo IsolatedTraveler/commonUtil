@@ -28,7 +28,7 @@ export function getDcjfh() {
 }
 var zfjl = [10, 20, 30, 40, 80, 100, 70, 50, 100], zfjlLen = zfjl.length
   , jfVal = [10, 10, 20, 50, 50, 50, 20, 50, -1], arr = []
-// , zfDy = { 10: '青铜宝箱', 20: '黄金宝箱', 50: '铂金宝箱', '-1': '钻石宝箱' }
+  , zfDy = { 10: '青铜宝箱', 20: '黄金宝箱', 50: '铂金宝箱', '-1': '钻石宝箱' }
 function getJf(dqjf, dqzfIndex = 0, mzbx = 0, qtbx = 0, hjbx = 0, bjbx = 0, zsbx = 0) {
   if (dqzfIndex > 10) {
     dqzfIndex = zfjl.indexOf(dqzfIndex)
@@ -36,11 +36,10 @@ function getJf(dqjf, dqzfIndex = 0, mzbx = 0, qtbx = 0, hjbx = 0, bjbx = 0, zsbx
     dqzfIndex = zfjlLen - 1
   }
   var zf = mzbx + qtbx * 10 + hjbx * 20 + bjbx * 50
-  arr.push([dqjf, zfjl[dqzfIndex], mzbx, qtbx, hjbx, bjbx, zsbx, zf])
+  arr.push([mzbx, qtbx, hjbx, bjbx, zsbx, `${zfjl[dqzfIndex]}积分${zfDy[jfVal[dqzfIndex]]}`, dqjf, zf])
   if (zf > 0) {
     return zf + getBxsl(zf + dqjf, dqzfIndex, dqzfIndex, zsbx)
   }
-  // console.log(dqzfIndex, `${zfjl[dqzfIndex]}积分${zfDy[jfVal[dqzfIndex]]}`, dqjf)
   return zf
 }
 function getBxsl(zf, dqzfIndex = 0, sl = 0, zsbx = 0, mzbx = 0, qtbx = 0, hjbx = 0, bjbx = 0) {
