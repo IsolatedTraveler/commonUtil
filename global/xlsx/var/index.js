@@ -1,0 +1,1 @@
+export var xlsxType = /^application\/vnd\.(ms-excel|openxmlformats-officedocument.spreadsheetml.sheet)$/
