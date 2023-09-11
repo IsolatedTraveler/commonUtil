@@ -5,6 +5,7 @@ module.exports = {
     XLSX: true,
     layTable: true,
     layer: true,
+    layForm: true,
     xlsxType: true
   }
 };

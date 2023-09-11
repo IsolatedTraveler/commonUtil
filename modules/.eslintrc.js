@@ -1,17 +1,5 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 12
-  },
-  "rules": {
-    "no-unused-vars": ["error", { args: "none" }],
-    'no-import-assign': 'off'
-  },
   globals: {
     Class: true,
     Render: true,
@@ -19,9 +7,5 @@ module.exports = {
     commonUtil: true,
     w: true,
     d: true
-  },
-  // eslint-disable-next-line no-dupe-keys
-  parserOptions: {
-    sourceType: 'module'
   }
 };
