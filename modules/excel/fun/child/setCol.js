@@ -1,8 +1,11 @@
-import { rowKeys, rows } from "../../var/global";
+import { colSelectKey, rowKeys, rows, colSelectVal } from "../../var/global";
 
-export function setCol(field = '') {
-  if (!rowKeys[field]) {
-    rowKeys[field] = true
-    rows.push({ field, title: field, wdth: (field.length + 1) * 15 })
+export function setCol(title = '') {
+  if (!rowKeys[title]) {
+    var id = 'c' + colSelectKey.length
+    rowKeys[title] = true
+    rows.push({ field: id, title, wdth: (title.length + 1) * 15 })
+    colSelectVal[title] = id
+    colSelectKey.push({ mc: title, id })
   }
 }

@@ -1,4 +1,4 @@
-import { dataObj, zbData } from "../var/index";
+import { colSelectVal, dataObj, zbData } from "../var/index";
 import { setCol } from "./child/index";
 
 function readFile(file, resolve, reject) {
@@ -35,8 +35,8 @@ function arrToObj(it, { data, sheet }) {
   var names = data.shift()
   names.forEach(setCol)
   var v = data.map((it1, i) => {
-    var obj = { '_文件名': it.name, '_表序号': i + 1, '_表名': sheet }
-    names.forEach((key, i) => obj[key] = (it1[i] || '') + '')
+    var obj = { [colSelectVal['_文件名']]: it.name, [colSelectVal['_表序号']]: i + 1, [colSelectVal['_表名']]: sheet }
+    names.forEach((key, i) => obj[colSelectVal[key]] = (it1[i] || '') + '')
     return obj
   })
   dataObj[it.name] = dataObj[it] || {}
