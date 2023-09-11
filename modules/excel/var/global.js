@@ -4,6 +4,7 @@ export var rows = []
   , rowKeys = {}
   , layerIndex
   , zbData = []
+  , fbData = []
   , dataObj = {}
   // promise 异步处理
   , fileChangeRes
