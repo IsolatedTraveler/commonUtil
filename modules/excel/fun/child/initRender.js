@@ -1,9 +1,5 @@
-import { cols, rowKeys, rows } from "../../var";
-import { getInputFile } from "./child/index";
-
+import { getInputFile, reload } from "./child/index";
 export function initRender() {
-  rowKeys = {}
-  rows = []
-  cols[0] = rows
   getInputFile()
+  reload()
 }
