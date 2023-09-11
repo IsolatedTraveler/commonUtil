@@ -9,7 +9,8 @@ module.exports = {
     "ecmaVersion": 12
   },
   "rules": {
-    "no-unused-vars": ["error", { args: "none" }]
+    "no-unused-vars": ["error", { args: "none" }],
+    'no-import-assign': 'off'
   },
   globals: {
     Class: true,
