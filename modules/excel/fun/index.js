@@ -1,2 +1,3 @@
+export * from './child/index'
 export * from './init'
-export * from './inputFile'
+export * from './child/child/inputFile'

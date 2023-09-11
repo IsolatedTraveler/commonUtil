@@ -3,6 +3,7 @@ module.exports = {
   globals: {
     Excel: true,
     XLSX: true,
-    layTable: true
+    layTable: true,
+    layer: true
   }
 };
