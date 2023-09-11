@@ -41,7 +41,7 @@ export function use(arr, callBack) {
     return syncWhile(useLoadJudge, useLoading, { src: dealsUrl(typeof it === 'string' ? it + '.js' : it.src, thirdBaseUrl) })
   })
   if (callBack) {
-    Promise.all(arr).then(callBack)
+    return Promise.all(arr).then(callBack)
   } else {
     return Promise.all(arr)
   }
