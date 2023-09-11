@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 (function (w, d) {
-  // eslint-disable-next-line no-unused-vars
-  let that
   // @CODE
-  // eslint-disable-next-line no-undef
-  commonUtil.define(function (exports) {
-    // eslint-disable-next-line no-unused-vars
-    that = this
-    exports('hisAjax', new Class())
-  })
-})(window, document)
+  function Render(config) {
+    // @CODEMODULE
+    return new Class(config)
+  }
+  commonUtil.define([], function (exports) {
+    exports('excel', new Excel())
+  });
+})(window, document);

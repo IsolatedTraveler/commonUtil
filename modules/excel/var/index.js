@@ -1,4 +1,4 @@
-export let urlServer
-export default {
-  urlServer
-}
+export * from './config'
+export * from './elem'
+export * from './global'
+export * from './const'
