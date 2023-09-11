@@ -1,5 +1,6 @@
-import { initRender } from "./child/initRender";
+import { getInputFile, reload } from "./child/index";
 
 export function init(config) {
-  initRender()
+  getInputFile()
+  reload()
 }

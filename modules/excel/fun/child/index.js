@@ -1,2 +1,3 @@
 export * from './child/index'
-export * from './initRender'
+export * from './inputFile'
+export * from './reload'

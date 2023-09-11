@@ -5,4 +5,6 @@ export var rows = []
   , layerIndex
   , zbData = []
   , fbData = []
+  // 当前操作数据
+  , data
 export const cols = [rows]
