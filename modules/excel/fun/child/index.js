@@ -1,3 +1,3 @@
 export * from './child/index'
-export * from './inputFile'
+export * from './fileChange'
 export * from './reload'
