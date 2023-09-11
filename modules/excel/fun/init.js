@@ -1,26 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-import { rowKeys, zbData, czlx, fbData } from "../var/index";
-import { cols, inputFile, layerIndex, rows } from "../var/index";
-import { setCol } from "./child";
+import { inputFile, layerIndex } from "../var/index";
+import { dealData } from "./dealData";
+import { readTable } from "./readTable";
+import { reload } from "./reload";
 
 function fileChange(e) {
-  return Promise.all([].map.call(e.target.files, (it) => {
-    console.log(it.name)
-  })).then(() => { }).finally(() => {
-    layer.close(layerIndex)
-  })
+  return Promise.all([].map.call(e.target.files, readTable)).then(() => dealData).finally(() => layer.close(layerIndex))
 }
-export function reload(config) {
-  rowKeys = {}
-  rows = []
-  cols[0] = rows
-  zbData = []
-  fbData = []
-  czlx = config.czlx || 'hbbg'
-  setCol('文件名')
-  setCol('表名')
-  setCol('表序号')
-}
+
 export function init(config) {
   if (!inputFile) {
     inputFile = document.createElement('input')
