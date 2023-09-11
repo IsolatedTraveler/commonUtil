@@ -1,5 +1,5 @@
 import { inputFile } from "../../../var/elem";
-import { fileChange } from "..";
+import { fileChange } from "./child/index";
 
 export function getInputFile() {
   if (!inputFile) {
