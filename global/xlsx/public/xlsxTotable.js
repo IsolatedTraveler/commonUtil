@@ -15,7 +15,12 @@ export function readXlsx(file, { names, isObj = true } = {}) {
       names = Object.assign([], res.shift(), names)
       return res.map(it => {
         var obj = {}
-        names.forEach((key, i) => obj[key] = it[i] + '')
+        if (it)
+          names.forEach((key, i) => {
+            key = (key + '').trim()
+            var v = it[i] || ''
+            obj[key] = v + ''
+          })
         return obj
       })
     }
