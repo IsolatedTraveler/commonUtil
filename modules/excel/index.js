@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export let Class = null
+export let Class = null, layTable
 export * from './var/const'
 const Excel = function () {
   this.v = '1.0.1'

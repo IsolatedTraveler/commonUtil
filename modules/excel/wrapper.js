@@ -5,7 +5,8 @@
     // @CODEMODULE
     return new Class(config)
   }
-  commonUtil.define([], function (exports) {
+  commonUtil.define(['table'], function (exports) {
+    layTable = layui.table
     exports('excel', new Excel())
   });
 })(window, document);

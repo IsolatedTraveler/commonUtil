@@ -2,6 +2,7 @@
 module.exports = {
   globals: {
     Excel: true,
-    XLSX: true
+    XLSX: true,
+    layTable: true
   }
 };
