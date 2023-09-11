@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import { inputFile, layerIndex } from "../var/index";
+import { fileChangeRes, inputFile, layerIndex } from "../var/index";
 import { dealData } from "./dealData";
 import { readTable } from "./readTable";
 import { reload } from "./reload";
 
 function fileChange(e) {
-  return Promise.all([].map.call(e.target.files, readTable)).then(() => dealData).finally(() => layer.close(layerIndex))
+  return fileChangeRes = Promise.all([].map.call(e.target.files, readTable)).then(() => dealData).finally(() => layer.close(layerIndex))
 }
 
 export function init(config) {

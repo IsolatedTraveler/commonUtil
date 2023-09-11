@@ -4,7 +4,7 @@ export var rows = []
   , rowKeys = {}
   , layerIndex
   , zbData = []
-  , fbData = []
-  // 当前操作数据
-  , data
+  , dataObj = {}
+  // promise 异步处理
+  , fileChangeRes
 export const cols = [rows]

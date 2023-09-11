@@ -4,6 +4,7 @@ module.exports = {
     Excel: true,
     XLSX: true,
     layTable: true,
-    layer: true
+    layer: true,
+    xlsxType: true
   }
 };
