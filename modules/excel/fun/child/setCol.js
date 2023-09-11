@@ -1,4 +1,4 @@
-import { rowKeys, rows } from "../../../var/global";
+import { rowKeys, rows } from "../../var/global";
 
 export function setCol(field = '') {
   if (!rowKeys[field]) {

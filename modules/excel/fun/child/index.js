@@ -1,3 +1,1 @@
-export * from './child/index'
-export * from './fileChange'
-export * from './reload'
+export * from './setCol'
