@@ -1,3 +1,3 @@
-import { readXlsx } from "../public/index";
+import { readTable } from "../public/index";
 
-Class.prototype.readXlsx = readXlsx
+Class.prototype.readTable = readTable
