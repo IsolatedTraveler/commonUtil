@@ -1,3 +1,4 @@
-import { readTable } from "../public/index";
+import { hbbg, dbhbbg } from "../public/index";
 
-Class.prototype.readTable = readTable
+Class.prototype.hbbg = hbbg
+Class.prototype.dbhbbg = dbhbbg
