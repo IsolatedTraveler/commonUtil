@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { fbData, rowKeys, zbData } from "../../../var";
-import { cols, rows } from "../../var";
+import { cols, fbData, rowKeys, rows, zbData } from "../../../var/index";
 export function reload() {
   rowKeys = {}
   rows = []
