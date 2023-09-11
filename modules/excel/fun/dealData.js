@@ -1,12 +1,22 @@
-import { colSelectKey, tableSelectKey } from "../var/index";
-
+// eslint-disable-next-line no-unused-vars
+import { colSelectKey, cols, tableSelectKey, qTable } from "../var/index";
+function initTable() {
+  const zb = {
+    elem: '#table',
+    select: '#cx',
+    data: [],
+    cols
+  }
+  qTable = commonUtil.initQueryPage(zb)
+}
 export function dealData() {
   commonUtil.setSelectOption({
-    el: '[name=zb],[name=fjb]',
+    elem: '[name=zb],[name=fjb]',
     data: tableSelectKey
   })
   commonUtil.setSelectOption({
-    el: '[name=col]',
+    elem: '[name=col]',
     data: colSelectKey
   })
+  initTable()
 }

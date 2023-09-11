@@ -1,4 +1,4 @@
-import { colSelectVal, dataObj, tableSelectKey, tableSelectVal, zbData } from "../var/index";
+import { colSelectVal, dataObj, tableSelectKey, tableSelectVal } from "../var/index";
 import { setCol } from "./child/index";
 
 function readFile(file, resolve, reject) {
@@ -48,7 +48,7 @@ function dealXlsxRes(it, res = []) {
   res = res.map(sheetData => {
     return arrToObj(it, sheetData)
   })
-  zbData.push(res)
+  return res
 }
 export function readTable(it, i) {
   tableSelectVal[it.name] = {}

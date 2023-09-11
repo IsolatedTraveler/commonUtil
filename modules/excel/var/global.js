@@ -11,4 +11,5 @@ export var rows = []
   , tableSelectVal = {}
   , colSelectKey = []
   , colSelectVal = {}
+  , qTable
 export const cols = [rows]
