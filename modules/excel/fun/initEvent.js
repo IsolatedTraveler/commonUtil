@@ -1,4 +1,4 @@
-import { dataObj, qTable, tableSelectKey, zbData } from "../var/index"
+import { dataObj, fbData, qTable, tableSelectKey, zbData } from "../var/index"
 
 export function initEvent() {
   layui.use(['form'], () => {
@@ -14,8 +14,14 @@ export function initEvent() {
       })
       qTable.tableReload(zbData);
     })
-    layui.form.on('select(fjb)', function () {
-      qTable.setHeight()
+    layui.form.on('select(fjb)', function ({ value }) {
+      fbData = []
+      value.split(',').forEach(key => {
+        fbData = fbData.concat(dataObj[key])
+      })
+      setTimeout(() => {
+        qTable.setHeight()
+      }, 100);
     })
   })
 }
