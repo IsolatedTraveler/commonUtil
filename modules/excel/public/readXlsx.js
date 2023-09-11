@@ -1,1 +1,3 @@
-export * from '../../../global/xlsx/public/xlsxTotable'
+export function readTable() {
+
+}
