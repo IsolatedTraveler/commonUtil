@@ -5,7 +5,7 @@ module.exports = async function (grunt, version) {
     let len = res.length
     for (let i = 0; i < len; i++) {
       let name = res[i]
-      await getCode(name + '.js', path.resolve(ml, name), version, grunt, outMl)
+      await getCode(name + '.js', path.resolve(ml, name), version, grunt, outMl, 'layModules')
     }
   }
 }

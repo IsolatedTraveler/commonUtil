@@ -52,12 +52,13 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
   }
   return wrapper
 }
-async function getCode(name, src, version, grunt, printSrc) {
+async function getCode(name, src, version, grunt, printSrc, ly) {
   try {
     let wrapper = read(src + '/wrapper.js', grunt).replace(/@VERSION/g, version).replace(/@DATE/g, date),
       code = await setCode(wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', src + '/index.js', /[\n] {2,2}$/, '  ')
     code = await setCode(code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', src + '/' + name, /[\n] {4,4}$/, '    ')
     grunt.file.write(printSrc + name, code)
+    // grunt.log.writeln(`${ly || ''}:${name}`);
     grunt.log.ok(`${printSrc}${name} created.`);
   } catch (e) {
     console.log(e)

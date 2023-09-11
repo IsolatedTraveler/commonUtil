@@ -5,11 +5,11 @@
  */
 
 "use strict";
-const buildSrc = require('./task/src'),
-  buildModule = require('./task/module'),
-  buildAddComm = require('./task/addComm'),
-  buildLay = require('./task/layModules'),
-  buildVue = require('./task/vue')
+const buildSrc = require('./task/src')
+  , buildModule = require('./task/module')
+  , buildAddComm = require('./task/addComm')
+  , buildLay = require('./task/layModules')
+// ,buildVue = require('./task/vue')
 let version
 module.exports = function (g) {
   version = g.config("pkg.version")
@@ -17,10 +17,10 @@ module.exports = function (g) {
     const done = this.async()
     try {
       await buildSrc(g, version)
-      // await buildModule(g, version)
       await buildAddComm(g, version)
+      await buildModule(g, version)
       await buildLay(g, version)
-      await buildVue(g, version)
+      // await buildVue(g, version)
       done()
     } catch (e) {
       done(e)
