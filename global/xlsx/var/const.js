@@ -1,0 +1,1 @@
+export const xlsxType = /^application\/vnd\.(ms-excel|openxmlformats-officedocument.spreadsheetml.sheet)$/
