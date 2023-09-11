@@ -7,7 +7,8 @@ export var rows = []
   , dataObj = {}
   // promise 异步处理
   , fileChangeRes
-  , tableSelectKey
+  , tableSelectKey = []
+  , tableSelectVal = {}
   , colSelectKey = []
   , colSelectVal = {}
 export const cols = [rows]

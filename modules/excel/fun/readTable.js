@@ -1,4 +1,4 @@
-import { colSelectVal, dataObj, zbData } from "../var/index";
+import { colSelectVal, dataObj, tableSelectKey, tableSelectVal, zbData } from "../var/index";
 import { setCol } from "./child/index";
 
 function readFile(file, resolve, reject) {
@@ -18,10 +18,12 @@ function dealXlsxData(sheet, data) {
   });
   return { sheet, data: XLSX.utils.sheet_to_json(data, { header: 1 }) }
 }
-function getXlsxData(e, resolve, reject) {
+function getXlsxData(e, resolve, reject, data, i, wjm) {
   let xlsx = XLSX.read(e.target.result, { type: 'binary' });
   try {
-    resolve([].map.call(xlsx.SheetNames, sheet => {
+    resolve([].map.call(xlsx.SheetNames, (sheet, j) => {
+      data[sheet] = 't_' + i + '_' + j
+      tableSelectKey.push({ id: data[sheet], mc: wjm + '-->' + sheet })
       return dealXlsxData(sheet, xlsx.Sheets[sheet])
     }))
   } catch (e) {
@@ -39,8 +41,7 @@ function arrToObj(it, { data, sheet }) {
     names.forEach((key, i) => obj[colSelectVal[key]] = (it1[i] || '') + '')
     return obj
   })
-  dataObj[it.name] = dataObj[it] || {}
-  dataObj[it.name][sheet] = v
+  dataObj[tableSelectVal[it.name][sheet]] = v
   return v
 }
 function dealXlsxRes(it, res = []) {
@@ -49,10 +50,11 @@ function dealXlsxRes(it, res = []) {
   })
   zbData.push(res)
 }
-export function readTable(it) {
+export function readTable(it, i) {
+  tableSelectVal[it.name] = {}
   return new Promise((resolve, reject) => {
     if (xlsxType.test(it.type)) {
-      readFile(it, (e) => getXlsxData(e, resolve, reject), reject)
+      readFile(it, (e) => getXlsxData(e, resolve, reject, tableSelectVal[it.name], i, it.name), reject)
     } else {
       reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }))
     }
