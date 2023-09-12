@@ -5,6 +5,7 @@ function setData(value, data) {
     var v = JSON.parse(JSON.stringify(dataObj[key]))
     data = data.concat(v)
   })
+  return data
 }
 export function initEvent() {
   layui.use(['form'], () => {
@@ -14,17 +15,14 @@ export function initEvent() {
         elem: '[name=fjb]',
         data
       })
-      zbData = []
-      setData(value, zbData)
+      zbData = setData(value, [])
       qTable.tableReload(zbData);
     })
     layui.form.on('select(fjb)', function ({ value }) {
-      fbData = []
-      setData(value, fbData)
+      fbData = setData(value, [])
       setTimeout(() => {
         qTable.setHeight()
       }, 100);
-      console.log(fbData)
     })
     layui.form.on('select(col)', function ({ value }) {
       primaryKey = value.split(',')
