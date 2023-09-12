@@ -6,6 +6,7 @@ export var rows = []
   , zbData = []
   , fbData = []
   , dataObj = {}
+  , zbDataObj = {}
   // promise 异步处理
   , fileChangeRes
   , tableSelectKey = []
@@ -13,4 +14,5 @@ export var rows = []
   , colSelectKey = []
   , colSelectVal = {}
   , qTable
+  , primaryKey = []
 export const cols = [rows]
