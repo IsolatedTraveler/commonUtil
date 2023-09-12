@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { dataObj, fbData, primaryKey, qTable, tableSelectKey, zbData } from "../var/index"
 function setData(value, data) {
-  value.split(',').forEach(key => {
+  value && value.split(',').forEach(key => {
     var v = JSON.parse(JSON.stringify(dataObj[key]))
     data = data.concat(v)
   })
