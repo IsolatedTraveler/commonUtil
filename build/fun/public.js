@@ -45,7 +45,7 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
       return ''
     })
     if (keys.length) {
-      code += 'Class.prototype = {' + keys.join(',') + '}' + space
+      code += 'Class.prototype = { ' + keys.join(', ') + ' }' + space
     }
     code = code.replace(/([\n\r][ \t]+)+([\n\r])/g, '$2')
     return arr[0] + code.replace(/console.info[^\n]*\n[ ]*/, '').replace(reg1, '\n') + (arr[1] || '')
