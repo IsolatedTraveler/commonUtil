@@ -30,7 +30,10 @@ export function tableDone(res, pageNumber, rowCount) {
     return renderTr(start + i, trData)
   })).finally(() => {
     console.log(eTable)
-    table_resolve && table_resolve()
+    if (table_resolve) {
+      table_resolve()
+      table_resolve = null
+    }
   })
 }
 function renderTr(i, data) {
