@@ -29,9 +29,8 @@ export function tableDone(res, pageNumber, rowCount) {
   return Promise.all(rData.map((trData, i) => {
     return renderTr(start + i, trData)
   })).finally(() => {
-    if (table_resolve) {
-      table_resolve()
-      table_resolve = null
+    if (table_resolve.length) {
+      table_resolve.shift()()
     }
   })
 }

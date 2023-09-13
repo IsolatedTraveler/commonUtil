@@ -8,7 +8,7 @@ export function startRender(name) {
   openZzc('start ' + name)
 }
 export function endRender(name) {
-  isInit_arr.push(true)
+  isInit_arr.push(name)
   isInit = true
   closeZzc('end ' + name)
 }
