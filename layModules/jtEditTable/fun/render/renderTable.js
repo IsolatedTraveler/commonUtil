@@ -21,7 +21,7 @@ export function renderTable() {
     limit,
     skin
   })
-  return table_promise.finally(tableLoaded)
+  return table_promise.finally(() => tableLoaded(eTable))
 }
 export function tableDone(res, pageNumber, rowCount) {
   let rData = res.data, count = rData.length, start = rowCount - count
@@ -29,7 +29,6 @@ export function tableDone(res, pageNumber, rowCount) {
   return Promise.all(rData.map((trData, i) => {
     return renderTr(start + i, trData)
   })).finally(() => {
-    console.log(eTable)
     if (table_resolve) {
       table_resolve()
       table_resolve = null
