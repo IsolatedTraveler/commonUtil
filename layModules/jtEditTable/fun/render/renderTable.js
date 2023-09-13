@@ -1,6 +1,7 @@
-import { cols, data, eTable, elem, elem_p, limit, name, select_key, skin, table_resolve, third_table, tr_key } from "../../var/index"
+import { cols, data, eTable, elem, elem_p, limit, name, select_key, skin, table_promise, table_resolve, third_table, tr_key } from "../../var/index"
 import { tableLoaded } from "../initReload/tableLoaded"
 import { getElem, getTrElem } from "../other/getElem"
+import { setPromise } from "../other/setPromise"
 import { trDataV } from "../val/trDataV"
 import { setColVal } from "../val/valCol"
 import { renderCombogrids } from "./renderCombogrid"
@@ -8,20 +9,19 @@ import { renderDates } from "./renderDate"
 import { renderSelects } from "./renderSelect"
 
 export function renderTable() {
-  return new Promise((resolve, reject) => {
-    table_resolve = resolve
-    eTable = third_table.render({
-      elem,
-      id: name,
-      height: elem_p.height(),
-      done: tableDone,
-      cols,
-      data: JSON.parse(JSON.stringify(data)),
-      page: false,
-      limit,
-      skin
-    })
-  }).finally(tableLoaded)
+  setPromise('render')
+  eTable = third_table.render({
+    elem,
+    id: name,
+    height: elem_p.height(),
+    done: tableDone,
+    cols,
+    data: JSON.parse(JSON.stringify(data)),
+    page: false,
+    limit,
+    skin
+  })
+  return table_promise.finally(tableLoaded)
 }
 export function tableDone(res, pageNumber, rowCount) {
   let rData = res.data, count = rData.length, start = rowCount - count
