@@ -18,3 +18,4 @@ export let layerIndex // 弹出层id
   , def_data_tr = {} // 行默认数据
   , select_option = {}
   , table_resolve
+  , table_promise
