@@ -3,11 +3,15 @@ import { table_promise, table_resolve } from "../../var/index";
 import { endRender, startRender } from "./changeIsInit";
 function getPromise() {
   return table_promise = new Promise((resolve, reject) => {
+    console.log(table_resolve)
     table_resolve = resolve
   })
 }
 export function setPromise(name) {
-  startRender(name);
-  (table_promise || Promise.resolve()).then(getPromise).finally(() => endRender(name))
+  startRender(name)
+  var temp = (table_promise || Promise.resolve())
+  getPromise()
+  temp.then(() => table_promise).finally(() => endRender(name))
+  console.log(table_promise)
   return table_promise
 }
