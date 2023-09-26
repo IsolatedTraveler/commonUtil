@@ -14,4 +14,4 @@ export var rows = []
   , colSelectVal = {}
   , qTable
   , primaryKey = []
-export const cols = [rows]
+export var cols = [rows]
