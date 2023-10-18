@@ -57,9 +57,12 @@ async function getCode(name, src, version, grunt, printSrc, ly) {
     let wrapper = read(src + '/wrapper.js', grunt).replace(/@VERSION/g, version).replace(/@DATE/g, date),
       code = await setCode(wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', src + '/index.js', /[\n] {2,2}$/, '  ')
     code = await setCode(code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', src + '/' + name, /[\n] {4,4}$/, '    ')
-    grunt.file.write(printSrc + name, code)
-    // grunt.log.writeln(`${ly || ''}:${name}`);
-    grunt.log.ok(`${printSrc}${name} created.`);
+    // console.log(printSrc)
+    printSrc.forEach(it => {
+      grunt.file.write(it + name, code)
+      // grunt.log.writeln(`${ly || ''}:${name}`);
+      grunt.log.ok(`${it}${name} created.`);
+    })
   } catch (e) {
     console.log(e)
     grunt.log.ok(`File '${name}' failed.`);
