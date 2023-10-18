@@ -1,4 +1,4 @@
-import { pageElem, pageSize } from "../../../var";
+import { pageElem, pageSize } from "../../../var/index";
 import * as mx from './body/index'
 function renderMx({ lx, ms, val }, id) {
   mx?.[lx]?.[ms](val, id)
