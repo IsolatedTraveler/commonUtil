@@ -3,7 +3,7 @@ import { pageSize, pageElem } from "../var/index";
 import { render } from "./init/render";
 
 export function init(config) {
-  pageSize = config.pageSize
-  pageElem = $(config.elem || 'page')
+  pageSize = config.size
+  pageElem = $(config.elem || '#page')
   render(config.data)
 }
