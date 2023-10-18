@@ -29,10 +29,21 @@ export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {
     return data
   }
 }
+function getMainUrl(arr) {
+  if (typeof arr === 'string') {
+    arr = [arr]
+  }
+  let len = arr.length
+  for (let i = 0; i < len; i++) {
+    if (arr[i].indexOf(location.origin) > -1) {
+      return arr[i]
+    }
+  }
+  return arr[0]
+}
 function setServiceUrl() {
   // eslint-disable-next-line no-import-assign
-  urlServer = that.getConfig().hisUrl
-  return urlServer
+  return urlServer = getMainUrl(that.getConfig().hisUrl)
 }
 export function getServiceUrl() {
   return setPageTemp(urlServer, setServiceUrl)

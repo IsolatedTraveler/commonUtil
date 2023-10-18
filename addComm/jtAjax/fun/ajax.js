@@ -1,9 +1,9 @@
 import { setPageTemp } from "../../../global/base/fun/1/pageTemp";
-import {ajaxTimeOut, dataConfig} from '../../../global/ajax/var/ajax'
+import { ajaxTimeOut, dataConfig } from '../../../global/ajax/var/ajax'
 import { dealNull } from './dealNull';
 function setConfig() {
   // eslint-disable-next-line no-import-assign
-  return dataConfig = getAjax('/public/data/config.json', {v: new Date().getTime()}, {msg: '获取配置信息出错：'})
+  return dataConfig = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：' })
 }
 function ajaxDealData(res, option) {
   let isError = option.msg
@@ -26,18 +26,18 @@ function ajaxError(res, msg, judge, i) {
       return ajaxError(res.data, msg, judge, ++i)
     } else {
       if ((res.data && res.data.length) || res.id) {
-        return {code: '1', data: res.data || res.id}
+        return { code: '1', data: res.data || res.id }
       } else {
         that.alertMsg(msg, judge)
-        return {code: '0', msg: msg + '数据加载失败'}
+        return { code: '0', msg: msg + '数据加载失败' }
       }
     }
   } else if (res.code === undefined) {
-    return {code: '1', data: res}
+    return { code: '1', data: res }
   } else {
     msg += res.msg
     that.alertMsg(msg, judge)
-    return {code: '0', msg}
+    return { code: '0', msg }
   }
 }
 function ajax(url, data = {}, option = {}, type = 'GET', callBack, async = false) {
@@ -73,8 +73,8 @@ function ajax(url, data = {}, option = {}, type = 'GET', callBack, async = false
       if (typeof data === 'string') {
         try {
           data = JSON.parse(data)
-        } catch(e) {
-          data = {data}
+        } catch (e) {
+          data = { data }
         }
       }
       if (data && data.data) {
@@ -85,10 +85,10 @@ function ajax(url, data = {}, option = {}, type = 'GET', callBack, async = false
           a.forEach(dealNull)
         }
       }
-      v = callBack({code: '1', data: data, index}, option)
+      v = callBack({ code: '1', data: data, index }, option)
     },
     error(res) {
-      v = callBack({code: '0', msg: res.status + '(' + res.statusText + ')', index}, option)
+      v = callBack({ code: '0', msg: res.status + '(' + res.statusText + ')', index }, option)
     }
   }, option.addParam))
   return v
@@ -114,7 +114,7 @@ function dealAjaxParam(def, option = {}, msg, judge, isNotShowLoad) {
     option.isShowLoad = !isNotShowLoad
   }
   option.addParam = Object.assign({}, def.addParam, option.addParam)
-  return Object.assign({isShowLoad: true, laodMsg: '', isGetUser: false, isBase64: false, isPwd: false, isJson: false, urlType: 'server', msg: false, isShowMsg: false, addParam: {}}, def, option)
+  return Object.assign({ isShowLoad: true, laodMsg: '', isGetUser: false, isBase64: false, isPwd: false, isJson: false, urlType: 'server', msg: false, isShowMsg: false, addParam: {} }, def, option)
 }
 // 同步请求
 function AjaxASync(url, data, option, type) {
@@ -131,20 +131,20 @@ function ajaxSync(url, data, option, type) {
   })
 }
 export function getAjaxSync(url, data, option) {
-  return ajaxSync(url, data, dealAjaxParam({urlType: 'origin'}, option))
+  return ajaxSync(url, data, dealAjaxParam({ urlType: 'origin' }, option))
 }
 export function getAjax(url, data, option = {}) {
   if (typeof data === 'string') {
     option.msg = data
     data = {}
   }
-  return AjaxASync(url, data, dealAjaxParam({urlType: 'origin', isShowMsg: true}, option))
+  return AjaxASync(url, data, dealAjaxParam({ urlType: 'origin', isShowMsg: true }, option))
 }
 export function commonQueryAsyncHttppost_callback(url, data, judge, isNotShowLoad, msg) {
-  return ajaxSync(url, data, dealAjaxParam({isPwd: false, isGetUser: true}, {isGetUser: !judge, msg, isShowLoad: !isNotShowLoad}, msg, judge, isNotShowLoad), 'POST')
+  return ajaxSync(url, data, dealAjaxParam({ isPwd: false, isGetUser: true }, { isGetUser: !judge, msg, isShowLoad: !isNotShowLoad }, msg, judge, isNotShowLoad), 'POST')
 }
 export function commonHttppost(url, data, msg, judge) {
-  return AjaxASync(url, data, dealAjaxParam({isPwd: false, isGetUser: true, isShowMsg: true}, {isGetUser: !judge, msg}, msg, judge), 'POST')
+  return AjaxASync(url, data, dealAjaxParam({ isPwd: false, isGetUser: true, isShowMsg: true }, { isGetUser: !judge, msg }, msg, judge), 'POST')
 }
 export function upload(data, name, lx = 'url', option = {}) {
   let formData = new FormData()
@@ -153,11 +153,11 @@ export function upload(data, name, lx = 'url', option = {}) {
     for (let i = 0; i < bytes.length; i++) {
       ia[i] = bytes.charCodeAt(i)
     }
-    formData.append('file', new Blob([ia], {type: type}), name + '.' + type.split('/')[1])
+    formData.append('file', new Blob([ia], { type: type }), name + '.' + type.split('/')[1])
   } else {
     formData.append('file', data)
   }
-  return AjaxASync(option.url || that.getUploadUrl(), formData, dealAjaxParam({addParam: {contentType: false, processData: false}}, option), 'POST')
+  return AjaxASync(option.url || that.getUploadUrl(), formData, dealAjaxParam({ addParam: { contentType: false, processData: false } }, option), 'POST')
 }
 export function getConfig(key) {
   setPageTemp(dataConfig, setConfig)

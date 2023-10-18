@@ -51,14 +51,15 @@ function dealCsData(pro, url) {
   }
 }
 function getDealCsData(data, url) {
+  console.log(url)
   if (data.code == 500) {
-    alert('该接口返回数据不符合规范，请检查接口：' + url)
+    alert('当前终端与服务器网络连接断开，请检查网络配置是否正常')
     return { code: 1, data: [] }
   } else if (data.code == 2) {
-    alert('请检查该接口必填校验：' + url)
+    alert('接口异常，请联系系统维护人员')
     return { code: 1, data: [] }
   } else if (data.code == -1) {
-    alert('用于测试环境调试接口，请判断是否调试该接口：' + url)
+    alert('当前终端与服务器网络连接断开，请检查网络配置是否正常')
     return { code: 1, data: [] }
   }
   return data
