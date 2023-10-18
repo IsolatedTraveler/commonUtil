@@ -1,4 +1,4 @@
-import { pageElem } from "../../var"
+import { pageElem } from "../../var/index"
 import { renderBody } from "./render/body"
 import { renderName } from "./render/name"
 
