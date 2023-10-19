@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   globals: {
-    Mbyy: true
+    Mbyy: true,
+    layForm: true
   }
 };

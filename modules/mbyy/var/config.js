@@ -1,1 +1,1 @@
-export var data = {}, pageSize = 'A4'
+export var data = {}, pageSize = 'A4', getData
