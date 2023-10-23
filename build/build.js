@@ -21,7 +21,7 @@ module.exports = function (g) {
       await buildAddComm(g, version)
       await buildModule(g, version)
       await buildLay(g, version)
-      // await buildGModules(g, version)
+      await buildGModules(g, version)
       // await buildVue(g, version)
       done()
     } catch (e) {
