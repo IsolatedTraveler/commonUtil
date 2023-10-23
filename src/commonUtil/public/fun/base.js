@@ -1,5 +1,5 @@
-import { uuid } from "../../../../global/base/fun/1/uuid"
-export { uuid } from "../../../../global/base/fun/1/uuid"
+import { uuid } from "../../../../g-lobal/base/fun/1/uuid"
+export { uuid } from "../../../../g-lobal/base/fun/1/uuid"
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
     return keys.map(key => it[key]).join('-')

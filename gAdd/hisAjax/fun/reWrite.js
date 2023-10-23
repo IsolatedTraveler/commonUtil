@@ -1,5 +1,5 @@
-import { setPageTemp } from '../../../global/base/fun/1/pageTemp'
-import { user } from '../../../global/base/var/user'
+import { setPageTemp } from '../../../g-lobal/base/fun/1/pageTemp'
+import { user } from '../../../g-lobal/base/var/user'
 import { urlServer } from '../var/index'
 export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {}, { contentType } = {}, type) {
   if (data && data.page) {

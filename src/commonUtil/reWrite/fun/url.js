@@ -1,4 +1,4 @@
-import { urlServer } from "../../../../global/base/var/url"
+import { urlServer } from "../../../../g-lobal/base/var/url"
 import { setPageTemp } from "../../public/fun/deeps"
 function getMainUrl(arr) {
   if (typeof arr === 'string') {

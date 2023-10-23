@@ -1,5 +1,5 @@
-import { load } from "../../../global/layer/public/load";
-import { readXlsx } from "../../../global/xlsx/public/xlsxTotable";
+import { load } from "../../../g-lobal/layer/public/load";
+import { readXlsx } from "../../../g-lobal/xlsx/public/xlsxTotable";
 import Class from "../core";
 
 Class.prototype.readXlsx = readXlsx

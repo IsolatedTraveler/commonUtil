@@ -4,14 +4,14 @@ import {
   commonHttppost,
   commonQueryAsyncHttppost_callback,
   upload
-} from "../../../global/ajax/public/ajax";
+} from "../../../g-lobal/ajax/public/ajax";
 export {
   getAjax,
   getAjaxSync,
   commonHttppost,
   commonQueryAsyncHttppost_callback,
   upload
-} from "../../../global/ajax/public/ajax";
+} from "../../../g-lobal/ajax/public/ajax";
 export function setPageSize(obj) {
   if (obj.pageSize) {
     let size = obj.pageSize, num = obj.pageNumber

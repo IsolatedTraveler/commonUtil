@@ -7,7 +7,7 @@ export {
   commonHttppost,
   commonQueryAsyncHttppost_callback,
   upload
-} from "../../../../global/ajax/public/ajax";
+} from "../../../../g-lobal/ajax/public/ajax";
 
 export function dealAjaxData(data, { isNotGetUser } = {}, { contentType } = {}, type) {
   if (!isNotGetUser) {

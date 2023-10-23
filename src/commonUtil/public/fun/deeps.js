@@ -1,13 +1,13 @@
 import { webName } from "../../var/init";
-import {setPageTemp} from "../../../../global/base/fun/1/pageTemp"
-export {setPageTemp} from "../../../../global/base/fun/1/pageTemp"
+import { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
+export { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
   if (e.type === 'load' || (readyRegExp.test((e.currentTarget || e.srcElement).readyState))) {
-    resolve({code: '1', w: this.contentWindow, elem: this})
+    resolve({ code: '1', w: this.contentWindow, elem: this })
   } else {
-    reject({code: '-1', w: this.contentWindow, elem: this})
+    reject({ code: '-1', w: this.contentWindow, elem: this })
   }
 }
 export function syncWhile(judgeFun, callBack, param, timeOut = 10, total = 20, i = 0) {
@@ -28,7 +28,7 @@ export function syncWhile(judgeFun, callBack, param, timeOut = 10, total = 20, i
             resolve()
           }, timeOut)
         }).then(e => {
-         return syncWhile(judgeFun, callBack, param, timeOut, total, ++i)
+          return syncWhile(judgeFun, callBack, param, timeOut, total, ++i)
         })
       } else {
         return Promise.reject(judge)
@@ -40,7 +40,7 @@ export function syncWhile(judgeFun, callBack, param, timeOut = 10, total = 20, i
 }
 export function ElemLoadEvent(node, resolve, reject) {
   reject = reject || resolve
-  $(node).on('load', function(e) {
+  $(node).on('load', function (e) {
     elemLoaded.call(this, e, resolve, reject);
   })
 }
@@ -49,16 +49,16 @@ export function setIframe(url, timeOut, resolve, reject) {
   elem.setAttribute('style', 'display: none')
   elem.src = url
   d.body.appendChild(elem)
-  ElemLoadEvent(elem, function(e) {
+  ElemLoadEvent(elem, function (e) {
     if (timeOut != '-1') {
       setTimeout(() => {
         d.body.removeChild(elem)
       }, timeOut);
     }
-    resolve && resolve(e, function() {
+    resolve && resolve(e, function () {
       d.body.removeChild(elem)
     })
-  }, function(e) {
+  }, function (e) {
     d.body.removeChild(elem)
     reject && reject(e)
   })
@@ -66,7 +66,7 @@ export function setIframe(url, timeOut, resolve, reject) {
 export function tempData(name, val, obj = sessionStorage) {
   let name1 = webName + name
   if (val === undefined) {
-    return JSON.parse(obj.getItem(name1)) ||  JSON.parse(obj.getItem(name))
+    return JSON.parse(obj.getItem(name1)) || JSON.parse(obj.getItem(name))
   } else if (val === null) {
     obj.removeItem(name1)
   } else {

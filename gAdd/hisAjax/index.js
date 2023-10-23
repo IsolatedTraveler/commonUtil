@@ -1,6 +1,6 @@
 
 // eslint-disable-next-line no-unused-vars
-import { contentType, jqMode } from "../../global/ajax/var/ajax";
+import { contentType, jqMode } from "../../g-lobal/ajax/var/ajax";
 import { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxSync, upload } from "./fun/ajax";
 
 import { dealAjaxData, getServiceUrl } from "./fun/reWrite";

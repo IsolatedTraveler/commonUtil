@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../global/base/fun/1/pageTemp";
+import { setPageTemp } from "../../g-lobal/base/fun/1/pageTemp";
 
 // eslint-disable-next-line no-unused-vars
 const Class = function () {
@@ -224,13 +224,13 @@ const Class = function () {
       return;
     }
   };
-  that.showxtcs = function(mkbh) {
+  that.showxtcs = function (mkbh) {
     return new Promise((resolve, reject) => {
       var res = system.showxtcs(mkbh)
       resolve(res)
     })
   }
-  that.zxzqhget = function(xzqh) {
+  that.zxzqhget = function (xzqh) {
     let res = JSON.parse(getSystemVal("zxzqhget", [xzqh]));
     if (res.code === "1") {
       return res.data;
@@ -246,7 +246,7 @@ const Class = function () {
       resolve(data.result);
     })
   };
-  that.getXzqh = function(gjz, pageNumber, pageSize) {
+  that.getXzqh = function (gjz, pageNumber, pageSize) {
     let res = JSON.parse(getSystemVal("xzqhget", [gjz, pageNumber, pageSize]));
     if (res.code === "1") {
       return res.data;
@@ -254,7 +254,7 @@ const Class = function () {
       return;
     }
   }
-  that.closeWindow = function(num = 0) {
+  that.closeWindow = function (num = 0) {
     getSystem();
     system.closeWindow(num);
   }

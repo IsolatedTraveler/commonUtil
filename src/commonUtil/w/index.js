@@ -1,2 +1,2 @@
-import '../../../global/w/index'
+import '../../../g-lobal/w/index'
 import './event.js'

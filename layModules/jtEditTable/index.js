@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-export { uuid } from "../../global/base/fun/1/uuid"
+export { uuid } from "../../g-lobal/base/fun/1/uuid"
 export let layTable = null, layer = null, Class = null
-const JtEditTable = function() {
+const JtEditTable = function () {
   this.v = '1.0.1'
 }
 JtEditTable.prototype = {

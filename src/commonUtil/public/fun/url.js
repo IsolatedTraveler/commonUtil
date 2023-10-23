@@ -1,8 +1,8 @@
-import { urlFace, urlImg, urlUpload, urlHost, urlTp } from '../../../../global/base/var/url'
+import { urlFace, urlImg, urlUpload, urlHost, urlTp } from '../../../../g-lobal/base/var/url'
 import { val } from './init'
 import { setPageTemp } from './deeps'
-import { dealsUrl, getBaseUrl } from '../../../../global/base/fun/2/urlDeal'
-export { dealsUrl, getBaseUrl } from '../../../../global/base/fun/2/urlDeal'
+import { dealsUrl, getBaseUrl } from '../../../../g-lobal/base/fun/2/urlDeal'
+export { dealsUrl, getBaseUrl } from '../../../../g-lobal/base/fun/2/urlDeal'
 function setHostUrl() {
   let name = val('hostName')
   return urlHost = name ? (dealsUrl(name, getBaseUrl()) + '/') : getBaseUrl()

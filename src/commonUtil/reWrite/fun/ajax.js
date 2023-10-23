@@ -1,5 +1,5 @@
 import { BASE64, jse } from "../../var/init"
-import user from "../../../../global/base/var/user"
+import user from "../../../../g-lobal/base/var/user"
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
     user = that.getUser() || {}

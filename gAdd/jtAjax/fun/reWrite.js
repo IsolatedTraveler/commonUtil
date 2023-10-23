@@ -1,7 +1,7 @@
-import {user} from '../../../global/base/var/user'
+import { user } from '../../../g-lobal/base/var/user'
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
-     // eslint-disable-next-line no-import-assign
+    // eslint-disable-next-line no-import-assign
     user = that.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
@@ -27,7 +27,7 @@ export function encryption(data) {
   }
   return {
     data
-    ,sstoken: JSON.stringify({certno: '1', sign: that.getJse().encrypt(sha256(data))})
+    , sstoken: JSON.stringify({ certno: '1', sign: that.getJse().encrypt(sha256(data)) })
   }
 }
 export default {

@@ -1,1 +1,1 @@
-export * from '../../../global/xlsx/var/const'
+export * from '../../../g-lobal/xlsx/var/const'
