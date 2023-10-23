@@ -1,6 +1,7 @@
 const rollup = require('rollup'), { date } = require('../var/public'), fs = require('fs'),
   cleanup = require('rollup-plugin-cleanup'), commonjs = require('rollup-plugin-commonjs')
   , typescript = require('rollup-plugin-typescript'), resolve = require('rollup-plugin-node-resolve')
+  , path = require('path')
 function read(url, grunt) {
   return grunt.file.read(url)
 }
@@ -56,16 +57,36 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
   }
   return wrapper
 }
-async function getCode(name, src, version, grunt, printSrc, ly) {
+function getWrapFile(ml1, ml2) {
   try {
-    let wrapper = read(src + '/wrapper.js', grunt).replace(/@VERSION/g, version).replace(/@DATE/g, date),
-      code = await setCode(wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', src + '/index.js', /[\n] {2,2}$/, '  ')
-    code = await setCode(code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', src + '/' + name, /[\n] {4,4}$/, '    ')
+    return path.resolve(ml1, 'wrapper.js')
+  } catch (e) {
+    return path.resolve(ml2, 'wrapper.js')
+  }
+}
+
+async function getFileCode(ml, name, code, preReg, preV, afterReg, afterV) {
+  let input = path.resolve(ml, name + '.ts')
+  try {
+    return await setCode(code, preReg, preV, input, afterReg, afterV)
+  } catch (e) {
+    input = path.resolve(ml, name + '.js')
+    return await setCode(code, preReg, preV, input, afterReg, afterV)
+  }
+}
+async function getCode(name, src, version, grunt, printSrc, ly) {
+  console.log(ly, name)
+  let moduleFile = path.resolve(src, name), wrapperFile = getWrapFile(moduleFile, src)
+  try {
+    let wrapper = read(wrapperFile, grunt).replace(/@VERSION/g, version).replace(/@DATE/g, date),
+      code = await getFileCode(moduleFile, 'index', wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', /[\n] {2,2}$/, '  ')
+    code = await getFileCode(moduleFile, name, code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', /[\n] {4,4}$/, '    ')
     // console.log(printSrc)
     printSrc.forEach(it => {
-      grunt.file.write(it + name, code)
+      let outFile = path.resolve(it, name + '.js')
+      grunt.file.write(outFile, code)
       // grunt.log.writeln(`${ly || ''}:${name}`);
-      grunt.log.ok(`${it}${name} created.`);
+      grunt.log.ok(`${outFile} created.`);
     })
   } catch (e) {
     console.log(e)
