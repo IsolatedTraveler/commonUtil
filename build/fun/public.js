@@ -1,5 +1,6 @@
 const rollup = require('rollup'), { date } = require('../var/public'), fs = require('fs'),
   cleanup = require('rollup-plugin-cleanup'), commonjs = require('rollup-plugin-commonjs')
+  , typescript = require('rollup-plugin-typescript'), resolve = require('rollup-plugin-node-resolve')
 function read(url, grunt) {
   return grunt.file.read(url)
 }
@@ -24,7 +25,9 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
       input,
       plugins: [
         cleanup(),
-        commonjs()
+        resolve(),
+        commonjs(),
+        typescript()
       ]
     }), keys = [],
       { output: [{ code }] } = await bundle.generate({ format: 'esm', intro: '', outro: '' })
