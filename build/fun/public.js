@@ -18,7 +18,13 @@ function readDir(url) {
     })
   })
 }
-
+function firstUpper(str, judge) {
+  return judge ? (str.substr(0, 1).toUpperCase() + str.substr(1)) : str
+}
+function firstUppers(str, judge) {
+  let arr = str.split('-')
+  return arr.map((it, i) => firstUpper(it, i || judge))
+}
 async function setCode(wrapper, reg, space, input, reg1, space1) {
   let arr = wrapper.split(reg)
   if (arr[1]) {
@@ -57,14 +63,19 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
   }
   return wrapper
 }
-function getWrapFile(ml1, ml2) {
+function getWrapFileCode(ml1, ml2, name, grunt, version) {
+  let wrapperFile = path.resolve(ml1, 'wrapper.js')
+    , code = '', Name = firstUppers(name, true)
+  name = firstUppers(name)
   try {
-    return path.resolve(ml1, 'wrapper.js')
+    code = read(wrapperFile, grunt)
   } catch (e) {
-    return path.resolve(ml2, 'wrapper.js')
+    wrapperFile = path.resolve(ml2, 'wrapper.js')
+    code = read(wrapperFile, grunt)
   }
+  return code.replace(/@VERSION/g, version).replace(/@DATE/g, date)
+    .replace(/new MODULENAME/g, 'new ' + Name).replace(/MODULENAME/g, name)
 }
-
 async function getFileCode(ml, name, code, preReg, preV, afterReg, afterV) {
   let input = path.resolve(ml, name + '.ts')
   try {
@@ -76,9 +87,9 @@ async function getFileCode(ml, name, code, preReg, preV, afterReg, afterV) {
 }
 async function getCode(name, src, version, grunt, printSrc, ly) {
   console.log(ly, name)
-  let moduleFile = path.resolve(src, name), wrapperFile = getWrapFile(moduleFile, src)
+  let moduleFile = path.resolve(src, name)
   try {
-    let wrapper = read(wrapperFile, grunt).replace(/@VERSION/g, version).replace(/@DATE/g, date),
+    let wrapper = getWrapFileCode(moduleFile, src, name, grunt, version),
       code = await getFileCode(moduleFile, 'index', wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', /[\n] {2,2}$/, '  ')
     code = await getFileCode(moduleFile, name, code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', /[\n] {4,4}$/, '    ')
     // console.log(printSrc)

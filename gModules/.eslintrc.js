@@ -6,6 +6,7 @@ module.exports = {
     that: true,
     commonUtil: true,
     w: true,
-    d: true
+    d: true,
+    MODULENAME: true
   }
 };

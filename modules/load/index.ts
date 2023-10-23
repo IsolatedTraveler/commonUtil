@@ -1,6 +1,11 @@
+import { LoadConfig } from "./type/config"
+
 export class Load {
-  v: '1.0.1'
-  render(config) {
+  v: string
+  constructor() {
+    this.v = '1.0.1'
+  }
+  render(config: LoadConfig) {
     new Render(config)
   }
 }
