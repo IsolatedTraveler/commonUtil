@@ -3,9 +3,9 @@ module.exports = {
   globals: {
     Class: true,
     Render: true,
+    that: true,
+    commonUtil: true,
     w: true,
-    d: true,
-    jtLoad: true,
-    EInvoice: true
+    d: true
   }
 };

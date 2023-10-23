@@ -5,5 +5,5 @@
     // @CODEMODULE
     return new Class(config)
   }
-  w.jtLoad = new jtLoad()
+  w.jtLoad = new Load()
 })(window, document);
