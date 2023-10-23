@@ -19,7 +19,8 @@ module.exports = function (grunt) {
           "global/",
           "layModules/",
           'modules/',
-          'addComm/'
+          'gModules/',
+          'gAdd/'
         ]
       }
     }

@@ -7,8 +7,9 @@
 "use strict";
 const buildSrc = require('./task/src')
   , buildModule = require('./task/module')
-  , buildAddComm = require('./task/addComm')
+  , buildAddComm = require('./task/gAdd')
   , buildLay = require('./task/layModules')
+  , buildGModules = require('./task/gModule')
 // ,buildVue = require('./task/vue')
 let version
 module.exports = function (g) {
@@ -20,6 +21,7 @@ module.exports = function (g) {
       await buildAddComm(g, version)
       await buildModule(g, version)
       await buildLay(g, version)
+      // await buildGModules(g, version)
       // await buildVue(g, version)
       done()
     } catch (e) {

@@ -4,6 +4,8 @@ module.exports = {
     Class: true,
     Render: true,
     w: true,
-    d: true
+    d: true,
+    jtLoad: true,
+    EInvoice: true
   }
 };
