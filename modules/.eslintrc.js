@@ -3,9 +3,8 @@ module.exports = {
   globals: {
     Class: true,
     Render: true,
-    that: true,
-    commonUtil: true,
     w: true,
-    d: true
+    d: true,
+    jtLoad: true
   }
 };
