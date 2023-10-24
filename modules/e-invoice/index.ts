@@ -1,11 +1,3 @@
-import { EInvoiceConfig } from "./type/config"
-
-export class EInvoice {
-  v: string
-  constructor() {
-    this.v = '1.0.1'
-  }
-  render(config: EInvoiceConfig) {
-    new Render(config)
-  }
-}
+export * from './type'
+export * from './var'
+export * from './fun'

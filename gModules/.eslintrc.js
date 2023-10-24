@@ -7,6 +7,7 @@ module.exports = {
     commonUtil: true,
     w: true,
     d: true,
-    MODULENAME: true
+    MODULENAME: true,
+    FIRSTMODULENAME: true
   }
 };

@@ -6,6 +6,6 @@
     return new Class(config)
   }
   commonUtil.define([], function (exports) {
-    exports('MODULENAME', new MODULENAME())
+    exports('MODULENAME', new FIRSTMODULENAME())
   });
 })(window, document);

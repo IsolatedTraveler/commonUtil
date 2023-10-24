@@ -23,7 +23,7 @@ function firstUpper(str, judge) {
 }
 function firstUppers(str, judge) {
   let arr = str.split('-')
-  return arr.map((it, i) => firstUpper(it, i || judge))
+  return arr.map((it, i) => firstUpper(it, i || judge)).join('')
 }
 async function setCode(wrapper, reg, space, input, reg1, space1) {
   let arr = wrapper.split(reg)
@@ -74,15 +74,26 @@ function getWrapFileCode(ml1, ml2, name, grunt, version) {
     code = read(wrapperFile, grunt)
   }
   return code.replace(/@VERSION/g, version).replace(/@DATE/g, date)
-    .replace(/new MODULENAME/g, 'new ' + Name).replace(/MODULENAME/g, name)
+    .replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name)
 }
 async function getFileCode(ml, name, code, preReg, preV, afterReg, afterV) {
-  let input = path.resolve(ml, name + '.ts')
+  let input = path.resolve(ml, name + '.js')
   try {
     return await setCode(code, preReg, preV, input, afterReg, afterV)
   } catch (e) {
-    input = path.resolve(ml, name + '.js')
-    return await setCode(code, preReg, preV, input, afterReg, afterV)
+    input = path.resolve(ml, name + '.ts')
+    code = await setCode(code, preReg, preV, input, afterReg, afterV)
+    return code
+  }
+}
+async function getIndexFileCode(ml, ml1, name, code, preReg, preV, afterReg, afterV) {
+  try {
+    return await getFileCode(ml, 'index', code, preReg, preV, afterReg, afterV)
+  } catch (e) {
+    let input = path.resolve(ml1, 'index.ts'), Name = firstUppers(name, true)
+    name = firstUppers(name)
+    code = await setCode(code, preReg, preV, input, afterReg, afterV)
+    return code.replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name)
   }
 }
 async function getCode(name, src, version, grunt, printSrc, ly) {
@@ -90,9 +101,8 @@ async function getCode(name, src, version, grunt, printSrc, ly) {
   let moduleFile = path.resolve(src, name)
   try {
     let wrapper = getWrapFileCode(moduleFile, src, name, grunt, version),
-      code = await getFileCode(moduleFile, 'index', wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', /[\n] {2,2}$/, '  ')
+      code = await getIndexFileCode(moduleFile, src, name, wrapper, /[ \t]*\/\/ @CODE[\r\n]+/, '\n  ', /[\n] {2,2}$/, '  ')
     code = await getFileCode(moduleFile, name, code, /[ \t]*\/\/ @CODEMODULE[\r\n]+/, '\n    ', /[\n] {4,4}$/, '    ')
-    // console.log(printSrc)
     printSrc.forEach(it => {
       let outFile = path.resolve(it, name + '.js')
       grunt.file.write(outFile, code)
