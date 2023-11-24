@@ -1,7 +1,7 @@
 
 // eslint-disable-next-line no-unused-vars
 import { contentType, jqMode } from "../../g-lobal/ajax/var/ajax";
-import { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxSync, upload } from "./fun/ajax";
+import { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxSync, upload, setPageSize } from "./fun/ajax";
 
 import { dealAjaxData, getServiceUrl } from "./fun/reWrite";
 // eslint-disable-next-line no-unused-vars
@@ -17,5 +17,6 @@ const Class = function () {
   that.upload = upload
   that.getServiceUrl = getServiceUrl
   that.dealAjaxData = dealAjaxData
+  that.setPageSize = setPageSize
 }
 export default Class

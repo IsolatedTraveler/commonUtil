@@ -5,7 +5,7 @@ import { Authorization, jqUrl } from "../../../../g-lobal/ajax/var/ajax";
 import { commonHttppost } from "./ajax";
 
 export function getToken(config) {
-  let magic = getConfig('magic')
+  let magic = that.session('magic') || getConfig('magic')
   Authorization = that.session('Authorization') || magic.Authorization
   if (Authorization && Authorization == magic.Authorization) {
     setToken(magic.user)

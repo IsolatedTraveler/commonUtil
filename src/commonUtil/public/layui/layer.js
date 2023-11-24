@@ -18,7 +18,7 @@ export function openPop(options) {
     elem = content = $(options.elem)
     if (options.name) {
       let suc = options.success, name = options.name
-      options.success = function () {
+      options.success = function (a, b) {
         let d = Object.assign({}, options.defaultData, options.data)
         if (!options.data) {
           var v = that.setFormVal(name), keys = Object.keys(v)
@@ -28,7 +28,7 @@ export function openPop(options) {
           d = Object.assign(v, d)
         }
         that.setFormVal(name, d)
-        suc && suc()
+        suc && suc(a, b)
       }
     }
   }

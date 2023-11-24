@@ -19,9 +19,9 @@ export function setPrint() {
 export function getPrint() {
   if (setPrint()) {
     let len = printCLodop.GET_PRINTER_COUNT(), arr = []
-    for(let i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       let mc = printCLodop.GET_PRINTER_NAME(i)
-      arr.push({id: mc, mc})
+      arr.push({ id: mc, mc })
     }
     return arr
   }
@@ -32,11 +32,11 @@ export function printSetHtml(obj = {}) {
   obj.bj2 = 0
   obj.title = obj.title || '标准打印'
   if (obj.url) {
-    setIframe(getParamsUrl(obj.data || {}, dealsUrl(obj.url)), -1 , function(e, callBack) {
+    setIframe(getParamsUrl(obj.data || {}, dealsUrl(obj.url)), -1, function (e, callBack) {
       try {
         delete obj.url
         obj.w = w
-        e.w.index.print(obj, function(res) {
+        e.w.index.print(obj, function (res) {
           if (res && res.code !== '1') {
             layui.alert.msg(res.msg)
           }
@@ -69,14 +69,14 @@ export function printSetHtml(obj = {}) {
     </head>
     <body>
       ${[].map.call(elems, el => {
-        $(el).find('textarea').each((i, e) => {
-          e.innerHTML = e.value
-        })
-        $(el).find('input').each((i, e) => {
-          e.setAttribute('value', e.value)
-        })
-        return el.outerHTML.replace(/<(textarea|input)/g, '<$1 readonly')
-      }).join('')}
+      $(el).find('textarea').each((i, e) => {
+        e.innerHTML = e.value
+      })
+      $(el).find('input').each((i, e) => {
+        e.setAttribute('value', e.value)
+      })
+      return el.outerHTML.replace(/<(textarea|input)/g, '<$1 readonly')
+    }).join('')}
     </body>
     <html>`
     loaded(i)
@@ -91,14 +91,19 @@ export function print(obj = {}) {
       printCLodop.PRINT_INIT(obj.title || '打印')
       obj.defPrint && printCLodop.SET_PRINTER_INDEX(obj.defPrint || obj.mrdyj)
       obj.size && printCLodop.SET_PRINT_PAGESIZE(...obj.size)
-      obj = Object.assign({bj1: 8, bj2: 8}, obj)
+      obj = Object.assign({ bj1: 8, bj2: 8 }, obj)
       printCLodop.ADD_PRINT_HTM(obj.bj1, obj.bj2, '100%', "100%", obj.val)
+      if (obj.mode) {
+        obj.mode.forEach(it => {
+          printCLodop.SET_PRINT_MODE(...it);
+        })
+      }
       if (obj.dyms === '3') {
         printCLodop.PREVIEW()
         loaded(i)
       } else if (obj.dyms === '2') {
         let a = (obj.w || w)
-        a.layui.layer.confirm(obj.msg || '是否打印？', function(index) {
+        a.layui.layer.confirm(obj.msg || '是否打印？', function (index) {
           loaded(index)
           printCLodop.PRINT()
           loaded(i)
@@ -108,7 +113,7 @@ export function print(obj = {}) {
         loaded(i)
       }
     } else if (obj.val) {
-      setIframe(strToUrl(obj.val, 'text/html'), 5 * 60 * 1000, function(e) {
+      setIframe(strToUrl(obj.val, 'text/html'), 5 * 60 * 1000, function (e) {
         loaded(i);
         e.w.print()
       })
@@ -122,7 +127,7 @@ export function print(obj = {}) {
     console.error(e)
   }
 }
-export function printConfig(obj = {title: '本机打印参数设置', name: 'dycssz'}) {
+export function printConfig(obj = { title: '本机打印参数设置', name: 'dycssz' }) {
   let prints = getPrint(), elem = $('[lay-filter="printConfig"]')
   if (elem.length === 0) {
     elem = $(`<div style="display: none" class="jt-w100 jt-flex layui-form jt-pd5-rl" label="5" lay-filter="printConfig">
@@ -131,8 +136,8 @@ export function printConfig(obj = {title: '本机打印参数设置', name: 'dyc
         <div class="layui-input-block jt-grow1">
           <select name="mrdyj">
             ${prints.map(it => {
-              return '<option value="' + it.id + '">' + it.mc + '</option>'
-            }).join('')}
+      return '<option value="' + it.id + '">' + it.mc + '</option>'
+    }).join('')}
           </select>
         </div>
       </div>
@@ -153,7 +158,7 @@ export function printConfig(obj = {title: '本机打印参数设置', name: 'dyc
     elem,
     title: obj.title,
     name: 'printConfig',
-    data: Object.assign({mrdyj: prints[0].id, dyms: '1'}, local(obj.name)),
+    data: Object.assign({ mrdyj: prints[0].id, dyms: '1' }, local(obj.name)),
     btn: ['保存', '取消'],
     area: ['400px'],
     yes(i) {

@@ -1,11 +1,11 @@
 export let ajaxTimeOut = 1000 * 60 * 2,
   dataConfig,
   Authorization,
-  jqUrl = '/oauth/token',
+  jqUrl = '/magic/oauth/token',
   jqMode = 'magic',
   contentType = 'application/json; charset=utf-8',
   jqModeUrl = {
-    magic: '/oauth/token'
+    magic: '/magic/oauth/token'
   }
 export default {
   ajaxTimeOut,

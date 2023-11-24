@@ -74,6 +74,7 @@ function getWrapFileCode(ml1, ml2, name, grunt, version) {
     code = read(wrapperFile, grunt)
   }
   return code.replace(/@VERSION/g, version).replace(/@DATE/g, date)
+    .replace(/w.FIRSTMODULENAME/g, 'w.jt' + Name)
     .replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name)
 }
 async function getFileCode(ml, name, code, preReg, preV, afterReg, afterV) {

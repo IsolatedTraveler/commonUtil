@@ -134,9 +134,9 @@ const Class = function () {
       );
     }
   };
-  that.getServiceUrl = function () {
+  that.getServiceUrl = function (a = '') {
     if (!mainURL) {
-      mainURL = JSON.parse(getSystemVal("getmainurl")).data;
+      mainURL = that.dealsUrl(a, JSON.parse(getSystemVal("getmainurl")).data);
     }
     return mainURL;
   };

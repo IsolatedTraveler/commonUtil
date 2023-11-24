@@ -53,6 +53,7 @@ function dealWebTabName(name, clear) {
 }
 export function dealLogin(res, data, mm, dealResult) {
   if (res.code == 1) {
+    that.session('magic', { user: { username: data.yhm, password: data.mm }, Authorization: 'Basic MDAwMDAwOmp0d3hAMjAyMw==' })
     if (data.jzmm) {
       data.mm = mm
       that.local('yhxx', data)
