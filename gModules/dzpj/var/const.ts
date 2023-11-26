@@ -1,6 +1,4 @@
-import { KpPz } from "../type/index";
-
-export const kppz: KpPz = {
+export const kppz: DzPjKpPz = {
   kp: {
     mz: '',
     zy: '',

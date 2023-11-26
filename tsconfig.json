@@ -27,5 +27,5 @@
     "**/test-helper",
     "**/*.md"
   ],
-  "include": ["./g-lobal", "./gAdd", "./gModules", "./layModules", "./modules", "./src", "./types"]
+  "include": ["./g-lobal", "./gAdd", "./gModules", "./layModules", "./modules", "./src"]
 }

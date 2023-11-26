@@ -1,4 +1,4 @@
-export * from './isOpenFp.ts'
+export * from './isOpenFp'
 // export * from './init'
 // export * from './initEvent'
 // export * from './readTable'

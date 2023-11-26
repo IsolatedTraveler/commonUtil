@@ -1,8 +1,8 @@
 import { isOpenFp } from "../fun";
 import { kpIng } from "../fun/kping";
-import { KpJgConfig, KpLx, KpLy, KpParam } from "../type/index";
+import { KpJgConfig, KpParam } from "../type/index";
 
-export function kp(data: KpParam, ly: KpLy, lx: KpLx, printCs: any) {
+export function kp(data: KpParam, ly: DzPjKpLy, lx: DzPjKpLx, printCs: any) {
   return isOpenFp().then((res: KpJgConfig) => {
     return kpIng(Object.assign({
       kpdbm: res.kpdbm,

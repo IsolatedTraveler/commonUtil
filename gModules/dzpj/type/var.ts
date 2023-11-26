@@ -1,4 +1,3 @@
-import { KpLx, KpLy } from "./public"
 
 export type KpJgid = string
 
@@ -10,10 +9,4 @@ export interface KpJgConfig {
 }
 export interface KpConfig {
   [index: KpJgid]: Promise<KpJgConfig>
-}
-export type KpPzLx = {
-  [index in KpLy]: string
-}
-export type KpPz = {
-  [index in KpLx]: KpPzLx
 }

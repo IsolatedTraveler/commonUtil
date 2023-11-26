@@ -1,4 +1,3 @@
-declare var that: any
 declare global {
   interface Window {
     jthisJsObject: any
@@ -7,6 +6,11 @@ declare global {
     $: any
     layer: any
   }
+  type That = {
+    [index: string]: any
+  }
+  let that: That
 }
 export {
+
 }

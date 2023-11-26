@@ -1,7 +1,4 @@
-// 开票来源   门诊 | 住院 | 挂号
-export type KpLy = 'mz' | 'zy' | 'gh'
-// 开票类型   开票 | 退票
-export type KpLx = 'kp' | 'tp'
+
 // 开票结算id
 export type KpJsId = string
 // 开票单位名称
