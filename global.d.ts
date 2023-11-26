@@ -1,7 +1,8 @@
 export { }
 declare global {
   interface Window {
-    jthisJsObject?: any
-    wdphisJsObject?: any
+    jthisJsObject: any
+    wdphisJsObject: any
+    $: any
   }
 }

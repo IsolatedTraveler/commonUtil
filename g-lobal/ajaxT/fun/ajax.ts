@@ -1,7 +1,17 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
-import { jqMode } from "../var/global";
+import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
-import { ajaxDealData } from "./ajaxData";
+import { getAllUrl, getParamsUrl } from "../../base/url/index";
+import { ajaxTimeOut } from "../var/const";
+import { ajaxDealData, ajaxPostData } from "./dealData";
+import { LayerIndex, laoding } from "../../base/load/index";
+function getAjaxRes(res: any) {
+  try {
+    return JSON.parse(res)
+  } catch (e) {
+    return res
+  }
+}
 export function ajax(
   url: AjaxRequestUrl,
   data: AjaxRequestData = {},
@@ -12,13 +22,34 @@ export function ajax(
   async: AjaxRequestAsync = false,
   errCallBack: AjaxErrBack = undefined,
   suuCallBack: AjaxSuuBack = undefined) {
-  var layerIndex, value
+  var layerIndex: LayerIndex, value
   if (type === 'POST' && jqMode) {
-    jq[jqMode](config)
+    (jq as any)[jqMode](config)
   }
   if (option.isShowLoad) {
-    layerIndex = 1
+    layerIndex = laoding()
   }
-  data = ajaxDealData()
+  data = ajaxPostData(data, option, config, type)
+  url = getAllUrl(url, option.urlType)
+  url = getParamsUrl(param, url)
+  window.$.ajax(Object.assign({
+    type,
+    url,
+    async,
+    data,
+    contentType,
+    timeOut: ajaxTimeOut,
+    cache: false,
+    success(res: any) {
+      if (typeof res === 'string') {
+        res = getAjaxRes(res)
+      }
+      value = ajaxDealData(res, layerIndex, option, errCallBack, suuCallBack)
+    },
+    error(e: any) {
+      const res = { code: '-1', message: '网络连接超时', i: layerIndex };
+      value = errCallBack ? errCallBack(res, option, e) : res;
+    },
+  }, config))
   return value
 }

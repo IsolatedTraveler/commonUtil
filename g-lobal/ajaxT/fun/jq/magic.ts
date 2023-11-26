@@ -2,6 +2,7 @@ import { session } from "../../../base/temp/session";
 import { ajaxJqMagic } from "../../var/const";
 import { Authorization, setAuthorization } from "../../var/global";
 import { commonHttppost } from "../../public/post";
+import { ajaxResposeData } from "../../type";
 
 export function jqMagic() {
   let magic = session('magic') || ajaxJqMagic
@@ -12,8 +13,8 @@ export function jqMagic() {
     // 校验token是否临期
   }
 }
-function setAjaxMagicToken(param) {
-  let res = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
+function setAjaxMagicToken(param: ajaxResposeData) {
+  let res: any = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
   setAuthorization(res.Authorization)
   session('Authorization', Authorization)
 }

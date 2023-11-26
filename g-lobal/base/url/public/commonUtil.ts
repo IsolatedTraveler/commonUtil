@@ -1,7 +1,8 @@
+import { UrlType } from "../type"
 import { dealsUrl } from "./concat"
 import { getBaseUrl } from "./jsUrl"
 
-export function getAllUrl(url, lx) {
+export function getAllUrl(url: string, lx: UrlType) {
   if (/^http/.test(url)) {
     return url
   } else if (lx === 'origin') {

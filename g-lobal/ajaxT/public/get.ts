@@ -1,6 +1,6 @@
 import { AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestUrl } from "../type";
-import { ajax } from "./ajax";
-import { ajaxSync } from "./async";
+import { ajax } from "../fun/ajax";
+import { ajaxSync } from "../fun/async";
 // 同步
 export function getAjax(
   url: AjaxRequestUrl,

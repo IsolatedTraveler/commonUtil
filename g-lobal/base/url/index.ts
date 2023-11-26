@@ -1,4 +1,2 @@
-export * from './commonUtil'
-export * from './concat'
-export * from './data'
-export * from './jsUrl'
+export * from './type'
+export * from './public'
