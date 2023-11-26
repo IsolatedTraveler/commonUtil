@@ -5,7 +5,8 @@
     // @CODEMODULE
     return new Class(config)
   }
+  w.FIRSTMODULENAME = new FIRSTMODULENAME()
   commonUtil.define([], function (exports) {
-    exports('MODULENAME', new FIRSTMODULENAME())
+    exports('MODULENAME', w.FIRSTMODULENAME)
   });
 })(window, document);
