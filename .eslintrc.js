@@ -21,7 +21,9 @@ module.exports = {
     Base64: true,
     JSEncrypt: true,
     sha256: true,
-    JsErrorTrace: true
+    JsErrorTrace: true,
+    jthisJsObject: true,
+    wdphisJsObject: true
   },
   // eslint-disable-next-line no-dupe-keys
   parserOptions: {
