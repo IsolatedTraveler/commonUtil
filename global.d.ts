@@ -5,5 +5,6 @@ declare global {
     wdphisJsObject: any
     commonUtil: any
     $: any
+    that: any
   }
 }

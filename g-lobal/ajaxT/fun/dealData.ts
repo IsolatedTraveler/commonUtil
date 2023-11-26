@@ -1,4 +1,5 @@
 import { alertMsg, laoding, loaded } from "../../base/load";
+import { user } from "../../var/index";
 import { AjaxErrBack, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
 
 export function ajaxError(
@@ -32,7 +33,9 @@ export function ajaxPostData(data: AjaxRequestData = {},
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {},
   type: AjaxRequestType = 'GET') {
-  if (data.page) {
-
+  if (that && that.dealAjaxData) {
+    return that.dealAjaxData(data, param, option, config, type)
+  } else {
+    return Object.assign({}, user, data)
   }
 }
