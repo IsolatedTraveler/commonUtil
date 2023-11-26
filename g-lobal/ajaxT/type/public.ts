@@ -7,9 +7,9 @@ export type AjaxRequestAsync = Boolean
 export type AjaxRequestData = any
 export type AjaxRequestParam = AjaxRequestData
 export interface ajaxResposeJudge {
-  message: string
-  i: string | number
-  code: string | number
+  message?: string
+  i?: string | number | undefined
+  code?: string | number
 }
 export type ajaxResposeData = any
 export type AjaxRequestConfig = any

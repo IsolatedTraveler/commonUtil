@@ -14,13 +14,13 @@ export function ajaxError(
 }
 export function ajaxDealData(
   res: any,
-  i: string,
+  i: string | undefined,
   option: AjaxRequestOption,
   errCallBack: AjaxErrBack,
   suuCallBack: AjaxSuuBack) {
   if (res.code == 1 || res.code === undefined) {
     if (option.isShowLoad) {
-      loaded(i)
+      loaded(i as string)
     }
     return suuCallBack ? suuCallBack(res) : res
   }
@@ -32,5 +32,7 @@ export function ajaxPostData(data: AjaxRequestData = {},
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {},
   type: AjaxRequestType = 'GET') {
+  if (data.page) {
 
+  }
 }

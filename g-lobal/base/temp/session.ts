@@ -1,5 +1,5 @@
 import { system } from "../../var";
-import { getBrowserParam, setBrowserParam } from "../browser";
+import { getBrowserParam, setBrowserParam } from "../../browser";
 import { tempData } from "./tempData";
 
 export function session(name: string, val: any = undefined, mkdm = 'that') {
