@@ -1,4 +1,4 @@
-export declare const that
+declare var that: any
 declare global {
   interface Window {
     jthisJsObject: any

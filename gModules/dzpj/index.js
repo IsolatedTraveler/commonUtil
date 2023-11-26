@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-export let Class = null, that: any
+export let Class = null, that
 export * from './var/const'
 import '../../g-lobal/const'
-const Dzpj = function (this: any) {
+const Dzpj = function () {
   this.v = '1.0.1'
 }
 Dzpj.prototype = {
-  render(config: any) {
+  render(config) {
     return new Render(config)
   }
 }
