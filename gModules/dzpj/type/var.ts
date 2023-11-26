@@ -1,3 +1,5 @@
+import { KpLx, KpLy } from "./public"
+
 export type KpJgid = string
 export interface KpUser {
   jgid: KpJgid
@@ -12,7 +14,15 @@ export interface KpUser {
 export interface KpJgConfig {
   url: string
   sync: boolean
+  kpdbm: string,
+  jkdm: string
 }
 export interface KpConfig {
   [index: KpJgid]: Promise<KpJgConfig>
+}
+export type KpPzLx = {
+  [index in KpLy]: string
+}
+export type KpPz = {
+  [index in KpLx]: KpPzLx
 }
