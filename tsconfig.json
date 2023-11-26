@@ -1,31 +1,9 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "outDir": "dist",
-    "removeComments": false,
-    "resolveJsonModule": true,
-    "rootDir": ".",
-    "sourceMap": false,
-    "strict": true,
-    "target": "ES2018",
-    "types": [],
-    "paths": {
-      "@ui/*": ["packages/*"]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "**/dist",
-    "**/__tests__/**/*",
-    "**/gulpfile.ts",
-    "**/test-helper",
-    "**/*.md"
-  ],
-  "include": ["./g-lobal", "./gAdd", "./gModules", "./layModules", "./modules", "./src"]
+    "target": "es2016",     
+    "module": "commonjs",   
+    "forceConsistentCasingInFileNames": true,   
+    "strict": true,                                
+    "skipLibCheck": true   
+  }
 }

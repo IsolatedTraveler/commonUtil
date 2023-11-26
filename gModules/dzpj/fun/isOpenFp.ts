@@ -1,6 +1,5 @@
 import { KpJgid } from '../type/index'
 import { kpConfig } from '../var/index'
-import { commonQueryAsyncHttppost_callback, getUser } from '../../../g-lobal/index'
 export function isOpenFp() {
   const { jgid } = getUser()
   return kpConfig[jgid] || getKpJgConfig(jgid)

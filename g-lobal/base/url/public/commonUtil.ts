@@ -1,6 +1,7 @@
 import { UrlType } from "../type"
 import { dealsUrl } from "./concat"
 import { getBaseUrl } from "./jsUrl"
+import { getServiceUrl } from "./mainUrl"
 
 export function getAllUrl(url: string, lx: UrlType) {
   if (/^http/.test(url)) {
@@ -10,7 +11,4 @@ export function getAllUrl(url: string, lx: UrlType) {
   } else {
     return dealsUrl(url, getServiceUrl())
   }
-}
-export function getServiceUrl() {
-
 }
