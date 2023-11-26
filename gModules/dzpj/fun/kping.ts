@@ -1,7 +1,7 @@
 import { commonQueryAsyncHttppost_callback } from "../../../g-lobal"
 import { confirm } from "../../../g-lobal/layer/public"
-import { KpLx, KpLy } from "../type"
-import { kppz } from "../var/const"
+import { KpLx, KpLy } from "../types/index"
+import { kppz } from "../type"
 
 export function kpIng(data: any, sync: boolean = false, lx: KpLx, ly: KpLy, isPrint: any) {
   return getKpRes(data, sync, lx, ly, !!isPrint).then(() => {

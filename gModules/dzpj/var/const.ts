@@ -1,4 +1,4 @@
-import { KpPz } from "../type";
+import { KpPz } from "../types/index";
 
 export const kppz: KpPz = {
   kp: {

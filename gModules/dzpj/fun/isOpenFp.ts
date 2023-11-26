@@ -1,4 +1,4 @@
-import { KpJgid } from '../type'
+import { KpJgid } from '../types/index'
 import { kpConfig } from '../var/index'
 import { commonQueryAsyncHttppost_callback, getUser } from '../../../g-lobal/index'
 export function isOpenFp() {
