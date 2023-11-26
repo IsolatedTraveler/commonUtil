@@ -4,7 +4,7 @@ import * as jq from './jq/index'
 import { getAllUrl, getParamsUrl } from "../../base/url/index";
 import { ajaxTimeOut } from "../var/const";
 import { ajaxDealData, ajaxPostData } from "./dealData";
-import { LayerIndex, laoding } from "../../base/load/index";
+import { LayerIndex, laoding } from "../../layer/public/index";
 function getAjaxRes(res: any) {
   try {
     return JSON.parse(res)

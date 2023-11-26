@@ -1,4 +1,4 @@
-import { alertMsg, laoding, loaded } from "../../base/load";
+import { alertMsg, laoding, loaded } from "../../layer/public";
 import { user } from "../../var/index";
 import { AjaxErrBack, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
 
