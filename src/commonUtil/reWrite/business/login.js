@@ -1,4 +1,5 @@
-import { initPop, webName } from "../../var/init"
+import { webName } from "../../../../g-lobal/var"
+import { initPop } from "../../var/init"
 import { rw, winName } from "../../var/login"
 function setMenuElemVal(id, title, url) {
   let elem = rw.$('#tabTitle')

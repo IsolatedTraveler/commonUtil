@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal"
+import { setWebName, webName } from "../../../../g-lobal/var"
 export { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal"
 import assign from "../../extend/assign"
-import { initPop, webName, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
+import { initPop, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
 import { debounce1, uuid } from "./base"
 import { setPageTemp, tempData } from "./deeps"
 function closeLoad() {
@@ -57,7 +58,7 @@ export function strToUrl(str, type) {
 }
 export function config(obj = {}) {
   Object.assign(initPop, obj)
-  webName = initPop.webName
+  setWebName(initPop.webName)
   webNameReg = new RegExp('^' + webName + '-')
   val('webNameReg', webNameReg)
 }

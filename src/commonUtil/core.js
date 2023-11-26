@@ -3,6 +3,7 @@ import { initPop, promiseResove, promiseCore } from "./var/init"
 import { dealsUrl, getBaseUrl, getJsUrl } from './public/fun/url'
 import { required, identity } from './public/fun/check'
 import { getName } from "./public/business/login"
+import { system } from "../../g-lobal/var"
 initPop.thirdBaseUrl = dealsUrl('./modules', getJsUrl(d))
 function setFormVerify() {
   layui.form.verify({
@@ -49,8 +50,7 @@ const Class = function (obj) {
   that.config(obj)
   w.name = getName(w)
   pro = [getLayUi()]
-  if (w.jthisJsObject || w.wdphisJsObject) {
-    const systemV = (w.jthisJsObject || w.wdphisJsObject), system = systemV.jthis || systemV.wdphis
+  if (system) {
     that.getUser = function () {
       // eslint-disable-next-line no-unused-vars
       return JSON.parse(system.varget('0', 'ryxx'))

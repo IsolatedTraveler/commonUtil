@@ -1,4 +1,5 @@
 import './var/index'
+import "../../g-lobal/var/index"
 import './fun/index'
 import './public/index'
 import './extend/index'

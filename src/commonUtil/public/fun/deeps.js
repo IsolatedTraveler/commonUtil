@@ -1,5 +1,5 @@
-import { webName } from "../../var/init";
 import { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
+import { webName } from "../../../../g-lobal/var";
 export { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
 
 function elemLoaded(e, resolve, reject) {
