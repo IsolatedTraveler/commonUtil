@@ -1,3 +1,4 @@
+import { commonQueryAsyncHttppost_callback, getUser } from '../../../g-lobal'
 import { KpJgid } from '../type/index'
 import { kpConfig } from '../var/index'
 export function isOpenFp() {

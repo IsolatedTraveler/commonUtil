@@ -1,4 +1,4 @@
-import { commonQueryAsyncHttppost_callback, confirm, getUser } from './g-lobal'
+import { commonHttppost, getAjax, getConfig } from './g-lobal'
 declare global {
   interface Window {
     jthisJsObject: any
@@ -11,10 +11,9 @@ declare global {
     [index: string]: any
   }
   let that: That
-  type layConfirm = typeof confirm
-  let commonQueryAsyncHttppost_callback: typeof commonQueryAsyncHttppost_callback
-  let getUser: typeof getUser
-  let confirm: layConfirm
+  let commonHttppost: typeof commonHttppost
+  let getAjax: typeof getAjax
+  let getConfig: typeof getConfig
 }
 export {
 

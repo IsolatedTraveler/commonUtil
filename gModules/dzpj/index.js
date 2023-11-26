@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
-export let Class = null
 import './var/const'
 import '../../g-lobal/const'
-export { commonQueryAsyncHttppost_callback, confirm, getUser } from '../../g-lobal/index'
-const Dzpj = function () {
-  this.v = '1.0.1'
+import './var/index'
+import '../../g-lobal/var'
+import './fun/index'
+import './business/index'
+export { commonHttppost, getAjax, getConfig } from '../../g-lobal'
+// import { init } from './fun/init'
+Class = function (config) {
+  // init(config)
 }
-Dzpj.prototype = {
-  render(config) {
-    return new Render(config)
-  }
-}
-export default Dzpj
