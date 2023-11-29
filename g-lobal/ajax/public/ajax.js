@@ -1,4 +1,4 @@
-import { ajaxError } from "../fun/1/dealData"
+import { ajaxError } from "../../"
 import { ajax } from "../fun/3/ajax"
 
 export function ajaxASync(url, data, param, option, config, type = 'GET') {

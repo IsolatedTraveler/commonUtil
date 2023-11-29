@@ -1,10 +1,5 @@
-export function ajaxError({ message, i }, { isShowLoad, msg } = {}, res) {
-  isShowLoad && that.loaded(i);
-  if (msg) {
-    that.alertMsg(msg + message);
-  }
-  return res
-}
+import { ajaxError } from "../../../";
+
 export function ajaxDealData(res, i, option, errCallBack, callBack) {
   if (res.code == 1 || res.code === undefined) {
     if (option.isShowLoad) {
