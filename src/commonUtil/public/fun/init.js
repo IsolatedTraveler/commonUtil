@@ -27,9 +27,6 @@ export function loading(msg) {
     return id
   }
 }
-export function alertMsg(msg, judge = true) {
-  judge && layui.layer.alert(msg)
-}
 export function strToUrl(str, type) {
   return URL.createObjectURL(new Blob([str], { type }))
 }
@@ -100,7 +97,6 @@ export default {
   getParamsUrl: getParamsUrl,
   getUrlParams: getUrlParams,
   loading,
-  alertMsg,
   strToUrl,
   val,
   config,
