@@ -1,11 +1,6 @@
-import { setPageTemp } from '../../../g-lobal';
-import { dataConfig } from '../../../g-lobal/ajax/var/ajax'
 import { ajaxTimeOut } from '../../../g-lobal/const';
 import { dealNull } from './dealNull';
-function setConfig() {
-  // eslint-disable-next-line no-import-assign
-  return dataConfig = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：' })
-}
+
 function ajaxDealData(res, option) {
   let isError = option.msg
   if (option.isShowLoad) {
@@ -160,10 +155,6 @@ export function upload(data, name, lx = 'url', option = {}) {
   }
   return AjaxASync(option.url || that.getUploadUrl(), formData, dealAjaxParam({ addParam: { contentType: false, processData: false } }, option), 'POST')
 }
-export function getConfig(key) {
-  setPageTemp(dataConfig, setConfig)
-  return key ? dataConfig[key] : dataConfig
-}
 export function setPageSize(obj) {
   if (obj.pageSize) {
     let size = obj.pageSize, num = obj.pageNumber
@@ -179,7 +170,6 @@ export default {
   getAjaxSync,
   commonHttppost,
   commonQueryAsyncHttppost_callback,
-  getConfig,
   upload,
   setPageSize
 }

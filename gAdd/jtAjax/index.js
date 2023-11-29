@@ -1,8 +1,9 @@
 
-import { getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, setPageSize } from "./fun/ajax";
+import { getConfig } from "../../g-lobal";
+import { getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, upload, setPageSize } from "./fun/ajax";
 import { encryption, getPostData } from "./fun/reWrite";
 // eslint-disable-next-line no-unused-vars
-const Class = function() {
+const Class = function () {
   that.getAjax = getAjax
   that.getAjaxSync = getAjaxSync
   that.commonHttppost = commonHttppost

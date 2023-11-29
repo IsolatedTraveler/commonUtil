@@ -1,11 +1,6 @@
-import { setPageTemp } from "../../base"
 import { ajaxError } from "../fun/1/dealData"
 import { ajax } from "../fun/3/ajax"
-import { dataConfig } from "../var/ajax"
 
-function setConfig() {
-  return dataConfig = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true })
-}
 export function ajaxASync(url, data, param, option, config, type = 'GET') {
   return ajax(url, data, param, option, config, type, false)
 }
@@ -25,10 +20,6 @@ export function commonHttppost(url, data, option = {}, config) {
 }
 export function commonQueryAsyncHttppost_callback(url, data, option = {}, config) {
   return dealCsData(ajaxSync(url, data, option.param, option, config, 'POST'), url)
-}
-export function getConfig(key) {
-  setPageTemp(dataConfig, setConfig)
-  return key ? dataConfig[key] : dataConfig
 }
 export function upload(data, name, lx = 'url', option = {}) {
   let formData = new FormData()
