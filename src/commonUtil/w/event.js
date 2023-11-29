@@ -1,5 +1,5 @@
+import { debounce1 } from "../../../g-lobal/index.js";
 import Class from "../core.js"
-import { debounce1 } from "../public/fun/base";
 import { srcWEventKbjbg } from "../var/init.js";
 // 全键盘操作
 (function () {

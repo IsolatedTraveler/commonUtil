@@ -1,6 +1,6 @@
 import { debounce1 } from "../../util/debounce"
 export var loadMsg: any, loadElem: any, msgElem: any, closeLoadEd: any
-export function setLoadELem() {
+export function setLoadElem() {
   loadElem = document.createElement('div')
   loadElem.setAttribute('class', 'jt-load jt-flex jt-abs')
   loadElem.setAttribute('center', true)

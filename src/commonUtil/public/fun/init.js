@@ -3,26 +3,11 @@ import { webName } from "../../../../g-lobal/var"
 import { getParamsUrl, getUrlParams, setWebName } from "../../../../g-lobal/"
 export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
-import { initPop, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
-import { debounce1, uuid } from "./base"
+import { initPop, webNameReg, BASE64, promiseResove, promiseCore, jse } from "../../var/init"
+import { uuid } from "./base"
 import { setPageTemp, tempData } from "./deeps"
-function closeLoad() {
-  if (loadMsg.msgs.length < 2) {
-    loadElem.setAttribute('style', 'display: none')
-  }
-}
-export function setLoadElem() {
-  loadElem = d.createElement('div')
-  loadElem.setAttribute('class', 'jt-load jt-flex jt-abs')
-  loadElem.setAttribute('center', true)
-  loadElem.setAttribute('style', 'display: none')
-  loadElem.innerHTML = '<p class="jt-loading"><span></span><span></span><span></span><span></span><span></span><span></span></p>'
-  msgElem = d.createElement('p')
-  loadElem.append(msgElem)
-  loadMsg = { msgs: [] }
-  closeLoadEd = debounce1(closeLoad, 10)
-  d.body.append(loadElem)
-}
+import { closeLoadEd, loadElem, msgElem, setLoadElem, loadMsg } from "../../../../g-lobal/layer/var"
+
 export function val(name, value) {
   if (value === undefined) {
     return initPop[name]
@@ -131,7 +116,6 @@ export default {
   init,
   initConfig,
   formatTreeData,
-  setLoadElem,
   local,
   getBase64,
   getJse

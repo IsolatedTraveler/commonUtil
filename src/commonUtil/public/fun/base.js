@@ -118,16 +118,6 @@ export function throttle(fun, delay) {
     }
   }
 }
-export function debounce1(fun, delay) {
-  let time = null
-  return function () {
-    let args = arguments
-    clearTimeout(time)
-    time = setTimeout(() => {
-      fun.apply(that, args)
-    }, delay)
-  }
-}
 export function debounce(fun, delay) {
   let time = null, resReject = null
   return function () {
@@ -160,6 +150,5 @@ export default {
   toDecimalNumber,
   throttle,
   debounce,
-  debounce1,
   uuid
 }

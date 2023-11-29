@@ -1,12 +1,12 @@
 import { setPageTemp } from "../../base";
 import { uuid } from "../../util";
-import { loadElem, msgElem, loadMsg, closeLoadEd, setLoadELem } from "../var";
+import { setLoadElem, loadElem, msgElem, closeLoadEd, loadMsg } from "../var";
 export type LayerIndex = string | undefined
 
 export function laoding(msg = undefined): LayerIndex {
   if (document.body) {
     let id = uuid()
-    setPageTemp(loadElem, setLoadELem)
+    setPageTemp(loadElem, setLoadElem)
     msg && (msgElem.innerHTML = msg)
     loadMsg[id] = msg
     if (loadMsg.msgs.length < 2) {

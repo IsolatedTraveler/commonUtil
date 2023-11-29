@@ -1,4 +1,4 @@
-export function debounce1(fun: Function, delay: number) {
+export function debounce1(this: any, fun: Function, delay: number) {
   let time: any = null
   return () => {
     let args = arguments
