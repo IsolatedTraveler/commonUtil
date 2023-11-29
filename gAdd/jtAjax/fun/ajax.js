@@ -1,5 +1,6 @@
 import { setPageTemp } from '../../../g-lobal';
-import { ajaxTimeOut, dataConfig } from '../../../g-lobal/ajax/var/ajax'
+import { dataConfig } from '../../../g-lobal/ajax/var/ajax'
+import { ajaxTimeOut } from '../../../g-lobal/const';
 import { dealNull } from './dealNull';
 function setConfig() {
   // eslint-disable-next-line no-import-assign

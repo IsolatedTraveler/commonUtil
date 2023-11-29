@@ -1,6 +1,7 @@
-import { getAjaxRes } from "../../../ajaxT/fun/ajax";
-import { getAllUrl, getParamsUrl } from "../../../base";
-import { ajaxTimeOut, contentType, jqMode, jqModeUrl } from "../../var/ajax";
+import { ajaxTimeOut } from "../../../const";
+import { getAjaxRes, getAllUrl, getParamsUrl } from "../../../index";
+import { contentType } from "../../../allVar";
+import { jqMode, jqModeUrl } from "../../var/ajax";
 import { ajaxDealData } from "../1/dealData";
 export function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async, errCallBack, callBack) {
   let layerIndex, value
