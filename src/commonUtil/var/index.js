@@ -1,6 +1,5 @@
 import './init'
 import './use'
-import '../../../g-lobal/ajax/var/ajax'
 import '../../../g-lobal/base/var/url'
 import './print.js'
 import './login'

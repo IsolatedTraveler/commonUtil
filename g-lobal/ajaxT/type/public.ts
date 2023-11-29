@@ -19,6 +19,7 @@ export interface AjaxRequestOption {
   msg?: string // 错误提示信息
   isNotGetUser?: Boolean // 是否校验当前登录用户信息
   urlType?: UrlType
+  url?: string
 }
 
 export type AjaxErrBack = undefined | Function
