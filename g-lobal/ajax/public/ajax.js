@@ -1,5 +1,5 @@
 import { ajaxError } from "../../"
-import { ajax } from "../fun/3/ajax"
+import { ajax } from "../../ajaxT/fun/ajax"
 
 export function ajaxASync(url, data, param, option, config, type = 'GET') {
   return ajax(url, data, param, option, config, type, false)
