@@ -1,4 +1,3 @@
-import { alertMsg } from "../../layer";
 import { system } from "../../var";
 
 export function getSystemVal(name: string, param: Array<any> | undefined = undefined) {
