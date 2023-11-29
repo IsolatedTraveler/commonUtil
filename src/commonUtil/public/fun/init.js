@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal1"
 import { webName } from "../../../../g-lobal/var"
-import { setWebName } from "../../../../g-lobal/"
-export { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal1"
+import { getParamsUrl, getUrlParams, setWebName } from "../../../../g-lobal/"
+export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
 import { initPop, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
 import { debounce1, uuid } from "./base"
@@ -121,8 +120,8 @@ export function getJse() {
   return jse
 }
 export default {
-  getParamsUrl,
-  getUrlParams,
+  getParamsUrl: getParamsUrl,
+  getUrlParams: getUrlParams,
   loading,
   loaded,
   alertMsg,

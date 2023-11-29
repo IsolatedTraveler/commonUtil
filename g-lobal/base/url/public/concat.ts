@@ -1,6 +1,6 @@
-export function dealsUrl(url = '', base) {
+export function dealsUrl(url = '', base: string | URL | Location | undefined = undefined) {
   if (!/^http[s]*:\/\//.test(url)) {
-    base = base ? new URL(base) : location;
+    base = getUrl(base)
     let path = base.pathname.split('/');
     if (/^\.\//.test(url)) {
       path.pop();
@@ -13,6 +13,16 @@ export function dealsUrl(url = '', base) {
       path.push(url.replace(/^\/|\/$/g, ''));
     }
     return base.origin + '/' + path.filter(it => it).join('/')
+  }
+  return url
+}
+export function getUrl(url: string | URL | Location | undefined) {
+  if (url) {
+    if (typeof url === 'string') {
+      url = new URL(url)
+    }
+  } else {
+    url = location
   }
   return url
 }

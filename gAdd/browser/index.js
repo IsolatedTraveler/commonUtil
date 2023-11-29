@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../g-lobal/base/fun/1/pageTemp";
+import { setPageTemp } from "../../g-lobal";
 
 // eslint-disable-next-line no-unused-vars
 const Class = function () {

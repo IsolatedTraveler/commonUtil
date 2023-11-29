@@ -1,7 +1,6 @@
-import { getMainUrl } from '../../../g-lobal/ajax/public/ajax'
-import { setPageTemp } from '../../../g-lobal/base/fun/1/pageTemp'
+import { getServiceUrl } from '../../../g-lobal'
+export { getServiceUrl } from '../../../g-lobal'
 import { user } from '../../../g-lobal/base/var/user'
-import { urlServer } from '../var/index'
 export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {}, { contentType } = {}, type) {
   if (data && data.page) {
     data.pageNumber = data.page
@@ -30,13 +29,6 @@ export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {
     return data
   }
 }
-function setServiceUrl() {
-  // eslint-disable-next-line no-import-assign
-  return urlServer = getMainUrl(that.getConfig().hisUrl)
-}
-export function getServiceUrl() {
-  return setPageTemp(urlServer, setServiceUrl)
-}
 function encryption(data) {
   if (typeof data !== 'string') {
     data = JSON.stringify(data)
@@ -48,5 +40,5 @@ function encryption(data) {
 }
 export default {
   dealAjaxData,
-  getServiceUrl
+  getServiceUrl: getServiceUrl
 }

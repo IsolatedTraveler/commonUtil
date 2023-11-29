@@ -1,5 +1,7 @@
+import { dealsUrl, getBaseUrl } from '../../../g-lobal'
 import Class from '../core'
-import { getFaceUrl, getImgUrl, dealsUrl, getBaseUrl, getHostUrl, getJsUrl, getTpUrl} from '../public/fun/url'
+import { getFaceUrl, getHostUrl, getImgUrl, getJsUrl, getTpUrl } from '../public/fun/url'
+// import { getFaceUrl, getImgUrl, dealsUrl, getBaseUrl, getHostUrl, getJsUrl, getTpUrl} from '../public/fun/url'
 import { getServiceUrl } from '../reWrite/fun/url'
 Class.prototype.dealsUrl = dealsUrl
 Class.prototype.getBaseUrl = getBaseUrl

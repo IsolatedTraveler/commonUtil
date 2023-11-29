@@ -1,9 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import { initPop, promiseResove, promiseCore } from "./var/init"
-import { dealsUrl, getBaseUrl, getJsUrl } from './public/fun/url'
 import { required, identity } from './public/fun/check'
 import { getName } from "./public/business/login"
 import { system } from "../../g-lobal/var"
+import { dealsUrl, getBaseUrl } from "../../g-lobal"
+import { getJsUrl } from "./public/fun/url"
 initPop.thirdBaseUrl = dealsUrl('./modules', getJsUrl(d))
 function setFormVerify() {
   layui.form.verify({

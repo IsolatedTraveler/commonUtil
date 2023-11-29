@@ -1,13 +1,8 @@
+import { getUrl } from "./concat";
 
 
 export function getUrlParams(key: string | null | undefined = '', url: string | URL | Location | undefined) {
-  if (url) {
-    if (typeof url === 'string') {
-      url = new URL(url)
-    }
-  } else {
-    url = location
-  }
+  url = getUrl(url)
   var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam: any = {};
   search.forEach(function (it) {
     if (it) {

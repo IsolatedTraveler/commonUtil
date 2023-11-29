@@ -1,5 +1,4 @@
-import { getMainUrl } from "../../../../g-lobal/ajax/public/ajax"
-import { urlServer } from "../../../../g-lobal/base/var/url"
+import { getMainUrl, urlServer } from "../../../../g-lobal"
 import { setPageTemp } from "../../public/fun/deeps"
 function setServiceUrl() {
   return urlServer = getMainUrl(that.getConfig().magicServer)

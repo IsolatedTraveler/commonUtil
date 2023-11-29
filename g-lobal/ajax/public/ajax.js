@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../base/fun/1/pageTemp"
+import { setPageTemp } from "../../base"
 import { ajaxError } from "../fun/1/dealData"
 import { ajax } from "../fun/3/ajax"
 import { dataConfig } from "../var/ajax"
@@ -42,18 +42,6 @@ export function upload(data, name, lx = 'url', option = {}) {
     formData.append('file', data)
   }
   return ajaxASync(option.url || that.getUploadUrl(), formData, {}, { isNotGetUser: true }, { contentType: false, processData: false }, 'POST')
-}
-export function getMainUrl(arr) {
-  if (typeof arr === 'string') {
-    return arr
-  }
-  let len = arr.length
-  for (let i = 0; i < len; i++) {
-    if (arr[i].indexOf(location.origin) > -1) {
-      return arr[i]
-    }
-  }
-  return arr[0]
 }
 function dealCsData(pro, url) {
   if (pro.code) {

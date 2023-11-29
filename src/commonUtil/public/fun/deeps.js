@@ -1,6 +1,6 @@
-import { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
+import { setPageTemp } from "../../../../g-lobal";
+export { setPageTemp } from "../../../../g-lobal";
 import { webName } from "../../../../g-lobal/var";
-export { setPageTemp } from "../../../../g-lobal/base/fun/1/pageTemp"
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
@@ -74,7 +74,7 @@ export function tempData(name, val, obj = sessionStorage) {
   }
 }
 export default {
-  setPageTemp,
+  setPageTemp: setPageTemp,
   syncWhile,
   ElemLoadEvent,
   setIframe

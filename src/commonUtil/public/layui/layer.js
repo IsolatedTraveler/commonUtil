@@ -1,5 +1,5 @@
+import { dealsUrl } from "../../../../g-lobal"
 import { getParamsUrl } from "../fun/init"
-import { dealsUrl } from "../fun/url"
 
 export function layerLoading() {
   return layui.layer.load(2, {

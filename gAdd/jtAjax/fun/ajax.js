@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../../g-lobal/base/fun/1/pageTemp";
+import { setPageTemp } from '../../../g-lobal';
 import { ajaxTimeOut, dataConfig } from '../../../g-lobal/ajax/var/ajax'
 import { dealNull } from './dealNull';
 function setConfig() {
