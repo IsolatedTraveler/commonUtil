@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { webName } from "../../../../g-lobal/var"
-import { getParamsUrl, getUrlParams, setWebName } from "../../../../g-lobal/"
+import { getParamsUrl, getUrlParams, setWebName, uuid } from "../../../../g-lobal/"
 export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
 import { initPop, webNameReg, BASE64, promiseResove, promiseCore, jse } from "../../var/init"
-import { uuid } from "./base"
 import { setPageTemp, tempData } from "./deeps"
 import { closeLoadEd, loadElem, msgElem, setLoadElem, loadMsg } from "../../../../g-lobal/layer/var"
 

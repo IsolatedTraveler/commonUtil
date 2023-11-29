@@ -1,6 +1,6 @@
-import { debounce1 } from "../../../g-lobal";
+import { debounce1, uuid } from "../../../g-lobal";
 import Class from "../core";
-import { calc, debounce, throttle, toDecimalNumber, unique, uuid } from "../public/fun/base";
+import { calc, debounce, throttle, toDecimalNumber, unique } from "../public/fun/base";
 Class.prototype.unique = unique
 Class.prototype.calc = calc
 Class.prototype.toDecimalNumber = toDecimalNumber

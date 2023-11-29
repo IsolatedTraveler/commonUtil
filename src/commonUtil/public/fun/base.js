@@ -1,5 +1,6 @@
-import { uuid } from "../../../../g-lobal/base/fun/1/uuid"
-export { uuid } from "../../../../g-lobal/base/fun/1/uuid"
+import { uuid } from "../../../../g-lobal"
+export { uuid } from "../../../../g-lobal"
+
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
     return keys.map(key => it[key]).join('-')
@@ -150,5 +151,5 @@ export default {
   toDecimalNumber,
   throttle,
   debounce,
-  uuid
+  uuid: uuid
 }
