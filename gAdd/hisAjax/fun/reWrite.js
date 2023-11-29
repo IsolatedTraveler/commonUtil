@@ -1,6 +1,6 @@
 import { getServiceUrl } from '../../../g-lobal'
 export { getServiceUrl } from '../../../g-lobal'
-import { user } from '../../../g-lobal/base/var/user'
+import { user } from '../../../g-lobal/allVar'
 export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {}, { contentType } = {}, type) {
   if (data && data.page) {
     data.pageNumber = data.page

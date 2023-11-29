@@ -1,6 +1,6 @@
 import { setUserInfoVal, setUserVar, system, userInfo } from "../var/index";
 import { getBrowserParam } from '../browser/index'
-import { user } from "../var/index";
+import { user } from "../allVar";
 import { setPageTemp, session } from "../base/index";
 import { logOut } from "./logOut";
 export function getUser() {

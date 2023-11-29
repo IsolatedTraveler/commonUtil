@@ -1,5 +1,5 @@
 import { alertMsg, loaded } from "../../layer/public";
-import { user } from "../../var/index";
+import { user } from "../../allVar";
 import { AjaxErrBack, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
 export function ajaxError(
   { message, i }: ajaxResposeJudge,

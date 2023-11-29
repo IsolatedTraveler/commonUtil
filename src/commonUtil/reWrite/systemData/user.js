@@ -1,7 +1,7 @@
+import { userInfo, user, menu } from "../../../../g-lobal";
 import { setPageTemp } from "../../public/fun/deeps";
 import { formatTreeData } from "../../public/fun/init";
 import { webNameReg } from "../../var/init";
-import { user, userInfo, menu } from "../../../../g-lobal/base/var/user";
 function setUserInfo() {
   userInfo = that.session('userinfo')
   if (!userInfo) {

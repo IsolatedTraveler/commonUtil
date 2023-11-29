@@ -1,4 +1,5 @@
-import { user } from '../../../g-lobal/base/var/user'
+import { user } from "../../../g-lobal/allVar"
+
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
     // eslint-disable-next-line no-import-assign
