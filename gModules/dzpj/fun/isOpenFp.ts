@@ -6,7 +6,7 @@ export function isOpenFp() {
   return kpConfig[jgid] || getKpJgConfig(jgid)
 }
 function getKpJgConfig(jgid: KpJgid) {
-  return kpConfig[jgid] = Promise.all([setKpJgConfig(jgid), getConfig(jgid)]).then(res => res[0])
+  return kpConfig[jgid] = Promise.all([setKpJgConfig(jgid), getDzpjConfig(jgid)]).then(res => res[0])
 }
 function setKpJgConfig(jgid: KpJgid): Promise<KpJgConfig> {
   return commonQueryAsyncHttppost_callback('/magic/yy201-dzpj/dzpj/s-pzxx', { jgid }).then((res: any) => {
@@ -23,7 +23,7 @@ function setKpJgConfig(jgid: KpJgid): Promise<KpJgConfig> {
     }
   })
 }
-function getConfig(jgid: string) {
+function getDzpjConfig(jgid: string) {
   var data = (kpParam[jgid]) as KpJgParam
   if (!data) {
     let val: any = paramget('201021000') || {}

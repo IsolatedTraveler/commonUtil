@@ -1,5 +1,2 @@
 export * from './isOpenFp'
 export * from './kping'
-// export * from './initEvent'
-// export * from './readTable'
-// export * from './reload'

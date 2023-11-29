@@ -1,4 +1,3 @@
-import { commonQueryAsyncHttppost_callback, getUser, confirm } from '../../g-lobal/index'
 declare global {
   // 开票来源   门诊 | 住院 | 挂号
   type DzPjKpLy = 'mz' | 'zy' | 'gh'

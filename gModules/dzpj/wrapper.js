@@ -12,9 +12,7 @@
     })
   } else {
     that = {
-      commonHttppost: commonHttppost,
-      getAjax: getAjax,
-      getConfig: getConfig
+      commonHttppost, getAjax, getConfig, alertMsg
     }
     setWebName()
   }

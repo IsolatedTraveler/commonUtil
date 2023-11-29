@@ -5,7 +5,10 @@ import './var/index'
 import '../../g-lobal/var'
 import './fun/index'
 import './business/index'
-export { commonHttppost, getAjax, getConfig, setWebName } from '../../g-lobal'
+// 通配所有
+export { setWebName } from '../../g-lobal'
+// ajax特有
+export { commonHttppost, getAjax, getConfig } from '../../g-lobal'
 // import { init } from './fun/init'
 Class = function (config) {
   // init(config)
