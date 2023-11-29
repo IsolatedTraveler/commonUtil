@@ -5,7 +5,7 @@ export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
 import { initPop, webNameReg, BASE64, promiseResove, promiseCore, jse } from "../../var/init"
 import { setPageTemp, tempData } from "./deeps"
-import { closeLoadEd, loadElem, msgElem, setLoadElem, loadMsg } from "../../../../g-lobal/layer/var"
+import { loadElem, msgElem, setLoadElem, loadMsg } from "../../../../g-lobal/layer/var"
 
 export function val(name, value) {
   if (value === undefined) {
@@ -25,13 +25,6 @@ export function loading(msg) {
     }
     loadMsg.msgs = Object.keys(loadMsg)
     return id
-  }
-}
-export function loaded(i) {
-  if (loadMsg) {
-    delete loadMsg[i]
-    loadMsg.msgs = Object.keys(loadMsg)
-    closeLoadEd()
   }
 }
 export function alertMsg(msg, judge = true) {
@@ -107,7 +100,6 @@ export default {
   getParamsUrl: getParamsUrl,
   getUrlParams: getUrlParams,
   loading,
-  loaded,
   alertMsg,
   strToUrl,
   val,

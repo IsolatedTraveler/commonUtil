@@ -1,8 +1,9 @@
-import {getParamsUrl, local, getUrlParams, loading, loaded, strToUrl, val, config, init, initConfig, formatTreeData, alertMsg, getBase64, getJse} from '../public/fun/init'
+import { getParamsUrl, local, getUrlParams, loading, strToUrl, val, config, init, initConfig, formatTreeData, alertMsg, getBase64, getJse } from '../public/fun/init'
 import Class from '../core'
 import { srcWEventKbjbg } from '../var/init'
 import { loadPwdJs, session } from '../reWrite/fun/init'
 import { getUploadUrl } from '../public/fun/url'
+import { loaded } from '../../../g-lobal'
 Class.prototype.kbjbg = srcWEventKbjbg
 Class.prototype.val = val
 Class.prototype.getParamsUrl = getParamsUrl
