@@ -1,8 +1,7 @@
 import { ajaxTimeOut } from "../../../const";
-import { getAjaxRes, getAllUrl, getParamsUrl } from "../../../index";
+import { ajaxDealData, getAjaxRes, getAllUrl, getParamsUrl } from "../../../index";
 import { contentType, jqMode } from "../../../allVar";
 import { jqModeUrl } from "../../var/ajax";
-import { ajaxDealData } from "../1/dealData";
 export function ajax(url, data = {}, param = {}, option = {}, config = {}, type, async, errCallBack, callBack) {
   let layerIndex, value
   if (type === 'POST' && jqMode && url !== jqModeUrl[jqMode]) {
