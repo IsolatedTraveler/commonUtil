@@ -24,7 +24,7 @@ export function ajax(
   suuCallBack: AjaxSuuBack = undefined) {
   var layerIndex: LayerIndex, value
   if (type === 'POST' && jqMode) {
-    (jq as any)[jqMode](config)
+    (jq as any)[jqMode](config, url)
   }
   if (option.isShowLoad) {
     layerIndex = laoding()
@@ -32,6 +32,7 @@ export function ajax(
   data = ajaxPostData(data, option, config, type)
   url = getAllUrl(url, option.urlType)
   url = getParamsUrl(param, url)
+  console.log(url, data)
   window.$.ajax(Object.assign({
     type,
     url,

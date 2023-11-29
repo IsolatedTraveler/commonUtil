@@ -1,8 +1,14 @@
 
 
-export function getUrlParams(key, url) {
-  url = url || location;
-  var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam = {};
+export function getUrlParams(key: string | null | undefined = '', url: string | URL | Location | undefined) {
+  if (url) {
+    if (typeof url === 'string') {
+      url = new URL(url)
+    }
+  } else {
+    url = location
+  }
+  var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam: any = {};
   search.forEach(function (it) {
     if (it) {
       var data = it.split('=');
@@ -15,7 +21,7 @@ export function getUrlParams(key, url) {
   });
   return key ? urlParam[key] : urlParam
 }
-export function getParamsUrl(obj, url) {
+export function getParamsUrl(obj: any, url: string | URL = ''): string {
   if (url) {
     url = new URL(url);
     obj = Object.assign(getUrlParams(null, url), obj);

@@ -4,13 +4,16 @@ declare global {
   type DzPjKpLy = 'mz' | 'zy' | 'gh'
   // 开票类型   开票 | 退票
   type DzPjKpLx = 'kp' | 'tp'
+  interface KpPzCs {
+    url: string,
+    bbid?: string
+  }
   type KpPzLx = {
-    [index in DzPjKpLy]: string
+    [index in DzPjKpLy]: KpPzCs
   }
   type DzPjKpPz = {
     [index in DzPjKpLx]: KpPzLx
   }
-  let kppz: DzPjKpPz
 }
 export {
 

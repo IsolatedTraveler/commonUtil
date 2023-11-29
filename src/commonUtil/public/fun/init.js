@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal"
-import { setWebName, webName } from "../../../../g-lobal/var"
+import { webName } from "../../../../g-lobal/var"
+import { setWebName } from "../../../../g-lobal/"
 export { getParamsUrl, getUrlParams } from "../../../../g-lobal/base/fun/2/urlDeal"
 import assign from "../../extend/assign"
 import { initPop, webNameReg, BASE64, loadElem, promiseResove, msgElem, loadMsg, closeLoadEd, promiseCore, jse } from "../../var/init"
@@ -58,7 +59,7 @@ export function strToUrl(str, type) {
 }
 export function config(obj = {}) {
   Object.assign(initPop, obj)
-  setWebName(initPop.webName)
+  setWebName()
   webNameReg = new RegExp('^' + webName + '-')
   val('webNameReg', webNameReg)
 }

@@ -1,4 +1,4 @@
-import { system } from "../../var";
+import { getSystemVal } from "../../browser";
 function judgeConfig(i: string, j: number, len: number, resolve: Function, reject: Function) {
   window.layer.close(i)
   if (len == j) {
@@ -35,16 +35,18 @@ export function confirm(msg: string, btn: Array<string> = ['确定', '取消'], 
       }, function (i: string) {
         judge = judgeConfig(i, 2, len, resolve, reject)
       })
-    } else if (system) {
-      var result = system.showmsgbox(title, msg, 1);
-      var data = JSON.parse(result).data
-      if (data.result == '1') {
-        resolve({})
+    } else {
+      var result = getSystemVal('showmsgbox', [title, msg, 1])
+      if (result) {
+        var data = JSON.parse(result).data
+        if (data.result == '1') {
+          resolve({})
+        } else {
+          reject()
+        }
       } else {
         reject()
       }
-    } else {
-      console.error('未获取到可用的弹出层插件')
     }
   })
 }

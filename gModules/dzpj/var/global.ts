@@ -1,4 +1,10 @@
-import { KpConfig } from "../type/index"
+import { KpConfig, KpIsPrint, KpParam } from "../type/index"
 
 // 首行内容
-export var kpConfig: KpConfig = {}
+export var kpConfig: KpConfig = {}, sync: boolean, isPrint: KpIsPrint, kpParam: KpParam = {}
+export function setSync(a: boolean) {
+  return sync = a
+}
+export function setIsPrint(a: KpIsPrint) {
+  return isPrint = a
+}

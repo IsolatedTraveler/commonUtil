@@ -1,6 +1,6 @@
 import { webName } from "../../var"
 
-export function tempData(name: string, val, obj: Storage = sessionStorage) {
+export function tempData(name: string, val: any, obj: Storage = sessionStorage) {
   let name1: string = webName + name
   if (val === undefined) {
     var data: string = obj.getItem(name1) || obj.getItem(name) || 'null'
@@ -11,7 +11,7 @@ export function tempData(name: string, val, obj: Storage = sessionStorage) {
     obj.setItem(name1, JSON.stringify(val))
   }
 }
-export function setPageTemp(val, callBack, param = undefined) {
+export function setPageTemp(val: any, callBack: Function, param: any = undefined) {
   if (!val) {
     return callBack(param)
   }

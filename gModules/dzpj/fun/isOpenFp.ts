@@ -1,14 +1,14 @@
-import { commonQueryAsyncHttppost_callback, getUser } from '../../../g-lobal'
-import { KpJgid } from '../type/index'
-import { kpConfig } from '../var/index'
+import { commonQueryAsyncHttppost_callback, getUser, paramget } from '../../../g-lobal'
+import { KpJgConfig, KpJgParam, KpJgid } from '../type/index'
+import { kpConfig, kpParam, setIsPrint, setSync } from '../var/index'
 export function isOpenFp() {
   const { jgid } = getUser()
   return kpConfig[jgid] || getKpJgConfig(jgid)
 }
 function getKpJgConfig(jgid: KpJgid) {
-  return kpConfig[jgid] = setKpJgConfig(jgid)
+  return kpConfig[jgid] = Promise.all([setKpJgConfig(jgid), getConfig(jgid)]).then(res => res[0])
 }
-function setKpJgConfig(jgid: KpJgid) {
+function setKpJgConfig(jgid: KpJgid): Promise<KpJgConfig> {
   return commonQueryAsyncHttppost_callback('/magic/yy201-dzpj/dzpj/s-pzxx', { jgid }).then((res: any) => {
     if (res.code == '1' && res.data && res.data.length) {
       let data = res.data, resultVal = {} as any
@@ -22,4 +22,16 @@ function setKpJgConfig(jgid: KpJgid) {
       return Promise.reject()
     }
   })
+}
+function getConfig(jgid: string) {
+  var data = (kpParam[jgid]) as KpJgParam
+  if (!data) {
+    let val: any = paramget('201021000') || {}
+    data = {
+      sync: val[1] == '同步',
+      isPrint: val[2]
+    }
+  }
+  setSync(data.sync)
+  setIsPrint(data.isPrint)
 }

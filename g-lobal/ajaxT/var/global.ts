@@ -1,4 +1,4 @@
-export var jqMode: string, Authorization: string | undefined,
+export var jqMode: string = 'jqMagic', Authorization: string | undefined,
   contentType = 'application/json; charset=utf-8',
   dataConfig: any
 

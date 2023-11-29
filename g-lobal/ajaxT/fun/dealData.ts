@@ -35,6 +35,6 @@ export function ajaxPostData(data: AjaxRequestData = {},
   if (that && that.dealAjaxData) {
     return that.dealAjaxData(data, param, option, config, type)
   } else {
-    return Object.assign({}, user, data)
+    return JSON.stringify(Object.assign({}, user, data))
   }
 }
