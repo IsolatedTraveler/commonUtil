@@ -1,5 +1,5 @@
 import { setUrlBase, urlBase, urlRegV } from "../../../var";
-import { setPageTemp } from "../../temp/tempData";
+import { setPageTemp } from "../../temp";
 
 export function getBaseUrl() {
   return setPageTemp(urlBase, setBaseUrl)

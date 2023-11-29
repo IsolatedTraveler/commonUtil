@@ -1,5 +1,6 @@
+import { setBrowserParam, getBrowserParam } from "../../../g-lobal";
 import Class from "../core";
-import { getBrowserParam, setBrowserParam, srcBaseBaseFunError, srcBaseBaseFunErrorSync } from "../reWrite/browser";
+import { srcBaseBaseFunError, srcBaseBaseFunErrorSync } from "../reWrite/browser";
 
 Class.prototype.readSfzCard = srcBaseBaseFunErrorSync
 Class.prototype.getLocalInfo = srcBaseBaseFunError

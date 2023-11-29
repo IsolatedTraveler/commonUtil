@@ -1,8 +1,17 @@
-import { getSystemVal } from "./base"
+import { tempData } from "../base/temp/tempData"
+import { system } from "../var"
 
 export function getBrowserParam(mkbh: any, name: any) {
-  return JSON.parse(getSystemVal("varget", [mkbh as never, name as never]) || null)
+  if (system) {
+    return JSON.parse(system.varget(mkbh, name) || null)
+  } else {
+    return tempData(`bro-${mkbh}-${name}`, undefined, sessionStorage)
+  }
 }
-export function setBrowserParam(mkbh: any, name: any, value: any) {
-  return getSystemVal("varpost", [mkbh as never, name as never, JSON.stringify(value) as never])
+export function setBrowserParam(mkbh: any, name: any, value: any = undefined) {
+  if (system) {
+    return system.varpost(mkbh, name, JSON.stringify(value))
+  } else {
+    return tempData(`bro-${mkbh}-${name}`, value, sessionStorage)
+  }
 }

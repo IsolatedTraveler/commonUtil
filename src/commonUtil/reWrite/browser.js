@@ -6,15 +6,7 @@ export function srcBaseBaseFunErrorSync() {
   srcBaseBaseFunError()
   return Promise.reject()
 }
-export function getBrowserParam(mkbh, name) {
-  return setBrowserParam(mkbh, name)
-}
-export function setBrowserParam(mkbh, name, value) {
-  return that.session('bro-' + mkbh + '-' + name, value)
-}
 export default {
   srcBaseBaseFunError,
-  srcBaseBaseFunErrorSync,
-  getBrowserParam,
-  setBrowserParam
+  srcBaseBaseFunErrorSync
 }

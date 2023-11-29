@@ -1,6 +1,5 @@
 import { setPageTemp } from "../../../../g-lobal";
 export { setPageTemp } from "../../../../g-lobal";
-import { webName } from "../../../../g-lobal/var";
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
@@ -62,16 +61,6 @@ export function setIframe(url, timeOut, resolve, reject) {
     d.body.removeChild(elem)
     reject && reject(e)
   })
-}
-export function tempData(name, val, obj = sessionStorage) {
-  let name1 = webName + name
-  if (val === undefined) {
-    return JSON.parse(obj.getItem(name1)) || JSON.parse(obj.getItem(name))
-  } else if (val === null) {
-    obj.removeItem(name1)
-  } else {
-    obj.setItem(name1, JSON.stringify(val))
-  }
 }
 export default {
   setPageTemp: setPageTemp,
