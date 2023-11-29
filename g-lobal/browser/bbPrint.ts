@@ -1,5 +1,5 @@
 import { getParamsUrl } from "../base";
-import { getSystemVal } from "./getSystem";
+import { getSystemVal } from "./base/getSystem";
 
 export function bbPrint(reportid: string, obj: any, printCs: any) {
   let param = getParamsUrl(obj),

@@ -1,27 +1,13 @@
-import { setPageTemp } from "../../g-lobal";
+import { getSystemVal, setPageTemp, system, bbPrint } from "../../g-lobal";
 
 // eslint-disable-next-line no-unused-vars
 const Class = function () {
-  let systemV = w.jthisJsObject || w.wdphisJsObject,
-    system = systemV.jthis || systemV.wdphis,
+  let
     menu,
     user;
-  function getSystem(judge = true) {
-    while (judge) {
-      if (system.encryption("{}")) {
-        judge = false;
-      } else {
-        systemV = w.parent.jthisJsObject || w.parent.wdphisJsObject;
-        system = systemV.jthis || systemV.wdphis;
-      }
-    }
-  }
   that.loadPwdJs = function () {
     return Promise.resolve();
   };
-  function getSystemVal(name, param = []) {
-    return system[name](...param) || (getSystem(), system[name](...param));
-  }
   function setMenu() {
     return (
       menu || (menu = that.dealMenu(JSON.parse(getSystemVal("hiscdqx")).yhcd))
@@ -45,12 +31,10 @@ const Class = function () {
     getSystemVal("varpost", [mkbh, name, JSON.stringify(value)]);
   };
   that.logOut = function () {
-    getSystem();
-    system.logout();
+    getSystemVal('logout')
   };
   that.exit = function () {
-    getSystem();
-    system.exit();
+    getSystemVal('exit')
   };
   that.router = function (pid, id, title, url, data) {
     if (data && url) {
@@ -65,24 +49,7 @@ const Class = function () {
       w.location.href = that.dealsUrl(url, that.getHostUrl());
     }
   };
-  that.bbPrint = function (reportid, obj, bc) {
-    let param = that.getParamsUrl(obj),
-      data = JSON.stringify(
-        Object.assign(
-          {
-            reportid,
-            param,
-            preview: "0",
-            printer: "",
-            left: "",
-            top: "",
-            styleid: "",
-          },
-          bc
-        )
-      );
-    getSystemVal("printreport", [data]);
-  };
+  that.bbPrint = bbPrint
   that.local = function (name, val) {
     if (val === undefined) {
       val = JSON.parse(getSystemVal("cookieget", [name]));
@@ -125,14 +92,7 @@ const Class = function () {
     return mac;
   };
   that.facedialog = function (param) {
-    getSystem();
-    if (system.facedialog) {
-      system.facedialog(JSON.stringify(param));
-    } else {
-      layui.layer.alert(
-        "当前浏览器未定义该方法（facedialog），请联系厂家提供技术支持"
-      );
-    }
+    getSystemVal('facedialog', [JSON.stringify(param)])
   };
   that.getServiceUrl = function (a = '') {
     if (!mainURL) {
@@ -255,8 +215,7 @@ const Class = function () {
     }
   }
   that.closeWindow = function (num = 0) {
-    getSystem();
-    system.closeWindow(num);
+    getSystemVal('closeWindow', [num])
   }
   return w.jthisJsObject || w.wdphisJsObject;
 };
