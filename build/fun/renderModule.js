@@ -8,7 +8,7 @@ module.exports = function (moduleFile, name, grunt) {
     let render = fileRead(renderFile, grunt)
     return getFileCode(nameFile, render).then((code) => {
       grunt.file.write(renderFile, code.replace(/\/\/ MODULE START(\s|\S)+\/\/ MODULE END\s/, ''))
-      return Promise.resolve(render)
+      return Promise.resolve({ url: renderFile, code: render })
     })
   } else if (nameFile) {
     return Promise.reject()

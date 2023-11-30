@@ -12,15 +12,21 @@
 */
 const path = require('path'), renderModule = require('./renderModule')
 const { getCode } = require("./public")
+const getFileCode = require('./getFileCode')
+const { fileExit, fileRead } = require('./readFile')
 module.exports = function (name, src, version, grunt, printSrc) {
   let moduleFile = path.resolve(src, name)
-  return renderModule(moduleFile, name, grunt).then((code) => {
-    return code
-  }).then(res => {
-    if (res) {
-      // 回写render
-    }
-  }).catch(() => {
+  return renderModule(moduleFile, name, grunt).then(() => {
+    let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
+    return getFileCode(fileExit(moduleFile, 'index'), fileRead(wrap, grunt)).then(res => {
+      printSrc.forEach(it => {
+        let outFile = path.resolve(it, name + '.js')
+        grunt.file.write(outFile, res)
+        // grunt.log.writeln(`${ly || ''}:${name}`);
+        grunt.log.ok(`${outFile} created.`);
+      })
+    }).catch(() => { })
+  }).catch((e) => {
     getCode(name, src, version, grunt, printSrc)
   })
 

@@ -1,4 +1,4 @@
-import { commonHttppost, getAjax, getConfig, alertMsg } from '../g-lobal'
+import { commonHttppost, getAjax, getConfig, alertMsg, uuid } from '../g-lobal'
 // window
 declare global {
   interface Window {
@@ -25,6 +25,7 @@ declare global {
   let getAjax: typeof getAjax
   let getConfig: typeof getConfig
   let alertMsg: typeof alertMsg
+  let uuid: typeof uuid
 }
 export {
 
