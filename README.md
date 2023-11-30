@@ -8,8 +8,6 @@
 
 > g-local[通用组件](./g-lobal/)
 
-> gAdd[]
-
 > gModule[依赖 Load 插件引入组件](./gModules/)
 
 > layModules[依赖 layui 引入组件](./layModules/)
