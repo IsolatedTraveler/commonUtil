@@ -1,4 +1,4 @@
-import { FileEvent } from "./type"
+import { FileEvent } from "../type"
 
 export function readFile(file: Blob, resolve: FileEvent, reject: Function) {
   let reader = new FileReader()

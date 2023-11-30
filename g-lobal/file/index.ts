@@ -1,1 +1,1 @@
-export * from './readFile'
+export * from './public'

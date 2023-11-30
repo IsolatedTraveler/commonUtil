@@ -18,7 +18,7 @@ function addDay(num = 1) {
   if (num > parseInt(num)) {
     return this.addHour(num * 24)
   }
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setDate(date.getDate() + num)
   return date
 }
@@ -27,7 +27,7 @@ function addHour(num = 1) {
   if (num > parseInt(num)) {
     return this.addMinute(num * 60)
   }
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setHours(date.getHours() + num)
   return date
 }
@@ -36,29 +36,29 @@ function addMinute(num) {
   if (num > parseInt(num)) {
     return this.addSeconds(num * 60)
   }
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setMinutes(date.getMinutes() + num)
   return date
 }
 function addSeconds(num) {
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setSeconds(date.getSeconds() + num)
   return date
 }
 function getMonthDays() {
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setMonth(date.getMonth() + 1)
   date.setDate(0)
   return date.getDate()
 }
 function getYearDay() {
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setMonth(2)
   date.setDate(0)
   return date.getDate() === 28 ? 365 : 366
 }
 function addMonth(num = 1) {
-  let date  = new Date(this), m = date.getMonth()
+  let date = new Date(this), m = date.getMonth()
   num = Number(num)
   date.setMonth(m + num)
   if ((m + num) % 12 < date.getMonth()) {
@@ -68,7 +68,7 @@ function addMonth(num = 1) {
   return date
 }
 function addYear(num = 1) {
-  let date  = new Date(this), m = date.getMonth()
+  let date = new Date(this), m = date.getMonth()
   num = Number(num)
   date.setFullYear(date.getFullYear() + num)
   if (m < date.getMonth()) {
@@ -78,18 +78,18 @@ function addYear(num = 1) {
   return date
 }
 function getWeek(num = 1) {
-  let date  = new Date(this)
+  let date = new Date(this)
   num = Number(num)
   date.setDate(date.getDate() + num - (date.getDay() || 7))
   return date
 }
-function getMonthDay(num = 1){
-  let date  = new Date(this)
+function getMonthDay(num = 1) {
+  let date = new Date(this)
   date.setDate(num)
   return date
 }
 function getSeason(num = 1) {
-  let date  = new Date(this)
+  let date = new Date(this)
   date.setMonth(Math.floor(date.getMonth() / 3) * 3)
   date.setDate(num)
   return date
