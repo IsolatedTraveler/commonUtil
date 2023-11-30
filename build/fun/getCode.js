@@ -11,6 +11,7 @@
 } 
 */
 const path = require('path'), renderModule = require('./renderModule')
+const { getCode } = require("./public")
 module.exports = function (name, src, version, grunt, printSrc) {
   let moduleFile = path.resolve(src, name)
   return renderModule(moduleFile, name, grunt).then((code) => {
@@ -19,6 +20,8 @@ module.exports = function (name, src, version, grunt, printSrc) {
     if (res) {
       // 回写render
     }
+  }).catch(() => {
+    getCode(name, src, version, grunt, printSrc)
   })
 
 }

@@ -26,8 +26,11 @@ function firstUppers(str, judge) {
   return arr.map((it, i) => firstUpper(it, i || judge)).join('')
 }
 async function setCode(wrapper, reg, space, input, reg1, space1) {
+  // input, wrapper, preV, afterReg, afterV
+  require('./getFileCode')(input, wrapper, reg, space, reg1, space1)
   let arr = wrapper.split(reg)
   if (arr[1]) {
+    console.log(input)
     let bundle = await rollup.rollup({
       input,
       plugins: [
