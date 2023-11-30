@@ -1,7 +1,7 @@
 import { session } from "../../../base/temp/session";
-import { ajaxJqMagic } from "../../var/const";
 import { Authorization, setAuthorization } from "../../var/global";
 import { ajaxResposeData } from "../../type";
+import { ajaxJqMagic } from "../../../../types/const";
 
 export function jqMagic(config: any, url: string) {
   let magic = session('magic') || ajaxJqMagic

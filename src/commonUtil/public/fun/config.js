@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import { getConfig } from "../../../../g-lobal";
-import { ajaxJqMagic } from "../../../../g-lobal/ajax/var/const";
 export { getConfig } from "../../../../g-lobal";
 import { Authorization } from "../../../../g-lobal/allVar";
+import { ajaxJqMagic } from "../../../../types/const";
 import { commonHttppost } from "./ajax";
 
 export function getToken(config) {

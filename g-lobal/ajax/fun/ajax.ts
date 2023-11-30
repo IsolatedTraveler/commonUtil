@@ -2,9 +2,9 @@ import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, Ajax
 import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
 import { getAllUrl, getParamsUrl } from "../../base/url/index";
-import { ajaxTimeOut } from "../var/const";
 import { ajaxDealData, ajaxPostData } from "./dealData";
 import { LayerIndex, laoding } from "../../layer/public/index";
+import { ajaxTimeOut } from "../../../types/const";
 export function getAjaxRes(res: any) {
   try {
     return JSON.parse(res)

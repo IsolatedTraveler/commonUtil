@@ -1,4 +1,4 @@
-import { ajaxTimeOut } from '../../../g-lobal/const';
+import { ajaxTimeOut } from '../../dzpj';
 import { dealNull } from './dealNull';
 
 function ajaxDealData(res, option) {
