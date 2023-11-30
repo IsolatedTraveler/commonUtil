@@ -1,4 +1,4 @@
-import { readFile } from "../../file/public/readFile"
+import { readFile } from "../../"
 import { getXlsxData } from "../fun/getXlsxData"
 import { xlsxType } from "../var/index"
 

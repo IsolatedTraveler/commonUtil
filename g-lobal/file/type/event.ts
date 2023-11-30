@@ -1,0 +1,1 @@
+export type FileEvent = (this: FileReader, ev: ProgressEvent<FileReader>) => any
