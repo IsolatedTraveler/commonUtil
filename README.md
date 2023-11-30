@@ -1,15 +1,17 @@
 # 公共组件代码
 
-> build[编译](./build/)
+> [build 编译](./build/)
 >
-> > fun  
-> > task  
-> > var
+> > [fun 实际编译方法](./build/fun/)  
+> > [task 编译任务](./build/task/)  
+> > [var 编译相关参数](./build/var/)
 
-> g-local[通用组件](./g-lobal/)
+> [g-local 通用组件](./g-lobal/)
+>
+> > [ajax](./g-lobal/ajax/)
 
-> gModule[依赖 Load 插件引入组件](./gModules/)
+> [gModule 依赖 Load 插件引入组件](./gModules/)
 
-> layModules[依赖 layui 引入组件](./layModules/)
+> [layModules 依赖 layui 引入组件](./layModules/)
 
-> src[独立运行组件](./src/)
+> [src 独立运行组件](./src/)

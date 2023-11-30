@@ -1,2 +1,2 @@
-export * from './ajaxT/var/index'
+export * from './ajax/var/index'
 export * from './var/index'
