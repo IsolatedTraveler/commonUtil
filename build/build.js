@@ -11,10 +11,10 @@ module.exports = function (g) {
   g.registerMultiTask('build', 'build commonUtil modules', async function () {
     const done = this.async()
     try {
-      await buildCs(g, version)
       await buildModule(g, version)
       await buildLay(g, version)
       await buildSrc(g, version)
+      await buildCs(g, version)
       done()
     } catch (e) {
       done(e)

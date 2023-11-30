@@ -10,8 +10,6 @@ module.exports = function (moduleFile, name, grunt) {
       grunt.file.write(renderFile, code.replace(/\/\/ MODULE START(\s|\S)+\/\/ MODULE END\s/, ''))
       return Promise.resolve({ url: renderFile, code: render })
     })
-  } else if (nameFile) {
-    return Promise.reject()
   } else {
     return Promise.resolve()
   }

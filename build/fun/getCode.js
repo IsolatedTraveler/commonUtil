@@ -11,23 +11,32 @@
 } 
 */
 const path = require('path'), renderModule = require('./renderModule')
-const { getCode } = require("./public")
-const getFileCode = require('./getFileCode')
+const getFileCode = require('./getFileCode'), { date } = require('../var/public')
 const { fileExit, fileRead } = require('./readFile')
-module.exports = function (name, src, version, grunt, printSrc) {
+module.exports = function (name, src, version, grunt, printSrc, ly) {
+  console.log(ly, name)
   let moduleFile = path.resolve(src, name)
   return renderModule(moduleFile, name, grunt).then(() => {
     let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
     return getFileCode(fileExit(moduleFile, 'index'), fileRead(wrap, grunt)).then(res => {
       printSrc.forEach(it => {
-        let outFile = path.resolve(it, name + '.js')
-        grunt.file.write(outFile, res)
+        let outFile = path.resolve(it, name + '.js'), Name = firstUppers(name, true)
+        grunt.file.write(outFile, res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
+          .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
+          .replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name))
         // grunt.log.writeln(`${ly || ''}:${name}`);
         grunt.log.ok(`${outFile} created.`);
       })
-    }).catch(() => { })
-  }).catch((e) => {
-    getCode(name, src, version, grunt, printSrc)
+    }).catch((e) => {
+      console.log(1233)
+    })
   })
+}
 
+function firstUpper(str, judge) {
+  return judge ? (str.substr(0, 1).toUpperCase() + str.substr(1)) : str
+}
+function firstUppers(str, judge) {
+  let arr = str.split('-')
+  return arr.map((it, i) => firstUpper(it, i || judge)).join('')
 }

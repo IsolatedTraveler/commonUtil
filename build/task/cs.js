@@ -5,7 +5,7 @@ const path = require('path'), ml = path.resolve(`${__dirname}/../../cs`)
 module.exports = function (grunt, version) {
   return readDir(ml).then((res = []) => {
     return Promise.all(res.map(name => {
-      return getCode(name, ml, version, grunt, outMl, 'gModules')
+      return getCode(name, ml, version, grunt, outMl, 'gModules', 'cs')
     }))
   })
 }

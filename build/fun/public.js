@@ -30,7 +30,6 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
   require('./getFileCode')(input, wrapper, reg, space, reg1, space1)
   let arr = wrapper.split(reg)
   if (arr[1]) {
-    console.log(input)
     let bundle = await rollup.rollup({
       input,
       plugins: [

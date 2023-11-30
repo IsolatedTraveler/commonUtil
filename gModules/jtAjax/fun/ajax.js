@@ -1,6 +1,5 @@
-import { ajaxTimeOut } from '../../dzpj';
 import { dealNull } from './dealNull';
-
+import { ajaxTimeOut } from '../../../types/const'
 function ajaxDealData(res, option) {
   let isError = option.msg
   if (option.isShowLoad) {
