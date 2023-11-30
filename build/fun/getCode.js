@@ -16,7 +16,7 @@ const { fileExit, fileRead } = require('./readFile')
 module.exports = function (name, src, version, grunt, printSrc, ly) {
   console.log(ly, name)
   let moduleFile = path.resolve(src, name)
-  return renderModule(moduleFile, name, grunt).then(() => {
+  return renderModule(moduleFile, name, grunt).then((back) => {
     let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
     return getFileCode(fileExit(moduleFile, 'index'), fileRead(wrap, grunt)).then(res => {
       printSrc.forEach(it => {
@@ -26,10 +26,16 @@ module.exports = function (name, src, version, grunt, printSrc, ly) {
           .replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name))
         // grunt.log.writeln(`${ly || ''}:${name}`);
         grunt.log.ok(`${outFile} created.`);
+        return back
       })
     }).catch((e) => {
       console.log(1233)
+      return back
     })
+  }).then(back => {
+    if (back) {
+      grunt.file.write(back.url, back.code)
+    }
   })
 }
 
