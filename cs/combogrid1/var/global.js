@@ -1,0 +1,1 @@
+export let id, name, pageNumber = 1, total = 0, data = null, selectedData, selectedI = 0, multi, isMulti, tableCom, layerCont
