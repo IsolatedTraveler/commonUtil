@@ -17,6 +17,7 @@ declare global {
   let w: Window
   let d: Document
   let MODULENAME: any
+  let FIRSTMODULENAME: any
   let GLOBALCLASS: GLOBALCLASSTYPE
 }
 // module

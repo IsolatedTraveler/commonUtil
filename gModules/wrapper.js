@@ -6,7 +6,7 @@
     // @CODEMODULE
     return new Class(config)
   }
-  w.FIRSTMODULENAME = new MODULENAME()
+  w.FIRSTMODULENAME = new FIRSTMODULENAME()
   w.commonUtil && w.commonUtil.define && w.commonUtil.define([], function (exports) {
     that = w.commonUtil
     exports('MODULENAME', w.FIRSTMODULENAME)
