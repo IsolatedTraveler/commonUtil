@@ -1,11 +1,4 @@
 
-export {
-  getAjax,
-  getAjaxSync,
-  commonHttppost,
-  commonQueryAsyncHttppost_callback,
-  upload
-} from "../../../../g-lobal/";
 
 export function dealAjaxData(data, { isNotGetUser } = {}, { contentType } = {}, type) {
   if (!isNotGetUser) {

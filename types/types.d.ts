@@ -7,6 +7,7 @@ declare global {
     commonUtil: any
     FIRSTMODULENAME: any
     $: any
+    hex_md5: any
   }
   let w: Window
   let d: Document

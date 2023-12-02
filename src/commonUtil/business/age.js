@@ -1,4 +1,4 @@
-import { getAge } from "../../../g-lobal/util/public/age";
+import { getAge } from "../../../g-lobal/util/age";
 import Class from "../core";
 
 Class.prototype.getAge = getAge

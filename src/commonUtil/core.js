@@ -2,9 +2,9 @@
 import { initPop, promiseResove, promiseCore } from "./var/init"
 import { required, identity } from './public/fun/check'
 import { getName } from "./public/business/login"
-import { system } from "../../g-lobal/var"
 import { dealsUrl, getBaseUrl } from "../../g-lobal"
 import { getJsUrl } from "./public/fun/url"
+import { system } from "../../g-lobal/allVar"
 initPop.thirdBaseUrl = dealsUrl('./modules', getJsUrl(d))
 function setFormVerify() {
   layui.form.verify({

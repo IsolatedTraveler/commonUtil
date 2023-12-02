@@ -1,6 +1,7 @@
+import { commonQueryAsyncHttppost_callback, getAjaxSync, getConfig, upload } from "../../../g-lobal";
 import Class from "../core";
-import { getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, dealAjaxData, upload } from "../public/fun/ajax";
-import { getConfig, getToken } from "../public/fun/config";
+import { dealAjaxData } from "../public/fun/ajax";
+import { getToken } from "../public/fun/config";
 import { encryption, getPostData } from "../reWrite/fun/ajax";
 Class.prototype.getAjax = getAjax
 Class.prototype.getAjaxSync = getAjaxSync

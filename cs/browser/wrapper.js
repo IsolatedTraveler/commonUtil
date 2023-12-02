@@ -1,9 +1,9 @@
-(function(w, d) {
+(function (w, d) {
   // eslint-disable-next-line no-unused-vars
-  let that, mac, mainURL
+  let that
   // @CODE
   // eslint-disable-next-line no-undef
-  commonUtil.define(function(exports) {
+  commonUtil.define(function (exports) {
     // eslint-disable-next-line no-unused-vars
     that = this
     exports('Browser', new Class())

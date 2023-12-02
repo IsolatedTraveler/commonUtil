@@ -1,4 +1,3 @@
-
 export function alertMsg(msg: string, judge: boolean = true) {
   if (judge) {
     if (window.layer) {

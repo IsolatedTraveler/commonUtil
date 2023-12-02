@@ -2,8 +2,7 @@ import { getParamsUrl, local, getUrlParams, loading, strToUrl, val, config, init
 import Class from '../core'
 import { srcWEventKbjbg } from '../var/init'
 import { loadPwdJs } from '../reWrite/fun/init'
-import { getUploadUrl } from '../public/fun/url'
-import { alertMsg, loaded, session } from '../../../g-lobal'
+import { alertMsg, getUploadUrl, loaded, session } from '../../../g-lobal'
 Class.prototype.kbjbg = srcWEventKbjbg
 Class.prototype.val = val
 Class.prototype.getParamsUrl = getParamsUrl

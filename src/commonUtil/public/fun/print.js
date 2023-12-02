@@ -1,9 +1,8 @@
 import { openPop } from "../layui/layer"
 import { printCLodop } from "../../var/print"
-import { getConfig } from "./config"
 import { setIframe } from "./deeps"
 import { getParamsUrl, loading, local, strToUrl } from "./init"
-import { dealsUrl, getBaseUrl, loaded, setPageTemp } from "../../../../g-lobal"
+import { dealsUrl, getBaseUrl, getConfig, loaded, setPageTemp } from "../../../../g-lobal"
 function setPrinted() {
   if (w.getCLodop) {
     printCLodop = w.getCLodop()

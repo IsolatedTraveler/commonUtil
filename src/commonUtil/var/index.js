@@ -1,6 +1,6 @@
 import './init'
 import './use'
-import '../../../g-lobal/base//url/var/url'
+import '../../../g-lobal/url/var/url'
 import './print.js'
 import './login'
 import './dictionary'

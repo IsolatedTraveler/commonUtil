@@ -1,5 +1,5 @@
 import { dealsUrl, getBaseUrl, setPageTemp } from '../../../../g-lobal'
-import { urlFace, urlImg, urlHost, urlTp } from '../../../../g-lobal/base/url/var/url'
+import { urlHost, urlFace, urlImg, urlTp } from '../../../../g-lobal/url/var/url'
 import { val } from './init'
 function setHostUrl() {
   let name = val('hostName')

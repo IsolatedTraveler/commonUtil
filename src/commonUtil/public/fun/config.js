@@ -1,12 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import { getConfig } from "../../../../g-lobal";
-export { getConfig } from "../../../../g-lobal";
 import { Authorization } from "../../../../g-lobal/allVar";
 import { ajaxJqMagic } from "../../../../types/const";
-import { commonHttppost } from "./ajax";
 
 export function getToken(config) {
-  let magic = that.session('magic') || getConfig('magic')
+  let magic = that.session('magic') || that.getConfig('magic')
   Authorization = that.session('Authorization') || magic.Authorization
   if (Authorization && Authorization == magic.Authorization) {
     setToken(magic.user)
@@ -18,11 +15,10 @@ export function getToken(config) {
 }
 function setToken(param) {
   that.session('Authorization', Authorization)
-  let res = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
+  let res = that.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
   Authorization = res.Authorization
   that.session('Authorization', Authorization)
 }
 export default {
-  getConfig,
   getToken
 }

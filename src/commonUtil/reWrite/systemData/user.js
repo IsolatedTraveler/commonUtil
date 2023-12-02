@@ -1,4 +1,4 @@
-import { userInfo, user, menu } from "../../../../g-lobal";
+import { userInfo, user, menu } from "../../../../g-lobal/allVar";
 import { setPageTemp } from "../../public/fun/deeps";
 import { formatTreeData } from "../../public/fun/init";
 import { webNameReg } from "../../var/init";

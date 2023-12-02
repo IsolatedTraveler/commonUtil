@@ -1,5 +1,3 @@
-import { urlRegV } from "../../../g-lobal/"
-export { urlRegV } from "../../../g-lobal/"
 export let webNameReg, jse, promiseResove, promiseCore, BASE64
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
   , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
@@ -27,6 +25,5 @@ export default {
   promiseResove,
   webNameReg,
   srcWEventKbjbg,
-  promiseCore,
-  urlRegV
+  promiseCore
 }

@@ -1,5 +1,4 @@
-import { dealsUrl, getBaseUrl } from "../../../../g-lobal";
-import { getAjaxSync } from "./ajax";
+import { dealsUrl, getAjaxSync, getBaseUrl } from "../../../../g-lobal";
 
 export function svgRender(id) {
   let elems = $(id || d).find('.jt-svg');

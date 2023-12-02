@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { webName } from "../../../../g-lobal/var"
+import { webName } from "../../../../g-lobal/allVar"
 import { getParamsUrl, getUrlParams, setWebName, tempData, uuid } from "../../../../g-lobal/"
 export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
