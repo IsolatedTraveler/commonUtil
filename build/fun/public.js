@@ -56,6 +56,7 @@ async function setCode(wrapper, reg, space, input, reg1, space1) {
       keys.push(`${b}: ${c}`)
       return ''
     })
+    code = code.replace(/GLOBALCLASS\./g, '')
     if (keys.length) {
       code += 'Class.prototype = { ' + keys.join(', ') + ' }' + space
     }

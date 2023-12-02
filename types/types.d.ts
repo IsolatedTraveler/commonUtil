@@ -9,9 +9,14 @@ declare global {
     $: any
     hex_md5: any
   }
+  interface GLOBALCLASSTYPE {
+    getSystemVal: GetSystemVal
+    commonHttppost: CommonHttppost
+  }
   let w: Window
   let d: Document
   let MODULENAME: any
+  let GLOBALCLASS: GLOBALCLASSTYPE
 }
 // module
 declare global {

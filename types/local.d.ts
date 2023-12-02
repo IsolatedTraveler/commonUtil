@@ -5,6 +5,8 @@ import {
   getMainUrl, uuid, system
 } from '../g-lobal/index'
 declare global {
+  type GetSystemVal = typeof getSystemVal
+  type CommonHttppost = typeof commonHttppost
   let getAjax: typeof getAjax
   let getAjaxSync: typeof getAjaxSync
   let commonHttppost: typeof commonHttppost

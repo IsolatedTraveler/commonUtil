@@ -17,6 +17,6 @@ export function jqMagic(config: any, url: string) {
   config.headers.Authorization = Authorization
 }
 function setAjaxMagicToken(param: ajaxResposeData) {
-  let res: any = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
+  let res: any = GLOBALCLASS.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
   setAuthorization(res.Authorization)
 }

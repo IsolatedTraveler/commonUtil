@@ -35,6 +35,7 @@ function dealCode(code, space = '\n') {
     keys.push(`${b}: ${c}`)
     return ''
   })
+  code = code.replace(/GLOBALCLASS\./g, '')
   if (keys.length) {
     code += 'Class.prototype = { ' + keys.join(', ') + ' }' + space
   }
