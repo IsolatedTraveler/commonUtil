@@ -12,6 +12,7 @@ declare global {
   interface GLOBALCLASSTYPE {
     getSystemVal: GetSystemVal
     commonHttppost: CommonHttppost
+    getAjax: GetAjax
   }
   let w: Window
   let d: Document
