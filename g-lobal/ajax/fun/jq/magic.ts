@@ -1,7 +1,7 @@
-import { session } from "../../../base/temp/session";
 import { Authorization, setAuthorization } from "../../var/global";
 import { ajaxResposeData } from "../../type";
 import { ajaxJqMagic } from "../../../../types/const";
+import { session } from "../../../temp/session"
 
 export function jqMagic(config: any, url: string) {
   let magic = session('magic') || ajaxJqMagic
@@ -17,6 +17,6 @@ export function jqMagic(config: any, url: string) {
   config.headers.Authorization = Authorization
 }
 function setAjaxMagicToken(param: ajaxResposeData) {
-  let res: any = that.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
+  let res: any = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
   setAuthorization(res.Authorization)
 }

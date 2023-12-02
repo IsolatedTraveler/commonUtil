@@ -1,5 +1,5 @@
-import { getBaseUrl } from "../base";
-import { setWebNameVal } from "../var";
+import { getBaseUrl } from "../../url/public/jsUrl"
+import { setWebNameVal } from "../var/gloabl"
 
 export function setWebName() {
   var a = getBaseUrl().split('/')

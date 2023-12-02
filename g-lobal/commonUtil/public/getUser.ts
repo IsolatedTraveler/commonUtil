@@ -1,7 +1,10 @@
-import { setUserInfoVal, setUserVar, system, userInfo } from "../var/index";
-import { getBrowserParam } from '../browser/index'
-import { user } from "../allVar";
-import { setPageTemp, session } from "../base/index";
+import { setUserVar } from "../../allSet";
+import { system, user } from "../../allVar";
+import { getBrowserParam } from "../../browser/data";
+import { session } from "../../temp/session";
+import { setPageTemp } from "../../temp/tempData";
+import { userInfo } from "../var";
+import { setUserInfoVal } from "../var/gloabl";
 import { logOut } from "./logOut";
 export function getUser() {
   if (system) {

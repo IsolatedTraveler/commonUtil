@@ -5,7 +5,7 @@
   "scripts": {
     "build": "grunt",
     "build:xb": "grunt build:xb",
-    "dev": "grunt watch"
+    "dev": "grunt"
   },
   "devDependencies": {
     "grunt": "^1.4.1",

@@ -1,1 +1,1 @@
-export * from './global'
+export { Authorization, jqMode, contentType, dataConfig } from './global'

@@ -1,5 +1,9 @@
-import { setUrlServerVal, system, urlServer } from "../../../var"
-import { setPageTemp } from "../../temp"
+import { getConfig } from "../../ajax/public/api"
+import { setPageTemp } from "../../temp/tempData"
+import { system } from "../../var"
+import { urlServer } from "../var"
+import { setUrlServerVal } from "../var/global"
+
 
 export function getMainUrl(arr: string | Array<string>) {
   if (typeof arr === 'string') {
@@ -18,7 +22,7 @@ function setServiceUrl() {
   if (system) {
     url = JSON.parse(system.getmainurl()).data
   } else {
-    url = that.getConfig().magicServer
+    url = getConfig().magicServer
   }
   return setUrlServerVal(getMainUrl(url))
 }

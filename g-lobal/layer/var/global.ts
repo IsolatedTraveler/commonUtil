@@ -1,4 +1,4 @@
-import { debounce1 } from "../../util/debounce"
+import { debounce1 } from "../../util/public/debounce"
 export var loadMsg: any, loadElem: any, msgElem: any, closeLoadEd: any
 export function setLoadElem() {
   loadElem = document.createElement('div')

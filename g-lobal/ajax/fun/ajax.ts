@@ -1,10 +1,11 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
 import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
-import { getAllUrl, getParamsUrl } from "../../base/url/index";
 import { ajaxDealData, ajaxPostData } from "./dealData";
 import { LayerIndex, laoding } from "../../layer/public/index";
 import { ajaxTimeOut } from "../../../types/const";
+import { getAllUrl } from "../../url/public/commonUtil";
+import { getParamsUrl } from "../../url/public/data";
 export function getAjaxRes(res: any) {
   try {
     return JSON.parse(res)

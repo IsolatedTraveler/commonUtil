@@ -13,3 +13,17 @@ export interface KpRquestParam {
   kplx?: KpDwLx
   tpyy?: KpTpMsg
 }
+// 开票来源   门诊 | 住院 | 挂号
+export type DzPjKpLy = 'mz' | 'zy' | 'gh'
+// 开票类型   开票 | 退票
+export type DzPjKpLx = 'kp' | 'tp'
+export interface KpPzCs {
+  url: string,
+  bbid?: string
+}
+export type KpPzLx = {
+  [index in DzPjKpLy]: KpPzCs
+}
+export type DzPjKpPz = {
+  [index in DzPjKpLx]: KpPzLx
+}

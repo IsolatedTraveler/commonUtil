@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestUrl } from "../type";
+import { AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestUrl } from "../type";
 import { ajax } from "../fun/ajax";
 import { ajaxSync } from "../fun/async";
 
@@ -7,7 +7,7 @@ export function commonHttppost(
   url: AjaxRequestUrl,
   data: AjaxRequestData,
   option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = undefined) {
+  config: AjaxRequestConfig = undefined): any {
   return ajax(url, data, option.param, option, config, 'POST')
 }
 // 异步

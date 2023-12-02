@@ -23,7 +23,9 @@ module.exports = {
     sha256: true,
     JsErrorTrace: true,
     jthisJsObject: true,
-    wdphisJsObject: true
+    wdphisJsObject: true,
+    Class: true,
+    setWebName: true
   },
   // eslint-disable-next-line no-dupe-keys
   parserOptions: {

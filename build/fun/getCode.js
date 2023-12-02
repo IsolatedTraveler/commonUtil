@@ -28,8 +28,8 @@ module.exports = function (name, src, version, grunt, printSrc, ly) {
         grunt.log.ok(`${outFile} created.`);
         return back
       })
+      return back
     }).catch((e) => {
-      console.log(1233)
       return back
     })
   }).then(back => {

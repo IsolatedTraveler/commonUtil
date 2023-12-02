@@ -1,0 +1,1 @@
+export { webName, systemDataParam, userInfo } from './gloabl'

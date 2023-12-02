@@ -1,5 +1,6 @@
-import { setPageTemp } from "../base";
-import { system, systemDataParam } from "../var";
+import { commonHttppost } from "../../ajax/public/post"
+import { system, systemDataParam } from "../../allVar"
+import { setPageTemp } from "../../temp/tempData"
 
 export function paramget(mkdm: string, bh: string | number | undefined = undefined) {
   if (system) {
@@ -11,7 +12,7 @@ export function paramget(mkdm: string, bh: string | number | undefined = undefin
   }
 }
 function paramSet(mkdm: string) {
-  let data = that.commonHttppost('/zs02-ywjc/xtcsgl/s-csxx', { mkdm, jqm: '' }).data || [], res: any = {}
+  let data = commonHttppost('/zs02-ywjc/xtcsgl/s-csxx', { mkdm, jqm: '' }).data || [], res: any = {}
   data.forEach((it: any) => {
     res[it.xh] = it.csz
   })

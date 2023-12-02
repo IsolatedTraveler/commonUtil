@@ -1,4 +1,6 @@
-export const kppz: DzPjKpPz = {
+import { DzPjKpPz } from "../type";
+
+export const dzpjKppz: DzPjKpPz = {
   kp: {
     mz: {
       url: 'magic/yy201-dzpj/dzpj/m-mzkp'

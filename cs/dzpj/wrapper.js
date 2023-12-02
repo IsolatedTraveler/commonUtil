@@ -1,19 +1,13 @@
-/* eslint-disable no-undef */
-
-/* eslint-disable no-unused-vars */
 (function (w, d) {
+  // eslint-disable-next-line no-unused-vars
   let that
   // @CODE
   w.FIRSTMODULENAME = new Class()
-  if (commonUtil && commonUtil.define) {
-    commonUtil.define([], function (exports) {
-      that = commonUtil
+  setWebName()
+  if (w.commonUtil && w.commonUtil.define) {
+    w.commonUtil.define([], function (exports) {
+      that = w.commonUtil
       exports('MODULENAME', w.FIRSTMODULENAME)
     })
-  } else {
-    that = {
-      commonHttppost, getAjax, getConfig, alertMsg
-    }
-    setWebName()
   }
 })(window, document);

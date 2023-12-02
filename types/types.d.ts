@@ -1,4 +1,4 @@
-import { commonHttppost, getAjax, getConfig, alertMsg, uuid } from '../g-lobal'
+
 // window
 declare global {
   interface Window {
@@ -12,20 +12,16 @@ declare global {
   let d: Document
   let MODULENAME: any
 }
+// module
+declare global {
+  let that: any // this
+}
 // layui
 declare global {
   interface Window {
     layui: any
     layer: any
   }
-}
-// local
-declare global {
-  let commonHttppost: typeof commonHttppost
-  let getAjax: typeof getAjax
-  let getConfig: typeof getConfig
-  let alertMsg: typeof alertMsg
-  let uuid: typeof uuid
 }
 export {
 

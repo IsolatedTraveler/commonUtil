@@ -1,0 +1,1 @@
+export { urlUpload, urlServer, urlBase } from './global'

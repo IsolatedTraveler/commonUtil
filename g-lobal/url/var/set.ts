@@ -1,0 +1,1 @@
+export { setUrlUploadVal, setUrlServerVal, seturlBaseVal } from './global'

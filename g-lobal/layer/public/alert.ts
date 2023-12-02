@@ -1,4 +1,3 @@
-import { getSystemVal } from "../../browser"
 
 export function alertMsg(msg: string, judge: boolean = true) {
   if (judge) {

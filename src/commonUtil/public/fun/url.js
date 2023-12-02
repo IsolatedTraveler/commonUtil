@@ -1,5 +1,5 @@
 import { dealsUrl, getBaseUrl, setPageTemp } from '../../../../g-lobal'
-import { urlFace, urlImg, urlUpload, urlHost, urlTp } from '../../../../g-lobal/base/var/url'
+import { urlFace, urlImg, urlHost, urlTp } from '../../../../g-lobal/base/url/var/url'
 import { val } from './init'
 function setHostUrl() {
   let name = val('hostName')
@@ -24,9 +24,6 @@ function setImgUrl() {
 function setFaceUrl() {
   return urlFace = dealsUrl('/rest/facedetect', that.getConfig('faceurl') || that.getServiceUrl())
 }
-function setUploadUrl() {
-  return urlUpload = that.getConfig('url_common_file')
-}
 export function getHostUrl() {
   return setPageTemp(urlHost, setHostUrl)
 }
@@ -42,9 +39,6 @@ export function getFaceUrl() {
 export function getImgUrl(id) {
   return dealsUrl(id, setPageTemp(urlImg, setImgUrl))
 }
-export function getUploadUrl() {
-  return setPageTemp(urlUpload, setUploadUrl)
-}
 export default {
   dealsUrl,
   getBaseUrl,
@@ -52,6 +46,5 @@ export default {
   getJsUrl,
   getTpUrl,
   getFaceUrl,
-  getImgUrl,
-  getUploadUrl
+  getImgUrl
 }

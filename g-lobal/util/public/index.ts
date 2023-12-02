@@ -1,3 +1,3 @@
 export * from './debounce'
 export * from './uuid'
-export * from './prefix'
+export * from '../prefix'

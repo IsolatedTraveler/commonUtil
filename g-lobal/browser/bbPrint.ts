@@ -1,4 +1,4 @@
-import { getParamsUrl } from "../base";
+import { getParamsUrl } from "../url/public/data";
 import { getSystemVal } from "./base/getSystem";
 
 export function bbPrint(reportid: string, obj: any, printCs: any) {

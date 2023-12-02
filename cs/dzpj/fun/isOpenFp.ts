@@ -1,4 +1,3 @@
-import { commonQueryAsyncHttppost_callback, getUser, paramget } from '../../../g-lobal'
 import { KpJgConfig, KpJgParam, KpJgid } from '../type/index'
 import { kpConfig, kpParam, setIsPrint, setSync } from '../var/index'
 export function isOpenFp() {

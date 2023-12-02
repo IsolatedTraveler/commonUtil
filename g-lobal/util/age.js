@@ -1,5 +1,5 @@
-import { setAgeMonth, setAgeDay, setAgeHour, setAgeMinute, setAgeSecond, ageFormat } from '../fun/age'
-import { dateKeys } from '../var/age'
+import { setAgeMonth, setAgeDay, setAgeHour, setAgeMinute, setAgeSecond, ageFormat } from './fun/age'
+import { dateKeys } from './var/age'
 
 export function getAge(start, end, format = {}) {
   end = end || new Date()

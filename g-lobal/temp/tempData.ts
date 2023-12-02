@@ -1,4 +1,4 @@
-import { webName } from "../../var"
+import { webName } from "../commonUtil/var"
 
 export function tempData(name: string, val: any, obj: Storage = sessionStorage) {
   let name1: string = webName + name

@@ -1,4 +1,5 @@
-import { getSystemVal } from "../../browser";
+import { getSystemVal } from "../../browser/base/getSystem"
+
 function judgeConfig(i: string, j: number, len: number, resolve: Function, reject: Function) {
   window.layer.close(i)
   if (len == j) {
@@ -8,7 +9,7 @@ function judgeConfig(i: string, j: number, len: number, resolve: Function, rejec
   }
   return false
 }
-export function confirm(msg: string, btn: Array<string> = ['确定', '取消'], title: string = '提示') {
+export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'], title: string = '提示') {
   return new Promise((resolve, reject) => {
     if (window.layer) {
       var len = btn.length, judge = true

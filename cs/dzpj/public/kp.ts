@@ -1,6 +1,6 @@
 import { isOpenFp } from "../fun";
 import { kpIng } from "../fun/kping";
-import { KpJgConfig, KpRquestParam } from "../type/index";
+import { DzPjKpLx, DzPjKpLy, KpJgConfig, KpRquestParam } from "../type/index";
 
 export function kp(data: KpRquestParam, ly: DzPjKpLy, lx: DzPjKpLx) {
   return isOpenFp().then((res: KpJgConfig) => {

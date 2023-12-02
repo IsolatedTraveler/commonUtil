@@ -1,4 +1,4 @@
-import { tempData } from "../base/temp/tempData"
+import { tempData } from "../temp/tempData"
 import { system } from "../var"
 
 export function getBrowserParam(mkbh: any, name: any) {

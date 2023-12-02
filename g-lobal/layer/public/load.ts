@@ -1,5 +1,5 @@
-import { setPageTemp } from "../../base";
-import { uuid } from "../../util";
+import { setPageTemp } from "../../temp/tempData";
+import { uuid } from "../../util/public";
 import { setLoadElem, loadElem, msgElem, closeLoadEd, loadMsg } from "../var";
 export type LayerIndex = string | undefined
 
