@@ -1,7 +1,8 @@
 const rollup = require('rollup'), cleanup = require('rollup-plugin-cleanup'), commonjs = require('rollup-plugin-commonjs')
   , typescript = require('rollup-plugin-typescript'), resolve = require('rollup-plugin-node-resolve')
-module.exports = function (input, wrapper, preV, afterReg, afterV) {
-  let arr = wrapper.split(/[ \t]*\/\/ @CODE[\r\n]+/)
+module.exports = function (input, wrapper) {
+  let reg = /([ \t]*)\/\/ @CODE[\r\n]+/, splitCode = reg.exec(wrapper)[1], arr = wrapper.split(reg)
+  // console.log(splitCode)
   return rollup.rollup({
     input,
     plugins: [
