@@ -7,6 +7,7 @@ import {
 declare global {
   type GetSystemVal = typeof getSystemVal
   type CommonHttppost = typeof commonHttppost
+  type GetAjax = typeof getAjax
   let getAjax: typeof getAjax
   let getAjaxSync: typeof getAjaxSync
   let commonHttppost: typeof commonHttppost

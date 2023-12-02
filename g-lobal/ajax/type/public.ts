@@ -1,4 +1,4 @@
-import { UrlType } from "../../base/url"
+import { UrlType } from "../../url/type"
 
 // 请求地址
 export type AjaxRequestUrl = string
