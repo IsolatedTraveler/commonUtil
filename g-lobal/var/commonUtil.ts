@@ -1,5 +1,3 @@
-export const systemV = window.jthisJsObject || window.wdphisJsObject || {},
-  system = systemV.jthis || systemV.wdphis
 
 export var urlBase: string | undefined,
   that: any,

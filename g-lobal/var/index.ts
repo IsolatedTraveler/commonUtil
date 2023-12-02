@@ -1,5 +1,5 @@
 export {
   urlBase,
   that,
-  menu, system, user
+  menu, user
 } from './commonUtil'

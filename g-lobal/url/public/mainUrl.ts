@@ -1,6 +1,6 @@
 import { getConfig } from "../../ajax/public/api"
+import { system } from "../../allVar"
 import { setPageTemp } from "../../temp/tempData"
-import { system } from "../../var"
 import { urlServer } from "../var"
 import { setUrlServerVal } from "../var/global"
 

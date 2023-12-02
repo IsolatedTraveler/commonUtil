@@ -1,4 +1,4 @@
-import { getSystemVal } from "../../browser/base/getSystem"
+import { getSystemVal } from "../../browser/public/base/getSystem"
 
 function judgeConfig(i: string, j: number, len: number, resolve: Function, reject: Function) {
   window.layer.close(i)

@@ -1,4 +1,4 @@
-import { system } from "../../var";
+import { system } from "../../allVar"
 
 export function logOut() {
   if (system) {

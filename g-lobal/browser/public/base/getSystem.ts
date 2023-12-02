@@ -1,4 +1,4 @@
-import { alertMsg } from "../../layer/public/alert"
+import { alertMsg } from "../../../layer/public/alert"
 import { system } from "../../var"
 
 export function getSystemVal(name: string, param: Array<any> | undefined = undefined) {

@@ -1,6 +1,6 @@
 import { setUserVar } from "../../allSet";
 import { system, user } from "../../allVar";
-import { getBrowserParam } from "../../browser/data";
+import { getBrowserParam } from "../../browser/public/data";
 import { session } from "../../temp/session";
 import { setPageTemp } from "../../temp/tempData";
 import { userInfo } from "../var";

@@ -1,5 +1,6 @@
 import { commonHttppost } from "../../ajax/public/post"
-import { system, systemDataParam } from "../../allVar"
+import { systemDataParam } from "../../allVar"
+import { system } from "../../browser/var"
 import { setPageTemp } from "../../temp/tempData"
 
 export function paramget(mkdm: string, bh: string | number | undefined = undefined) {
