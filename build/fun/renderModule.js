@@ -7,7 +7,8 @@ module.exports = function (moduleFile, name, grunt) {
   if (nameFile && renderFile) {
     let render = fileRead(renderFile, grunt)
     return getFileCode(nameFile, render).then((code) => {
-      grunt.file.write(renderFile, code.replace(/\/\/ MODULE START(\s|\S)+\/\/ MODULE END\s/, ''))
+      code = code.replace(/\/\/ MODULE START(\s|\S)+\/\/ MODULE END\s/, '')
+      grunt.file.write(renderFile, code)
       grunt.file.write(path.resolve(moduleFile, 'temp.js'), code)
       return Promise.resolve({ url: renderFile, code: render })
     })
