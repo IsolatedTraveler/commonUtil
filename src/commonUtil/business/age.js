@@ -1,4 +1,4 @@
-import { getAge } from "../../../g-lobal/util/age";
-import Class from "../core";
+/* eslint-disable no-undef */
+import { Class } from "../core";
 
 Class.prototype.getAge = getAge

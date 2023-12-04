@@ -1,30 +1,13 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { webName } from "../../../../g-lobal/allVar"
-import { getParamsUrl, getUrlParams, setWebName, tempData, uuid } from "../../../../g-lobal/"
-export { getParamsUrl, getUrlParams } from "../../../../g-lobal/"
 import assign from "../../extend/assign"
 import { initPop, webNameReg, BASE64, promiseResove, promiseCore, jse } from "../../var/init"
-import { setPageTemp } from "./deeps"
-import { loadElem, msgElem, setLoadElem, loadMsg } from "../../../../g-lobal/layer/var"
 
 export function val(name, value) {
   if (value === undefined) {
     return initPop[name]
   } else {
     initPop[name] = value
-  }
-}
-export function loading(msg) {
-  if (d.body) {
-    let id = uuid()
-    setPageTemp(loadElem, setLoadElem)
-    msg && (msgElem.innerHTML = msg)
-    loadMsg[id] = msg
-    if (loadMsg.msgs.length < 2) {
-      loadElem.setAttribute('style', '')
-    }
-    loadMsg.msgs = Object.keys(loadMsg)
-    return id
   }
 }
 export function strToUrl(str, type) {
@@ -92,18 +75,4 @@ export function getBase64() {
 }
 export function getJse() {
   return jse
-}
-export default {
-  getParamsUrl: getParamsUrl,
-  getUrlParams: getUrlParams,
-  loading,
-  strToUrl,
-  val,
-  config,
-  init,
-  initConfig,
-  formatTreeData,
-  local,
-  getBase64,
-  getJse
 }

@@ -1,8 +1,8 @@
+/* eslint-disable no-undef */
 import { openPop } from "../layui/layer"
 import { printCLodop } from "../../var/print"
 import { setIframe } from "./deeps"
-import { getParamsUrl, loading, local, strToUrl } from "./init"
-import { dealsUrl, getBaseUrl, getConfig, loaded, setPageTemp } from "../../../../g-lobal"
+import { local, strToUrl } from "./init"
 function setPrinted() {
   if (w.getCLodop) {
     printCLodop = w.getCLodop()

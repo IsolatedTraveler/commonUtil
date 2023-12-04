@@ -13,6 +13,7 @@ declare global {
     getSystemVal: GetSystemVal
     commonHttppost: CommonHttppost
     getAjax: GetAjax
+    setPageTemp: SetPageTemp
   }
   let w: Window
   let d: Document

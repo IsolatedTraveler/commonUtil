@@ -1,7 +1,7 @@
+/* eslint-disable no-undef */
 import { thirdBaseUrl, useHead, useSrcModule, useModule } from "../../var/use"
 import { val } from "./init"
-import { setPageTemp, syncWhile, ElemLoadEvent } from "./deeps"
-import { dealsUrl } from "../../../../g-lobal"
+import { syncWhile, ElemLoadEvent } from "./deeps"
 function setThirdBaseUrl() {
   useHead = d.getElementsByTagName('head')[0]
   thirdBaseUrl = val('thirdBaseUrl')

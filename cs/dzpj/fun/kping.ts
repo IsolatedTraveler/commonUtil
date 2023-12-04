@@ -7,7 +7,7 @@ export function kpIng(data: any, lx: DzPjKpLx, ly: DzPjKpLy) {
     let { url, bbid } = cs
     return getKpRes(data, url, bbid).then(() => {
       if (bbid && isPrint != '否') {
-        // 打印
+        bbPrint(bbid, data)
       }
     })
   } else {

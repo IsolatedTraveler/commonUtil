@@ -1,4 +1,4 @@
-import { setPageTemp } from "../fun/deeps"
+/* eslint-disable no-undef */
 import { TBody, TBox, TMain } from "../../var/layui"
 function setTBox(elem) {
   return elem.find(TBox).eq(0)
@@ -22,11 +22,11 @@ function getTr(body, i) {
   return body.find('tr[data-index="' + i + '"]')
 }
 function tableInit(options, mx, res, pelem, layForm) {
-  let selectElem = $(options.select), {filter = 'table', click, mxCallBack, mxclick} =options, zTable
+  let selectElem = $(options.select), { filter = 'table', click, mxCallBack, mxclick } = options, zTable
   options.height = pelem.height()
   zTable = initTable(options, res.page)
-  $(d).on('click', '.form-show-more', function( ) {
-    tableReload({height: pelem.height()}, zTable)
+  $(d).on('click', '.form-show-more', function () {
+    tableReload({ height: pelem.height() }, zTable)
   })
   layForm.render()
   if (!options.notTrigger) {
@@ -43,10 +43,10 @@ function tableInit(options, mx, res, pelem, layForm) {
   return zTable
 }
 function tableReloadV(data, count, limit, height, table, page, pelem, options) {
-  let val = {data, height: height || pelem.height()}
+  let val = { data, height: height || pelem.height() }
   if (options.page) {
     val.count = count
-    val.page = {count, curr: page._pageNumber + '', limit: (limit || page._pageSize || 20)}
+    val.page = { count, curr: page._pageNumber + '', limit: (limit || page._pageSize || 20) }
   }
   tableReload(val, table)
 }
@@ -74,17 +74,17 @@ function initMxTable(mx, filter, pElem, clickEvent, result, callBack, mxClickEve
     mx.height = mPElem.height()
     result.mxPage = page
     mTable = initTable(mx, result.mxPage, callBack, result)
-    result.mxtableReload = function(data, count, limit, height) {
+    result.mxtableReload = function (data, count, limit, height) {
       tableReloadV(data, count, limit, height, mTable, page, mPElem, mx)
     }
-    result.getMxCheckedData = function() {
+    result.getMxCheckedData = function () {
       return mTable.checkStatus(false)
     }
-    layTable.on('row(mxtable)', function(res) {
+    layTable.on('row(mxtable)', function (res) {
       trClickEvent(res, mxClickEvent, mPElem)
       result.mxrow = res
     })
-    selectElem.find('[lay-submit]').on('click', function() {
+    selectElem.find('[lay-submit]').on('click', function () {
       $('.jt-mx').hide()
       result.mxtableReload && result.mxtableReload([])
     })
@@ -96,7 +96,7 @@ function initMxTable(mx, filter, pElem, clickEvent, result, callBack, mxClickEve
   })
 }
 function trClickEvent(res, clickEvent, pElem) {
-  res.updated = function(data, judge) {
+  res.updated = function (data, judge) {
     res.data = Object.assign({}, res.data, data)
     res.update(res.data)
     judge && clickEvent && clickEvent(res)
@@ -123,7 +123,7 @@ export function initTable(option, obj = {}, callBack, result) {
   // 根据数据对特定行追加行样式
   if (rowClass) {
     let pelem = $(elem).parent()
-    param.done = function(res, page, total) {
+    param.done = function (res, page, total) {
       let data = res.data, tbody = getTBody(pelem)
       data.forEach((it, i) => {
         let cl = rowClass(it, i)
@@ -152,7 +152,7 @@ export function initTable(option, obj = {}, callBack, result) {
         if (!first) {
           if (callBack && result) {
             callBack(result.row.data, obj)
-          } else if(option.select) {
+          } else if (option.select) {
             $(option.select).find('[lay-submit]').trigger('click')
           } else if (option.getData) {
             option.getData(obj)
@@ -176,12 +176,12 @@ export function initQueryPage(options, mx) {
       this.row = null
     },
     setHeight(height) {
-      tableReload({height: height || pelem.height()}, zTable)
+      tableReload({ height: height || pelem.height() }, zTable)
     },
     getFormData() {
       return layForm.val('cx')
     },
-    getData() {},
+    getData() { },
     getCheckedData() {
       return zTable.checkStatus(false)
     },
@@ -190,7 +190,7 @@ export function initQueryPage(options, mx) {
   if (layui.table && layui.form) {
     zTable = tableInit(options, mx, res, pelem, layForm)
   } else {
-    layui.use(['table'], function() {
+    layui.use(['table'], function () {
       zTable = tableInit(options, mx, res, pelem, layForm)
     })
   }

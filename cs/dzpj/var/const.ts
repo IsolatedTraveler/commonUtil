@@ -3,7 +3,8 @@ import { DzPjKpPz } from "../type";
 export const dzpjKppz: DzPjKpPz = {
   kp: {
     mz: {
-      url: 'magic/yy201-dzpj/dzpj/m-mzkp'
+      url: 'magic/yy201-dzpj/dzpj/m-mzkp',
+      bbid: '010303_05'
     },
     zy: {
       url: 'magic/yy201-dzpj/dzpj/m-zykp'

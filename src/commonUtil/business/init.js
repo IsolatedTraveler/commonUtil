@@ -1,8 +1,8 @@
-import { getParamsUrl, local, getUrlParams, loading, strToUrl, val, config, init, initConfig, formatTreeData, getBase64, getJse } from '../public/fun/init'
-import Class from '../core'
+/* eslint-disable no-undef */
+import { strToUrl, val, init, initConfig, formatTreeData, getBase64, getJse, local, config } from '../public/fun/init'
+import { Class } from '../core'
 import { srcWEventKbjbg } from '../var/init'
 import { loadPwdJs } from '../reWrite/fun/init'
-import { alertMsg, getUploadUrl, loaded, session } from '../../../g-lobal'
 Class.prototype.kbjbg = srcWEventKbjbg
 Class.prototype.val = val
 Class.prototype.getParamsUrl = getParamsUrl

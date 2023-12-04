@@ -1,5 +1,5 @@
-import { debounce1 } from "../../../g-lobal/index.js";
-import Class from "../core.js"
+/* eslint-disable no-undef */
+import { Class } from "../core.js"
 import { srcWEventKbjbg } from "../var/init.js";
 // 全键盘操作
 (function () {

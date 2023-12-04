@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 import { dic, ryxx } from "../../var/dic";
-import { setPageTemp } from "../fun/deeps";
 function setDataBase(data) {
   data.obj[data.name] = {}
 }

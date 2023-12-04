@@ -1,8 +1,8 @@
-import { dealsUrl, loaded } from "../../../../g-lobal"
+/* eslint-disable no-undef */
 import { BASE64 } from "../../var/init"
 import { setIframe } from "./deeps"
 import { down } from "./down"
-import { loading, strToUrl, val, init, getParamsUrl } from "./init"
+import { strToUrl, val, init } from "./init"
 function setHtml(title, body, head, { addBefore = '', addAfter = '' } = {}, index) {
   down(strToUrl([
     '<html xmlns:svg="http://www.w3.org/2000/svg"><head><meta name="content-type" content="text/html" charset="UTF-8"><title>',

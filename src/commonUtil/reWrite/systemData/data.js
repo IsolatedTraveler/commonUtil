@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../public/fun/deeps"
+/* eslint-disable no-undef */
 import { systemDataMkqx, systemDataParam } from "../../var/systemData"
 
 function setPossessMkqx(mkbh) {

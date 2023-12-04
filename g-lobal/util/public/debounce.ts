@@ -1,6 +1,6 @@
 export function debounce1(this: any, fun: Function, delay: number) {
   let time: any = null
-  return () => {
+  return function (this: any) {
     let args = arguments
     clearTimeout(time)
     time = setTimeout(() => {

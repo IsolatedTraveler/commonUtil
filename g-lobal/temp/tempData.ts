@@ -1,5 +1,6 @@
 import { webName } from "../commonUtil/var"
-
+import { setWebName } from "../commonUtil/public/setWebName"
+setWebName()
 export function tempData(name: string, val: any, obj: Storage = sessionStorage) {
   let name1: string = webName + name
   if (val === undefined) {

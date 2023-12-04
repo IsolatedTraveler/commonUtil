@@ -2,7 +2,7 @@ import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, Ajax
 import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
 import { ajaxDealData, ajaxPostData } from "./dealData";
-import { LayerIndex, laoding } from "../../layer/public/index";
+import { LayerIndex, loading } from "../../layer/public/index";
 import { ajaxTimeOut } from "../../../types/const";
 import { getAllUrl } from "../../url/public/commonUtil";
 import { getParamsUrl } from "../../url/public/data";
@@ -28,7 +28,7 @@ export function ajax(
     (jq as any)[jqMode](config, url)
   }
   if (option.isShowLoad) {
-    layerIndex = laoding()
+    layerIndex = loading()
   }
   data = ajaxPostData(data, option, config, type)
   url = getAllUrl(url, option.urlType)

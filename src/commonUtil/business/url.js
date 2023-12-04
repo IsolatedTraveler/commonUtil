@@ -1,5 +1,5 @@
-import { dealsUrl, getBaseUrl, getServiceUrl } from '../../../g-lobal'
-import Class from '../core'
+/* eslint-disable no-undef */
+import { Class } from '../core'
 import { getFaceUrl, getHostUrl, getImgUrl, getJsUrl, getTpUrl } from '../public/fun/url'
 // import { getFaceUrl, getImgUrl, dealsUrl, getBaseUrl, getHostUrl, getJsUrl, getTpUrl} from '../public/fun/url'
 Class.prototype.dealsUrl = dealsUrl

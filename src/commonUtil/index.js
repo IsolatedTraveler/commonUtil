@@ -1,12 +1,5 @@
-export * from "../../types/const/index"
-import './var/index'
-import "../../g-lobal/var/index"
-import './fun/index'
-import './public/index'
-import './extend/index'
-import './business/index'
-import Class from './core.js'
-import './w/index'
-import './old'
-w.CommonUtil = Class
-export default Class
+import '../../types/'
+import '../../g-lobal/allVar'
+import '../../g-lobal/allSet'
+import '../../g-lobal/index'
+export { Class } from './render'

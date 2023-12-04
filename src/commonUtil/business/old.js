@@ -1,4 +1,4 @@
-import Class from "../core";
+import { Class } from "../core";
 import {
   closeOpenPopChild,
   closeWindow,

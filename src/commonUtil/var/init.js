@@ -4,7 +4,6 @@ export let webNameReg, jse, promiseResove, promiseCore, BASE64
     // 库所在位置
     libSite: '/lib',
     // 自定义网站更目录
-    webName: '/his/',
     // 登录页
     login: '../index.html',
     // 导航页

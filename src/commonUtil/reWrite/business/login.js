@@ -1,4 +1,4 @@
-import { webName } from "../../../../g-lobal/allVar"
+/* eslint-disable no-undef */
 import { initPop } from "../../var/init"
 import { rw, winName } from "../../var/login"
 function setMenuElemVal(id, title, url) {

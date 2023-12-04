@@ -1,5 +1,3 @@
-import { setPageTemp } from "../../../../g-lobal";
-export { setPageTemp } from "../../../../g-lobal";
 
 function elemLoaded(e, resolve, reject) {
   var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
@@ -63,7 +61,6 @@ export function setIframe(url, timeOut, resolve, reject) {
   })
 }
 export default {
-  setPageTemp: setPageTemp,
   syncWhile,
   ElemLoadEvent,
   setIframe

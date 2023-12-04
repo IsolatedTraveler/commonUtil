@@ -1,4 +1,4 @@
-import { dealsUrl, getAjaxSync, getBaseUrl } from "../../../../g-lobal";
+/* eslint-disable no-undef */
 
 export function svgRender(id) {
   let elems = $(id || d).find('.jt-svg');

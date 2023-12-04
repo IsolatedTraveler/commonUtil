@@ -1,4 +1,4 @@
-import Class from "../core";
+import { Class } from "../core";
 import { alertPwd, getRouterW, getTopMenuId, renderTop, routerByData } from "../public/business/login";
 import { exit, login, logOut, router, exiting, dealLogin } from "../reWrite/business/login";
 Class.prototype.exiting = exiting

@@ -1,4 +1,4 @@
-import { setPageTemp } from "../fun/deeps";
+/* eslint-disable no-undef */
 import { getFaceUrl } from "../fun/url";
 import { timeDiff } from "../../var/systemData";
 function setSystemTime() {

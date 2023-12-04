@@ -1,5 +1,5 @@
-import { setBrowserParam, getBrowserParam } from "../../../g-lobal";
-import Class from "../core";
+/* eslint-disable no-undef */
+import { Class } from "../core";
 import { srcBaseBaseFunError, srcBaseBaseFunErrorSync } from "../reWrite/browser";
 
 Class.prototype.readSfzCard = srcBaseBaseFunErrorSync

@@ -1,11 +1,12 @@
-const { getCode, readDir } = require('../fun/public'), { ml, outMl } = require('../var/src')
-module.exports = async function (grunt, version) {
-  let res = await readDir(ml)
-  if (res && res[0]) {
+const { readDir, getCode } = require('../fun')
+
+const path = require('path'), ml = path.resolve(`${__dirname}/../../src`)
+  , { outMl } = require('../var/src')
+module.exports = function (grunt, version) {
+  return readDir(ml).then(async (res = []) => {
     let len = res.length
     for (let i = 0; i < len; i++) {
-      let name = res[i]
-      await getCode(name, ml, version, grunt, outMl, 'src')
+      await getCode(res[i], ml, version, grunt, outMl, 'cs')
     }
-  }
+  })
 }

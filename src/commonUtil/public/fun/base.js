@@ -1,5 +1,3 @@
-import { uuid } from "../../../../g-lobal"
-export { uuid } from "../../../../g-lobal"
 
 function srcBaseBaseFunUnique(it, keys) {
   if (keys) {
@@ -150,6 +148,5 @@ export default {
   calc,
   toDecimalNumber,
   throttle,
-  debounce,
-  uuid: uuid
+  debounce
 }

@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 import { getHexMd5 } from "../../reWrite/business/login"
 import { val } from "../fun/init"
 import { setSelectOption } from "../layui/form"
 import { promiseResove, webNameReg } from "../../var/init"
 import { event, rw, winName } from "../../var/login"
-import { dealsUrl, getBaseUrl } from "../../../../g-lobal"
 function bindEvent() {
   let form = layui.form, pwd = ''
   form.verify({

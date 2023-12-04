@@ -1,4 +1,4 @@
-import { user } from "../../../../g-lobal/allVar"
+/* eslint-disable no-undef */
 import { BASE64, jse } from "../../var/init"
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {

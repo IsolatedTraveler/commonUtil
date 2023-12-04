@@ -1,5 +1,4 @@
-import { userInfo, user, menu } from "../../../../g-lobal/allVar";
-import { setPageTemp } from "../../public/fun/deeps";
+/* eslint-disable no-undef */
 import { formatTreeData } from "../../public/fun/init";
 import { webNameReg } from "../../var/init";
 function setUserInfo() {
@@ -11,13 +10,6 @@ function setUserInfo() {
 }
 function getUserInfo() {
   return setPageTemp(userInfo, setUserInfo) || {}
-}
-function setUser() {
-  user = getUserInfo().ryxx
-  if (!user) {
-    that.logOut()
-  }
-  return user
 }
 function getMenuBySql() {
   menu = getUserInfo().cdqx || that.commonHttppost('/rest/queryDataBySql/000000/999', {}).data
@@ -41,15 +33,11 @@ export function dealMenu(menu) {
   }
   return menu
 }
-export function getUser() {
-  return setPageTemp(user, setUser)
-}
 export function getMenu(judge) {
   setPageTemp(menu, setMenu)
   return judge ? menu['cd-' + w.name.replace(webNameReg, '')] : menu
 }
 export default {
-  getUser,
   getMenu,
   dealMenu
 }

@@ -1,5 +1,5 @@
-import { debounce1, uuid } from "../../../g-lobal";
-import Class from "../core";
+/* eslint-disable no-undef */
+import { Class } from "../core";
 import { calc, debounce, throttle, toDecimalNumber, unique } from "../public/fun/base";
 Class.prototype.unique = unique
 Class.prototype.calc = calc

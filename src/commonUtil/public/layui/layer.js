@@ -1,5 +1,4 @@
-import { dealsUrl } from "../../../../g-lobal"
-import { getParamsUrl } from "../fun/init"
+/* eslint-disable no-undef */
 
 export function layerLoading() {
   return layui.layer.load(2, {
