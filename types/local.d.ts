@@ -1,3 +1,4 @@
+import { ajax } from '../g-lobal/ajax/fun/ajax'
 import {
   getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, bbPrint, getSystemVal,
   getBrowserParam, setBrowserParam, getUser, logOut, exit, paramget, setWebName, readFile, alertMsg, load, loaded, loading,
@@ -9,6 +10,7 @@ declare global {
   type CommonHttppost = typeof commonHttppost
   type GetAjax = typeof getAjax
   type SetPageTemp = typeof setPageTemp
+  type Ajax = typeof ajax
   let getAjax: typeof getAjax
   let getAjaxSync: typeof getAjaxSync
   let commonHttppost: typeof commonHttppost

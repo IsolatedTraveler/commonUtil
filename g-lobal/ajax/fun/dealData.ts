@@ -1,6 +1,7 @@
 import { alertMsg, loaded } from "../../layer/public";
-import { user } from "../../allVar";
-import { AjaxErrBack, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
+import { jqMode, user } from "../../allVar";
+import * as jq from './jq/index'
+import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
 export function ajaxError(
   { message, i }: ajaxResposeJudge,
   { msg, isShowLoad }: AjaxRequestOption,
@@ -17,12 +18,21 @@ export function ajaxDealData(
   i: string | undefined,
   option: AjaxRequestOption,
   errCallBack: AjaxErrBack,
-  suuCallBack: AjaxSuuBack) {
+  suuCallBack: AjaxSuuBack,
+  url: AjaxRequestUrl,
+  data: AjaxRequestData = {},
+  param: AjaxRequestParam = {},
+  config: AjaxRequestConfig = {},
+  type: AjaxRequestType = 'GET',
+  async: AjaxRequestAsync = false) {
   if (res.code == 1 || res.code === undefined) {
     if (option.isShowLoad) {
       loaded(i as string)
     }
     return suuCallBack ? suuCallBack(res) : res
+  } else if (res.code == 0 || res.code == 2) {
+    (jq as any)[jqMode](config, url, true)
+    return GLOBALCLASS.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
   }
   res = ajaxError({ message: res.message, code: 0, i }, option, res)
   return errCallBack ? errCallBack(res) : res

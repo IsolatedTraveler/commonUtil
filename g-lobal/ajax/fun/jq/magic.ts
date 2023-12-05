@@ -3,14 +3,21 @@ import { ajaxResposeData } from "../../type";
 import { ajaxJqMagic } from "../../../../types/const";
 import { session } from "../../../temp/session"
 
-export function jqMagic(config: any, url: string) {
+export function jqMagic(config: any, url: string, rest: Boolean = false) {
   let magic = session('magic') || ajaxJqMagic
-  if (ajaxJqMagic.url === url) {
-    setAuthorization(magic.Authorization)
-  } else if (!Authorization || Authorization == magic.Authorization) {
+  if (rest) {
     setAjaxMagicToken(magic.user)
   } else {
-    // 校验token是否临期
+    if (ajaxJqMagic.url === url) {
+      setAuthorization(magic.Authorization)
+    } else if (!Authorization) {
+      setAuthorization(session('Authorization'))
+    }
+    if (Authorization == magic.Authorization) {
+      setAjaxMagicToken(magic.user)
+    } else {
+      // 校验token是否临期
+    }
   }
   session('Authorization', Authorization)
   config.headers = config.headers || {}

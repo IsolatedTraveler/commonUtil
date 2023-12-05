@@ -46,7 +46,7 @@ export function ajax(
       if (typeof res === 'string') {
         res = getAjaxRes(res)
       }
-      value = ajaxDealData(res, layerIndex, option, errCallBack, suuCallBack)
+      value = ajaxDealData(res, layerIndex, option, errCallBack, suuCallBack, url, data, param, config, type, async)
     },
     error(e: any) {
       const res = { code: '-1', message: '网络连接超时', i: layerIndex };

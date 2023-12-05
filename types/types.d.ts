@@ -14,6 +14,7 @@ declare global {
     commonHttppost: CommonHttppost
     getAjax: GetAjax
     setPageTemp: SetPageTemp
+    ajax: Ajax
   }
   let w: Window
   let d: Document
