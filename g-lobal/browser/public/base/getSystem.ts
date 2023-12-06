@@ -1,6 +1,12 @@
 import { alertMsg } from "../../../layer/public/alert"
 import { system } from "../../var"
-
+import { setJtPhisSystem } from "../../var/global"
+export function getJtPhisSystem() {
+  let systemV = w.jthisJsObject || w.wdphisJsObject
+  if (systemV) {
+    setJtPhisSystem(systemV.jthis || systemV.wdphis)
+  }
+}
 export function getSystemVal(name: string, param: Array<any> | undefined = undefined) {
   if (system) {
     if (system[name]) {

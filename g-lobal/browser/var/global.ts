@@ -1,8 +1,4 @@
 export let system: any
-function getJtPhisSystem() {
-  let systemV = w.jthisJsObject || w.wdphisJsObject
-  if (systemV) {
-    system = systemV.jthis || systemV.wdphis
-  }
+export function setJtPhisSystem(v: any) {
+  return system = v
 }
-getJtPhisSystem()

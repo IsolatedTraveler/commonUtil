@@ -44,19 +44,12 @@ function getLayUi() {
     })
   }
 }
-export const Class = function (obj) {
+export const Class = function (this: any, obj: any) {
   let pro = []
   that = this
   that.config(obj)
   w.name = getName(w)
   pro = [getLayUi()]
-  if (system) {
-    that.getUser = function () {
-      // eslint-disable-next-line no-unused-vars
-      return JSON.parse(system.varget('0', 'ryxx'))
-    }
-    pro.push(that.use('browser'))
-  }
   // eslint-disable-next-line no-unused-vars
   promiseCore = Promise.all(pro)
   that.init()

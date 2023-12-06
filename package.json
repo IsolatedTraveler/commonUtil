@@ -2,16 +2,12 @@
   "name": "common-util",
   "version": "0.1.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "grunt",
-    "build:xb": "grunt build:xb",
-    "dev": "grunt"
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "devDependencies": {
-    "grunt": "^1.4.1",
-    "grunt-cli": "^1.4.3",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^24.0.0",
+    "@esbuild-kit/cjs-loader": "^2.4.4",
     "insight": "^0.11.1",
     "load-grunt-tasks": "^5.1.0",
     "rollup": "^2.70.1",
@@ -21,6 +17,7 @@
     "rollup-plugin-typescript": "^1.0.1"
   },
   "dependencies": {
-    "agora-rtc-sdk-ng": "^4.18.0"
+    "agora-rtc-sdk-ng": "^4.18.0",
+    "gulp": "^4.0.2"
   }
 }

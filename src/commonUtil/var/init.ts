@@ -1,4 +1,5 @@
-export let webNameReg, jse, promiseResove, promiseCore, BASE64
+
+export let webNameReg: RegExp, jse: any, promiseResove = Promise.resolve, promiseCore, BASE64
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
   , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
     // 库所在位置
@@ -19,10 +20,4 @@ export let webNameReg, jse, promiseResove, promiseCore, BASE64
     isBase64: false,
     isPwd: true
   }
-export default {
-  initPop,
-  promiseResove,
-  webNameReg,
-  srcWEventKbjbg,
-  promiseCore
-}
+export setPromiseResove

@@ -9,13 +9,6 @@ declare global {
     $: any
     hex_md5: any
   }
-  interface GLOBALCLASSTYPE {
-    getSystemVal: GetSystemVal
-    commonHttppost: CommonHttppost
-    getAjax: GetAjax
-    setPageTemp: SetPageTemp
-    ajax: Ajax
-  }
   let w: Window
   let d: Document
   let MODULENAME: any
