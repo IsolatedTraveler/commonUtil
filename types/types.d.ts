@@ -15,10 +15,6 @@ declare global {
   let FIRSTMODULENAME: any
   let GLOBALCLASS: GLOBALCLASSTYPE
 }
-// module
-declare global {
-  let that: any // this
-}
 // layui
 declare global {
   interface Window {
