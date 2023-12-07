@@ -1,0 +1,1 @@
+export var data = {}, pageSize = 'A4', getData
