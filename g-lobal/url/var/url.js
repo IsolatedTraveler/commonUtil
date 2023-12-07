@@ -1,1 +1,0 @@
-export let urlHost, urlTp, urlImg, urlFace, urlUpload

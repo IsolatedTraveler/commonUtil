@@ -1,1 +1,1 @@
-export { setSystemDataParam, setWebNameVal, setUserInfoVal } from './gloabl'
+export { setSystemDataParam, setWebNameVal, setUserInfoVal, setUserVar, setMenuVal } from './gloabl'
