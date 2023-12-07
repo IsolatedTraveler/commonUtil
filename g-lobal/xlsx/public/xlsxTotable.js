@@ -6,7 +6,7 @@ export function readXlsx(file, { names, isObj = true } = {}) {
   return new Promise((resolve, reject) => {
     if (xlsxType.test(type)) {
       // eslint-disable-next-line no-undef
-      GLOBALCLASS.readFile(file, (e) => getXlsxData(e, resolve, reject, isObj && !names), reject)
+      GLOBAL$FILE$.readFile(file, (e) => getXlsxData(e, resolve, reject, isObj && !names), reject)
     } else {
       reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }))
     }

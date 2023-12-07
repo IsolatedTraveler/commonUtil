@@ -1,7 +1,7 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
 import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
-import { ajaxDealData, ajaxPostData } from "./dealData";
+import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
 import { ajaxTimeOut } from "../../../types/const";
 import { getAllUrl } from "../../url/public/commonUtil";
@@ -30,10 +30,8 @@ export function ajax(
   if (option.isShowLoad) {
     layerIndex = loading()
   }
-  data = ajaxPostData(data, option, config, type)
   url = getAllUrl(url, option.urlType)
   url = getParamsUrl(param, url)
-  console.log(url, data)
   window.$.ajax(Object.assign({
     type,
     url,

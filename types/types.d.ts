@@ -13,7 +13,10 @@ declare global {
   let d: Document
   let MODULENAME: any
   let FIRSTMODULENAME: any
-  let GLOBALCLASS: GLOBALCLASSTYPE
+}
+// module
+declare global {
+  let that: any // this
 }
 // layui
 declare global {

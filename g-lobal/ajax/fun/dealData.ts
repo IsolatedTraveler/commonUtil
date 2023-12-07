@@ -32,7 +32,7 @@ export function ajaxDealData(
     return suuCallBack ? suuCallBack(res) : res
   } else if (res.code == 0 || res.code == 2) {
     (jq as any)[jqMode](config, url, true)
-    return GLOBALCLASS.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
+    return GLOBAL$AJAX$.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
   }
   res = ajaxError({ message: res.message, code: 0, i }, option, res)
   return errCallBack ? errCallBack(res) : res
@@ -41,7 +41,7 @@ export function ajaxPostData(data: AjaxRequestData = {},
   param: AjaxRequestParam = {},
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {},
-  type: AjaxRequestType = 'GET') {
+  type: AjaxRequestType = 'POST') {
   if (that && that.dealAjaxData) {
     return that.dealAjaxData(data, param, option, config, type)
   } else {

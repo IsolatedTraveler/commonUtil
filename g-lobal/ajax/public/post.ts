@@ -1,6 +1,7 @@
 import { AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestUrl } from "../type";
 import { ajax } from "../fun/ajax";
 import { ajaxSync } from "../fun/async";
+import { ajaxPostData } from "../fun/dealData";
 
 // 同步
 export function commonHttppost(
@@ -8,7 +9,8 @@ export function commonHttppost(
   data: AjaxRequestData,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = undefined): any {
-  return ajax(url, data, option.param, option, config, 'POST')
+
+  return ajax(url, ajaxPostData(data, option, config), option.param, option, config, 'POST')
 }
 // 异步
 export function commonQueryAsyncHttppost_callback(

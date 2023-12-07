@@ -7,5 +7,5 @@ export function getConfig(key: string = '') {
   return key ? dataConfig[key] : dataConfig
 }
 function setConfig() {
-  return setDataConfig(GLOBALCLASS.getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true }))
+  return setDataConfig(GLOBAL$AJAX$.getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true }))
 }

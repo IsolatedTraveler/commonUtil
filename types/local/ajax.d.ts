@@ -1,5 +1,5 @@
 import {
-  getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload
+  getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, ajax, getAjaxRes
 } from '../../g-lobal/ajax'
 declare global {
   interface GLOBAL$AJAX$TYPE {
@@ -9,6 +9,8 @@ declare global {
     commonQueryAsyncHttppost_callback: typeof commonQueryAsyncHttppost_callback
     getConfig: typeof getConfig
     upload: typeof upload
+    ajax: typeof ajax
+    getAjaxRes: typeof getAjaxRes
   }
   let GLOBAL$AJAX$: GLOBAL$AJAX$TYPE
 }
