@@ -1,5 +1,0 @@
-import './var'
-import './fun'
-import './public'
-import './business'
-export { Class } from './core'
