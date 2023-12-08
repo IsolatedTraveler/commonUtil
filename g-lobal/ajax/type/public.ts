@@ -12,8 +12,12 @@ export interface ajaxResposeJudge {
   code?: string | number
 }
 export type ajaxResposeData = any
+export interface AjaxRequestHead {
+  Authorization?: string
+}
 export interface AjaxRequestConfig {
   contentType?: string | boolean
+  headers?: AjaxRequestHead
 }
 export interface AjaxRequestOption {
   param?: AjaxRequestData

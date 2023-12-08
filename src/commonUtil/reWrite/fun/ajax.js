@@ -2,7 +2,7 @@
 import { BASE64, jse } from "../../var/init"
 export function getPostData(data, isGetUser, isBase64, isPwd, isJson) {
   if (isGetUser) {
-    user = that.getUser() || {}
+    let user = that.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
       czryjgid: user.jgid,

@@ -1,7 +1,7 @@
 import { KpJgConfig, KpJgParam, KpJgid } from '../type/index'
 import { kpConfig, kpParam, setIsPrint, setSync } from '../var/index'
 export function isOpenFp() {
-  const { jgid } = GLOBAL$COMMONUTIL$.getUser()
+  const { jgid } = GLOBAL$USER$.getUser()
   return kpConfig[jgid] || getKpJgConfig(jgid)
 }
 function getKpJgConfig(jgid: KpJgid) {

@@ -1,16 +1,7 @@
 /* eslint-disable no-undef */
 import { formatTreeData } from "../../public/fun/init";
 import { webNameReg } from "../../var/init";
-function setUserInfo() {
-  userInfo = that.session('userinfo')
-  if (!userInfo) {
-    that.logOut()
-  }
-  return userInfo
-}
-function getUserInfo() {
-  return setPageTemp(userInfo, setUserInfo) || {}
-}
+
 function getMenuBySql() {
   menu = getUserInfo().cdqx || that.commonHttppost('/rest/queryDataBySql/000000/999', {}).data
   that.session('menu', menu)

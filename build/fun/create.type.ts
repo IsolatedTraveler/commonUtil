@@ -29,5 +29,5 @@ export function createIndex(arr: Array<string>) {
     return it
   }).join(', ')}
 } from '../../g-lobal'`
-  writeFile(path.resolve(ml, 'index.d.ts'), code)
+  writeFile(path.resolve(ml, '../globalLocal.ts'), code)
 }
