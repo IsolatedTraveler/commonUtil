@@ -7,5 +7,5 @@ import {
   getUser, login, exit, logOut, debounce1, uuid, prefix
 } from '../../g-lobal'
 export function Class() {
-  // CODE
+  // @CODE
 }
