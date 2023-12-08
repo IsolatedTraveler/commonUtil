@@ -1,1 +1,1 @@
-export { webName, systemDataParam, menu } from './gloabl'
+export { webName, systemDataParam } from './gloabl'
