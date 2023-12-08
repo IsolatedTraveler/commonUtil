@@ -1,4 +1,4 @@
-export * from './getUser'
-export * from './logOut'
+
+export * from './dealLogin'
 export * from './paramget'
 export * from './setWebName'

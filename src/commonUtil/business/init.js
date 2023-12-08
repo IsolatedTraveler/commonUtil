@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { strToUrl, val, init, initConfig, formatTreeData, getBase64, getJse, local, config } from '../public/fun/init'
+import { strToUrl, val, init, initConfig, formatTreeData, getBase64, getJse, config } from '../public/fun/init'
 import { Class } from '../core'
 import { srcWEventKbjbg } from '../var/init'
 import { loadPwdJs } from '../reWrite/fun/init'

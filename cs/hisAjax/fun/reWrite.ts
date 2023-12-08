@@ -1,12 +1,28 @@
-import { user } from '../../../g-lobal/allVar'
-export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {}, { contentType } = {}, type) {
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../g-lobal/ajax/type"
+export interface HisAjaxRequestOption extends AjaxRequestOption {
+  isBase64?: boolean
+  isPwd?: boolean
+  isJson?: boolean
+}
+export function dealAjaxData(
+  data: any,
+  {
+    isNotGetUser,
+    isBase64,
+    isPwd,
+    isJson
+  }: HisAjaxRequestOption = {},
+  {
+    contentType
+  }: AjaxRequestConfig = {},
+  type: AjaxRequestType) {
   if (data && data.page) {
     data.pageNumber = data.page
     data.pageSize = data.size
   }
   if (!isNotGetUser) {
     // eslint-disable-next-line no-import-assign
-    user = that.getUser() || {}
+    let user = GLOBAL$USER$.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
       czryjgid: user.jgid,
@@ -27,7 +43,7 @@ export function dealAjaxData(data, { isNotGetUser, isBase64, isPwd, isJson } = {
     return data
   }
 }
-function encryption(data) {
+function encryption(data: any) {
   if (typeof data !== 'string') {
     data = JSON.stringify(data)
   }
@@ -35,7 +51,4 @@ function encryption(data) {
     data
     , sstoken: JSON.stringify({ certno: '1', sign: that.getJse().encrypt(sha256(data)) })
   }
-}
-export default {
-  dealAjaxData
 }

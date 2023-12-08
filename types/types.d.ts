@@ -13,6 +13,8 @@ declare global {
   let d: Document
   let MODULENAME: any
   let FIRSTMODULENAME: any
+  let sha256: any
+  let $: any
 }
 // module
 declare global {

@@ -67,9 +67,6 @@ export function formatTreeData(data, id = 'id', pid = 'sjid', key = '') {
   result.__proto__ = map
   return result
 }
-export function local(name, val) {
-  return tempData(name, val, localStorage)
-}
 export function getBase64() {
   return BASE64
 }

@@ -1,9 +1,5 @@
 /* eslint-disable no-undef */
 import { val } from './init'
-function setHostUrl() {
-  let name = val('hostName')
-  return urlHost = name ? (dealsUrl(name, getBaseUrl()) + '/') : getBaseUrl()
-}
 function getPath() {
   var sc = d.scripts, len = sc.length - 1, i = 0
   for (; i < len; i++) {
@@ -23,9 +19,6 @@ function setImgUrl() {
 function setFaceUrl() {
   return urlFace = dealsUrl('/rest/facedetect', that.getConfig('faceurl') || that.getServiceUrl())
 }
-export function getHostUrl() {
-  return setPageTemp(urlHost, setHostUrl)
-}
 export function getJsUrl(d) {
   return d.currentScript ? (d.currentScript.src || getPath(d)) : getPath(d)
 }
@@ -41,7 +34,6 @@ export function getImgUrl(id) {
 export default {
   dealsUrl,
   getBaseUrl,
-  getHostUrl,
   getJsUrl,
   getTpUrl,
   getFaceUrl,

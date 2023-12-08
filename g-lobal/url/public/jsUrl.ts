@@ -6,7 +6,7 @@ export function getBaseUrl() {
   return GLOBAL$TEMP$.setPageTemp(urlBase, setBaseUrl)
 }
 function setBaseUrl() {
-  let reg = new RegExp(urlRegV), url = window.location.href
-  seturlBaseVal((url.split(reg)[0] + '/').replace(/\/+/g, '/'))
+  let url = window.location.href
+  seturlBaseVal((url.split(urlRegV)[0] + '/').replace(/\/+/g, '/'))
   return urlBase
 }

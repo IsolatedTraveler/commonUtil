@@ -18,3 +18,16 @@ export {
 }`
   writeFile(path.resolve(ml, `${name}.d.ts`), code)
 }
+export function createIndex(arr: Array<string>) {
+  let sum = 0, code = `import {
+  ${arr.map((it: string) => {
+    sum += it.length + 1
+    if (sum > 100) {
+      sum = it.length
+      return '\n  ' + it
+    }
+    return it
+  }).join(', ')}
+} from '../../g-lobal'`
+  writeFile(path.resolve(ml, 'index.d.ts'), code)
+}

@@ -3,7 +3,7 @@ import { uuid } from "../../util/public";
 import { setLoadElem, loadElem, msgElem, closeLoadEd, loadMsg } from "../var";
 export type LayerIndex = string | undefined
 
-export function loading(msg = undefined): LayerIndex {
+export function loading(msg: string | undefined = undefined): LayerIndex {
   if (document.body) {
     let id = uuid()
     setPageTemp(loadElem, setLoadElem)
@@ -16,8 +16,8 @@ export function loading(msg = undefined): LayerIndex {
     return id
   }
 }
-export function loaded(i: string) {
-  if (loadMsg) {
+export function loaded(i: string | undefined) {
+  if (i !== undefined && loadMsg) {
     delete loadMsg[i]
     loadMsg.msgs = Object.keys(loadMsg)
     closeLoadEd()

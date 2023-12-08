@@ -2,7 +2,7 @@
 import { openPop } from "../layui/layer"
 import { printCLodop } from "../../var/print"
 import { setIframe } from "./deeps"
-import { local, strToUrl } from "./init"
+import { strToUrl } from "./init"
 function setPrinted() {
   if (w.getCLodop) {
     printCLodop = w.getCLodop()

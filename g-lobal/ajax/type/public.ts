@@ -12,7 +12,9 @@ export interface ajaxResposeJudge {
   code?: string | number
 }
 export type ajaxResposeData = any
-export type AjaxRequestConfig = any
+export interface AjaxRequestConfig {
+  contentType?: string | boolean
+}
 export interface AjaxRequestOption {
   param?: AjaxRequestData
   isShowLoad?: Boolean // 是否显示遮罩层

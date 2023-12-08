@@ -1,35 +1,33 @@
-/* eslint-disable no-undef */
-import { getHexMd5 } from "../../reWrite/business/login"
 import { val } from "../fun/init"
 import { setSelectOption } from "../layui/form"
-import { promiseResove, webNameReg } from "../../var/init"
-import { event, rw, winName } from "../../var/login"
+import { promiseResove } from "../../var/init"
+import { event } from "../../var/login"
 function bindEvent() {
-  let form = layui.form, pwd = ''
+  let form = w.layui.form, pwd = ''
   form.verify({
-    pass: function (value) {
+    pass: function (value: string) {
       pwd = value
     },
-    qrpass: function (value) {
+    qrpass: function (value: string) {
       if (value !== pwd) {
         return '两次密码输入不一致'
       }
     }
   })
-  form.on('submit(alertPwdSubmit)', function (res) {
+  form.on('submit(alertPwdSubmit)', function (res: any) {
     alertPwd(res.field)
   })
-  $('.jt-top [jt-event]').on('click', function (e) {
-    event[this.getAttribute('jt-event')]()
+  $('.jt-top [jt-event]').on('click', function (this: any, e: any) {
+    (event as any)[this.getAttribute('jt-event')]()
     e.stopPropagation()
   })
 }
-function topRender(options) {
-  let form = layui.form, data = that.getConfig('xtxx'), user = that.getUser(), menu = options.menu || {}, id = menu.valId || 'id', show = menu.showId || 'bt'
+function topRender(options: any) {
+  let form = w.layui.form, data = that.getConfig('xtxx'), user = that.getUser(), menu = options.menu || {}, id = menu.valId || 'id', show = menu.showId || 'bt'
   $('#userInfo').html(`<span>机构：${user.jgmc}</span><span>账号：${user.yhm}</span><span>姓名：${user.xm}</span>`)
-  $('#head img').attr('src', dealsUrl(data.icon, getBaseUrl()))
+  $('#head img').attr('src', GLOBAL$URL$.dealsUrl(data.icon, GLOBAL$URL$.getBaseUrl()))
   $('#head span').html(data.title)
-  form.on('select(xtcd)', function (e) {
+  form.on('select(xtcd)', function (e: any) {
     if (e.value) {
       let param = e.data
       param.id && routerByData(param)
@@ -42,32 +40,7 @@ function topRender(options) {
     showId: show
   })
 }
-export function getName(w, i = 0) {
-  if (i < 8) {
-    let name = w.name
-    if (webNameReg.test(name) || name == winName) {
-      if (i === 0) {
-        rw = w
-      } else {
-        try {
-          rw = w[val('name')].getRouterW();
-        } catch (e) {
-          rw = w
-          return name
-        }
-      }
-      return name
-    } else {
-      return getName(w.parent, ++i)
-    }
-  } else {
-    return false
-  }
-}
-export function getRouterW() {
-  return rw
-}
-export function getTopMenuId(id, sjid) {
+export function getTopMenuId(id: string, sjid: string) {
   let menu = that.getMenu()
   while (sjid !== '01' && sjid !== '' && sjid !== null) {
     id = sjid
@@ -75,11 +48,11 @@ export function getTopMenuId(id, sjid) {
   }
   return id
 }
-export function routerByData(data, param) {
+export function routerByData(data: any, param: any = undefined) {
   that.router(getTopMenuId(data.id, data.sjid), data.id, data.bt, data.url, param)
 }
-export function alertPwd(data) {
-  return getHexMd5().then(e => {
+export function alertPwd(data: any) {
+  return GLOBAL$ENCRYPT$.getMd5().then((e: any) => {
     return that.commonQueryAsyncHttppost_callback(val('alertMMUrl'), { jmm: w.hex_md5(data.jmm), mm: w.hex_md5(data.xmm) }).then(res => {
       if (res.code == 1) {
         layui.layer.msg('密码修改成功，即将退出，请重新登录', { time: 2000 }, function () {
@@ -93,9 +66,9 @@ export function alertPwd(data) {
     })
   })
 }
-export function renderTop(options) {
+export function renderTop(options: any) {
   if (promiseResove) {
-    promiseResove.then(e => {
+    promiseResove.then((e: any) => {
       bindEvent()
       topRender(options)
     })
@@ -105,8 +78,6 @@ export function renderTop(options) {
   }
 }
 export default {
-  getName,
-  getRouterW,
   getTopMenuId,
   routerByData,
   alertPwd,

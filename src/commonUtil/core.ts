@@ -2,7 +2,6 @@
 // eslint-disable-next-line no-unused-vars
 import { initPop, promiseResove, promiseCore } from "./var/init"
 import { required, identity } from './public/fun/check'
-import { getName } from "./public/business/login"
 import { getJsUrl } from "./public/fun/url"
 initPop.thirdBaseUrl = dealsUrl('./modules', getJsUrl(d))
 function setFormVerify() {

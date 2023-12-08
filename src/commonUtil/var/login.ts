@@ -1,4 +1,4 @@
-export let winName = 'jt-index', rw, event = {
+export let winName = 'jt-index', rw: any, event = {
   alertPwd() {
     that.openPop({
       title: '修改密码',
@@ -14,8 +14,4 @@ export let winName = 'jt-index', rw, event = {
   logout() {
     that.logOut()
   }
-}
-export default {
-  winName,
-  rw
 }

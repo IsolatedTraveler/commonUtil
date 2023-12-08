@@ -1,1 +1,1 @@
-export const urlRegV = '/webs/|/public/|/public21/|/public23/|/lib/|/lib21/|/lib23/|/.+\\[^/].js|/[^/]+\\.html'
+export const urlRegV = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/
