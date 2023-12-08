@@ -22,7 +22,7 @@ export function dealAjaxData(
   }
   if (!isNotGetUser) {
     // eslint-disable-next-line no-import-assign
-    let user = GLOBAL$USER$.getUser() || {}
+    let user = that.getUser() || {}
     data = Object.assign({}, {
       czryid: user.ryid,
       czryjgid: user.jgid,

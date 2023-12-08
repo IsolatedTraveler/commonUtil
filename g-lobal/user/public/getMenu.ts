@@ -6,5 +6,5 @@ import { menu } from "../var"
 
 export function getMenu(judge: boolean) {
   setPageTemp(menu, setMenu)
-  return judge ? menu['cd-' + getName(w)] : menu
+  return judge ? menu[getName(w)] : menu
 }

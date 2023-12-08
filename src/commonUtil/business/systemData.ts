@@ -13,3 +13,5 @@ Class.prototype.paramget = GLOBAL$COMMONUTIL$.paramget
 Class.prototype.getUser = GLOBAL$USER$.getUser
 Class.prototype.getMenu = GLOBAL$USER$.getMenu
 Class.prototype.dealMenu = GLOBAL$USER$.dealMenu
+Class.prototype.setJqMode = GLOBAL$AJAX$.setJqMode
+Class.prototype.setAjaxContentType = GLOBAL$AJAX$.setAjaxContentType 
