@@ -1,17 +1,17 @@
 
 export function showxtcs(mkbh: string) {
   return new Promise((resolve, reject) => {
-    var res = system.showxtcs(mkbh)
+    var res = GLOBAL$BROWSER$.getSystemVal("showxtcs", [mkbh])
     resolve(res)
   })
 }
 export function openMsgBox(title: string, msg: string, button: any, type: any) {
   return new Promise((resolve, reject) => {
-    var result = system.showmsgbox(title, msg, button, type);
+    var result = GLOBAL$BROWSER$.getSystemVal("showmsgbox", [title, msg, button, type])
     var data = JSON.parse(result).data;
     resolve(data.result);
   })
 }
 export function closeWindow(num = 0) {
-  getSystemVal('closeWindow', [num])
+  GLOBAL$BROWSER$.getSystemVal('closeWindow', [num])
 }

@@ -5,7 +5,7 @@ export function encryption(data: any) {
   return {
     data,
     sstoken: JSON.stringify(
-      JSON.parse(getSystemVal("encryption", [data])).data
+      JSON.parse(GLOBAL$BROWSER$.getSystemVal("encryption", [data])).data
     ),
   };
 }

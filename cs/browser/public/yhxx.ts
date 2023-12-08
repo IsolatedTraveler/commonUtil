@@ -1,7 +1,7 @@
 import { menu, setMenuVal } from "../var";
 
 export function getKsxx(bmxz: string, fwdx: string) {
-  var res = getSystemVal("ksxxget", [bmxz, fwdx]);
+  var res = GLOBAL$BROWSER$.getSystemVal("ksxxget", [bmxz, fwdx]);
   res = JSON.parse(res);
   if (res.code == "1") {
     res = res.data;
@@ -13,12 +13,12 @@ export function getKsxx(bmxz: string, fwdx: string) {
 }
 export function getMenu(judge: boolean) {
   let i = that.loading("加载菜单中");
-  setPageTemp(menu, setMenu);
+  GLOBAL$TEMP$.setPageTemp(menu, setMenu);
   that.loaded(i);
   return judge
     ? menu["cd-" + w.name.replace(that.val("webNameReg"), "")]
     : menu;
 }
 function setMenu() {
-  return setMenuVal(menu || that.dealMenu(JSON.parse(getSystemVal("hiscdqx")).yhcd))
+  return setMenuVal(menu || that.dealMenu(JSON.parse(GLOBAL$BROWSER$.getSystemVal("hiscdqx")).yhcd))
 }

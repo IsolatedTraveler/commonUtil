@@ -1,3 +1,3 @@
 export function facedialog(param: any) {
-  getSystemVal('facedialog', [JSON.stringify(param)])
+  GLOBAL$BROWSER$.getSystemVal('facedialog', [JSON.stringify(param)])
 }

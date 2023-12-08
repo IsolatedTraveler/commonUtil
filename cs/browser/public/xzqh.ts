@@ -1,5 +1,5 @@
 export function xzqh(xzqh: string) {
-  let res = JSON.parse(getSystemVal("xzqhmget", [xzqh]));
+  let res = JSON.parse(GLOBAL$BROWSER$.getSystemVal("xzqhmget", [xzqh]));
   if (res.code === "1") {
     return res.data;
   } else {
@@ -8,7 +8,7 @@ export function xzqh(xzqh: string) {
   }
 }
 export function getXzqh(gjz: string, pageNumber: string, pageSize: string) {
-  let res = JSON.parse(getSystemVal("xzqhget", [gjz, pageNumber, pageSize]));
+  let res = JSON.parse(GLOBAL$BROWSER$.getSystemVal("xzqhget", [gjz, pageNumber, pageSize]));
   if (res.code === "1") {
     return res.data;
   } else {
@@ -16,7 +16,7 @@ export function getXzqh(gjz: string, pageNumber: string, pageSize: string) {
   }
 }
 export function zxzqhget(xzqh: string) {
-  let res = JSON.parse(getSystemVal("zxzqhget", [xzqh]));
+  let res = JSON.parse(GLOBAL$BROWSER$.getSystemVal("zxzqhget", [xzqh]));
   if (res.code === "1") {
     return res.data;
   } else {

@@ -13,5 +13,7 @@ import {
   webName
 } from '../../g-lobal/allVar'
 import { getAge } from '../../g-lobal/util/age'
+getJtPhisSystem()
+setWebName()
 // @CODE
 export { Class }

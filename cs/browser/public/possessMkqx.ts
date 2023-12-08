@@ -1,5 +1,5 @@
 export function possessMkqx(mkbh: string, dm: string = '') {
-  var res = getSystemVal("mkqxhas", [mkbh, dm]);
+  var res = GLOBAL$BROWSER$.getSystemVal("mkqxhas", [mkbh, dm]);
   res = JSON.parse(res);
   if (res.code == "1") {
     res = res.data.result;

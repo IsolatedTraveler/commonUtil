@@ -1,11 +1,10 @@
 import {
-  getLocalInfo, loadPwdJs, local, login, router, getMac, facedialog, encryption, readSfzCard, possessMkqx,
+  getLocalInfo, loadPwdJs, local, login, getMac, facedialog, encryption, readSfzCard, possessMkqx,
   getKsxx, getMenu, dicget, getXzqh, xzqh, zxzqhget, openMsgBox, closeWindow, showxtcs
 } from "../public/";
 
 that.loadPwdJs = loadPwdJs
 that.login = login
-that.router = router
 that.local = local
 that.getLocalInfo = getLocalInfo
 that.getMac = getMac

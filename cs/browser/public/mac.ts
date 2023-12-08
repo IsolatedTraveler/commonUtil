@@ -6,7 +6,7 @@ export function getMac() {
     setMac(local('mac'))
     if (!mac) {
       try {
-        setMac(JSON.parse(getSystemVal("GetSystemInfo")).data.mac)
+        setMac(JSON.parse(GLOBAL$BROWSER$.getSystemVal("GetSystemInfo")).data.mac)
       } catch (e) {
         console.error("该浏览器未提供GetSystemInfo方法");
       }
