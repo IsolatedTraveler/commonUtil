@@ -19,7 +19,7 @@ export function router(pid: string, id: any, title: any, url: any, data: any = u
     } else {
       dealWebTabName(name)
       const a = w.open(dealsUrl(routerUrl, getBaseUrl()), name, '')
-      redirect(a, pid, id, title, url, data)
+      redirect((a as Window), pid, id, title, url, data)
     }
   }
 }

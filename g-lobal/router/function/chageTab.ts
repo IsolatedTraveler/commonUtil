@@ -5,10 +5,9 @@ import { menuWidow } from "../var"
 
 export function chageTab(id: any, title: any, url: any, data: any) {
   if (url) {
+    url = dealsUrl(url, dealsUrl('webs', getBaseUrl()))
     if (data) {
-      url = getParamsUrl(data, dealsUrl(url, getBaseUrl()))
-    } else {
-      url = dealsUrl(url, getBaseUrl())
+      url = getParamsUrl(data, url)
     }
   }
   setMenuElemVal(id, title, url)
