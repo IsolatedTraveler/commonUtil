@@ -24,13 +24,17 @@ export function getParamsUrl(obj: any, url: string | URL = ''): string {
   } else {
     url = url || '';
   }
+  let str = getObjToUrl(obj)
+  return str ? (url + '?' + str) : url
+}
+export function getObjToUrl(obj: any): string {
   let keys = Object.keys(obj);
   if (keys.length) {
-    url += '?' + keys.map(key => {
+    return keys.map(key => {
       let v = obj[key];
       v = (v === null || v === undefined) ? '' : v;
       return key + '=' + encodeURIComponent(typeof v === 'object' ? JSON.stringify(v) : v)
     }).join('&');
   }
-  return url
+  return ''
 }
