@@ -1,6 +1,9 @@
 
 // window
 declare global {
+  interface ClassConstructor {
+    new(): any;
+  }
   interface Window {
     jthisJsObject: any
     wdphisJsObject: any

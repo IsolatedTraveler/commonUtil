@@ -10,11 +10,10 @@ export function jqMagic(config: any, url: string, rest: Boolean = false) {
   } else {
     if (ajaxJqMagic.url === url) {
       setAuthorization(magic.Authorization)
+    } else if (Authorization == magic.Authorization) {
+      setAjaxMagicToken(magic.user)
     } else if (!Authorization) {
       setAuthorization(session('Authorization'))
-    }
-    if (Authorization == magic.Authorization) {
-      setAjaxMagicToken(magic.user)
     } else {
       // 校验token是否临期
     }
