@@ -1,3 +1,6 @@
+import './var'
+import './fun'
+import './public'
+import './business'
 import { Class } from './core'
-w.jtSync = new Class() as JtSync
 export { Class }

@@ -1,0 +1,1 @@
+export const dicUrl = '/public/data/syncLoad.json'
