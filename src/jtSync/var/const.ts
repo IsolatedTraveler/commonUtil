@@ -1,1 +1,1 @@
-export const dicUrl = '/public/data/syncLoad.json'
+export const dicUrl = '/public/data/syncLoad.json', dicUrlBySql = '/xt01-xtjc/ty/third/s-pzxx'
