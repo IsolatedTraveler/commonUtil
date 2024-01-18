@@ -11,6 +11,6 @@ export function ajaxSync(
   config: AjaxRequestConfig,
   type: AjaxRequestType) {
   return new Promise((resolve, reject) => {
-    ajax(url, ajaxPostData(data, option, config, type), param, option, config, type, true, reject, resolve)
+    ajax(url, ajaxPostData(data, param, option, config, type), param, option, config, type, true, reject, resolve)
   }).catch(res => ajaxError(res, option, res))
 }

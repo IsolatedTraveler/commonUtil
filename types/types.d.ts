@@ -18,6 +18,7 @@ declare global {
   let FIRSTMODULENAME: any
   let sha256: any
   let $: any
+  let Base64: any
 }
 // module
 declare global {

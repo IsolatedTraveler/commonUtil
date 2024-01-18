@@ -30,7 +30,7 @@ export function ajaxDealData(
       loaded(i as string)
     }
     return suuCallBack ? suuCallBack(res) : res
-  } else if (res.code == 0 || res.code == 2) {
+  } else if (res.code == 2) {
     (jq as any)[jqMode](config, url, true)
     return GLOBAL$AJAX$.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
   }

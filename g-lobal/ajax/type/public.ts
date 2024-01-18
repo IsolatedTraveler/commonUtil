@@ -26,6 +26,9 @@ export interface AjaxRequestOption {
   isNotGetUser?: Boolean // 是否校验当前登录用户信息
   urlType?: UrlType
   url?: string
+  isBase64?: Boolean
+  isPwd?: Boolean
+  isJson?: Boolean
 }
 
 export type AjaxErrBack = undefined | Function

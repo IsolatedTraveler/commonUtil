@@ -31,7 +31,9 @@ export function getCode(name: string, src: string, version: string, printSrc: Ar
           let outFile = path.resolve(it, name + '.js'), Name = firstUppers(name, true)
           return writeFile(outFile, res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
             .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
-            .replace(/FIRSTMODULENAME/g, Name).replace(/MODULENAME/g, name)).catch(() => { }).then(() => {
+            .replace(/FIRSTMODULENAME/g, Name)
+            .replace(/\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
+            .replace(/MODULENAME/g, name)).catch(() => { }).then(() => {
               console.log(outFile)
             })
         })).then(() => {
