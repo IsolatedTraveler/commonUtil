@@ -19,38 +19,38 @@ const path = require('path')
 const { date } = require('../var/public')
 const { fileExit, fileRead } = require('./readFile')
 
-export function getCode(name: string, src: string, version: string, printSrc: Array<string>, ly: string) {
-  console.log(ly, name)
-  let moduleFile = path.resolve(src, name)
-  return renderModule(moduleFile, name).then((back: any) => {
-    console.log(back.url)
+export function getCode(name: string, src: string, version: string, printSrc: Array<string>, ly: string, reName: string = '') {
+  let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_')
+  reName = reName || name
+  console.log(ly, moduleName)
+  return renderModule(moduleFile, reName).then((back: any) => {
     let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
     return fileRead(wrap).then((wrap: string) => {
       return getFileCode(fileExit(moduleFile, 'index'), wrap).then((res: string) => {
         return Promise.all(printSrc.map(it => {
-          let outFile = path.resolve(it, name + '.js'), Name = firstUppers(name, true)
+          let outFile = path.resolve(it, name + '.js'), Name = firstUppers(reName, true)
           return writeFile(outFile, res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
             .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
             .replace(/FIRSTMODULENAME/g, Name)
             .replace(/\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
-            .replace(/MODULENAME/g, name)).catch(() => { }).then(() => {
+            .replace(/MODULENAME/g, reName)).catch(() => { }).then(() => {
               console.log(outFile)
             })
         })).then(() => {
           return back
         })
       }).catch((e: any) => {
-        console.log(name + ':Failed')
+        console.log(moduleName + ':Failed')
         return back
       })
     })
   }).then((back: any) => {
     if (back) {
       return writeFile(back.url, back.code).catch(() => { }).then(() => {
-        console.log(name + ':Finnsh')
+        console.log(moduleName + ':Finnsh')
       })
     } else {
-      console.log(name + ':Finnsh')
+      console.log(moduleName + ':Finnsh')
     }
   })
 }

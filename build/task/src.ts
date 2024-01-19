@@ -1,7 +1,6 @@
 const { readDir, getCode } = require('../fun')
 
-const path = require('path'), ml = path.resolve(`${__dirname}/../../src`)
-  , { outMl } = require('../var/src')
+const { outMl, ml } = require('../var/src')
 export function buildSrc(version: string) {
   return readDir(ml).then(async (res = []) => {
     let len = res.length

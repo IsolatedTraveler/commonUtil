@@ -1,0 +1,1 @@
+export const dicUrl = '/public/data/syncLoad.json', dicUrlBySql = '/magic/xt01-xtjc/ty/third/s-pzxx'
