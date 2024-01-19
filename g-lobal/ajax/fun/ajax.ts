@@ -22,7 +22,7 @@ export function ajax(
   type: AjaxRequestType = 'GET',
   async: AjaxRequestAsync = false,
   errCallBack: AjaxErrBack = undefined,
-  suuCallBack: AjaxSuuBack = undefined) {
+  suuCallBack: AjaxSuuBack = undefined): any {
   var layerIndex: LayerIndex, value
   if (type === 'POST' && jqMode) {
     (jq as any)[jqMode](config, url)

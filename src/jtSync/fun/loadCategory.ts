@@ -20,12 +20,15 @@ export function loadCategory(category: string): Promise<void | null> {
 }
 export function loadCategoryBySql(category: string): Promise<void | null> {
   var user = GLOBAL$USER$.getUser()
-  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(res => {
-    var url: string = ''
-    if (url) {
-      return Promise.reject(new Error('当前用户暂未开通该功能'))
+  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(({ code, data: { list: [{ dylj = '' } = { dylj: '' }] = [] } = {}, message }) => {
+    if (code == 1) {
+      if (dylj) {
+        return GLOBAL$FILE$.loadJs(dylj)
+      } else {
+        return Promise.reject(new Error('当前用户暂未开通该功能'))
+      }
     } else {
-      return GLOBAL$FILE$.loadJs(url)
+      return Promise.reject(new Error(message))
     }
   })
 }

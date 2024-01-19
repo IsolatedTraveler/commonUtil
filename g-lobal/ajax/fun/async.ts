@@ -9,7 +9,7 @@ export function ajaxSync(
   param: AjaxRequestParam,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig,
-  type: AjaxRequestType) {
+  type: AjaxRequestType): Promise<any> {
   return new Promise((resolve, reject) => {
     ajax(url, ajaxPostData(data, param, option, config, type), param, option, config, type, true, reject, resolve)
   }).catch(res => ajaxError(res, option, res))
