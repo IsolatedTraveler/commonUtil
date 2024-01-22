@@ -1,4 +1,4 @@
-import { dealsUrl, getParamsUrl } from "../../url"
+import { dealsUrl, getBaseUrl, getParamsUrl } from "../../url"
 function elemLoaded(this: any, e: any, resolve: Function, reject: Function) {
   if (e.type === 'load') {
     resolve()
@@ -11,7 +11,7 @@ export function loadJs(url: string): Promise<null> {
     useHead = d.getElementsByTagName('head')[0]
   return new Promise((resolve, reject) => {
     node.async = true
-    node.src = getParamsUrl({ v: new Date().getTime() }, dealsUrl(url))
+    node.src = getParamsUrl({ v: new Date().getTime() }, dealsUrl(url, getBaseUrl()))
     useHead.appendChild(node)
     $(node).on('load', function (this: any, e: any) {
       elemLoaded.call(this as any, e, resolve, reject);
