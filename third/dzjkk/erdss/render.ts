@@ -11,8 +11,6 @@ import {
   uuid, prefix
 } from '../../../g-lobal'
 // PLUGIN IGNORE START
-commonHttppost('', {})
 // PLUGIN IGNORE END
 // @CODE
 export { Class }
-w.jtSync = new Class() as JtSync

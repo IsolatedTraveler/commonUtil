@@ -4,4 +4,3 @@ import './public'
 import './business'
 import { Class } from './core'
 export { Class }
-GLOBAL$BROWSER$.getJtPhisSystem()
