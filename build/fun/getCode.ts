@@ -19,7 +19,13 @@ const path = require('path')
 const { date } = require('../var/public')
 const { fileExit, fileRead } = require('./readFile')
 
-export function getCode(name: string, src: string, version: string, printSrc: Array<string>, ly: string, reName: string = '') {
+export function getCode(
+  name: string,
+  src: string,
+  version: string,
+  printSrc: Array<string>,
+  ly: string,
+  { reName = '' }) {
   let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_')
   reName = reName || name
   console.log(ly, moduleName)

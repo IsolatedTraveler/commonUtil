@@ -1,23 +1,13 @@
-const { readDir, getCode } = require('../fun')
+import { exeBuild } from "../fun"
+
 
 const path = require('path')
   , { outMl, ml } = require('../var/third')
-function build(ml: string, name: string, version: string) {
-  return readDir(ml).then(async (res = []) => {
-    let len = res.length
-    for (let i = 0; i < len; i++) {
-      if (res[i] !== 'global')
-        await getCode(res[i], ml, version, outMl.map((it: string) => path.resolve(it, name)), 'third', name)
-    }
-  })
+function build(name: string, ml: string, version: string, outMl: Array<string>, ly: string, { module }: any) {
+  ml = path.resolve(ml, name)
+  outMl = outMl.map((it: string) => path.resolve(it, name))
+  return exeBuild(version, outMl, ml, name, { ly, reName: name, module })
 }
 export function buildThird(version: string) {
-  return readDir(ml).then(async (res = []) => {
-    let len = res.length
-    for (let i = 0; i < len; i++) {
-      var gnName = res[i]
-      if (gnName !== 'global')
-        await build(path.resolve(ml, gnName), gnName, version)
-    }
-  })
+  return exeBuild(version, outMl, ml, 'third', { fun: build })
 }
