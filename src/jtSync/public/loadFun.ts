@@ -9,7 +9,10 @@ export function loadFun(category: string, fun: string, param: any) {
 }
 export function loadFunBySql(category: string, fun: string, param: any) {
   if (!judgeLoad[category]) {
-    judgeLoad[category] = loadCategoryBySql(category)
+    judgeLoad[category] = loadCategoryBySql(category).catch(res => {
+      judgeLoad[category] = null
+      return Promise.reject(res)
+    })
   }
   return exeCategory(category, fun, param)
 }

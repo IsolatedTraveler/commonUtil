@@ -1,7 +1,7 @@
 import { dicUrl } from "./const"
 
 interface JudgeLoad {
-  [key: string]: Promise<any>
+  [key: string]: Promise<any> | null
 }
 export interface StartRule {
   [key: string]: StartRule

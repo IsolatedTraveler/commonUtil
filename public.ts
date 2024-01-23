@@ -1,6 +1,8 @@
 export const buildModule = {
   cs: {},
-  src: {},
+  src: {
+    jtSync: true
+  },
   third: {
     dzjkk: {
       erdss: true

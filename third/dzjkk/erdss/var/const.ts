@@ -1,1 +1,1 @@
-export const jkUrl = 'http://192.168.0.217:8089/api/YY13/02/10/s-dzjkkxx'
+export const jkUrl = '/magicJq/YY13/02/10/s-dzjkkxx'
