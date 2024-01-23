@@ -46,6 +46,7 @@ export function setSinglePopTitleElem(title: string = '') {
     singlePopTitleElem = d.createElement('div')
     singlePopTitleElem.style.borderBottom = '1px solid #dcdcdc'
     singlePopTitleElem.style.padding = '8px'
+    singlePopTitleElem.style.fontSize = '16px'
   }
   singlePopTitleElem.innerHTML = title
   singlePopTitleElem.style.display = title ? 'block' : 'none'
@@ -61,7 +62,9 @@ export function setSinglePopBtnElem(btn: Array<string> = []) {
   if (!singlePopBtnElem) {
     singlePopBtnElem = d.createElement('div')
     singlePopBtnElem.style.borderTop = '1px solid #dcdcdc'
-    singlePopBtnElem.style.padding = '5px 0'
+    singlePopBtnElem.style.padding = '5px'
+    singlePopBtnElem.style.justifyContent = 'flex-end'
+    singlePopBtnElem.style.fontSize = '14px'
   }
   singlePopBtnElem.innerHTML = btn.map((it, i) => `<button>${it}</button>`).join('')
   singlePopBtnElem.querySelectorAll('button').forEach((elem, i) => {
@@ -69,5 +72,5 @@ export function setSinglePopBtnElem(btn: Array<string> = []) {
       singlePopResolve({ event, code: i })
     })
   })
-  singlePopBtnElem.style.display = btn.length ? 'block' : 'none'
+  singlePopBtnElem.style.display = btn.length ? 'flex' : 'none'
 }
