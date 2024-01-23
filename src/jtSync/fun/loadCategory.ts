@@ -20,7 +20,7 @@ export function loadCategory(category: string): Promise<void | null> {
 }
 export function loadCategoryBySql(category: string): Promise<void | null> {
   var user = GLOBAL$USER$.getUser()
-  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(({ code, data: { list: [{ dylj = '' } = { dylj: '' }] = [] } = {}, message }) => {
+  return w.jtSync.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(({ code, data: { list: [{ dylj = '' } = { dylj: '' }] = [] } = {}, message }) => {
     if (code == 1) {
       if (dylj) {
         return GLOBAL$FILE$.loadJs(dylj)

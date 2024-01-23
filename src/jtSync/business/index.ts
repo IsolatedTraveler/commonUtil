@@ -5,3 +5,4 @@ Class.prototype.init = init
 Class.prototype.loadFun = loadFun
 Class.prototype.loadFunBySql = loadFunBySql
 Class.prototype.dealAjaxData = GLOBAL$AJAX$.dealAjaxData
+Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$AJAX$.commonQueryAsyncHttppost_callback

@@ -9,7 +9,7 @@ interface MagicResData {
 type MagicResCode = -1 | 0 | 1 | 2
 interface MagicRes {
   code: MagicResCode
-  data: MagicResData
+  data: MagicResData | any
   message: string
 }
 // 同步
