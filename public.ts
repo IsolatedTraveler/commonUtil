@@ -6,6 +6,9 @@ export const buildModule = {
   third: {
     dzjkk: {
       erdss: false
+    },
+    page: {
+      dz: true
     }
   }
 }

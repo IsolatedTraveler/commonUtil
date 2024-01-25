@@ -1,21 +1,27 @@
-import { dicUrlBySql, isInit, organization, region, startRule } from "../var"
+import { dicUrlBySql, init, organization, region, startRule } from "../var"
 function getThirdUrl(category: string) {
   var urlArr = ['/lib23/js/third']
     , regionRule = startRule[region] || {}
     , organizationRule = regionRule[organization] || {}
     , organizationDefRule = regionRule.def || {}
   if (organizationRule[category]) {
-    urlArr.push(region, organization, category)
+    urlArr.push(category, region + '_' + organization)
   } else if (organizationDefRule[category]) {
-    urlArr.push(region, 'def', category)
+    urlArr.push(category, region)
+  } else if ((startRule.def || {})[category]) {
+    urlArr.push(category, 'def')
   } else {
-    urlArr.push('def', category)
+    return ''
   }
-  return urlArr.join('/')
+  return urlArr.join('/') + '.js'
 }
 export function loadCategory(category: string): Promise<void | null> {
-  return isInit.then(() => {
-    return GLOBAL$FILE$.loadJs(getThirdUrl(category))
+  return init().then(() => {
+    var url = getThirdUrl(category)
+    if (url) {
+      return GLOBAL$FILE$.loadJs(url)
+    }
+    return Promise.reject(new Error('未配置该功能：【' + category + '】'))
   })
 }
 export function loadCategoryBySql(category: string): Promise<void | null> {

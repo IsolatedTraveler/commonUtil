@@ -7,16 +7,21 @@ export interface StartRule {
   [key: string]: StartRule
 }
 export var organization: string, region: string, judgeLoad: JudgeLoad = {}, startRule: StartRule = {}
-  , isInit: Promise<StartRule>
-export function init(region1: string, organization1: string) {
-  setIsInit(GLOBAL$AJAX$.getAjaxSync(dicUrl, {}, { urlType: 'origin' }).then(setStartRule))
-  region = region1
-  organization = organization1
-  judgeLoad = {}
+  , isInit: Promise<any>
+export function init() {
+  if (!isInit) {
+    isInit = Promise.all([setStartRule(), getFbdq()])
+  }
+  return isInit
 }
-export function setStartRule(v: any) {
-  return startRule = v
+export function setStartRule() {
+  return GLOBAL$AJAX$.getAjaxSync(dicUrl, {}, { urlType: 'origin' }).then(e => startRule = e)
 }
-export function setIsInit(v: any) {
-  isInit = v
+export function getFbdq() {
+  try {
+    region = GLOBAL$AJAX$.getConfig('xtxx').fbdq
+    organization = GLOBAL$USER$.getUser().jgid
+  } catch (e) {
+
+  }
 }
