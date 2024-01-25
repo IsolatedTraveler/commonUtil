@@ -1,7 +1,7 @@
 import { judgeLoad } from "../var"
 
 export function exeCategory(category: string, fun: string, param: any) {
-  return judgeLoad[category].then(() => {
+  return (judgeLoad[category] as Promise<null>).then(() => {
     var res = w['jt_third_' + category as keyof Window]
     if (res && res[fun]) {
       return res[fun](param)
