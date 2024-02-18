@@ -6,7 +6,9 @@ import { readJkkInfoByMagic } from "./readJkkInfoByMagic"
 export function enterJkkNumber() {
   scanCode('请扫电子健康卡二维码获取患者基本信息：').then(({ code, data }) => {
     if (code == -1) {
-      readJkkInfoByMagic(data).catch(res => {
+      readJkkInfoByMagic(data).then(() => {
+        layerClose()
+      }).catch(res => {
         layerClose()
         readJkkInfoReject(res)
       })
