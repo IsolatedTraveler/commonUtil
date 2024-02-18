@@ -28,7 +28,8 @@ function toDate(fmt, fmt1) {
   return str
 }
 Object.defineProperties(w.String, {
-  dateFormat
+  dateFormat,
+  toDate
 })
 if (!String.prototype.dateFormat) {
   String.prototype.dateFormat = dateFormat
