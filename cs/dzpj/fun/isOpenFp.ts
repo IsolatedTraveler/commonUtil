@@ -1,6 +1,7 @@
 import { KpJgConfig, KpJgParam, KpJgid } from '../type/index'
 import { kpConfig, kpParam, setIsPrint, setSync } from '../var/index'
 export function isOpenFp() {
+  // 获取开票参数信息，判断是否开票
   const { jgid } = GLOBAL$USER$.getUser()
   return kpConfig[jgid] || getKpJgConfig(jgid)
 }
