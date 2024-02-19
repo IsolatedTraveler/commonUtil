@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+    "dev": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "devDependencies": {
     "@esbuild-kit/cjs-loader": "^2.4.4",

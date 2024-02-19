@@ -8,5 +8,7 @@
       that = w.commonUtil
       exports('MODULENAME', w.FIRSTMODULENAME)
     })
+  } else {
+    that = w.jtDzpj
   }
 })(window, document);
