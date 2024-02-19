@@ -13,7 +13,7 @@ export function paramget(mkdm: string, bh: string | number | undefined = undefin
   }
 }
 function paramSet(mkdm: string) {
-  let data = commonHttppost('/zs02-ywjc/xtcsgl/s-csxx', { mkdm, jqm: '' }).data || [], res: any = {}
+  let data = commonHttppost('/xt01-xtjc/ty/s-xtcs', { mkdm, jqm: '' }).data || [], res: any = {}
   data.forEach((it: any) => {
     res[it.xh] = it.csz
   })

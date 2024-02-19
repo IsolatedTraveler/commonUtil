@@ -27,7 +27,7 @@ function getDzpjConfig(jgid: string) {
   var data = (kpParam[jgid]) as KpJgParam
   if (!data) {
     let val: any = GLOBAL$COMMONUTIL$.paramget('201021000') || {}
-    data = {
+    kpParam[jgid] = data = {
       sync: val[1] == '同步',
       isPrint: val[2]
     }
