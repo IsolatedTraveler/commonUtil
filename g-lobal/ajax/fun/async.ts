@@ -1,4 +1,4 @@
-import { ajaxError, ajaxPostData } from "./dealData";
+import { ajaxPostData } from "./dealData";
 import { AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl } from "../type";
 import { ajax } from "./ajax";
 
@@ -12,5 +12,5 @@ export function ajaxSync(
   type: AjaxRequestType): Promise<any> {
   return new Promise((resolve, reject) => {
     ajax(url, ajaxPostData(data, param, option, config, type), param, option, config, type, true, reject, resolve)
-  }).catch(res => ajaxError(res, option, res))
+  })
 }

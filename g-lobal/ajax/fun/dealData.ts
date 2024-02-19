@@ -2,7 +2,7 @@ import { alertMsg, loaded } from "../../layer/public";
 import { jqMode, user } from "../../allVar";
 import * as jq from './jq/index'
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
-export function ajaxError(
+function ajaxError(
   { message, i }: ajaxResposeJudge,
   { msg, isShowLoad }: AjaxRequestOption,
   res: ajaxResposeData) {

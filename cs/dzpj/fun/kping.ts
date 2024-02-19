@@ -17,10 +17,8 @@ export function kpIng(data: any, lx: DzPjKpLx, ly: DzPjKpLy) {
 function getKpRes(data: any, url: string, bbid: string | undefined) {
   let kp = GLOBAL$AJAX$.commonQueryAsyncHttppost_callback(url, data).catch(() => {
     if (bbid) {
-      if (isPrint == '提示') {
+      if (isPrint == '提示' || isPrint == '是') {
         return GLOBAL$LAYER$.confirmMsg('电子票据开票失败，是否继续打印收费凭证？', ['是', '否'])
-      } else if (isPrint == '是') {
-        return
       }
     }
     return Promise.reject()
