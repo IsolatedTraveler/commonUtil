@@ -7,7 +7,7 @@ export function paramget(mkdm: string, bh: string | number | undefined = undefin
   return bh ? res[bh] : res
 }
 function paramSet(mkdm: string) {
-  let data = commonHttppost('/xt01-xtjc/ty/s-xtcs', { mkdm, jqm: '' }).data || [], res: any = {}
+  let data = commonHttppost('/magic/xt01-xtjc/ty/csgl/s-xtcs', { mkdm, jqm: '' }).data || [], res: any = {}
   data.forEach((it: any) => {
     res[it.xh] = it.csz
   })
