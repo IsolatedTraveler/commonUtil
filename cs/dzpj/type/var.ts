@@ -16,3 +16,6 @@ export interface KpJgParam {
 export interface KpParam {
   [index: KpJgid]: KpJgParam
 }
+export interface KpPrintParam {
+  printer?: ''
+}

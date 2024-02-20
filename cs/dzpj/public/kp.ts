@@ -1,8 +1,7 @@
 import { isOpenFp } from "../fun";
 import { kpIng } from "../fun/kping";
-import { DzPjKpLx, DzPjKpLy, KpJgConfig, KpRquestParam } from "../type/index";
-
-export function kp(data: KpRquestParam, ly: DzPjKpLy, lx: DzPjKpLx) {
+import { DzPjKpLx, DzPjKpLy, KpJgConfig, KpPrintParam, KpRquestParam } from "../type/index";
+export function kp(data: KpRquestParam, ly: DzPjKpLy, lx: DzPjKpLx, printParam: KpPrintParam = {}) {
   let user = GLOBAL$USER$.getUser() || {}
   // 判断是否开票
   return isOpenFp().then((res: KpJgConfig) => {
@@ -11,6 +10,6 @@ export function kp(data: KpRquestParam, ly: DzPjKpLy, lx: DzPjKpLx) {
       kpdbm: res.kpdbm,
       jkdm: res.jkdm,
       jgid: user.jgid
-    }, data), lx, ly)
+    }, data), lx, ly, printParam)
   }).catch(() => { })
 }
