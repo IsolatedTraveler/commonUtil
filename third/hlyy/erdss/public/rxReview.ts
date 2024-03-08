@@ -1,7 +1,7 @@
-import { Sjly, getMzlx } from "../fun"
+import { Sjly, dicMzlx } from "../fun"
 import { his_company_code, his_medical_org_code } from "../var"
 export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [], jyjl: Array<any> = [], sjly: Sjly = 100) {
-  var outpati_inpati_flag = getMzlx(sjly)
+  var outpati_inpati_flag = dicMzlx(sjly)
   window.YytPass.showInstruction({
     his_company_code,
     his_medical_org_code,
