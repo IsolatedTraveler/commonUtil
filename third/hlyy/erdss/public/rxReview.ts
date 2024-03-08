@@ -32,7 +32,7 @@ export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [],
     treat_type: sjly,
     treat_code: brxx.mzh,
     doctor_info: {
-      doctor_job_num: "T0001", // 医生工号
+      doctor_job_num: ysxx.ysdm, // 医生工号
       doctor_name: ysxx.ysxm,
       department_code: ysxx.ksdm,
       doctor_level: ysxx.zcdm // 职称代码
@@ -51,9 +51,9 @@ export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [],
       conception_date: 0, // 受孕时间 数字表示天数或周数、月数   非必填
       conception_date_unit: ''// 受孕时间单位   非必填
     }, // 患者信息
-    diagnosis: zdxx.map((it: any) => {
+    diagnosis: zdxx.map((it: any, i: number) => {
       return {
-        diagnostic_seq_num: 1, // 诊断顺序号
+        diagnostic_seq_num: i == 0 ? 11 : (20 + i), // 诊断顺序号
         diagnosis_type_code: '', // 诊断类别代码
         diagnosis_name: it.jbmc,// 诊断名称
         diagnosis_code: it.jbdm // 疾病代码
