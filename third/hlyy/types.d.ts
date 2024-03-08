@@ -7,8 +7,9 @@ declare global {
     his_medical_org_code: string
     username: string
   }
+  type ErdssHlyyReturnCode = 200 | 1001 | 1098 | 1099 | 201
   interface ErdssHlyyReturn {
-    code: 200 | 1001 | 1098 | 1099 | 201
+    code: ErdssHlyyReturnCode
     msg: string
     data?: any
   }
@@ -17,7 +18,7 @@ declare global {
     getRegistedStatus: Function
     getRoles: Function
     init: (param: ErdssHlyyLoginParam) => Promise<ErdssHlyyReturn>
-    layer: Function
+    layer: any
     logout: Function
     prevAnalysis: Function
     refresh: Function
