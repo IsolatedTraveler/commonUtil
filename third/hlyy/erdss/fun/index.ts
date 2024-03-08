@@ -1,2 +1,2 @@
 export * from './error'
-export * from './getDic'
+export * from './dic'
