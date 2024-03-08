@@ -1,28 +1,7 @@
+import { Sjly, getMzlx } from "../fun"
 import { his_company_code, his_medical_org_code } from "../var"
-type Sjly = 100 | 101 | 102 | 200 | 300 | 400 | 401 | 500 | 999
-/**
-* @description 数据来源说明
-* @author 何波
-* @date 2024-03-08 15:11:07
-* @param {
-*   100: 普通门诊
-*   101: 专科门诊
-*   102: 专家门诊
-*   200: 急诊
-*   300: 急诊观察
-*   400: 普通住院
-*   401: 特需住院
-*   500: 家床
-*   999: 其他
-* } 
-*/
 export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [], jyjl: Array<any> = [], sjly: Sjly = 100) {
-  var outpati_inpati_flag = 'op'
-  if (sjly == 400 || sjly == 401) {
-    outpati_inpati_flag = 'ip'
-  } else if (sjly == 500) {
-    outpati_inpati_flag = 'opip'
-  }
+  var outpati_inpati_flag = getMzlx(sjly)
   window.YytPass.showInstruction({
     his_company_code,
     his_medical_org_code,
