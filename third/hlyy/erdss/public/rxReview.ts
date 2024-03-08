@@ -1,4 +1,4 @@
-import { Sjly, dicMzlx } from "../fun"
+import { Sjly, dicCflx, dicIsLscf, dicMzlx, dicYzlx, dicZdlb } from "../fun"
 import { his_company_code, his_medical_org_code } from "../var"
 export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [], jyjl: Array<any> = [], sjly: Sjly = 100) {
   var outpati_inpati_flag = dicMzlx(sjly)
@@ -33,7 +33,7 @@ export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [],
     diagnosis: zdxx.map((it: any, i: number) => {
       return {
         diagnostic_seq_num: i == 0 ? 11 : (20 + i), // 诊断顺序号
-        diagnosis_type_code: '', // 诊断类别代码
+        diagnosis_type_code: dicZdlb('1'), // 诊断类别代码
         diagnosis_name: it.jbmc,// 诊断名称
         diagnosis_code: it.jbdm // 疾病代码
       }
@@ -41,20 +41,20 @@ export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [],
     prescription_order_list: ddxx.map((it: any) => {
       return {
         prescription_order_num: '',//处方号
-        prescription_type: '',// 处方类型
+        prescription_type: dicCflx(),// 处方类型
         prescription_order_reason: '', // 处方医嘱理由
-        is_current: '', // 处方类型
-        medical_advice_type: '', // 医嘱类型
+        is_current: dicIsLscf(), // 处方类型
+        medical_advice_type: dicYzlx(outpati_inpati_flag, it.yzlx), // 医嘱类型
         prescription_time: '', // 处方时间
         amount: '', // 处方金额
         prescription_order_list: it.ypmx((yp: any) => {
           return {
             pres_order_detail_num: '', // 医嘱明细序号
-            pres_order_detail_status: '', // 医嘱明细状态
+            pres_order_detail_status: '', // 医嘱明细状态  非必填
             his_drug_code: '', // 药品代码
             drug_trade_name: '', // 药品名
-            insurance_drug_code: '', // 药品医保代码
-            pharmac_reason: '', // 用药理由
+            insurance_drug_code: '', // 药品医保代码  非必填
+            pharmac_reason: '', // 用药理由  非必填
             group_number: '', // 组号
             drug_quantity: '', // 开药数量
             drug_quantity_unit: '',// 开药数量
@@ -67,7 +67,7 @@ export function rxReview(brxx: any, ysxx: any, ddxx: any, zdxx: Array<any> = [],
             start_time: '',// 要用开始时间
             end_time: '',// 用药结束时间
             medication_days: '',// 服药天数
-            skin_test: '' // 皮试结果 string 0 未做, 1 阳性, 2 阴性
+            skin_test: '' // 皮试结果 string 0 未做, 1 阳性, 2 阴性  非必填
           }
         }) // 药品信息
       }

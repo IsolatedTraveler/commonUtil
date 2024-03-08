@@ -15,7 +15,8 @@
 * } 
 */
 export type Sjly = 100 | 101 | 102 | 200 | 300 | 400 | 401 | 500 | 999
-export function dicMzlx(sjly: Sjly) {
+export type Mzlx = 'ip' | 'op' | 'opip'
+export function dicMzlx(sjly: Sjly): Mzlx {
   if (sjly == 400 || sjly == 401) {
     return 'ip'
   } else if (sjly == 500) {
