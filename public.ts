@@ -1,10 +1,10 @@
 export const buildModule = {
   cs: {
-    dzpj: true
+    dzpj: false
   },
   src: {
-    jtSync: false,
-    commonUtil: true,
+    jtSync: true,
+    commonUtil: false,
   },
   third: {
     dzjkk: {
@@ -12,6 +12,9 @@ export const buildModule = {
     },
     page: {
       dz: false
+    },
+    hlyy: {
+      erdss: true
     }
   }
 }

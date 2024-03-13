@@ -5,5 +5,5 @@ export function tip(his_drug_code: string) {
     his_company_code,
     his_medical_org_code,
     his_drug_code
-  }).then(error)
+  }).then((res: any) => error(res, true))
 }

@@ -15,7 +15,7 @@ function getThirdUrl(category: string) {
   }
   return urlArr.join('/') + '.js'
 }
-export function loadCategory(category: string): Promise<void | null> {
+export function loadCategory(category: string) {
   return init().then(() => {
     var url = getThirdUrl(category)
     if (url) {
@@ -24,12 +24,12 @@ export function loadCategory(category: string): Promise<void | null> {
     return Promise.reject(new Error('未配置该功能：【' + category + '】'))
   })
 }
-export function loadCategoryBySql(category: string): Promise<void | null> {
+export function loadCategoryBySql(category: string) {
   var user = GLOBAL$USER$.getUser()
-  return w.jtSync.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(({ code, data: { list: [{ dylj = '' } = { dylj: '' }] = [] } = {}, message }) => {
+  return w.jtSync.commonQueryAsyncHttppost_callback(dicUrlBySql, { jgid: user.jgid, gnid: category, sxfs: '1' }).then(({ code, data: { list: [{ dylj = '', csmb = '', cssm = '' } = { dylj: '' }] = [] } = {}, message }) => {
     if (code == 1) {
       if (dylj) {
-        return GLOBAL$FILE$.loadJs(dylj)
+        return GLOBAL$FILE$.loadJs(dylj).then(() => ({ csmb, cssm }))
       } else {
         return Promise.reject(new Error('当前用户暂未开通该功能'))
       }

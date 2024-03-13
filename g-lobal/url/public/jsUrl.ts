@@ -1,9 +1,10 @@
 import { urlRegV } from "../../../types/const"
+import { setPageTemp } from "../../temp"
 import { urlBase } from "../var"
 import { seturlBaseVal } from "../var/global"
 
 export function getBaseUrl() {
-  return GLOBAL$TEMP$.setPageTemp(urlBase, setBaseUrl)
+  return setPageTemp(urlBase, setBaseUrl)
 }
 function setBaseUrl() {
   let url = window.location.href

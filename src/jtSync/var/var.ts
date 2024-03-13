@@ -1,12 +1,9 @@
 import { dicUrl } from "./const"
 
-interface JudgeLoad {
-  [key: string]: Promise<any> | null
-}
 export interface StartRule {
   [key: string]: StartRule
 }
-export var organization: string, region: string, judgeLoad: JudgeLoad = {}, startRule: StartRule = {}
+export var organization: string, region: string, startRule: StartRule = {}
   , isInit: Promise<any>
 export function init() {
   if (!isInit) {

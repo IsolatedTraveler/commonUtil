@@ -6,8 +6,10 @@ declare global {
     his_company_code: string
     his_medical_org_code: string
     username: string
+    createPageBall: boolean
+    position: any
   }
-  type ErdssHlyyReturnCode = 200 | 1001 | 1098 | 1099 | 201
+  type ErdssHlyyReturnCode = 200 | 1001 | 1098 | 1099 | 201 | 202
   interface ErdssHlyyReturn {
     code: ErdssHlyyReturnCode
     msg: string

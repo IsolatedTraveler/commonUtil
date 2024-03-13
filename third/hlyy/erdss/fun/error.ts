@@ -1,6 +1,6 @@
 import { codesArr } from "../var"
 
-export function error(res: ErdssHlyyReturn) {
+export function error(res: ErdssHlyyReturn, judge = false) {
   if (res.code != 200) {
     var data = res.data
     if (data) {
@@ -8,19 +8,21 @@ export function error(res: ErdssHlyyReturn) {
         , status = codesArr.filter((it) => it.code === code)[0]
       if (status) {
         if (status.extra) {
-
+          alert('暂不处理')
+          return
         } else if (status.approve) {
-          showTip(status.msg)
+          return
         } else {
           return confirm(data.severity, data.summary, data.blockProblem)
         }
       }
+      return
     }
-    dealError(res.code, res.msg)
+    dealError(res.code, res.msg, judge)
   }
 }
-function dealError(code: ErdssHlyyReturnCode, msg: string) {
-  if (code == 201) {
+function dealError(code: ErdssHlyyReturnCode, msg: string, judge: boolean) {
+  if ((code == 201 || code == 202) && judge) {
     showTip(msg, '提示', 'lt', 0, 5000)
   } else {
     showTip(msg, '错误')
@@ -32,7 +34,8 @@ function showTip(msg: string, title: string = '错误', offset: string = 'auto',
     title,
     offset,
     shade,
-    time
+    time,
+    btn: time ? [] : ['关闭']
   })
 }
 function confirm(jb: number, content: string, wt: number): Promise<void> {

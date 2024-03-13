@@ -1,11 +1,6 @@
 import { dealsUrl, getBaseUrl, getParamsUrl } from "../../url"
-function elemLoaded(this: any, e: any, resolve: Function, reject: Function) {
-  if (e.type === 'load') {
-    resolve()
-  } else {
-    reject()
-  }
-}
+import { elemLoaded } from "../fun"
+
 export function loadJs(url: string): Promise<null> {
   var node = d.createElement('script'),
     useHead = d.getElementsByTagName('head')[0]
