@@ -6,3 +6,4 @@ Class.prototype.instruction = instruction
 Class.prototype.rxReview = rxReview
 Class.prototype.tip = tip
 Class.prototype.getCol = getCol
+Class.prototype.dealAjaxData = GLOBAL$AJAX$.dealAjaxData

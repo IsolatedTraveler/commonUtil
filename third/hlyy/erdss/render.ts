@@ -11,6 +11,9 @@ import {
   uuid, prefix
 } from '../../../g-lobal'
 // PLUGIN IGNORE START
+getAjax('', {})
+commonHttppost('', {})
+getUser()
 // PLUGIN IGNORE END
 // @CODE
 export { Class }

@@ -15,7 +15,7 @@ function getYypl() {
   if (yypl) {
     return Promise.resolve(yypl)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-yypl', {}).then(({ data: list }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-yypl', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.dm] = it.cs
@@ -28,7 +28,7 @@ function getGytj() {
   if (gytj) {
     return Promise.resolve(gytj)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-gytj', {}).then(({ data: list }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-gytj', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.mc] = it.dm
@@ -44,15 +44,16 @@ function getDay(yp: any) {
 }
 function getCfxx(is_current: number, ddxx: any, lx: Mzlx) {
   return ddxx.map((it: any, i: number) => {
+    var yzmx = it.yzmx || []
     return {
       prescription_order_num: it.id || GLOBAL$UTIL$.uuid(),//处方号
-      prescription_type: dicCflx(ddxx.yzmx[0].xmlb),// 处方类型
+      prescription_type: dicCflx((yzmx[0] || {}).xmlb),// 处方类型
       prescription_order_reason: '', // 处方医嘱理由
       is_current: is_current, // 处方类型
       medical_advice_type: dicYzlx(lx, it.yzlx == '1'), // 医嘱类型
       prescription_time: (it.kzrq ? new Date(it.kzrq) : new Date() as any).format('yyyy-MM-dd hh:mm:ss'), // 处方时间
       amount: '', // 处方金额
-      prescription_order_list: it.yzmx((yp: any, i: number) => {
+      prescription_order_list: yzmx.map((yp: any, i: number) => {
         var day = getDay(yp), kszxrq: any = it.kszxrq ? new Date(it.kszxrq) : new Date()
         return {
           pres_order_detail_num: i, // 医嘱明细序号

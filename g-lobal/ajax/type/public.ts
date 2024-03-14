@@ -18,6 +18,7 @@ export interface AjaxRequestHead {
 export interface AjaxRequestConfig {
   contentType?: string | boolean
   headers?: AjaxRequestHead
+  processData?: boolean
 }
 export interface AjaxRequestOption {
   param?: AjaxRequestData
