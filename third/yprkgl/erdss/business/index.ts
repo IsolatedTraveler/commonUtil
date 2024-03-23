@@ -1,4 +1,5 @@
 import { Class } from "../core";
-import { init } from "../public";
+import { init, ypcg } from "../public";
 
 Class.prototype.init = init
+Class.prototype.ypcg = ypcg

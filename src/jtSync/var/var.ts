@@ -19,6 +19,6 @@ export function getFbdq() {
     region = GLOBAL$AJAX$.getConfig('xtxx').fbdq
     organization = GLOBAL$USER$.getUser().jgid
   } catch (e) {
-
+    console.error(e)
   }
 }

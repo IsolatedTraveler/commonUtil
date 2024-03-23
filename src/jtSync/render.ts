@@ -12,6 +12,7 @@ import {
 } from '../../g-lobal'
 // PLUGIN IGNORE START
 commonHttppost('', {})
+getSystemVal('1')
 // PLUGIN IGNORE END
 // @CODE
 export { Class }

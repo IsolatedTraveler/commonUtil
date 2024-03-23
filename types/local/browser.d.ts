@@ -1,5 +1,5 @@
 import {
-  getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam
+  getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam, skip
 } from '../../g-lobal/browser'
 declare global {
   interface GLOBAL$BROWSER$TYPE {
@@ -8,6 +8,7 @@ declare global {
     bbPrint: typeof bbPrint
     getBrowserParam: typeof getBrowserParam
     setBrowserParam: typeof setBrowserParam
+    skip: typeof skip
   }
   let GLOBAL$BROWSER$: GLOBAL$BROWSER$TYPE
 }

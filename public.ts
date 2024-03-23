@@ -3,7 +3,7 @@ export const buildModule = {
     dzpj: false
   },
   src: {
-    jtSync: false,
+    jtSync: true,
     commonUtil: false,
   },
   third: {

@@ -5,15 +5,14 @@ import { session } from "../../../temp/session"
 
 export function jqMagic(config: any, url: string, rest: Boolean = false) {
   let magic = session('magic') || ajaxJqMagic
+  setAuthorization(session('Authorization'))
   if (rest) {
     setAjaxMagicToken(magic.user)
   } else {
     if (ajaxJqMagic.url === url) {
       setAuthorization(magic.Authorization)
-    } else if (Authorization == magic.Authorization) {
+    } else if (!Authorization || Authorization == magic.Authorization) {
       setAjaxMagicToken(magic.user)
-    } else if (!Authorization) {
-      setAuthorization(session('Authorization'))
     } else {
       // 校验token是否临期
     }
@@ -24,5 +23,9 @@ export function jqMagic(config: any, url: string, rest: Boolean = false) {
 }
 function setAjaxMagicToken(param: ajaxResposeData) {
   let res: any = GLOBAL$AJAX$.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
-  setAuthorization(res.Authorization)
+  if (res.code != 1 && param.username != ajaxJqMagic.user.username) {
+    setAjaxMagicToken(ajaxJqMagic.user)
+  } else {
+    setAuthorization(res.Authorization)
+  }
 }

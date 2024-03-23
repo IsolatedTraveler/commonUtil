@@ -1,3 +1,5 @@
 export * from './alert'
-export * from './load'
 export * from './confirm'
+export * from './getLayui'
+export * from './load'
+export * from './open'
