@@ -7,7 +7,11 @@ export function getName(w: any) {
     return winName
   } else {
     if (w.parent[commonUtilName]) {
-      setMenuWindow(w.parent[commonUtilName].getRouterW())
+      try {
+        setMenuWindow(w.parent[commonUtilName].getRouterW())
+      } catch (e) {
+        setMenuWindow(w)
+      }
     } else {
       setMenuWindow(w)
     }
