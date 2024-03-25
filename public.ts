@@ -3,8 +3,8 @@ export const buildModule = {
     dzpj: false
   },
   src: {
-    jtSync: true,
-    commonUtil: false,
+    jtSync: false,
+    commonUtil: true,
   },
   third: {
     dzjkk: {
@@ -17,7 +17,7 @@ export const buildModule = {
       erdss: false
     },
     yprkgl: {
-      erdss: true
+      erdss: false
     }
   }
 }

@@ -42,31 +42,6 @@ function topRender(options) {
     showId: show
   })
 }
-export function getName(w, i = 0) {
-  if (i < 8) {
-    let name = w.name
-    if (webNameReg.test(name) || name == winName) {
-      if (i === 0) {
-        rw = w
-      } else {
-        try {
-          rw = w[val('name')].getRouterW();
-        } catch (e) {
-          rw = w
-          return name
-        }
-      }
-      return name
-    } else {
-      return getName(w.parent, ++i)
-    }
-  } else {
-    return false
-  }
-}
-export function getRouterW() {
-  return rw
-}
 export function getTopMenuId(id, sjid) {
   let menu = that.getMenu()
   while (sjid !== '01' && sjid !== '' && sjid !== null) {
@@ -105,8 +80,6 @@ export function renderTop(options) {
   }
 }
 export default {
-  getName,
-  getRouterW,
   getTopMenuId,
   routerByData,
   alertPwd,

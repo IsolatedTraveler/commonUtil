@@ -1,3 +1,5 @@
 export function init() {
-  return GLOBAL$LAYER$.getLayui(['layer'])
+  return GLOBAL$LAYER$.getLayui(['layer']).then(() => {
+    return that
+  })
 }

@@ -5,3 +5,4 @@ import './business'
 import { Class } from './core'
 export { Class }
 GLOBAL$BROWSER$.getJtPhisSystem()
+GLOBAL$COMMONUTIL$.setWebName()
