@@ -17,7 +17,7 @@ export const buildModule = {
       erdss: false
     },
     yprkgl: {
-      erdss: false
+      erdss: true
     }
   }
 }

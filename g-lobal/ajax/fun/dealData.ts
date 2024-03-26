@@ -1,9 +1,9 @@
 import { alertMsg, loaded } from "../../layer/public";
 import { jqMode, user } from "../../allVar";
 import * as jq from './jq/index'
-import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, ajaxResposeJudge } from "../type";
+import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, Result } from "../type";
 function ajaxError(
-  { message, i }: ajaxResposeJudge,
+  { message, i }: Result,
   { msg, isShowLoad }: AjaxRequestOption,
   res: ajaxResposeData) {
   isShowLoad && loaded(i as string)

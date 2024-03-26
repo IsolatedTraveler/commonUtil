@@ -6,7 +6,7 @@ export type AjaxRequestType = 'GET' | 'POST'
 export type AjaxRequestAsync = Boolean
 export type AjaxRequestData = any
 export type AjaxRequestParam = AjaxRequestData
-export interface ajaxResposeJudge {
+export interface Result {
   message?: string
   i?: string | number | undefined
   code?: string | number

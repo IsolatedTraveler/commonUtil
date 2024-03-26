@@ -14,6 +14,7 @@ import {
 getAjax('', {})
 commonHttppost('', {})
 getSystemVal('1')
+getUser()
 // PLUGIN IGNORE END
 // @CODE
 export { Class }

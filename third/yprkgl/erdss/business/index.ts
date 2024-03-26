@@ -1,6 +1,7 @@
 import { Class } from "../core";
 import { getYplist, init, qxrk, ypcg, yprk } from "../public";
 
+Class.prototype.dealAjaxData = GLOBAL$AJAX$.dealAjaxData
 Class.prototype.init = init
 Class.prototype.ypcg = ypcg
 Class.prototype.getYplist = getYplist
