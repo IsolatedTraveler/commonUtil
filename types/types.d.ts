@@ -1,4 +1,4 @@
-
+declare module 'rollup-plugin-typescript';
 // window
 declare global {
   interface ClassConstructor {

@@ -8,7 +8,7 @@ export const buildModule = {
   },
   third: {
     dzjkk: {
-      erdss: false
+      erdss: true
     },
     page: {
       dz: false
@@ -18,6 +18,13 @@ export const buildModule = {
     },
     yprkgl: {
       erdss: false
+    }
+  },
+  webs: {
+    his: {
+      ypgl: {
+        pdgl: true
+      }
     }
   }
 }

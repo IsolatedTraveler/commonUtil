@@ -1,8 +1,9 @@
-import rollup from 'rollup'
-import cleanup from 'rollup-plugin-cleanup'
+import {rollup} from 'rollup'
+import cleanupPlugin from 'rollup-plugin-cleanup'
 import commonjs from 'rollup-plugin-commonjs'
-import typescript from 'rollup-plugin-typescript2'
-import resolve from 'rollup-plugin-node-resolve'
+import typescript from 'rollup-plugin-typescript'
+import nodeResolve from 'rollup-plugin-node-resolve'
+
 export function getFileCode(input: string, wrapper: string) {
   let reg = /[ \t]*\/\/[ ]*@CODE[\r\n]+/, splitCode: RegExpExecArray | string | null = reg.exec(wrapper)
     , arr = wrapper.split(reg)
@@ -11,11 +12,11 @@ export function getFileCode(input: string, wrapper: string) {
   } else {
     splitCode = ''
   }
-  return rollup.rollup({
+  return rollup({
     input,
     plugins: [
-      cleanup(),
-      resolve(),
+      cleanupPlugin(),
+      nodeResolve(),
       commonjs(),
       typescript()
     ]
