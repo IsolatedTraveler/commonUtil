@@ -1,6 +1,6 @@
 import { uuid } from '../../g-lobal/util'
 import * as fs from 'fs'
-const path = require('path')
+import path from 'path'
 function exists(url: string): Promise<void> {
   return new Promise((resolve, reject) => {
     fs.access(url, err => {

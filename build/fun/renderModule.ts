@@ -1,5 +1,5 @@
 
-const { fileExit, fileRead } = require("./readFile")
+import {fileExit, fileRead} from './readFile'
 import { getFileCode } from './getFileCode'
 import { writeFile } from "./createFile"
 export function renderModule(moduleFile: string, name: string) {

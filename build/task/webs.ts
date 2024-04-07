@@ -1,8 +1,6 @@
 import { exeBuild, getAllSonDir } from "../fun"
-
-
-const path = require('path')
-  , { outMl, ml } = require('../var/webs')
+import path from 'path'
+import { ml} from '../var/webs'
 // function build(name: string, ml: string, version: string, outMl: Array<string>, ly: string, { module }: any) {
 //   ml = path.resolve(ml, name)
 //   outMl = outMl.map((it: string) => path.resolve(it, name))

@@ -1,5 +1,5 @@
 import { taskGlobal, buildCs, buildSrc, buildThird, buildWebs, buildModule, buildLayModule } from './build/task/'
-const { version } = require('./package.json')
+import {version} from './package.json'
 export default async function () {
   await taskGlobal(version)
   await buildCs(version)

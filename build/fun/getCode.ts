@@ -2,7 +2,9 @@ import { writeFile } from "./createFile"
 import { firstUppers } from "./firstUpper"
 import { renderModule } from "./renderModule"
 import { getFileCode } from "./getFileCode"
-
+import path from 'path'
+import {date} from '../var/public'
+import {fileExit, fileRead} from './readFile'
 /**
 * @description 
 * @author 何波
@@ -15,9 +17,6 @@ import { getFileCode } from "./getFileCode"
   printSrc: "输出路径"
 } 
 */
-const path = require('path')
-const { date } = require('../var/public')
-const { fileExit, fileRead } = require('./readFile')
 
 export function getCode(
   name: string,

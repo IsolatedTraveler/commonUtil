@@ -1,7 +1,7 @@
 import { exeBuild } from "../fun"
-const path = require('path'),
-  ml = path.resolve(`${__dirname}/../../cs`)
-  , { outMl } = require('../var/gModule')
+import path from 'path'
+import { outMl } from "../var/gModule"
+const ml = path.resolve(`${__dirname}/../../cs`)
 
 export function buildCs(version: string) {
   return exeBuild(version, outMl, ml, 'cs')

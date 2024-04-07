@@ -1,8 +1,8 @@
 import { exeBuild } from "../fun"
+import path from 'path'
+import { outMl, ml } from "../var/third"
 
 
-const path = require('path')
-  , { outMl, ml } = require('../var/third')
 function build(name: string, ml: string, version: string, outMl: Array<string>, ly: string, { module }: any) {
   ml = path.resolve(ml, name)
   outMl = outMl.map((it: string) => path.resolve(it, name))
