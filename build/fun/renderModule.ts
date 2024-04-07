@@ -1,7 +1,6 @@
 
 const { fileExit, fileRead } = require("./readFile")
 import { getFileCode } from './getFileCode'
-// , path = require('path')
 import { writeFile } from "./createFile"
 export function renderModule(moduleFile: string, name: string) {
   let nameFile = fileExit(moduleFile, name), renderFile = fileExit(moduleFile, 'render')

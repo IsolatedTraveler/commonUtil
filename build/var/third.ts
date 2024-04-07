@@ -1,6 +1,5 @@
-const path = require('path'), { ml, date, out } = require('./public')
-module.exports = {
-  ml: path.resolve(ml, 'third'),
-  outMl: out.map((it: string) => path.resolve(it, 'third') + '\\'),
-  date
-}
+import path from 'path'
+import { ml as ml1, out } from './public'
+export { date } from './public'
+export const ml = path.resolve(ml1, 'third'),
+  outMl = out.map((it: string) => path.resolve(it, 'third') + '\\')
