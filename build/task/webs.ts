@@ -1,4 +1,4 @@
-import { exeBuild } from "../fun"
+import { exeBuild, getAllSonDir } from "../fun"
 
 
 const path = require('path')
@@ -9,5 +9,8 @@ const path = require('path')
 //   return exeBuild(version, outMl, ml, name, { ly, reName: name, module })
 // }
 export function buildWebs(version: string) {
+  return getAllSonDir(ml).then(res => {
+    console.log(res)
+  })
   // return exeBuild(version, outMl, ml, 'third', { fun: build })
 }
