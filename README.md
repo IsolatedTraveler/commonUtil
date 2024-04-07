@@ -15,3 +15,5 @@
 > [layModules 依赖 layui 引入组件](./layModules/)
 
 > [src 独立运行组件](./src/)
+
+> [third 加载第三方运行组件](./third/)

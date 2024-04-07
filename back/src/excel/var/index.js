@@ -1,2 +1,0 @@
-import './gdcs'
-import './kbcs'

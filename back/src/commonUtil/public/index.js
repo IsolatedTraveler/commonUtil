@@ -1,7 +1,0 @@
-import './fun/index'
-import './business/index'
-import './systemData/index'
-import './layui/index'
-import './dic/index'
-import './dictionary/index'
-import '../reWrite/browser'
