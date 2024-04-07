@@ -51,5 +51,8 @@
 > >
 > > > [erdss 内蒙版本](./third/yprkgl/erdss/)
 
-> [types 通用组件类型](./types/)  
+> [types 通用组件类型](./types/)
+>
+> [webs 页面组件](./webs/)
+>
 > [public 控制 npm run dev 要编译的组件](./public.ts)
