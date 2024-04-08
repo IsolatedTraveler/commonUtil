@@ -169,6 +169,12 @@
       alertMsg("该方法依赖专有浏览器，请在专有浏览器中使用");
     }
   }
+  function down(url, name) {
+    let a = d.createElement('a'), event = new MouseEvent('click');
+    a.href = url;
+    a.download = name || 'down';
+    a.dispatchEvent(event);
+  }
   function getConfig(key = '') {
     setPageTemp(dataConfig, setConfig);
     return key ? dataConfig[key] : dataConfig;
@@ -289,6 +295,9 @@
       }).join('&');
     }
     return '';
+  }
+  function strToUrl(str, type) {
+    return URL.createObjectURL(new Blob([str], { type }));
   }
   function debounce1(fun, delay) {
     let time = null;
@@ -551,6 +560,56 @@
     }
     return userInfo;
   }
+  function setExpHtml(title, { body, head }, { addBefore = '', addAfter = '' }) {
+    const html = strToUrl([
+      '<html xmlns:svg="http://www.w3.org/2000/svg"><head><meta name="content-type" content="text/html" charset="UTF-8"><title>',
+      title,
+      '</title></head><body>',
+      '<table><thead>',
+      addBefore,
+      head,
+      '</thead><tbody>',
+      body,
+      addAfter,
+      '</tbody></table></body>'
+    ].join(''), 'application/vnd.ms-excel');
+    down(html, title + '.xls');
+  }
+  function getTableHtml(param) {
+    const data = param.data || [], colsObj = param.colsObj || [], cols = param.cols || colsObj.map(it => it[0]) || [], head = param.head || '<tr>' + colsObj.map(it => `<th>${it[1]}</th>`).join('') + '</tr>';
+    return {
+      head,
+      body: data.map(it => {
+        return '<tr>' + cols.map(key => {
+          return '<td style="mso-number-format:\'\\@\';">' + it[key] + '<td>';
+        }).join('') + '</tr>';
+      }).join('')
+    };
+  }
+  function expExcel(param, type) {
+    const title = param.title || '导出';
+    if (type === 1) {
+      // html导出
+      const elem = $(param.elem), body = elem.find('tbody').eq(0).clone().html().replace(/(<td ((?!style)[^>])*)(style[='"]+)*([^>]*)(>)/g, function (a, b, c, d, e, f) {
+        if (d) {
+          return b + d + "mso-number-format:'\\@';" + e + f;
+        }
+        else {
+          return b + ' style="mso-number-format:\'\\@\';"' + f;
+        }
+      });
+      setExpHtml(title, { body, head: elem.find('thead').eq(0).html() }, param);
+    }
+    else if (type === 2) {
+      setExpHtml(title, getTableHtml(param), param);
+      // 数据导出
+    }
+    else ;
+  }
+  const expInventoryCols = [
+    ['xmid', 'xmid'],
+    ['xmdm', 'xmdm']
+  ];
   var pdtjResolve, pdtjReject;
   function clearInputCheck(arr) {
     arr.forEach(el => {
@@ -608,14 +667,17 @@
       // 获取盘点明细数据
       return commonQueryAsyncHttppost_callback('/rest/queryDataBySql/010603/3', Object.assign({ jgid: getUser().jgid }, res)).then(({ code, data, message }) => {
         // 导出盘点明细
-        if (code === ajaxSuccessCode && data && data.length)
-          ;
+        if (code === ajaxSuccessCode && data && data.length) {
+          $('#pdgl_edit').dialog('close');
+          expExcel({ data, title: '盘点明细', colsObj: expInventoryCols, addBefore: '' }, 2);
+        }
         else {
           return Promise.reject({ code: ajaxErrorCode, message: message || '未获取到明细记录' });
         }
       }).catch(({ message }) => {
+        $('#pdgl_edit').dialog('close');
         alertMsg(message);
-      }).finally(() => $('#pdgl_edit').dialog('close'));
+      });
     });
   }
   function importInventoryDetails() {

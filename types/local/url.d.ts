@@ -1,5 +1,5 @@
 import {
-  getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, getServiceUrl
+  getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, getServiceUrl, strToUrl
 } from '../../views/g-lobal/url'
 declare global {
   interface GLOBAL$URL$TYPE {
@@ -13,6 +13,7 @@ declare global {
     getBaseUrl: typeof getBaseUrl
     getMainUrl: typeof getMainUrl
     getServiceUrl: typeof getServiceUrl
+    strToUrl: typeof strToUrl
   }
   let GLOBAL$URL$: GLOBAL$URL$TYPE
 }

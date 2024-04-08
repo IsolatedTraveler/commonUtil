@@ -1,8 +1,9 @@
 import {
-  loadJs, readFile, loadStyle
+  down, loadJs, readFile, loadStyle
 } from '../../views/g-lobal/file'
 declare global {
   interface GLOBAL$FILE$TYPE {
+    down: typeof down
     loadJs: typeof loadJs
     readFile: typeof readFile
     loadStyle: typeof loadStyle

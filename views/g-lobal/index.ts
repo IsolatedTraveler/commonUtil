@@ -10,4 +10,5 @@ export * from './temp'
 export * from './url'
 export * from './user'
 export * from './util'
+export * from './xlsx'
 // @GLOBAL END

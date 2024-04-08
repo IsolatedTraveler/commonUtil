@@ -1,1 +1,4 @@
-export const cs = ''
+export const expInventoryCols = [
+  ['xmid', 'xmid']
+  , ['xmdm', 'xmdm']
+]
