@@ -79,8 +79,7 @@ export function getSpecifiedFileDir(url: string, module: any = buildModule, reg:
   return getSonDir(url).then(({ dir, file }) => {
     if (getFileReg(file, reg, len)) {
       arr.push(url)
-    }
-    if (dir.length) {
+    } else if (dir.length) {
       return Promise.all(dir.map(it => {
         const name = it.replace(url, '').replace(/^[\\\/]*/g, '')
         module = judgeBuild(module, name)
