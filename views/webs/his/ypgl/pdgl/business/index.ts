@@ -1,4 +1,5 @@
 import { Class } from "../core";
-import { readJkkInfo } from "../public";
+import { exportInventoryDetails, importInventoryDetails } from "../public";
 
-Class.prototype.readJkkInfo = readJkkInfo
+Class.prototype.exportInventoryDetails = exportInventoryDetails
+Class.prototype.importInventoryDetails = importInventoryDetails
