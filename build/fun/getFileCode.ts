@@ -1,4 +1,4 @@
-import {rollup} from 'rollup'
+import { rollup } from 'rollup'
 import cleanupPlugin from 'rollup-plugin-cleanup'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript'

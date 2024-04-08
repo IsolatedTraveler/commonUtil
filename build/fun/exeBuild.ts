@@ -7,7 +7,7 @@ interface ExeBuildParam {
   reName?: string
   ly?: string
   module?: any
-  res?:string[]
+  res?: string[]
 }
 export function exeBuild(
   version: string,
@@ -18,13 +18,13 @@ export function exeBuild(
   module = judgeBuild(module, moduleName)
   if (module) {
     return readDir(ml, module).then((res = []) => {
-      return buildModuleArr(version,outMl,ml,res,ly,reName, fun, module)
+      return buildModuleArr(version, outMl, ml, res, ly, reName, fun, module)
     })
   }
 }
-export async function buildModuleArr( version:string, outMl: string[], ml:string,res:string[], ly:string, reName?:string, fun?:any, module?:any) {
+export async function buildModuleArr(version: string, outMl: string[], ml: string, res: string[], ly: string, reName?: string, fun?: any, module?: any) {
   let len = res.length
   for (let i = 0; i < len; i++) {
-    await (fun||getCode)(res[i], ml, version, outMl, ly, { reName, module })
+    await (fun || getCode)(res[i], ml, version, outMl, ly, { reName, module })
   }
 }

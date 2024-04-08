@@ -3,8 +3,8 @@ import { firstUppers } from "./firstUpper"
 import { renderModule } from "./renderModule"
 import { getFileCode } from "./getFileCode"
 import path from 'path'
-import {date} from '../var/public'
-import {fileExit, fileRead} from './readFile'
+import { date } from '../var/public'
+import { fileExit, fileRead } from './readFile'
 /**
 * @description 
 * @author 何波

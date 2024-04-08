@@ -8,7 +8,7 @@ export const buildModule = {
   },
   third: {
     dzjkk: {
-      erdss: true
+      erdss: false
     },
     page: {
       dz: false

@@ -1,7 +1,7 @@
 import { createType, readDir, createIndex } from '../fun'
 import * as path from 'path'
 const ml = path.resolve(`${__dirname}/../../g-lobal`)
-export function getFileUrl(url:string) {
+export function getFileUrl(url: string) {
   if (process.platform === 'win32') {
     url = new URL(`file:///${url.replace(/\\/g, '/')}`).href;
   } else {
