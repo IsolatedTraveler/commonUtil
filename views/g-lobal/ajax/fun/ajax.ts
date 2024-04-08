@@ -1,5 +1,5 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
-import { jqMode, contentType } from "../var/global";
+import { jqMode, contentType, ajaxErrorCode } from "../var/global";
 import * as jq from './jq/index'
 import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
@@ -47,7 +47,7 @@ export function ajax(
       value = ajaxDealData(res, layerIndex, option, errCallBack, suuCallBack, url, data, param, config, type, async)
     },
     error(e: any) {
-      const res = { code: '-1', message: '网络连接超时', i: layerIndex };
+      const res = { code: ajaxErrorCode, message: '网络连接超时', i: layerIndex };
       value = errCallBack ? errCallBack(res, option, e) : res;
     },
   }, config))

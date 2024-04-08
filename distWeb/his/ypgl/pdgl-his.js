@@ -1,7 +1,7 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
-  var jqMode = 'jqMagic', Authorization, contentType = 'application/json; charset=utf-8', dataConfig, ajaxSuccessCode$1 = 1;
+  var jqMode = 'jqMagic', Authorization, contentType = 'application/json; charset=utf-8', dataConfig, ajaxSuccessCode = 1, ajaxErrorCode = -1;
   function setJqMode(a) {
     return jqMode = a;
   }
@@ -13,6 +13,10 @@
   }
   function setDataConfig(a) {
     return dataConfig = a;
+  }
+  function setAjaxSuccessCode(succ, err) {
+    ajaxSuccessCode = succ;
+    ajaxErrorCode = err;
   }
   let system;
   function setJtPhisSystem(v) {
@@ -136,7 +140,7 @@
         alert(msg);
       }
       else {
-        getSystemVal('showmsgbox', ['提示', msg]);
+        getSystemVal('showmsgbox', ['提示', msg, [], 0]);
       }
     }
   }
@@ -349,7 +353,7 @@
     return res;
   }
   function ajaxDealData(res, i, option, errCallBack, suuCallBack, url, data = {}, param = {}, config = {}, type = 'GET', async = false) {
-    if (res.code === ajaxSuccessCode$1 || res.code === undefined) {
+    if (res.code === ajaxSuccessCode || res.code === undefined) {
       if (option.isShowLoad) {
         loaded(i);
       }
@@ -403,7 +407,7 @@
         value = ajaxDealData(res, layerIndex, option, errCallBack, suuCallBack, url, data, param, config, type, async);
       },
       error(e) {
-        const res = { code: '-1', message: '网络连接超时', i: layerIndex };
+        const res = { code: ajaxErrorCode, message: '网络连接超时', i: layerIndex };
         value = errCallBack ? errCallBack(res, option, e) : res;
       },
     }, config));
@@ -604,9 +608,14 @@
       // 获取盘点明细数据
       return commonQueryAsyncHttppost_callback('/rest/queryDataBySql/010603/3', Object.assign({ jgid: getUser().jgid }, res)).then(({ code, data, message }) => {
         // 导出盘点明细
-        if (code === ajaxSuccessCode)
+        if (code === ajaxSuccessCode && data && data.length)
           ;
-      });
+        else {
+          return Promise.reject({ code: ajaxErrorCode, message: message || '未获取到明细记录' });
+        }
+      }).catch(({ message }) => {
+        alertMsg(message);
+      }).finally(() => $('#pdgl_edit').dialog('close'));
     });
   }
   function importInventoryDetails() {
