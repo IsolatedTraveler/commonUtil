@@ -1,0 +1,6 @@
+export { dealMenu } from '../../fun/dealMenu'
+export * from './exited'
+export * from './getMenu'
+export * from './getUser'
+export * from './login'
+export * from './logOut'

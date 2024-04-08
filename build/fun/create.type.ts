@@ -4,7 +4,7 @@ const ml = path.resolve(`${__dirname}/../../types/local`)
 export function createType(name: string, arr: Array<string>) {
   let NAME = name.toUpperCase(), code = `import {
   ${arr.join(', ')}
-} from '../../g-lobal/${name}'
+} from '../../views/g-lobal/${name}'
 declare global {
   interface GLOBAL$${NAME}$TYPE {
     ${arr.map(key => {
@@ -28,6 +28,6 @@ export function createIndex(arr: Array<string>) {
     }
     return it
   }).join(', ')}
-} from '../../g-lobal'`
+} from '../../views/g-lobal'`
   writeFile(path.resolve(ml, '../globalLocal.ts'), code)
 }

@@ -1,4 +1,4 @@
-import { uuid } from '../../g-lobal/util'
+import { uuid } from '../../views/g-lobal/util'
 import * as fs from 'fs'
 import path from 'path'
 function exists(url: string): Promise<void> {
