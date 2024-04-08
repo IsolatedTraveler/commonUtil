@@ -37,7 +37,7 @@ export function getCode(
           return writeFile(outFile, res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
             .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
             .replace(/FIRSTMODULENAME/g, Name)
-            .replace(/\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
+            .replace(/[ ]*\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
             .replace(/MODULENAME/g, reName)).catch(() => { }).then(() => {
               console.log(outFile)
             })

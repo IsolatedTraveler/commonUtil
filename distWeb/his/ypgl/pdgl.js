@@ -11,7 +11,7 @@
       }, delay);
     };
   }
-    const jkUrl = '/magicJq/YY13/02/10/s-dzjkkxx';
+  const jkUrl = '/magicJq/YY13/02/10/s-dzjkkxx';
   var readJkkInfoResolve, readJkkInfoReject;
   function setJkkInfoPromise(resolve, reject) {
     readJkkInfoResolve = resolve;
