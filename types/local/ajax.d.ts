@@ -1,6 +1,6 @@
 import {
   setAjaxContentType, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, ajax, getAjaxRes
-} from '../../g-lobal/ajax'
+} from '../../views/g-lobal/ajax'
 declare global {
   interface GLOBAL$AJAX$TYPE {
     setAjaxContentType: typeof setAjaxContentType

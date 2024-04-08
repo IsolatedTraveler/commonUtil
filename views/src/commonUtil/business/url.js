@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { Class } from '../../core'
-import { getFaceUrl, getImgUrl, getJsUrl, getTpUrl } from '../../public/fun/url'
+import { Class } from '../core'
+import { getFaceUrl, getImgUrl, getJsUrl, getTpUrl } from '../public/fun/url'
 Class.prototype.dealsUrl = dealsUrl
 Class.prototype.getBaseUrl = getBaseUrl
 Class.prototype.getJsUrl = getJsUrl

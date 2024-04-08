@@ -1,6 +1,6 @@
 import {
   getName, getRouterW, redirect, router
-} from '../../g-lobal/router'
+} from '../../views/g-lobal/router'
 declare global {
   interface GLOBAL$ROUTER$TYPE {
     getName: typeof getName

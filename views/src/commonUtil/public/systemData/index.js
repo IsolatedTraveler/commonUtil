@@ -1,2 +1,2 @@
 import './data.js'
-import '../../../reWrite/systemData/data'
+import '../../reWrite/systemData/data'

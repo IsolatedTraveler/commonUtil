@@ -1,6 +1,6 @@
 import {
   getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, getServiceUrl
-} from '../../g-lobal/url'
+} from '../../views/g-lobal/url'
 declare global {
   interface GLOBAL$URL$TYPE {
     getAllUrl: typeof getAllUrl

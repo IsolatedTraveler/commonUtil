@@ -1,6 +1,6 @@
 import {
   
-} from '../../g-lobal/xlsx'
+} from '../../views/g-lobal/xlsx'
 declare global {
   interface GLOBAL$XLSX$TYPE {
     

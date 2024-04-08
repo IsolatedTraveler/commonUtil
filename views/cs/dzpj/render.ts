@@ -10,7 +10,7 @@ import {
   getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl,
   getServiceUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut, debounce1, formatTreeData,
   uuid, prefix
-} from '../../../g-lobal'
+} from '../../g-lobal'
 setWebName()
 getJtPhisSystem()
 // @CODE

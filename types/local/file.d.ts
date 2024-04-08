@@ -1,6 +1,6 @@
 import {
   loadJs, readFile, loadStyle
-} from '../../g-lobal/file'
+} from '../../views/g-lobal/file'
 declare global {
   interface GLOBAL$FILE$TYPE {
     loadJs: typeof loadJs

@@ -1,4 +1,4 @@
-export * from "../../types/const/index"
+export * from "../../../types/const/index"
 import './var/index'
 import './fun/index'
 import './public/index'

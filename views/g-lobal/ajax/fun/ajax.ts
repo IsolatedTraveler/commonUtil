@@ -3,9 +3,9 @@ import { jqMode, contentType } from "../var/global";
 import * as jq from './jq/index'
 import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
-import { ajaxTimeOut } from "../../../types/const";
 import { getAllUrl } from "../../url/public/commonUtil";
 import { getParamsUrl } from "../../url/public/data";
+import { ajaxTimeOut } from "../../../../types";
 export function getAjaxRes(res: any) {
   try {
     return JSON.parse(res)

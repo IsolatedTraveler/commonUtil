@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import { strToUrl, val, init, initConfig, getBase64, getJse, config } from '../../public/fun/init'
-import { Class } from '../../core'
-import { srcWEventKbjbg } from '../../var/init'
-import { loadPwdJs } from '../../reWrite/fun/init'
+import { strToUrl, val, init, initConfig, getBase64, getJse, config } from '../public/fun/init'
+import { Class } from '../core'
+import { srcWEventKbjbg } from '../var/init'
+import { loadPwdJs } from '../reWrite/fun/init'
 Class.prototype.kbjbg = srcWEventKbjbg
 Class.prototype.val = val
 Class.prototype.getParamsUrl = getParamsUrl

@@ -1,6 +1,6 @@
 import {
   
-} from '../../g-lobal/w'
+} from '../../views/g-lobal/w'
 declare global {
   interface GLOBAL$W$TYPE {
     

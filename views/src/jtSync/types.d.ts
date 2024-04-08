@@ -1,7 +1,7 @@
 // window
 import {
   commonQueryAsyncHttppost_callback
-} from '../../../g-lobal/ajax'
+} from '../../g-lobal/ajax'
 declare global {
   interface JtSync {
     commonQueryAsyncHttppost_callback: typeof commonQueryAsyncHttppost_callback

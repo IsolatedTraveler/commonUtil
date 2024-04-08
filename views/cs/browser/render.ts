@@ -5,7 +5,7 @@ import {
   confirmMsg, getName, getRouterW, redirect, router, session, local, setPageTemp, tempData, getAllUrl,
   getUploadUrl, dealsUrl, getUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, getServiceUrl, dealMenu,
   exited, getMenu, getUser, getUserInfo, login, exit, logOut, debounce1, formatTreeData, uuid, prefix
-} from '../../../g-lobal'
+} from '../../g-lobal'
 getJtPhisSystem()
 export function Class() {
   // @CODE

@@ -5,5 +5,5 @@ import {
   alertMsg, confirmMsg, getLayui, load, loaded, loading, openPage, getName, getRouterW, redirect, router, session, 
   local, setPageTemp, tempData, getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, 
   getUrlParams, getBaseUrl, getMainUrl, getServiceUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, 
-  exit, logOut, debounce1, formatTreeData, uuid, prefix
-} from '../../g-lobal'
+  exit, logOut, debounce1, formatTreeData, uuid, prefix, getAge
+} from '../../views/g-lobal'

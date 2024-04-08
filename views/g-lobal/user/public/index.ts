@@ -1,4 +1,4 @@
-export { dealMenu } from '../../fun/dealMenu'
+export { dealMenu } from '../fun/dealMenu'
 export * from './exited'
 export * from './getMenu'
 export * from './getUser'
