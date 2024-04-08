@@ -1,5 +1,5 @@
 import { alertMsg, loaded } from "../../layer/public";
-import { jqMode, user } from "../../allVar";
+import { ajaxSuccessCode, jqMode, user } from "../../allVar";
 import * as jq from './jq/index'
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, Result } from "../type";
 function ajaxError(
@@ -25,7 +25,7 @@ export function ajaxDealData(
   config: AjaxRequestConfig = {},
   type: AjaxRequestType = 'GET',
   async: AjaxRequestAsync = false) {
-  if (res.code == 1 || res.code === undefined) {
+  if (res.code === ajaxSuccessCode || res.code === undefined) {
     if (option.isShowLoad) {
       loaded(i as string)
     }
@@ -34,7 +34,7 @@ export function ajaxDealData(
     (jq as any)[jqMode](config, url, true)
     return GLOBAL$AJAX$.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
   }
-  res = ajaxError({ message: res.message, code: 0, i }, option, res)
+  res = ajaxError({ message: res.message || res.msg, code: 0, i }, option, res)
   return errCallBack ? errCallBack(res) : res
 }
 export function ajaxPostData(data: AjaxRequestData = {},

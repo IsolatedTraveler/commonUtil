@@ -1,9 +1,12 @@
 import {
-  setAjaxContentType, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, ajax, getAjaxRes
+  ajaxErrorCode, ajaxSuccessCode, setAjaxContentType, setAjaxSuccessCode, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, ajax, getAjaxRes
 } from '../../views/g-lobal/ajax'
 declare global {
   interface GLOBAL$AJAX$TYPE {
+    ajaxErrorCode: typeof ajaxErrorCode
+    ajaxSuccessCode: typeof ajaxSuccessCode
     setAjaxContentType: typeof setAjaxContentType
+    setAjaxSuccessCode: typeof setAjaxSuccessCode
     setJqMode: typeof setJqMode
     getAjax: typeof getAjax
     getAjaxSync: typeof getAjaxSync

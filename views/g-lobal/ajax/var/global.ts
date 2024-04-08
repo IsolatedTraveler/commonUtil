@@ -1,6 +1,6 @@
 export var jqMode: string = 'jqMagic', Authorization: string | undefined,
   contentType = 'application/json; charset=utf-8',
-  dataConfig: any
+  dataConfig: any, ajaxSuccessCode = 1, ajaxErrorCode = -1
 
 export function setJqMode(a: string) {
   return jqMode = a
@@ -13,4 +13,8 @@ export function setAjaxContentType(v: string) {
 }
 export function setDataConfig(a: any) {
   return dataConfig = a
+}
+export function setAjaxSuccessCode(succ: any, err: any) {
+  ajaxSuccessCode = succ
+  ajaxErrorCode = err
 }

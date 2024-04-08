@@ -1,1 +1,0 @@
-export { setAjaxContentType, setAuthorization, setDataConfig, setJqMode } from './global'
