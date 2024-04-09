@@ -33,12 +33,12 @@ export function setExpHtml(title: string, { body, head }: Table, { addBefore = '
 export function getTableHtml(param: ExpExcelParam) {
   const data = param.data || [], colsObj = param.colsObj || []
     , cols = param.cols || colsObj.map(it => it[0]) || []
-    , head = param.head || '<tr>' + colsObj.map(it => `<th>${it[1]}</th>`).join('') + '</tr>'
+    , head = param.head || '<tr>' + colsObj.map(it => `<th>${it[1] || ''}</th>`).join('') + '</tr>'
   return {
     head,
     body: data.map(it => {
       return '<tr>' + cols.map(key => {
-        return '<td style="mso-number-format:\'\\@\';">' + it[key] + '<td>'
+        return '<td name="' + key + '" style="mso-number-format:\'\\@\';">' + (it[key] || '') + '<td>'
       }).join('') + '</tr>'
     }).join('')
   }

@@ -23,7 +23,9 @@ export const buildModule = {
   webs: {
     his: {
       ypgl: {
-        pdgl: true
+        pdgl: {
+          pdjl: true
+        }
       }
     }
   }

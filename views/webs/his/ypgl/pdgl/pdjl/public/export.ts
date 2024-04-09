@@ -1,5 +1,5 @@
 import { judgePd } from "../fun"
-import { expInventoryCols } from "../var"
+import { expInventoryCols, expInventoryHead } from "../var"
 
 export function exportInventoryDetails() {
   // 校验当前库房是否可以盘点
@@ -9,7 +9,10 @@ export function exportInventoryDetails() {
       // 导出盘点明细
       if (code === GLOBAL$AJAX$.ajaxSuccessCode && data && data.length) {
         $('#pdgl_edit').dialog('close')
-        GLOBAL$XLSX$.expExcel({ data, title: '盘点明细', colsObj: expInventoryCols, addBefore: '' }, 2)
+        setTimeout(() => {
+          data[0] = Object.assign(data[0], res)
+          GLOBAL$XLSX$.expExcel({ data, title: '盘点明细', cols: expInventoryCols, head: expInventoryHead }, 2)
+        }, 0);
       } else {
         return Promise.reject({ code: GLOBAL$AJAX$.ajaxErrorCode, message: message || '未获取到明细记录' })
       }
