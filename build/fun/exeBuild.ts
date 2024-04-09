@@ -15,6 +15,10 @@ interface BuildModuleArrParam {
   module?: any
   outAddName?: string
 }
+interface BuildModuleArrRes {
+  code: string
+  url: string
+}
 export function exeBuild(
   version: string,
   outMl: Array<string>,
@@ -35,11 +39,11 @@ export async function buildModuleArr(
   res: string[],
   ly: string,
   { reName, fun, module, outAddName } = {} as BuildModuleArrParam
-) {
+): Promise<Array<BuildModuleArrRes>> {
   let len = res.length, arr = []
   for (let i = 0; i < len; i++) {
-    const code = await (fun || getCode)(res[i], ml, version, outMl, ly, { reName, module, outAddName })
-    arr.push(code)
+    const data = await (fun || getCode)(res[i], ml, version, outMl, ly, { reName, module, outAddName })
+    arr.push(data)
   }
   return arr
 }

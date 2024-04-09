@@ -26,6 +26,7 @@ export function getCode(
   ly: string,
   { reName = '', outAddName = '' }) {
   let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_'), code: string = ''
+    , outName = name + outAddName + '.js'
   reName = reName || name
   console.log(ly, moduleName)
   return renderModule(moduleFile, reName).then((back: any) => {
@@ -39,27 +40,27 @@ export function getCode(
           .replace(/[ ]*\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
         return Promise.all(printSrc.map(it => {
-          let outFile = path.resolve(it, name + outAddName + '.js')
+          let outFile = path.resolve(it, outName)
           return writeFile(outFile, code).catch(() => { }).then(() => {
             console.log(outFile)
           })
         })).then(() => {
-          return { back, code }
+          return { back, code, url: outName }
         })
       }).catch((e: any) => {
         console.log(moduleName + ':Failed')
-        return { back, code }
+        return { back, code, url: outName }
       })
     })
-  }).then(({ back, code }) => {
+  }).then(({ back, code, url }) => {
     if (back) {
       return writeFile(back.url, back.code).catch(() => { }).then(() => {
         console.log(moduleName + ':Finnsh')
-        return code
+        return { code, url }
       })
     } else {
       console.log(moduleName + ':Finnsh')
-      return code
+      return { code, URL }
     }
   })
 }
