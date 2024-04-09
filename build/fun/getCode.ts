@@ -25,37 +25,41 @@ export function getCode(
   printSrc: Array<string>,
   ly: string,
   { reName = '', outAddName = '' }) {
-  let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_')
+  let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_'), code: string = ''
   reName = reName || name
   console.log(ly, moduleName)
   return renderModule(moduleFile, reName).then((back: any) => {
     let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
     return fileRead(wrap).then((wrap: string) => {
       return getFileCode(fileExit(moduleFile, 'index'), wrap).then((res: string) => {
+        const Name = firstUppers(reName, true)
+        code = res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
+          .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
+          .replace(/FIRSTMODULENAME/g, Name)
+          .replace(/[ ]*\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
+          .replace(/MODULENAME/g, reName)
         return Promise.all(printSrc.map(it => {
-          let outFile = path.resolve(it, name + outAddName + '.js'), Name = firstUppers(reName, true)
-          return writeFile(outFile, res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
-            .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
-            .replace(/FIRSTMODULENAME/g, Name)
-            .replace(/[ ]*\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
-            .replace(/MODULENAME/g, reName)).catch(() => { }).then(() => {
-              console.log(outFile)
-            })
+          let outFile = path.resolve(it, name + outAddName + '.js')
+          return writeFile(outFile, code).catch(() => { }).then(() => {
+            console.log(outFile)
+          })
         })).then(() => {
-          return back
+          return { back, code }
         })
       }).catch((e: any) => {
         console.log(moduleName + ':Failed')
-        return back
+        return { back, code }
       })
     })
-  }).then((back: any) => {
+  }).then(({ back, code }) => {
     if (back) {
       return writeFile(back.url, back.code).catch(() => { }).then(() => {
         console.log(moduleName + ':Finnsh')
+        return code
       })
     } else {
       console.log(moduleName + ':Finnsh')
+      return code
     }
   })
 }

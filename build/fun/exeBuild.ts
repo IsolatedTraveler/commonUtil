@@ -36,8 +36,10 @@ export async function buildModuleArr(
   ly: string,
   { reName, fun, module, outAddName } = {} as BuildModuleArrParam
 ) {
-  let len = res.length
+  let len = res.length, arr = []
   for (let i = 0; i < len; i++) {
-    await (fun || getCode)(res[i], ml, version, outMl, ly, { reName, module, outAddName })
+    const code = await (fun || getCode)(res[i], ml, version, outMl, ly, { reName, module, outAddName })
+    arr.push(code)
   }
+  return arr
 }
