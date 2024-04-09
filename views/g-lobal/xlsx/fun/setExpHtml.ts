@@ -19,7 +19,7 @@ export function setExpHtml(title: string, { body, head }: Table, { addBefore = '
   const html = strToUrl([
     '<html xmlns:svg="http://www.w3.org/2000/svg"><head><meta name="content-type" content="text/html" charset="UTF-8"><title>',
     title,
-    '</title></head><body>',
+    '</title><style>table{border-collapse:collapse;}td,th{border:1px solid #dcdcdc;padding: 0 .5em}</style></head><body>',
     '<table><thead>',
     addBefore,
     head,
@@ -38,7 +38,7 @@ export function getTableHtml(param: ExpExcelParam) {
     head,
     body: data.map(it => {
       return '<tr>' + cols.map(key => {
-        return '<td name="' + key + '" style="mso-number-format:\'\\@\';">' + (it[key] || '') + '<td>'
+        return '<td name="' + key + '" style="mso-number-format:\'\\@\';">' + (it[key] || '') + '</td>'
       }).join('') + '</tr>'
     }).join('')
   }
