@@ -793,7 +793,6 @@
         return { res, obj };
       });
     }).then(({ res, obj }) => {
-      console.log(res, obj);
       w.commonUtil.openWind(addSkipParam({ res }, obj, 'loadExcel'), '药品盘点编辑');
     });
   }
