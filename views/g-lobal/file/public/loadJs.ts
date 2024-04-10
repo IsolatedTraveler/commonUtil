@@ -13,3 +13,10 @@ export function loadJs(url: string): Promise<null> {
     })
   })
 }
+export function loadJsJudge(url: string, name: string, win: any = w) {
+  if (win[name]) {
+    return Promise.resolve()
+  } else {
+    return loadJs(url)
+  }
+}

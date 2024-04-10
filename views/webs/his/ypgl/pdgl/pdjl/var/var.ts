@@ -1,4 +1,4 @@
-interface PdtjResolve {
+export interface PdtjResolve {
   pxgz: string
   pdlx: string
   pylx: string
@@ -6,6 +6,7 @@ interface PdtjResolve {
   ksid: string
 }
 export var pdtjResolve: (value: PdtjResolve) => void, pdtjReject: (reason?: any) => void
+  , inputFile: HTMLInputElement
 function clearInputCheck(arr: HTMLInputElement[]) {
   arr.forEach(el => {
     el.checked = false
@@ -24,4 +25,11 @@ export function setPdtj(bmid: string): Promise<PdtjResolve> {
     pdtjReject = reject
     pdtjResolve = resolve
   })
+}
+export function setInputeFile() {
+  if (!inputFile) {
+    inputFile = document.createElement('input')
+    inputFile.setAttribute('type', 'file')
+  }
+  return GLOBAL$FILE$.uploadInputFile(inputFile)
 }

@@ -297,8 +297,59 @@
     return '';
   }
   function strToUrl(str, type) {
-    console.log(str);
     return URL.createObjectURL(new Blob([str], { type }));
+  }
+  function elemLoaded(e, resolve, reject) {
+    if (e.type === 'load') {
+      resolve();
+    }
+    else {
+      reject();
+    }
+  }
+  function loadJs(url) {
+    var node = d.createElement('script'), useHead = d.getElementsByTagName('head')[0];
+    return new Promise((resolve, reject) => {
+      node.async = true;
+      node.src = getParamsUrl({ v: new Date().getTime() }, dealsUrl(url, getBaseUrl()));
+      useHead.appendChild(node);
+      $(node).on('load', function (e) {
+        elemLoaded.call(this, e, resolve, reject);
+      });
+    });
+  }
+  function loadJsJudge(url, name, win = w) {
+    if (win[name]) {
+      return Promise.resolve();
+    }
+    else {
+      return loadJs(url);
+    }
+  }
+  function readFile(file, resolve, reject) {
+    let reader = new FileReader();
+    reader.onload = resolve;
+    reader.onerror = function (event) {
+      let msg = '未知错误';
+      if (event && event.target && event.target.error) {
+        msg = event.target.error.message;
+      }
+      reject({ msg: 'File could not be read: ' + msg });
+    };
+    reader.readAsBinaryString(file);
+  }
+  function uploadInputFile(input) {
+    return new Promise((resolve, reject) => {
+      // 用于校验两次录入数据是否相同
+      let old = input.value;
+      input.onchange = function () {
+        resolve({ code: old === this.value ? -1 : 1, files: this.files });
+      };
+      setTimeout(() => {
+        input.value = '';
+        input.click();
+      }, 0);
+    });
   }
   function debounce1(fun, delay) {
     let time = null;
@@ -607,8 +658,35 @@
     }
     else ;
   }
+  const xlsxType = /^application\/vnd\.(ms-excel|openxmlformats-officedocument.spreadsheetml.sheet)$/;
+  function loadXlsx() {
+    return loadJsJudge('lib23/js/xlsx/xlsx.min.js', 'XLSX');
+  }
+  function readXlsx(it) {
+    return new Promise((resolve, reject) => {
+      if (xlsxType.test(it.type)) {
+        readFile(it, resolve, reject);
+      }
+      else {
+        reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }));
+      }
+    }).then((res) => {
+      return loadXlsx().then(() => {
+        let xlsx = XLSX.read(res.target.result, { type: 'binary' }), data = [];
+        try {
+          xlsx.SheetNames.forEach((sheet) => {
+            data.push(XLSX.utils.sheet_to_json(xlsx.Sheets[sheet], { row: true, header: 1, dateNF: 'yyyy-mm-dd hh:mm:ss' }));
+          });
+          return data;
+        }
+        catch (e) {
+          return Promise.reject({ msg: '文件信息读取失败：' + e.message });
+        }
+      });
+    });
+  }
   const expInventoryCols = ["xmid", "kcsl", "tzsl", "kfxs", "xmmc", "xmgg", "xmcd", "ph", "pc", "dcbdj", "dlsdj", "dbzsl", "dbzdw", "xbzsl", "xbzdw", "dpdsl", "dbzdwpd", "xpdsl", "xbzdwpd", "scrq", "sxrq", "kccbje", "kclsje", "pdcbje", "pdlsje", "pdcjje", "pdbz", "xmdm", "jx", "ksid", "pdlx", "pxgz", "pylx", "pdsj"], expInventoryHead = '<tr><th rowspan="2">xmid</th><th rowspan="2">kcsl</th><th rowspan="2">tzsl</th><th rowspan="2">kfxs</th><th rowspan="2">名称</th><th rowspan="2">规格</th><th rowspan="2">生产企业</th><th rowspan="2">批号</th><th rowspan="2">批次</th><th rowspan="2">成本单价</th><th rowspan="2">零售单价</th><th colspan="4">库存</th><th colspan="4">盘点</th><th rowspan="2">生产日期</th><th rowspan="2">失效日期</th><th rowspan="2">库存成本金额</th><th rowspan="2">库存零售金额</th><th rowspan="2">盘点成本金额</th><th rowspan="2">盘点零售金额</th><th rowspan="2">差价差金额</th><th rowspan="2">盘点标志</th><th rowspan="2">代码</th><th rowspan="2">剂型</th><th rowspan="2">盘点库房</th><th rowspan="2">盘点类型</th><th rowspan="2">排序规则</th><th rowspan="2">盘药类型</th><th rowspan="2">盘点时间</th></tr><tr><th >数量</th><th >库单</th><th>数量</th><th >计单</th><th >数量</th><th >库单</th><th >数量</th><th >计单</th></tr>';
-  var pdtjResolve, pdtjReject;
+  var pdtjResolve, pdtjReject, inputFile;
   function clearInputCheck(arr) {
     arr.forEach(el => {
       el.checked = false;
@@ -628,6 +706,27 @@
       pdtjResolve = resolve;
     });
   }
+  function setInputeFile() {
+    if (!inputFile) {
+      inputFile = document.createElement('input');
+      inputFile.setAttribute('type', 'file');
+    }
+    return uploadInputFile(inputFile);
+  }
+  function addSkipParam(row, { pdlx, pdsj, pxgz, pylx, ksid }, czlx = 'add') {
+    const url = 'pdgl/pdgl_edit.html';
+    w.commonUtil.setVar("010603", "pddxx", JSON.stringify(row));
+    w.commonUtil.setVar("010603", "czlx", czlx);
+    w.commonUtil.setVar("010603", "pdsj", pdsj);
+    w.commonUtil.setVar("010603", "pdkf", ksid);
+    w.commonUtil.setVar("010603", "gljgid", $("#gljgid").combobox("getValue"));
+    w.commonUtil.setVar("010603", "gljgmc", $("#gljgid").combobox("getText"));
+    w.commonUtil.setVar("010603", "ksid", ksid);
+    w.commonUtil.setVar("010603", "pdlx", pdlx);
+    w.commonUtil.setVar("010603", "pylx", pylx);
+    w.commonUtil.setVar("010603", "pxgz", pxgz);
+    return url;
+  }
   // 校验当前库房是否可以盘点
   function validateWarehouse(bmid) {
     return new Promise((resolve, reject) => {
@@ -644,19 +743,9 @@
     return validateWarehouse(bmid).then(setPdtj);
   }
   function addInventoryRecord() {
-    return judgePd().then(({ pdlx, pdsj, pxgz, pylx, ksid }) => {
-      const row = {}, msg = '盘点期间该库房【${bmmc}】将不能进行发药操作，是否要进行盘点？', url = 'pdgl/pdgl_edit.html';
-      w.commonUtil.setVar("010603", "pddxx", JSON.stringify(row));
-      w.commonUtil.setVar("010603", "czlx", "add");
-      w.commonUtil.setVar("010603", "pdsj", pdsj);
-      w.commonUtil.setVar("010603", "pdkf", ksid);
-      w.commonUtil.setVar("010603", "gljgid", $("#gljgid").combobox("getValue"));
-      w.commonUtil.setVar("010603", "gljgmc", $("#gljgid").combobox("getText"));
-      w.commonUtil.setVar("010603", "ksid", ksid);
-      w.commonUtil.setVar("010603", "pdlx", pdlx);
-      w.commonUtil.setVar("010603", "pylx", pylx);
-      w.commonUtil.setVar("010603", "pxgz", pxgz);
-      w.pdgl.judgeIsOpenUrl(msg, 1, url, 'yppdbj');
+    return judgePd().then((res) => {
+      const row = {}, msg = '盘点期间该库房【${bmmc}】将不能进行发药操作，是否要进行盘点？';
+      w.pdgl.judgeIsOpenUrl(msg, 1, addSkipParam(row, res), '药品盘点编辑');
     });
   }
   function exportInventoryDetails() {
@@ -669,7 +758,6 @@
           $('#pdgl_edit').dialog('close');
           setTimeout(() => {
             data[0] = Object.assign(data[0], res);
-            data = [data[0], data[1]];
             expExcel({ data, title: '盘点明细', cols: expInventoryCols, head: expInventoryHead }, 2);
           }, 0);
         }
@@ -683,7 +771,34 @@
     });
   }
   function importInventoryDetails() {
-    return alert('import');
+    setInputeFile().then(({ files: [file] }) => {
+      if (file) {
+        return file;
+      }
+      else {
+        return Promise.reject({ code: -1, msg: '未获取到文件' });
+      }
+    }).then(file => {
+      // 解析xlsx
+      return readXlsx(file).then(([res]) => {
+        res = res.slice(2);
+        const cols = expInventoryCols.slice(0, -5), obj = {}, res1 = res[0], len = cols.length, mainCols = expInventoryCols.slice(-5);
+        res = res.map(it => {
+          var obj = {};
+          cols.forEach((key, i) => {
+            obj[key] = it[i];
+          });
+          return obj;
+        });
+        mainCols.forEach((key, i) => {
+          obj[key] = res1[len + i];
+        });
+        return { res, obj };
+      });
+    }).then(({ res, obj }) => {
+      console.log(res);
+      w.commonUtil.openWind(addSkipParam({ res }, obj, 'loadExcel'), '药品盘点编辑');
+    });
   }
   function getInputChecked(arr) {
     return [].filter.call(arr, (el) => {

@@ -21,6 +21,8 @@ interface String {
   dateFormat(fmt?: string): string;
   toDate(fmt: string, fmt1?: string): Date | string;
 }
+// 1 代表成功   -1 代表失败
+type SelfResCode = -1 | 1
 declare global {
   interface Date extends DateConstructor { }
 }
