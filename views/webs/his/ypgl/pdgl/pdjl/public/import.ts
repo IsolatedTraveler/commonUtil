@@ -10,7 +10,7 @@ export function importInventoryDetails() {
     }
   }).then(file => {
     // 解析xlsx
-    return GLOBAL$XLSX$.readXlsx(file).then(([res]) => {
+    return GLOBAL$XLSX$.readXlsx(file).then(GLOBAL$XLSX$.dealSheetToArray).then(([res]) => {
       res = res.slice(2)
       const cols = expInventoryCols.slice(0, -5), obj: any = {}, res1 = res[0], len = cols.length
         , mainCols = expInventoryCols.slice(-5)

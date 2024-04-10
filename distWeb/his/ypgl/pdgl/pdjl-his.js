@@ -326,17 +326,19 @@
       return loadJs(url);
     }
   }
-  function readFile(file, resolve, reject) {
-    let reader = new FileReader();
-    reader.onload = resolve;
-    reader.onerror = function (event) {
-      let msg = '未知错误';
-      if (event && event.target && event.target.error) {
-        msg = event.target.error.message;
-      }
-      reject({ msg: 'File could not be read: ' + msg });
-    };
-    reader.readAsBinaryString(file);
+  function readFile(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.onload = resolve;
+      reader.onerror = function (event) {
+        let msg = '未知错误';
+        if (event && event.target && event.target.error) {
+          msg = event.target.error.message;
+        }
+        reject({ msg: 'File could not be read: ' + msg });
+      };
+      reader.readAsBinaryString(file);
+    });
   }
   function uploadInputFile(input) {
     return new Promise((resolve, reject) => {
@@ -612,6 +614,16 @@
     }
     return userInfo;
   }
+  function dealSheetToArray(xlsx) {
+    try {
+      return Promise.resolve(xlsx.SheetNames.map((sheet) => {
+        return XLSX.utils.sheet_to_json(xlsx.Sheets[sheet], { raw: false, header: 1, defval: '' });
+      }));
+    }
+    catch (e) {
+      return Promise.reject({ msg: '文件信息读取失败：' + e.message });
+    }
+  }
   function setExpHtml(title, { body, head }, { addBefore = '', addAfter = '' }) {
     const html = strToUrl([
       '<html xmlns:svg="http://www.w3.org/2000/svg"><head><meta name="content-type" content="text/html" charset="UTF-8"><title>',
@@ -625,7 +637,7 @@
       addAfter,
       '</tbody></table></body>'
     ].join(''), 'application/vnd.ms-excel');
-    down(html, title + '.xls');
+    down(html, title + '.xlsx');
   }
   function getTableHtml(param) {
     const data = param.data || [], colsObj = param.colsObj || [], cols = param.cols || colsObj.map(it => it[0]) || [], head = param.head || '<tr>' + colsObj.map(it => `<th>${it[1] || ''}</th>`).join('') + '</tr>';
@@ -660,30 +672,15 @@
   }
   const xlsxType = /^application\/vnd\.(ms-excel|openxmlformats-officedocument.spreadsheetml.sheet)$/;
   function loadXlsx() {
-    return loadJsJudge('lib23/js/xlsx/xlsx.min.js', 'XLSX');
+    return loadJsJudge('lib23/js/xlsx0.20.2/xlsx.full.min.js', 'XLSX');
   }
   function readXlsx(it) {
-    return new Promise((resolve, reject) => {
-      if (xlsxType.test(it.type)) {
-        readFile(it, resolve, reject);
-      }
-      else {
-        reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }));
-      }
-    }).then((res) => {
-      return loadXlsx().then(() => {
-        let xlsx = XLSX.read(res.target.result, { type: 'binary' }), data = [];
-        try {
-          xlsx.SheetNames.forEach((sheet) => {
-            data.push(XLSX.utils.sheet_to_json(xlsx.Sheets[sheet], { row: true, header: 1, dateNF: 'yyyy-mm-dd hh:mm:ss' }));
-          });
-          return data;
-        }
-        catch (e) {
-          return Promise.reject({ msg: '文件信息读取失败：' + e.message });
-        }
-      });
-    });
+    if (xlsxType.test(it.type)) {
+      return loadXlsx().then(() => readFile(it)).then((e) => XLSX.read(e.target.result, { type: 'binary' }));
+    }
+    else {
+      return Promise.reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }));
+    }
   }
   const expInventoryCols = ["xmid", "kcsl", "tzsl", "kfxs", "xmmc", "xmgg", "xmcd", "ph", "pc", "dcbdj", "dlsdj", "dbzsl", "dbzdw", "xbzsl", "xbzdw", "dpdsl", "dbzdwpd", "xpdsl", "xbzdwpd", "scrq", "sxrq", "kccbje", "kclsje", "pdcbje", "pdlsje", "pdcjje", "pdbz", "xmdm", "jx", "ksid", "pdlx", "pxgz", "pylx", "pdsj"], expInventoryHead = '<tr><th rowspan="2">xmid</th><th rowspan="2">kcsl</th><th rowspan="2">tzsl</th><th rowspan="2">kfxs</th><th rowspan="2">名称</th><th rowspan="2">规格</th><th rowspan="2">生产企业</th><th rowspan="2">批号</th><th rowspan="2">批次</th><th rowspan="2">成本单价</th><th rowspan="2">零售单价</th><th colspan="4">库存</th><th colspan="4">盘点</th><th rowspan="2">生产日期</th><th rowspan="2">失效日期</th><th rowspan="2">库存成本金额</th><th rowspan="2">库存零售金额</th><th rowspan="2">盘点成本金额</th><th rowspan="2">盘点零售金额</th><th rowspan="2">差价差金额</th><th rowspan="2">盘点标志</th><th rowspan="2">代码</th><th rowspan="2">剂型</th><th rowspan="2">盘点库房</th><th rowspan="2">盘点类型</th><th rowspan="2">排序规则</th><th rowspan="2">盘药类型</th><th rowspan="2">盘点时间</th></tr><tr><th >数量</th><th >库单</th><th>数量</th><th >计单</th><th >数量</th><th >库单</th><th >数量</th><th >计单</th></tr>';
   var pdtjResolve, pdtjReject, inputFile;
@@ -780,7 +777,7 @@
       }
     }).then(file => {
       // 解析xlsx
-      return readXlsx(file).then(([res]) => {
+      return readXlsx(file).then(dealSheetToArray).then(([res]) => {
         res = res.slice(2);
         const cols = expInventoryCols.slice(0, -5), obj = {}, res1 = res[0], len = cols.length, mainCols = expInventoryCols.slice(-5);
         res = res.map(it => {
@@ -796,7 +793,7 @@
         return { res, obj };
       });
     }).then(({ res, obj }) => {
-      console.log(res);
+      console.log(res, obj);
       w.commonUtil.openWind(addSkipParam({ res }, obj, 'loadExcel'), '药品盘点编辑');
     });
   }

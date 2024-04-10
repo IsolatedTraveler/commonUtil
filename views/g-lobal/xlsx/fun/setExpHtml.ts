@@ -28,7 +28,7 @@ export function setExpHtml(title: string, { body, head }: Table, { addBefore = '
     addAfter,
     '</tbody></table></body>'
   ].join(''), 'application/vnd.ms-excel')
-  down(html, title + '.xls')
+  down(html, title + '.xlsx')
 }
 export function getTableHtml(param: ExpExcelParam) {
   const data = param.data || [], colsObj = param.colsObj || []
