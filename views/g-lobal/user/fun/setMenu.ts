@@ -10,7 +10,10 @@ function getMenuBySql() {
   if (system) {
     menu = JSON.parse(system.hiscdqx()).yhcd
   } else {
-    menu = getUserInfo().cdqx || commonHttppost('/rest/queryDataBySql/000000/999', {}).data
+    menu = getUserInfo().cdqx
+    if (!(menu && menu[0].bt)) {
+      menu = commonHttppost('/rest/queryDataBySql/000000/999', {}).data
+    }
   }
   that.session('menu', menu)
   return menu
