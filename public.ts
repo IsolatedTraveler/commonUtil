@@ -5,6 +5,7 @@ export const buildModule = {
   src: {
     jtSync: false,
     commonUtil: false,
+    jtUtil: true
   },
   third: {
     dzjkk: {
@@ -24,7 +25,7 @@ export const buildModule = {
     his: {
       ypgl: {
         pdgl: {
-          pdjl: true
+          pdjl: false
         }
       }
     }
