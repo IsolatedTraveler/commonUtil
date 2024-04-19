@@ -1,4 +1,3 @@
-import { FileEvent } from "../type"
 
 export function readFile(file: Blob) {
   return new Promise((resolve, reject) => {

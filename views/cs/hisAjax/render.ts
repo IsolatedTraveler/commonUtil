@@ -7,6 +7,13 @@ import {
   getServiceUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut, debounce1, formatTreeData,
   uuid, prefix
 } from '../../g-lobal'
+// PLUGIN IGNORE START
+getSystemVal('')
+getUser()
+// PLUGIN IGNORE END
 export function Class() {
+  getJtPhisSystem()
+  setWebName()
+  setAjaxContentType('application/x-www-form-urlencoded')
   // @CODE
 }

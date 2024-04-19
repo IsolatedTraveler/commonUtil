@@ -4,3 +4,4 @@ Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$AJAX$.commonQueryAsyn
 Class.prototype.getAjax = GLOBAL$AJAX$.getAjax
 Class.prototype.getAjaxSync = GLOBAL$AJAX$.getAjaxSync
 Class.prototype.getConfig = GLOBAL$AJAX$.getConfig
+Class.prototype.errorTrace = GLOBAL$BROWSER$.errorTrace

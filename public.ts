@@ -1,10 +1,11 @@
 export const buildModule = {
   cs: {
-    dzpj: false
+    dzpj: false,
+    hisAjax: false
   },
   src: {
     jtSync: false,
-    commonUtil: true,
+    commonUtil: false,
     jtUtil: true
   },
   third: {

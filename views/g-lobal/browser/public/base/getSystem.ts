@@ -20,6 +20,6 @@ export function getSystemVal(name: string, param: Array<any> | undefined = undef
     }
   } else {
     // 报错
-    alertMsg("该方法依赖专有浏览器，请在专有浏览器中使用")
+    alertMsg("该方法依赖专有浏览器，请在专有浏览器中使用", name)
   }
 }
