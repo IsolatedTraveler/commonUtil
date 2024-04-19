@@ -1,3 +1,4 @@
-export const Class: any = function () {
-
+export const Class: any = function (this: any) {
+  that = this
+  GLOBAL$BROWSER$.getJtPhisSystem()
 }

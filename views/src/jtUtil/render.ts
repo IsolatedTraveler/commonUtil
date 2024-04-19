@@ -11,7 +11,8 @@ import {
   getBaseUrl, getMainUrl, getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit,
   logOut, debounce1, formatTreeData, uuid, prefix, getAge, dealSheetToArray, expExcel, loadXlsx, readXlsx
 } from '../../g-lobal'
-getJtPhisSystem()
-setWebName()
 // @CODE
+// PLUGIN IGNORE START
+getSystemVal('')
+// PLUGIN IGNORE END
 export { Class }

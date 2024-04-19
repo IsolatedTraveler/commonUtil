@@ -1,4 +1,4 @@
 
 import { Class } from "./core"
-w.jtUtil = new Class()
+import './business'
 export { Class }

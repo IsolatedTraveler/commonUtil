@@ -19,6 +19,7 @@ declare global {
   let sha256: any
   let $: any
   let Base64: any
+  const Class: any
 }
 // module
 declare global {

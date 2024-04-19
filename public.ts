@@ -4,7 +4,7 @@ export const buildModule = {
   },
   src: {
     jtSync: false,
-    commonUtil: false,
+    commonUtil: true,
     jtUtil: true
   },
   third: {
