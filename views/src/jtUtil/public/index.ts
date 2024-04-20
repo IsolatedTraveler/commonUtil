@@ -1,7 +1,1 @@
-export * from './dealAjaxData'
 export * from './dicget'
-export * from './filterComboboxData'
-export * from './filterDicData'
-export * from './getCommonDic'
-export * from './initBaseBar'
-export * from './initShortcutKey'

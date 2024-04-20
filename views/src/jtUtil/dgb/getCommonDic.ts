@@ -1,4 +1,4 @@
-import { dicget } from "./dicget";
+import { dicget } from "../public";
 import { filterComboboxData } from "./filterComboboxData";
 import { filterDicData } from "./filterDicData";
 
