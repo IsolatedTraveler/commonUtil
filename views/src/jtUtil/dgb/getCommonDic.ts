@@ -1,6 +1,6 @@
 import { dicget } from "../public";
 import { filterComboboxData } from "./filterComboboxData";
-import { filterDicData } from "./filterDicData";
+import { filterDicData } from "../public/filterDicData";
 
 export function getCommonDic(dics: any) {
   try {
