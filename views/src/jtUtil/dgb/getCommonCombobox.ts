@@ -1,4 +1,4 @@
-import { filterComboboxData } from "./filterComboboxData";
+import { filterComboboxData } from "../public/filterComboboxData";
 
 export function getCommonCombobox(params: any) {
   try {
