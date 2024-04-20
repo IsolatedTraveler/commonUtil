@@ -1,3 +1,5 @@
+import { loadDataGrigPageData } from "../public/loadDataGrigPageData";
+
 export function dataGridPageChange(gridObject: string, url: string, param: any) {
   try {
     var pager = $(gridObject).datagrid('getPager');
