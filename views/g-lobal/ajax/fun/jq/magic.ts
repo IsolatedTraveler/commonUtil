@@ -19,13 +19,9 @@ export function jqMagic(config: any, url: string, rest: Boolean = false) {
   }
   session('Authorization', Authorization)
   config.headers = config.headers || {}
-  config.headers.Authorization = Authorization
+  config.headers.Authorization = Authorization === true ? undefined : Authorization;
 }
 function setAjaxMagicToken(param: ajaxResposeData) {
-  let res: any = GLOBAL$AJAX$.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } })
-  if (res.code != 1 && param.username != ajaxJqMagic.user.username) {
-    setAjaxMagicToken(ajaxJqMagic.user)
-  } else {
-    setAuthorization(res.Authorization)
-  }
+  let res: any = GLOBAL$AJAX$.commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization: Authorization === true ? undefined : Authorization } })
+  setAuthorization(res.Authorization)
 }
