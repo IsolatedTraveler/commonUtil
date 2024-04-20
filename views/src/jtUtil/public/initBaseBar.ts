@@ -1,4 +1,3 @@
-import { errorTrace } from "../../../g-lobal";
 interface InitBaseBarMenu {
   name: string
   method: (_v?: any) => void
@@ -85,6 +84,6 @@ export function initBaseBar(menus: InitBaseBarMenu[][], buttons: InitBaseBarMenu
       $("#topmenu").after("<div class=\"menuclass\" style=\"margin-top: 10px;color: white;float:left;height: " + height + "px;vertical-align: middle;\"></div>");
     }, 10)
   } catch (e) {
-    errorTrace(e);
+    GLOBAL$BROWSER$.errorTrace(e);
   }
 }
