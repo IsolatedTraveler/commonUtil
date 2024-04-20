@@ -123,32 +123,35 @@ export function getCommonDic(dics: any) {
     if (data.length > 0) {
       var datalength = data.length;
       var index = -1;
-      $("#" + domId).textbox("textbox").keyup(function (event: any) {
+      $("#" + domId).textbox("textbox").keyup((event: KeyboardEvent) => {
         try {
-          var e = event || window.event;
-          var keyCode = e.keyCode || e.which;
-          var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
-          if (pClosed) {
-            isselect = false;
-            if (keyCode == "38") {
-              if (index == 0 || index == -1) {
-                index = Number(datalength) - 1;
+          const { key } = event;
+          const domPanel = $("#" + domId).combobox("panel");
+          const panelOptions = domPanel.panel("options");
+          const updateIndexAndSetValue = (step: number) => {
+            let newIndex = index + step;
+            newIndex = Math.max(0, Math.min(newIndex, datalength - 1));
+            index = newIndex;
+            $("#" + domId).combobox("setValue", data[newIndex][valueField]);
+          };
+
+          if (panelOptions.closed) {
+            if (key === 'ArrowUp') { // 上箭头
+              if (index <= 0) {
+                updateIndexAndSetValue(datalength - 1);
               } else {
-                index = Number(index) - 1;
+                updateIndexAndSetValue(-1);
               }
-              $("#" + domId).combobox("setValue", data[index][valueField]);
-            }
-            if (keyCode == "40") {
-              if (index == -1 || index == Number(datalength) - 1) {
-                index = 0;
+            } else if (key === 'ArrowDown') { // 下箭头
+              if (index >= datalength - 1 || index === -1) {
+                updateIndexAndSetValue(0);
               } else {
-                index = Number(index) + 1;
+                updateIndexAndSetValue(1);
               }
-              $("#" + domId).combobox("setValue", data[index][valueField]);
             }
-            isselect = true;
           }
-          if (keyCode == "13") {
+
+          if (key === 'Enter') { // 回车
             if (nextid) {
               $('#' + nextid).textbox("textbox").focus();
             }
@@ -156,10 +159,10 @@ export function getCommonDic(dics: any) {
               dics.method(data[index]);
             }
           }
-        } catch (e) {
-          GLOBAL$BROWSER$.errorTrace(e);
+        } catch (error) {
+          GLOBAL$BROWSER$.errorTrace(error);
         }
-      })
+      });
     }
 
     //校验数据有效性

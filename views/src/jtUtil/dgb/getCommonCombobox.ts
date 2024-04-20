@@ -136,7 +136,7 @@ export function getCommonCombobox(params: any) {
           var e = event || window.event;
           var keyCode = e.keyCode || e.which;
           if (keyCode == "38") {
-            var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
+            let pClosed = $("#" + domId).combobox("panel").panel("options").closed;
             if (pClosed) {
               isselect = false;
               if (index == 0 || index == -1) {
@@ -150,7 +150,7 @@ export function getCommonCombobox(params: any) {
             }
           }
           if (keyCode == "40") {
-            var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
+            let pClosed = $("#" + domId).combobox("panel").panel("options").closed;
             if (pClosed) {
               isselect = false;
               if (index == -1 || index == Number(datalength) - 1) {

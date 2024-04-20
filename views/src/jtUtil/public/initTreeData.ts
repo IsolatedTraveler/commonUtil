@@ -1,39 +1,46 @@
-export function initTreedata<T extends { [key: string]: any }>(
-  data: T[],
-  idKey: keyof T = 'id',
-  parentIdKey: keyof T = 'fid',
+interface TreeNode {
+  state?: 'closed'
+  children: TreeNode[]
+  fid: string
+  id: string
+  [key: string]: any
+}
+export function initTreedata(
+  data: TreeNode[],
+  idKey: keyof TreeNode = 'id',
+  parentIdKey: keyof TreeNode = 'fid',
   initialStateClosed: boolean = false
-): T[] {
+): TreeNode[] {
   try {
     if (!data.length) return [];
 
-    const treeMap = {} as { [K in T[keyof T]]: T }; // 用于存储所有节点，快速查找
-    const result: any[] = []; // 最终的树结构
+    // 使用一个映射来存储所有节点，键为id，值为节点对象
+    const nodeMap = new Map();
+    // 初始化最终的树结构数组
+    const tree: TreeNode[] = [];
 
-    // 预处理数据，建立快速查找map
+    // 遍历数据，填充nodeMap并处理根节点
     data.forEach(item => {
-      treeMap[item[idKey]] = { ...item, children: [] };
+      // 保存节点到映射中
+      nodeMap.set(item[idKey], { ...item, children: [] }); // 每个节点初始化一个空的children数组
     });
 
-    // 构建树
-    data.forEach(node => {
-      const { [parentIdKey]: parentId } = node;
-      if (parentId === '') { // 根节点处理
-        result.push(treeMap[node[idKey]]);
+    // 构建树形结构，通过pid找到父节点并添加子节点
+    data.forEach(item => {
+      const parentNode = nodeMap.get(item[parentIdKey]);
+      if (parentNode) {
+        parentNode.children.push(nodeMap.get(item[idKey]));
       } else {
-        treeMap[parentId].children.push(treeMap[node[idKey]]);
+        tree.push(item)
       }
     });
-
-    // 根据需求设置节点状态
     if (initialStateClosed) {
-      result.forEach(node => {
+      tree.forEach(node => {
         if (node.children.length) node.state = 'closed';
         recursiveSetState(node.children);
       });
     }
-
-    return result;
+    return tree;
   } catch (e) {
     GLOBAL$BROWSER$.errorTrace(e)
     return []
@@ -41,10 +48,7 @@ export function initTreedata<T extends { [key: string]: any }>(
 }
 
 // 辅助函数，用于递归设置节点状态
-function recursiveSetState<T extends {
-  children: T[]
-  state?: 'closed'
-}>(nodes: T[]) {
+function recursiveSetState<T extends TreeNode>(nodes: T[]) {
   nodes.forEach(node => {
     if (node.children.length) {
       node.state = 'closed';
