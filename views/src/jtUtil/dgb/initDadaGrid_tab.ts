@@ -1,10 +1,14 @@
-export function initDadaGrid_tab(gridid, columns_arr, url, params, pageSize, title, fitColumns, nowrap) {
+export function initDadaGrid_tab(
+  gridid: string
+  , columns_arr: any[][]
+  , url: string
+  , params: any
+  , pageSize: number
+  , title: string
+  , fitColumns: boolean
+  , nowrap: boolean) {
   try {
-    if (!fitColumns) {
-      fitColumns = false;
-    } else {
-      fitColumns = true;
-    }
+    fitColumns = !!fitColumns
     //判断是否分页
     var isPagination = false;
     if (pageSize > 0) {
@@ -19,9 +23,9 @@ export function initDadaGrid_tab(gridid, columns_arr, url, params, pageSize, tit
     var columns = [];
     for (var i = 0; i < columns_arr.length; i++) {
       //动态设置展示列
-      var cols = [];
+      var cols: any[][] = [];
       var col_arr = columns_arr[i];
-      $(col_arr).each(function () {
+      $(col_arr).each(function (this: any) {
         var _align = this[3];
         var _rowspan = this[4];
         var _colspan = this[5];
@@ -34,16 +38,15 @@ export function initDadaGrid_tab(gridid, columns_arr, url, params, pageSize, tit
         if (!_colspan) {
           _colspan = 1;
         }
-        var column = { field: this[0], title: this[1], sortable: false, align: _align, rowspan: _rowspan, colspan: _colspan, halign: "center" };
+        var column: any = { field: this[0], title: this[1], sortable: false, align: _align, rowspan: _rowspan, colspan: _colspan, halign: "center" };
         if (this[6]) {
           column.sortable = true;
         }
         if (this[2] && this[2] != '') {
           var column_width = this[2];
           column.width = column_width;
-          column.formatter = function (value, row, index) {
+          column.formatter = function (value: any) {
             if (value && (200 / 14 * value.length > column_width)) {
-              //var famtterValue = value.substr(0, 14/200*column_width)+'...';
               return '<span title=' + value + '>' + value + '</span>';
             }
             return value;
@@ -78,11 +81,7 @@ export function initDadaGrid_tab(gridid, columns_arr, url, params, pageSize, tit
       $(".align_center").parent().parent().css("text-align", "center");
     }, 0)
 
-    //			var dg = $("#"+gridid);
-    //			var col = dg.datagrid('getColumnOption', 'id');
-    //			col.width = 300;
-    //			col.align = 'center';
-    //			dg.datagrid();
   } catch (e) {
     GLOBAL$BROWSER$.errorTrace(e);
   }
+}
