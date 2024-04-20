@@ -1,3 +1,4 @@
+import { dicget } from "./dicget";
 import { filterComboboxData } from "./filterComboboxData";
 import { filterDicData } from "./filterDicData";
 
@@ -39,7 +40,7 @@ export function getCommonDic(dics: any) {
     }
     //是否添加一个空选项
     var addnull = dics.addnull;
-    var data = GLOBAL$AJAX$.commonHttppost('', { dicKey }).data || []
+    var data = dicget(dicKey)
     data = filterDicData(data);
     if (data.length > 0) {//添加一个空选项
       if (addnull == "1") {
@@ -126,33 +127,26 @@ export function getCommonDic(dics: any) {
         try {
           var e = event || window.event;
           var keyCode = e.keyCode || e.which;
-          if (keyCode == "38") {
-            var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
-            if (pClosed) {
-              isselect = false;
+          var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
+          if (pClosed) {
+            isselect = false;
+            if (keyCode == "38") {
               if (index == 0 || index == -1) {
-                $("#" + domId).combobox("setValue", data[Number(datalength) - 1][valueField]);
                 index = Number(datalength) - 1;
               } else {
                 index = Number(index) - 1;
-                $("#" + domId).combobox("setValue", data[index][valueField]);
               }
-              isselect = true;
+              $("#" + domId).combobox("setValue", data[index][valueField]);
             }
-          }
-          if (keyCode == "40") {
-            var pClosed = $("#" + domId).combobox("panel").panel("options").closed;
-            if (pClosed) {
-              isselect = false;
+            if (keyCode == "40") {
               if (index == -1 || index == Number(datalength) - 1) {
-                $("#" + domId).combobox("setValue", data[0][valueField]);
                 index = 0;
               } else {
                 index = Number(index) + 1;
-                $("#" + domId).combobox("setValue", data[index][valueField]);
               }
-              isselect = true;
+              $("#" + domId).combobox("setValue", data[index][valueField]);
             }
+            isselect = true;
           }
           if (keyCode == "13") {
             if (nextid) {

@@ -1,0 +1,23 @@
+import { AjaxRequestOption } from "../../../g-lobal/ajax/type"
+
+export function dealAjaxData(data: any,
+  {
+    isNotGetUser,
+    isBase64,
+    isPwd
+  }: AjaxRequestOption = {}) {
+  if (!isNotGetUser) {
+    // eslint-disable-next-line no-import-assign
+    let user = GLOBAL$USER$.getUser() || {}
+    data = Object.assign({}, {
+      czryid: user.ryid,
+      czryjgid: user.jgid,
+      czryjgmc: user.jgmc,
+      czryjgjc: user.jgjc,
+      czryyhm: user.yhm,
+      czryxm: user.xm || user.username,
+      superadmin: user.superadmin
+    }, data)
+  }
+  return JSON.stringify({ data })
+}

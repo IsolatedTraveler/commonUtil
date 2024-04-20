@@ -1,0 +1,1 @@
+export const dics: { [key: string]: any } = {}
