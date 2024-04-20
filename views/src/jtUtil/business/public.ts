@@ -1,3 +1,5 @@
 import { Class } from "../core";
-import { dicget } from "../public";
+import { dicget, initTreedata, possessMkqx } from "../public";
 Class.prototype.dicget = dicget
+Class.prototype.initTreedata = initTreedata
+Class.prototype.possessMkqx = possessMkqx

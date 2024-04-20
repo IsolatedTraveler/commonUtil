@@ -7,6 +7,6 @@ export function errorTrace(exception: any) {
   if (system) {
     system.log(exception.stack)
   } else {
-    console.log(exception.stack)
+    console.error(exception.stack)
   }
 }
