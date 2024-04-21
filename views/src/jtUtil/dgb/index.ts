@@ -1,5 +1,4 @@
 export * from './dataGridPageChange'
-export * from './dealAjaxData'
 export * from './getCommonCombobox'
 export * from './getCommonDic'
 export * from './initBaseBar'

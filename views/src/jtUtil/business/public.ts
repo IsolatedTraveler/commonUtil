@@ -1,5 +1,6 @@
 import { Class } from "../core";
-import { dicget, filterComboboxData, filterDicData, initTreedata, loadDataGrigPageData, possessMkqx } from "../public";
+import { dealAjaxData, dicget, filterComboboxData, filterDicData, initTreedata, loadDataGrigPageData, possessMkqx } from "../public";
+Class.prototype.dealAjaxData = dealAjaxData
 Class.prototype.dicget = dicget
 Class.prototype.filterComboboxData = filterComboboxData
 Class.prototype.filterDicData = filterDicData

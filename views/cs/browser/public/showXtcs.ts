@@ -1,3 +1,4 @@
+import { system } from "../../../g-lobal/allVar"
 
 export function showxtcs(mkbh: string) {
   return new Promise((resolve, reject) => {
@@ -7,9 +8,10 @@ export function showxtcs(mkbh: string) {
 }
 export function openMsgBox(title: string, msg: string, button: any, type: any) {
   return new Promise((resolve, reject) => {
-    var result = GLOBAL$BROWSER$.getSystemVal("showmsgbox", [title, msg, button, type])
-    var data = JSON.parse(result).data;
-    resolve(data.result);
+    if (system) {
+      var data = JSON.parse(system.showmsgbox(title, msg, button, type)).data;
+      resolve(data.result);
+    }
   })
 }
 export function closeWindow(num = 0) {

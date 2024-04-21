@@ -1,3 +1,4 @@
+export * from './dealAjaxData'
 export * from './dicget'
 export * from './filterComboboxData'
 export * from './filterDicData'

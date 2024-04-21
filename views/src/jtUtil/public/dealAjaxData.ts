@@ -6,6 +6,11 @@ export function dealAjaxData(data: any,
     isBase64,
     isPwd
   }: AjaxRequestOption = {}) {
+  if (data.pageSize) {
+    console.warn(data.pageSize)
+    data.page = data.pageNumber
+    data.size = data.pageSize
+  }
   if (!isNotGetUser) {
     // eslint-disable-next-line no-import-assign
     let user = GLOBAL$USER$.getUser() || {}
