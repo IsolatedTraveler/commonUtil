@@ -37,7 +37,7 @@ export function getCode(
         code = res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
           .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
           .replace(/FIRSTMODULENAME/g, Name)
-          .replace(/[ ]*\/\/ PLUGIN IGNORE START(\s|\S)+\/\/ PLUGIN IGNORE END\s/, '')
+          .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
         return Promise.all(printSrc.map(it => {
           let outFile = path.resolve(it, outName)

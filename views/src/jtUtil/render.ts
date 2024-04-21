@@ -16,4 +16,5 @@ import {
 // PLUGIN IGNORE START
 getSystemVal('')
 // PLUGIN IGNORE END
+w.jtUtil = new Class()
 export { Class }
