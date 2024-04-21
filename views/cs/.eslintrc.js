@@ -5,6 +5,7 @@ module.exports = {
     Render: true,
     that: true,
     commonUtil: true,
+    layui: true,
     w: true,
     d: true,
     MODULENAME: true,

@@ -13,6 +13,7 @@ declare global {
     hex_md5: any
   }
   let w: Window
+  let layui: any
   let d: Document
   let MODULENAME: any
   let FIRSTMODULENAME: any

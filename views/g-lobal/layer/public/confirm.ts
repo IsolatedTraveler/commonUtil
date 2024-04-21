@@ -1,4 +1,3 @@
-import { openMsgBox } from "../../browser/public/openMsgBox"
 
 function judgeConfig(i: string, j: number, len: number, resolve: Function, reject: Function) {
   window.layer.close(i)
@@ -37,13 +36,7 @@ export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'
         judge = judgeConfig(i, 2, len, resolve, reject)
       })
     } else {
-      return openMsgBox(title, msg, [], 1).then((data => {
-        if (data == '1') {
-          resolve({})
-        } else {
-          reject()
-        }
-      })).catch(reject)
+      alert('未提供弹出层解决方案：' + msg)
     }
   })
 }
