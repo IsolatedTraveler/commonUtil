@@ -1,5 +1,5 @@
 import { Class } from "../core";
-import { initShortcutKey, initBaseBar, getCommonDic, initDadaGrid_tab, getCommonCombobox, dataGridPageChange, getCommonCombogrid, initNextInputFocus, comboGridPageChange, loadComboGrigPageData } from "../dgb";
+import { initShortcutKey, initBaseBar, getCommonDic, initDadaGrid_tab, getCommonCombobox, dataGridPageChange, getCommonCombogrid, initNextInputFocus, comboGridPageChange, loadComboGrigPageData, toDecimalNumber } from "../dgb";
 Class.prototype.comboGridPageChange = comboGridPageChange
 Class.prototype.dataGridPageChange = dataGridPageChange
 Class.prototype.getCommonCombogrid = getCommonCombogrid
@@ -10,3 +10,4 @@ Class.prototype.initDadaGrid_tab = initDadaGrid_tab
 Class.prototype.initNextInputFocus = initNextInputFocus
 Class.prototype.initShortcutKey = initShortcutKey
 Class.prototype.loadComboGrigPageData = loadComboGrigPageData
+Class.prototype.toDecimalNumber = toDecimalNumber
