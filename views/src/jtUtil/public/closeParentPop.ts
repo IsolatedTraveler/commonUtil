@@ -1,3 +1,4 @@
 export function closeParentPop() {
-  w.parent.jtUtil.closeFun()
+  if (w.parent.jtUtil && w.parent.jtUtil.closeFun)
+    w.parent.jtUtil.closeFun()
 }

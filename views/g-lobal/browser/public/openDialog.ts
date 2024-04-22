@@ -1,7 +1,9 @@
 import { alertMsg } from "../../layer";
 import { dealsUrl, getBaseUrl, getParamsUrl } from "../../url";
 function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
-  w.$('#layerBtn .btn').eq(btn - 1).click();
+  if (w && w.$) {
+    w.$('#layerBtn .btn').eq(btn - 1).click();
+  }
   that.closeFun = () => {
     layer.close(i)
     resolve(btn)
