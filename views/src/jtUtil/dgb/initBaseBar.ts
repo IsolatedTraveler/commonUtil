@@ -32,10 +32,14 @@ export function initBaseBar(menus: InitBaseBarMenu[][], buttons: InitBaseBarMenu
             id: k.id
           })
           $("#menudiv" + i).children("div").eq(j + 1).click(function () {
-            if (k.id) {
-              k["method"](k.id);
-            } else {
-              k["method"]();
+            try {
+              if (k.id) {
+                k["method"](k.id);
+              } else {
+                k["method"]();
+              }
+            } catch (e) {
+              GLOBAL$BROWSER$.errorTrace(e);
             }
           })
         });
