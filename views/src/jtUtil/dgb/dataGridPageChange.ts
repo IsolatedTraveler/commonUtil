@@ -9,8 +9,8 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
       },
       onRefresh: function (pageNumber: number, pageSize: number) {
         try {
-          param.page = pageNumber;
-          param.size = pageSize;
+          param.pageNumber = pageNumber;
+          param.pageSize = pageSize;
           loadDataGrigPageData(gridObject, url, param);
         } catch (e) {
           GLOBAL$BROWSER$.errorTrace(e);
@@ -18,7 +18,7 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
       },
       onChangePageSize: function (pageSize: number) {
         try {
-          param.page = 1;
+          param.pageNumber = 1;
           param.size = pageSize;
           $(gridObject).datagrid('options').pageSize = pageSize;
           loadDataGrigPageData(gridObject, url, param);
@@ -28,7 +28,7 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
       },
       onSelectPage: function (pageNumber: number, pageSize: number) {
         try {
-          param.page = pageNumber;
+          param.pageNumber = pageNumber;
           param.size = pageSize;
           loadDataGrigPageData(gridObject, url, param);
         } catch (e) {

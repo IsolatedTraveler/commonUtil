@@ -1,10 +1,10 @@
 export function loadDataGrigPageData(gridObject: string, url: string, params: any) {
   try {
-    if (params.page) {
+    if (params.pageNumber) {
       var pager = $(gridObject).datagrid('getPager');     // get the pager of datagrid
-      if (params.page != pager.pageNumber) {
+      if (params.pageNumber != pager.pageNumber) {
         pager.pagination({
-          pageNumber: params.page
+          pageNumber: params.pageNumber
         });
       }
     }

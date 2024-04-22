@@ -7,7 +7,6 @@ export function dealAjaxData(data: any,
     isPwd
   }: AjaxRequestOption = {}) {
   if (data.pageSize) {
-    console.warn(data.pageSize)
     data.page = data.pageNumber
     data.size = data.pageSize
   }
