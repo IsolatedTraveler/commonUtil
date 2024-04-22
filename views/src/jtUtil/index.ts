@@ -1,2 +1,1 @@
-
 export { Class } from './render'
