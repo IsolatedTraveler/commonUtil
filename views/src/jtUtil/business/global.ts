@@ -8,3 +8,4 @@ Class.prototype.errorTrace = GLOBAL$BROWSER$.errorTrace
 Class.prototype.getUser = GLOBAL$USER$.getUser
 Class.prototype.openDialog = GLOBAL$BROWSER$.openDialog
 Class.prototype.openMsgBox = GLOBAL$BROWSER$.openMsgBox
+Class.prototype.getUrlParams = GLOBAL$URL$.getUrlParams
