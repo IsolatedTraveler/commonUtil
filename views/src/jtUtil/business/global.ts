@@ -6,4 +6,5 @@ Class.prototype.getAjaxSync = GLOBAL$AJAX$.getAjaxSync
 Class.prototype.getConfig = GLOBAL$AJAX$.getConfig
 Class.prototype.errorTrace = GLOBAL$BROWSER$.errorTrace
 Class.prototype.getUser = GLOBAL$USER$.getUser
+Class.prototype.openDialog = GLOBAL$BROWSER$.openDialog
 Class.prototype.openMsgBox = GLOBAL$BROWSER$.openMsgBox

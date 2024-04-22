@@ -1,5 +1,5 @@
 import {
-  getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam, errorTrace, openMsgBox, skip
+  getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam, errorTrace, openDialog, openMsgBox, skip
 } from '../../views/g-lobal/browser'
 declare global {
   interface GLOBAL$BROWSER$TYPE {
@@ -9,6 +9,7 @@ declare global {
     getBrowserParam: typeof getBrowserParam
     setBrowserParam: typeof setBrowserParam
     errorTrace: typeof errorTrace
+    openDialog: typeof openDialog
     openMsgBox: typeof openMsgBox
     skip: typeof skip
   }
