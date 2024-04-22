@@ -123,7 +123,7 @@ export function getCommonCombogrid(params: any) {
       keyHandler: {
         enter: function () {
           try {
-            var gridObject = $(this);
+            let gridObject = $(this);
             var value = $(this).combogrid('getText');
             var regu = "^[ ]+$";
             var re = new RegExp(regu);
@@ -199,7 +199,7 @@ export function getCommonCombogrid(params: any) {
                         selectedindex = Number(realkey) - 1;
                       }
                       if (keyCode == 38) {
-                        var grid = $("#" + id).combogrid("grid");
+                        let grid = $("#" + id).combogrid("grid");
                         if (selectedindex == 0) {
                           selectedindex = grid.datagrid("getRows").length - 1;
                         } else {
@@ -208,7 +208,7 @@ export function getCommonCombogrid(params: any) {
                         grid.datagrid("highlightRow", selectedindex);
                       }
                       if (keyCode == 40) {
-                        var grid = $("#" + id).combogrid("grid");
+                        let grid = $("#" + id).combogrid("grid");
                         if (selectedindex == (grid.datagrid("getRows").length - 1)) {
                           selectedindex = 0;
                         } else {
@@ -241,13 +241,13 @@ export function getCommonCombogrid(params: any) {
                         firstsearch = true;
                       }
                       if (pagination && keyCode == 37) {
-                        var pagenum = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').pageNumber;
+                        let pagenum = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').pageNumber;
                         if (pagenum != 1) {
                           $("#" + id).combogrid("grid").datagrid("getPager").pagination("select", pagenum - 1);
                         }
                       }
                       if (pagination && keyCode == 39) {
-                        var pagenum = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').pageNumber;
+                        let pagenum = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').pageNumber;
                         var pageSize = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').pageSize;
                         var datatotal = $("#" + id).combogrid("grid").datagrid("getPager").pagination('options').total;
                         var pageTotal = Number(datatotal / pageSize) + 1;
