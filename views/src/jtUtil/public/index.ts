@@ -1,3 +1,4 @@
+export * from './closeParentPop'
 export * from './dealAjaxData'
 export * from './dicget'
 export * from './filterComboboxData'
