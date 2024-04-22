@@ -18,7 +18,7 @@
       });
       return o;
     } catch (e) {
-      GLOBAL$BROWSER$.errorTrace(e);
+      errorTrace(e);
     }
   }
 })(window, document);
