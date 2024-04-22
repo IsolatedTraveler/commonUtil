@@ -12,7 +12,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
     if (!isNaN(height as number)) {
       height += 'px'
     }
-    url += getParamsUrl(data)
+    url += getParamsUrl(Object.assign({ isShowPopup: true }, data))
     if (layui && layer) {
       layer.open({
         type: 2,
