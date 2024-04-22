@@ -16,6 +16,7 @@ module.exports = {
   globals: {
     "$": true,
     layui: true,
+    layer: true,
     w: true,
     d: true,
     Base64: true,

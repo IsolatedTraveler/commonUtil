@@ -14,6 +14,7 @@ declare global {
   }
   let w: Window
   let layui: any
+  let layer: any
   let d: Document
   let MODULENAME: any
   let FIRSTMODULENAME: any
