@@ -9,7 +9,7 @@ function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
     resolve(btn)
   }
 }
-export function openDialog(url: string, data: any, width: string | number, height: string | number, btn = ['确定', '取消']) {
+export function openDialog(url: string, data: any, width: string | number, height: string | number, btn = ['确定', '取消'], title?: string) {
   return new Promise((resolve, reject) => {
     if (url === 'xtcs.html') {
       url = dealsUrl('./webs/xtcs/xtcs.html', getBaseUrl())
@@ -22,21 +22,24 @@ export function openDialog(url: string, data: any, width: string | number, heigh
     }
     url += getParamsUrl(Object.assign({ isShowPopup: true }, data))
     if (layui && layer) {
-      var w: any
+      var w: any, loadIndex: number
       layer.open({
         type: 2,
-        title: '弹出层',
+        title: title || '弹出层',
         content: url,
         btn,
         area: [width, height],
-        shade: '0.3',
+        shade: 0.3,
         success: function (layero: any) {
-          var el = layero.find('.layui-layer-title')
           w = layero.find('iframe')[0].contentWindow
-          el.html(w.document.title)
-          setTimeout(() => {
+          layer.close(loadIndex)
+          if (!title) {
+            var el = layero.find('.layui-layer-title')
             el.html(w.document.title)
-          }, 500);
+            setTimeout(() => {
+              el.html(w.document.title)
+            }, 500);
+          }
         },
         yes: (i: number) => setCloseFun(i, w, resolve),
         btn2: (i: number) => setCloseFun(i, w, resolve, 2),
@@ -47,6 +50,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
           reject()
         }
       })
+      loadIndex = layer.load(2, { time: 30 * 1000, shade: 0.3 })
     } else {
       alertMsg('当前页面未引入layui，暂未实现该方案')
     }
