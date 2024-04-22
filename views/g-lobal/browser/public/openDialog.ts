@@ -16,26 +16,22 @@ export function openDialog(url: string, data: any, width: string | number, heigh
     if (layui && layer) {
       layer.open({
         type: 2,
-        title: '',
+        title: '弹出层',
         content: url,
         btn,
         area: [width, height],
         shade: '0.3',
         success: function (layero: any) {
+          layero.find('.layui-layer-title').html(layero.find('iframe')[0].contentWindow.document.title)
           setTimeout(() => {
             layero.find('.layui-layer-title').html(layero.find('iframe')[0].contentWindow.document.title)
           }, 500);
         },
         yes: function (i: number) {
-          console.log('yes', i)
-          resolve('')
-        },
-        cancel: function (i: number) {
-          console.log('cancel', i)
+          layer.close(i)
           resolve('')
         },
         end: function (i: number) {
-          console.log('end', i)
           reject()
         }
       })
