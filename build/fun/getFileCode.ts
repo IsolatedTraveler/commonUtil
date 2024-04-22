@@ -7,7 +7,6 @@ import nodeResolve from 'rollup-plugin-node-resolve'
 export function getFileCode(input: string, wrapper: string) {
   let reg = /[ \t]*\/\/[ ]*@CODE[\r\n]+/, splitCode: RegExpExecArray | string | null = reg.exec(wrapper)
     , arr = wrapper.split(reg)
-  console.log(arr)
   if (splitCode) {
     splitCode = splitCode[0].replace(/\/\/[ ]*@CODE[\r\n]+/, '')
   } else {
