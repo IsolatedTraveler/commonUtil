@@ -31,7 +31,7 @@ export function initTreedata(
       if (parentNode) {
         parentNode.children.push(nodeMap.get(item[idKey]));
       } else {
-        tree.push(item)
+        tree.push(nodeMap.get(item[idKey]))
       }
     });
     if (initialStateClosed) {

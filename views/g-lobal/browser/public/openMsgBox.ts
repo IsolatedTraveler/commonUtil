@@ -1,6 +1,6 @@
 import { alertMsg, confirmMsg } from "../../layer";
 
-export function openMsgBox(title: string, msg: string, button: any, type: any) {
+export function openMsgBox(title: string, msg: string, type: any, button: any) {
   if (type == '0') {
     alertMsg(msg, title)
     return Promise.resolve()
