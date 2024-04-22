@@ -22,9 +22,10 @@ export function openDialog(url: string, data: any, width: string | number, heigh
         area: [width, height],
         shade: '0.3',
         success: function (layero: any) {
-          layero.find('.layui-layer-title').html(layero.find('iframe')[0].contentWindow.document.title)
+          const w = layero.find('iframe')[0].contentWindow, el = layero.find('.layui-layer-title')
+          el.html(w.document.title)
           setTimeout(() => {
-            layero.find('.layui-layer-title').html(layero.find('iframe')[0].contentWindow.document.title)
+            el.html(w.document.title)
           }, 500);
         },
         yes: function (i: number) {
