@@ -1,5 +1,6 @@
 export * from './dataGridPageChange'
 export * from './getCommonCombobox'
+export * from './getCommonCombogrid'
 export * from './getCommonDic'
 export * from './initBaseBar'
 export * from './initDadaGrid_tab'
