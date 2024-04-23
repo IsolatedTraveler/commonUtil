@@ -12,6 +12,7 @@ export function loadComboGrigPageData(gridObject: string, url: string, params: a
     if (q != '' || params.blanksearch || params.key || params.jsm) {
       var resData = GLOBAL$AJAX$.commonHttppost(url, params).data;
       if (resData.total > 0) {
+        resData.rows = resData.list
         $(gridObject).combogrid('setValue', q);
         $(gridObject).combogrid('grid').datagrid('loadData', resData);
         $(gridObject).combogrid("showPanel");

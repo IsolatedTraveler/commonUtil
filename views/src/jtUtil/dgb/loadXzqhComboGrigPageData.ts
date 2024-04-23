@@ -16,6 +16,7 @@ export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
     if (q != '') {
       const res = getXzqh(q, pageNumber, pageSize)
       if (res.total > 0) {
+        res.rows = res.list
         $(gridObject).combogrid('setValue', q);
         $(gridObject).combogrid('grid').datagrid('loadData', res);
         $(gridObject).combogrid("showPanel");
