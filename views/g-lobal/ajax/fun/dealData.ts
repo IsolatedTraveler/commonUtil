@@ -1,6 +1,5 @@
 import { alertMsg, loaded } from "../../layer/public";
 import { ajaxSuccessCode, jqMode, user } from "../../allVar";
-import * as jq from './jq/index'
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack, ajaxResposeData, Result } from "../type";
 function ajaxError(
   { message, i }: Result,
@@ -30,8 +29,8 @@ export function ajaxDealData(
       loaded(i as string)
     }
     return suuCallBack ? suuCallBack(res) : res
-  } else if (res.code == 2) {
-    (jq as any)[jqMode](config, url, true)
+  } else if (res.code == 2 && that.checkAuth) {
+    that.checkAuth(config, url, true)
     return GLOBAL$AJAX$.ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack)
   }
   res = ajaxError({ message: res.message || res.msg, code: 0, i }, option, res)

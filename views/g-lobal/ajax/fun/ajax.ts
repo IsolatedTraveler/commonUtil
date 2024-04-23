@@ -1,6 +1,5 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
 import { jqMode, contentType, ajaxErrorCode } from "../var/global";
-import * as jq from './jq/index'
 import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
 import { getAllUrl } from "../../url/public/commonUtil";
@@ -24,8 +23,8 @@ export function ajax(
   errCallBack: AjaxErrBack = undefined,
   suuCallBack: AjaxSuuBack = undefined): any {
   var layerIndex: LayerIndex, value
-  if (type === 'POST' && jqMode) {
-    (jq as any)[jqMode](config, url)
+  if (type === 'POST' && that.checkAuth) {
+    that.checkAuth(config, url)
   }
   if (option.isShowLoad) {
     layerIndex = loading()

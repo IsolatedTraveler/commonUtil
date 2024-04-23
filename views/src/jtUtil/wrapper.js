@@ -2,7 +2,7 @@
   // eslint-disable-next-line no-unused-vars
   let that
   // @CODE
-  $.fn.serializeOriginObject = function () {
+  $.fn.serializeObject = function () {
     try {
       var o = {};
       var a = this.serializeArray();

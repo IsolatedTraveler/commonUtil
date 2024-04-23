@@ -4,7 +4,8 @@ export function dealAjaxData(data: any,
   {
     isNotGetUser,
     isBase64,
-    isPwd
+    isPwd,
+    isNotWrapped
   }: AjaxRequestOption = {}) {
   if (data.pageSize) {
     data.page = data.pageNumber
@@ -22,6 +23,9 @@ export function dealAjaxData(data: any,
       czryxm: user.xm || user.username,
       superadmin: user.superadmin
     }, data)
+  }
+  if (isNotWrapped) {
+    return data
   }
   return JSON.stringify({ data })
 }

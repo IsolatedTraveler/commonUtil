@@ -17,24 +17,22 @@ export function getUrlParams(key: string | null | undefined = '', url: string | 
   return key ? urlParam[key] : urlParam
 }
 export function getParamsUrl(obj: any, url: string | URL = ''): string {
-  if (url) {
-    url = new URL(url);
-    obj = Object.assign(getUrlParams(null, url), obj);
-    url = url.origin + url.pathname;
-  } else {
-    url = url || '';
-  }
-  let str = getObjToUrl(obj)
-  return str ? (url + '?' + str) : url
+  return url ? appendParamsToUrl(obj, url) : getObjToUrl(obj)
+}
+function appendParamsToUrl(obj: any, url: string | URL) {
+  const baseUrl = new URL(url);
+  const searchParams = new URLSearchParams(baseUrl.search);
+  Object.entries(obj).forEach(([key, value]) => {
+    searchParams.set(key, encodeUrlParamValue(value));
+  })
+  baseUrl.search = searchParams.toString();
+  return url.toString();
+}
+function encodeUrlParamValue(value: any) {
+  return value ? encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value) : ''
 }
 export function getObjToUrl(obj: any): string {
-  let keys = Object.keys(obj);
-  if (keys.length) {
-    return keys.map(key => {
-      let v = obj[key];
-      v = (v === null || v === undefined) ? '' : v;
-      return key + '=' + encodeURIComponent(typeof v === 'object' ? JSON.stringify(v) : v)
-    }).join('&');
-  }
-  return ''
+  return Object.entries(obj).map(([key, value]) => {
+    return `${key}=${encodeUrlParamValue(value)}`;
+  }).join('&');
 }

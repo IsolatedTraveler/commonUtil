@@ -1,28 +1,30 @@
-export function dealsUrl(url = '', base: string | URL | Location | undefined = undefined) {
-  if (!/^http[s]*:\/\//.test(url)) {
-    base = getUrl(base)
-    let path = base.pathname.split('/');
-    if (/^\.\//.test(url)) {
-      path.pop();
-      path.push(url.replace('./', ''));
-    } else if (/^..\//.test(url)) {
-      let v = url.split('/'), len = v.filter(it => it === '..').length;
-      path.splice(-(len + 1));
-      path.push(...v.splice(len));
-    } else {
-      path.push(url.replace(/^\/|\/$/g, ''));
-    }
-    return base.origin + '/' + path.filter(it => it).join('/')
+export function dealsUrl(url = '', base?: string | URL | Location) {
+  if (/^http[s]*:\/\//i.test(url)) {
+    return url;
   }
-  return url
+  const baseUrl = getUrl(base);
+  let pathSegments = baseUrl.pathname.split('/').filter(Boolean);
+  url = url.replace(/^\.\//, '').replace(/\/$/, ''); // 移除开头的"./"和尾部的"/"
+  if (url.startsWith('../')) {
+    const levelUp = url.split('/').filter(part => part === '..').length;
+    pathSegments = pathSegments.slice(0, -levelUp);
+    url = url.replace(/\.\.\//g, '');
+  }
+  pathSegments = pathSegments.concat(url.split('/').filter(Boolean)); // 合并路径段，忽略空字符串
+  return `${baseUrl.origin}/${pathSegments.join('/')}`;
 }
-export function getUrl(url: string | URL | Location | undefined) {
-  if (url) {
-    if (typeof url === 'string') {
-      url = new URL(url)
-    }
-  } else {
-    url = location
+export function getUrl(url?: string | URL | Location): URL | Location {
+  if (url instanceof URL || url instanceof Location) {
+    return url;
   }
-  return url
+  if (typeof url === 'string') {
+    try {
+      return new URL(url);
+    } catch (error) {
+      // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
+      console.error('Invalid URL:', url);
+      return location;
+    }
+  }
+  return location;
 }
