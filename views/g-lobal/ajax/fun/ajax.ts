@@ -1,5 +1,5 @@
 import { AjaxErrBack, AjaxRequestAsync, AjaxRequestConfig, AjaxRequestData, AjaxRequestOption, AjaxRequestParam, AjaxRequestType, AjaxRequestUrl, AjaxSuuBack } from "../type";
-import { jqMode, contentType, ajaxErrorCode } from "../var/global";
+import { contentType, ajaxErrorCode } from "../var/global";
 import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
 import { getAllUrl } from "../../url/public/commonUtil";

@@ -7,14 +7,17 @@ export function magicCheckAuthV2(config: any, url: string, rest: boolean = false
   setMagicToken(magic, url, rest)
   config.headers = config.headers || {}
   config.headers[magic.AuthorizationName] = Authorization === true ? undefined : Authorization;
+  return Authorization === true
 }
 export function magicCheckAuth(config: any, url: string, rest: boolean = false) {
   let magic: MagicData = ajaxJqMagic
   setMagicToken(magic, url, rest)
   config.headers = config.headers || {}
   config.headers[magic.AuthorizationName] = Authorization === true ? undefined : Authorization;
+  return Authorization === true
 }
 function setMagicToken(magic: MagicData, url: string, rest: boolean) {
+  that.wjqCode = magic.wjqCode
   if (magic.url === url) {
     return
   }

@@ -2,12 +2,14 @@ export interface MagicData {
   url: string
   Authorization?: string
   user: any
+  wjqCode: number
   isParam?: boolean
   AuthorizationName: string
 }
 export const ajaxTimeOut = 1000 * 60 * 3, ajaxJqMagic: MagicData = {
   url: '/magicJq/oauth/token',
   isParam: true,
+  wjqCode: 2,
   AuthorizationName: 'Authorization',
   Authorization: 'Basic MDAwMDAwOmp0d3hAMjAyMw==',
   user: {
@@ -17,6 +19,7 @@ export const ajaxTimeOut = 1000 * 60 * 3, ajaxJqMagic: MagicData = {
 },
   ajaxJqMagicV2: MagicData = {
     url: '/magic/oauth/login',
+    wjqCode: 101,
     AuthorizationName: 'accessToken',
     user: {
       zh: '',
