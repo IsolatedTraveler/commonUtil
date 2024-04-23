@@ -25,7 +25,7 @@ export function dealAjaxData(data: any,
     }, data)
   }
   if (isNotWrapped) {
-    return data
+    return JSON.stringify(data)
   }
   return JSON.stringify({ data })
 }
