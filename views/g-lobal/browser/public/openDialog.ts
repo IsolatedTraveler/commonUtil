@@ -23,7 +23,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
     url += '?' + getParamsUrl(Object.assign({ isShowPopup: true }, data))
     if (layui && layer) {
       var w: any, loadIndex: number
-      layer.open({
+      const param: any = {
         type: 2,
         title: title || '弹出层',
         content: url,
@@ -41,15 +41,13 @@ export function openDialog(url: string, data: any, width: string | number, heigh
             }, 500);
           }
         },
-        yes: (i: number) => setCloseFun(i, w, resolve),
-        btn2: (i: number) => setCloseFun(i, w, resolve, 2),
-        btn3: (i: number) => setCloseFun(i, w, resolve, 3),
-        btn4: (i: number) => setCloseFun(i, w, resolve, 4),
-        btn5: (i: number) => setCloseFun(i, w, resolve, 5),
-        end: function (i: number) {
-          reject()
-        }
+        end: reject
+      }
+      btn.forEach((it, j) => {
+        const z = j + 1
+        param[j === 0 ? 'yes' : `btn${z}`] = (i: number) => setCloseFun(i, w, resolve, z)
       })
+      layer.open(param)
       loadIndex = layer.load(2, { time: 30 * 1000, shade: 0.3 })
     } else {
       alertMsg('当前页面未引入layui，暂未实现该方案')

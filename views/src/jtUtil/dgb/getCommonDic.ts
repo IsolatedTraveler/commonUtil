@@ -40,7 +40,7 @@ export function getCommonDic(dics: any) {
     }
     //是否添加一个空选项
     var addnull = dics.addnull;
-    dicget(dicKey).then((data: any[]) => {
+    return dicget(dicKey).then((data: any[]) => {
       data = filterDicData(data);
       if (data.length > 0) {//添加一个空选项
         if (addnull == "1") {
@@ -205,5 +205,6 @@ export function getCommonDic(dics: any) {
     })
   } catch (e) {
     GLOBAL$BROWSER$.errorTrace(e);
+    return Promise.resolve()
   }
 }
