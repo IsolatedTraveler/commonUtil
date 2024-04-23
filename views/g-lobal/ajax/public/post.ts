@@ -19,7 +19,7 @@ export function commonHttppost(
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}): MagicRes {
 
-  return ajax(url, ajaxPostData(data, option.param, option, config), option.param, option, config, 'POST')
+  return ajax(url, ajaxPostData(data, option, config), option.param, option, config, 'POST')
 }
 // 异步
 export function commonQueryAsyncHttppost_callback(

@@ -25,7 +25,7 @@ function setMagicToken(magic: MagicData, url: string, rest: boolean) {
   }
 }
 function getMagicToken(magic: MagicData) {
-  const user = session('magic').user || session('magicUser') || magic.user, param = magic.isParam ? user : undefined, data = magic.isParam ? undefined : user
+  const user = session('magicUser') || (session('magic') || {}).user || magic.user, param = magic.isParam ? user : undefined, data = magic.isParam ? undefined : user
   let res: any = GLOBAL$AJAX$.commonHttppost(magic.url, data, {
     param,
     isNotGetUser: true,

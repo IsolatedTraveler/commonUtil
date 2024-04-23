@@ -37,12 +37,11 @@ export function ajaxDealData(
   return errCallBack ? errCallBack(res) : res
 }
 export function ajaxPostData(data: AjaxRequestData = {},
-  param: AjaxRequestParam = {},
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {},
   type: AjaxRequestType = 'POST') {
   if (that && that.dealAjaxData) {
-    return that.dealAjaxData(data, param, option, config, type)
+    return that.dealAjaxData(data, option, config, type)
   } else {
     return JSON.stringify(Object.assign({}, user, data))
   }
