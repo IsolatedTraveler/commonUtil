@@ -1,12 +1,12 @@
 import { alertMsg } from "../../layer";
 import { dealsUrl, getBaseUrl, getParamsUrl } from "../../url";
 function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
-  if (w && w.$) {
-    w.$('#layerBtn .btn').eq(btn - 1).click();
-  }
   that.closeFun = () => {
     layer.close(i)
     resolve(btn)
+  }
+  if (w && w.$) {
+    w.$('#layerBtn .btn').eq(btn - 1).click();
   }
 }
 export function openDialog(url: string, data: any, width: string | number, height: string | number, btn = ['确定', '取消'], title?: string) {
@@ -20,7 +20,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
     if (!isNaN(height as number)) {
       height += 'px'
     }
-    url += getParamsUrl(Object.assign({ isShowPopup: true }, data))
+    url += '?' + getParamsUrl(Object.assign({ isShowPopup: true }, data))
     if (layui && layer) {
       var w: any, loadIndex: number
       layer.open({
