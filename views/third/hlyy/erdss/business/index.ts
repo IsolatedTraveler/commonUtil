@@ -7,3 +7,4 @@ Class.prototype.rxReview = rxReview
 Class.prototype.tip = tip
 Class.prototype.getCol = getCol
 Class.prototype.dealAjaxData = GLOBAL$AJAX$.dealAjaxData
+Class.prototype.checkAuth = GLOBAL$AJAX$.magicCheckAuth

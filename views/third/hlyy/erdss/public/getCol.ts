@@ -6,7 +6,7 @@ export function getCol() {
     width: 80,
     align: 'center',
     formatter: function (_v: string, row: any) {
-      return row.lb == '01' || row.lb == '02' || row.lb == '03' ? `<a href="javascript:jt_third_hlyy.instruction('${row.dm}')" class="view-xmmc-btn">查看说明书</a>` : '';
+      return row.lb == '01' || row.lb == '02' || row.lb == '03' ? `<a href="javascript:jt_third_hlyy.instruction('${row.id}')" class="view-xmmc-btn">查看说明书</a>` : '';
     }
   }
 }

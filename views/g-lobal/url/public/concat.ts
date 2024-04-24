@@ -23,7 +23,6 @@ export function getUrl(url?: string | URL | Location): URL | Location {
     } catch (error) {
       // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
       console.error('Invalid URL:', url);
-      return location;
     }
   }
   return location;
