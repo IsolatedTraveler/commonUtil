@@ -1,5 +1,5 @@
 export function getYsxx(ysxx: any) {
-  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-ysxx', { ysid: ysxx.ryid }).then(({ data }) => {
+  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/05/10/s-ysxx', { ysid: ysxx.ryid }).then(({ data }) => {
     if (data) {
       data = (data.list || [])[0] || {}
       return {

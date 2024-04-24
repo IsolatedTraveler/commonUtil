@@ -3,7 +3,7 @@ import { Mzlx, dicCflx, dicYzlx } from "./dic"
 
 export function getDdxx(xdd: any, lx: Mzlx) {
   return Promise.all([getYypl(), getGytj()]).then(() => {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-lsyzxx', { zyid: xdd.zyid }).then(({ data }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/05/10/s-lsyzxx', { zyid: xdd.zyid }).then(({ data }) => {
       if (data) {
         data = data.list || []
         return getCfxx(0, data, lx).concat(getCfxx(1, xdd.yzxx, lx))
@@ -15,7 +15,7 @@ function getYypl() {
   if (yypl) {
     return Promise.resolve(yypl)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-yypl', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/yy10-ywjc/01/10/s-yypl', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.dm] = it.cs
@@ -28,7 +28,7 @@ function getGytj() {
   if (gytj) {
     return Promise.resolve(gytj)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-gytj', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq//yy10-ywjc/01/10/s-gytj', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.mc] = it.dm
@@ -43,6 +43,7 @@ function getDay(yp: any) {
   return cs / yyplcs
 }
 function getCfxx(is_current: number, ddxx: any, lx: Mzlx) {
+  // 将dm变为ypid
   return ddxx.map((it: any, i: number) => {
     var yzmx = it.yzmx || []
     return {
@@ -58,7 +59,7 @@ function getCfxx(is_current: number, ddxx: any, lx: Mzlx) {
         return {
           pres_order_detail_num: i, // 医嘱明细序号
           pres_order_detail_status: '', // 医嘱明细状态  非必填
-          his_drug_code: yp.xmdm, // 药品代码
+          his_drug_code: yp.ypid, // 药品代码
           drug_trade_name: yp.xmmc, // 药品名
           insurance_drug_code: '', // 药品医保代码  非必填
           pharmac_reason: '', // 用药理由  非必填

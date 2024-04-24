@@ -1,7 +1,7 @@
 import { dicZdlb } from "./dic"
 
 export function getZdxx(data: any) {
-  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/zylcgl/s-zdxx', { zyid: data.zyid }).then(({ data }) => {
+  return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/YY15/05/10/s-zdxx', { zyid: data.zyid }).then(({ data }) => {
     if (data) {
       data = data.list || []
       return data.map((it: any, i: number) => {
