@@ -43,7 +43,7 @@ export function calc(firstOperand: string | number,
 function formatResult(res: bigint, maxDecimals: number): string {
   var resultStr = res.toString()
   if (maxDecimals > 0) {
-    resultStr = resultStr.slice(0, -maxDecimals) + '.' + resultStr.slice(-maxDecimals).padStart(maxDecimals, '0');
+    resultStr = (resultStr.slice(0, -maxDecimals) || '0') + '.' + resultStr.slice(-maxDecimals).padStart(maxDecimals, '0');
   }
   return resultStr
 }
