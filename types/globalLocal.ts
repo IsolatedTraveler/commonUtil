@@ -7,5 +7,6 @@ import {
   load, loaded, loading, openPage, getName, getRouterW, redirect, router, session, local, setPageTemp, tempData, 
   getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, 
   getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut, calc, debounce1, 
-  formatTreeData, uuid, preciseDecimal, prefix, getAge, dealSheetToArray, expExcel, loadXlsx, readXlsx
+  errFormat, formatTreeData, extractIDInfo, idCard, uuid, preciseDecimal, prefix, resFormat, getAge, 
+  dealSheetToArray, expExcel, loadXlsx, readXlsx
 } from '../../views/g-lobal'

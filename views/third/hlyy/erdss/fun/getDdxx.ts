@@ -54,7 +54,7 @@ function getCfxx(is_current: number, ddxx: any, lx: Mzlx) {
       medical_advice_type: dicYzlx(lx, it.yzlx == '1'), // 医嘱类型
       prescription_time: (it.kzrq ? new Date(it.kzrq) : new Date() as any).format('yyyy-MM-dd hh:mm:ss'), // 处方时间
       amount: '', // 处方金额
-      prescription_order_list: yzmx.map((yp: any, i: number) => {
+      drug_info_list: yzmx.map((yp: any, i: number) => {
         var day = getDay(yp), kszxrq: any = it.kszxrq ? new Date(it.kszxrq) : new Date()
         return {
           pres_order_detail_num: i, // 医嘱明细序号

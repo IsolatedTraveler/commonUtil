@@ -3,7 +3,7 @@ import { his_company_code, his_medical_org_code } from "../var"
 export function rxReview(brxx: any, data: any, ysxx: any, sjly: Sjly = 100) {
   var outpati_inpati_flag = dicMzlx(sjly)
   return Promise.all([getDdxx(data, outpati_inpati_flag), getZdxx(data), getJyjl(), getYsxx(ysxx)]).then(([ddxx, zdxx, jyjl, ysxx1]) => {
-    return window.YytPass.showInstruction({
+    return window.YytPass.rxReview({
       his_company_code,
       his_medical_org_code,
       his_time: Date.now(),
