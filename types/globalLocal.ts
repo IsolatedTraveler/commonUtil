@@ -6,6 +6,6 @@ import {
   encryption, down, loadJs, loadJsJudge, loadStyle, readFile, uploadInputFile, alertMsg, confirmMsg, getLayui, 
   load, loaded, loading, openPage, getName, getRouterW, redirect, router, session, local, setPageTemp, tempData, 
   getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, 
-  getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut, debounce1, 
-  formatTreeData, uuid, prefix, getAge, dealSheetToArray, expExcel, loadXlsx, readXlsx
+  getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut, calc, debounce1, 
+  formatTreeData, uuid, preciseDecimal, prefix, getAge, dealSheetToArray, expExcel, loadXlsx, readXlsx
 } from '../../views/g-lobal'

@@ -9,10 +9,9 @@ import {
   getLayui, load, loaded, loading, openPage, getName, getRouterW, redirect, router, session, local, setPageTemp,
   tempData, getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl,
   getMainUrl, getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut,
-  debounce1, formatTreeData, uuid, prefix, getAge, expExcel, readXlsx, dealSheetToArray
+  debounce1, formatTreeData, uuid, prefix, getAge, expExcel, readXlsx, dealSheetToArray, calc, preciseDecimal
 } from '../../../../../g-lobal'
 // PLUGIN IGNORE START
-commonHttppost('', {})
 getSystemVal('')
 getAjax('', {})
 // PLUGIN IGNORE END

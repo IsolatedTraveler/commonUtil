@@ -16,7 +16,7 @@ export const buildModule = {
       dz: false
     },
     hlyy: {
-      erdss: false
+      erdss: true
     },
     yprkgl: {
       erdss: false
@@ -26,7 +26,7 @@ export const buildModule = {
     his: {
       ypgl: {
         pdgl: {
-          pdjl: false
+          pdjl: true
         }
       }
     }

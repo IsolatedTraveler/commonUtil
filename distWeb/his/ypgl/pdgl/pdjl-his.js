@@ -1,13 +1,7 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
-  var jqMode = 'jqMagic', Authorization, contentType = 'application/json; charset=utf-8', dataConfig, ajaxSuccessCode = 1, ajaxErrorCode = -1;
-  function setJqMode(a) {
-    return jqMode = a;
-  }
-  function setAuthorization(v) {
-    return Authorization = v;
-  }
+  var contentType = 'application/json; charset=utf-8', dataConfig, ajaxSuccessCode = 1, ajaxErrorCode = -1;
   function setAjaxContentType(v) {
     return contentType = v;
   }
@@ -17,6 +11,32 @@
   function setAjaxSuccessCode(succ, err) {
     ajaxSuccessCode = succ;
     ajaxErrorCode = err;
+  }
+  function alertMsg(msg, title = '提示信息', judge = true) {
+    if (judge) {
+      if (window.layer) {
+        window.layer.alert(msg);
+      }
+      else if ($.messager && $.messager.alert) {
+        $.messager.alert({
+          title,
+          msg,
+          icon: 'warning'
+        });
+      }
+      else if (msg == '该方法依赖专有浏览器，请在专有浏览器中使用') {
+        alert(msg + (judge === 'lib23/commonUtil' ? '' : judge));
+      }
+      else {
+        alert('未提供报错解决方案：' + msg);
+      }
+    }
+  }
+  function down(url, name) {
+    let a = d.createElement('a'), event = new MouseEvent('click');
+    a.href = url;
+    a.download = name || 'down';
+    a.dispatchEvent(event);
   }
   let system;
   function setJtPhisSystem(v) {
@@ -90,91 +110,6 @@
       return tempData(name, val, sessionStorage);
     }
   }
-  const ajaxTimeOut = 1000 * 60 * 3, ajaxJqMagic = {
-    url: '/magicJq/oauth/token',
-    Authorization: 'Basic MDAwMDAwOmp0d3hAMjAyMw==',
-    user: {
-      username: "admin",
-      password: "9e6a933026b133a962a5d217d849f65c"
-    }
-  };
-  const urlRegV = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
-  function jqMagic(config, url, rest = false) {
-    let magic = session('magic') || ajaxJqMagic;
-    setAuthorization(session('Authorization'));
-    if (rest) {
-      setAjaxMagicToken(magic.user);
-    }
-    else {
-      if (ajaxJqMagic.url === url) {
-        setAuthorization(magic.Authorization);
-      }
-      else if (!Authorization || Authorization == magic.Authorization) {
-        setAjaxMagicToken(magic.user);
-      }
-      else ;
-    }
-    session('Authorization', Authorization);
-    config.headers = config.headers || {};
-    config.headers.Authorization = Authorization;
-  }
-  function setAjaxMagicToken(param) {
-    let res = commonHttppost(ajaxJqMagic.url, {}, { param, isNotGetUser: true }, { headers: { Authorization } });
-    if (res.code != 1 && param.username != ajaxJqMagic.user.username) {
-      setAjaxMagicToken(ajaxJqMagic.user);
-    }
-    else {
-      setAuthorization(res.Authorization);
-    }
-  }
-  var jq = /*#__PURE__*/Object.freeze({
-   __proto__: null,
-   jqMagic: jqMagic
-  });
-  function alertMsg(msg, judge = true) {
-    if (judge) {
-      if (window.layer) {
-        window.layer.alert(msg);
-      }
-      else if (msg == '该方法依赖专有浏览器，请在专有浏览器中使用') {
-        alert(msg);
-      }
-      else {
-        getSystemVal('showmsgbox', ['提示', msg, [], 0]);
-      }
-    }
-  }
-  function getJtPhisSystem() {
-    let systemV = w.jthisJsObject || w.wdphisJsObject;
-    if (systemV) {
-      setJtPhisSystem(systemV.jthis || systemV.wdphis);
-    }
-  }
-  function getSystemVal(name, param = undefined) {
-    if (system) {
-      if (system[name]) {
-        if (param) {
-          return system[name](...param);
-        }
-        else {
-          return system[name]();
-        }
-      }
-      else {
-        alertMsg(`当前浏览器未定义该方法（${name}），请联系厂家提供技术支持`);
-      }
-    }
-    else {
-      // 报错
-      alertMsg("该方法依赖专有浏览器，请在专有浏览器中使用");
-    }
-  }
-  function down(url, name) {
-    let a = d.createElement('a'), event = new MouseEvent('click');
-    a.href = url;
-    a.download = name || 'down';
-    a.dispatchEvent(event);
-  }
   function getConfig(key = '') {
     setPageTemp(dataConfig, setConfig);
     return key ? dataConfig[key] : dataConfig;
@@ -182,37 +117,38 @@
   function setConfig() {
     return setDataConfig(getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true }));
   }
-  function dealsUrl(url = '', base = undefined) {
-    if (!/^http[s]*:\/\//.test(url)) {
-      base = getUrl(base);
-      let path = base.pathname.split('/');
-      if (/^\.\//.test(url)) {
-        path.pop();
-        path.push(url.replace('./', ''));
-      }
-      else if (/^..\//.test(url)) {
-        let v = url.split('/'), len = v.filter(it => it === '..').length;
-        path.splice(-(len + 1));
-        path.push(...v.splice(len));
-      }
-      else {
-        path.push(url.replace(/^\/|\/$/g, ''));
-      }
-      return base.origin + '/' + path.filter(it => it).join('/');
+  function dealsUrl(url = '', base) {
+    if (/^http[s]*:\/\//i.test(url)) {
+      return url;
     }
-    return url;
+    const baseUrl = getUrl(base);
+    let pathSegments = baseUrl.pathname.split('/').filter(Boolean);
+    url = url.replace(/^\.\//, '').replace(/\/$/, ''); // 移除开头的"./"和尾部的"/"
+    if (url.startsWith('../')) {
+      const levelUp = url.split('/').filter(part => part === '..').length;
+      pathSegments = pathSegments.slice(0, -levelUp);
+      url = url.replace(/\.\.\//g, '');
+    }
+    pathSegments = pathSegments.concat(url.split('/').filter(Boolean)); // 合并路径段，忽略空字符串
+    return `${baseUrl.origin}/${pathSegments.join('/')}`;
   }
   function getUrl(url) {
-    if (url) {
-      if (typeof url === 'string') {
-        url = new URL(url);
+    if (url instanceof URL || url instanceof Location) {
+      return url;
+    }
+    if (typeof url === 'string') {
+      try {
+        return new URL(url);
+      }
+      catch (error) {
+        // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
+        console.error('Invalid URL:', url);
       }
     }
-    else {
-      url = location;
-    }
-    return url;
+    return location;
   }
+  const ajaxTimeOut = 1000 * 60 * 3;
+  const urlRegV = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
   function getBaseUrl() {
     return setPageTemp(urlBase, setBaseUrl);
   }
@@ -257,44 +193,25 @@
       return dealsUrl(url, getServiceUrl());
     }
   }
-  function getUrlParams(key = '', url) {
-    url = getUrl(url);
-    var search = decodeURIComponent(url.search).slice(1).split('&'), urlParam = {};
-    search.forEach(function (it) {
-      if (it) {
-        var data = it.split('=');
-        try {
-          urlParam[data[0]] = decodeURIComponent(data[1]);
-        }
-        catch (e) {
-          urlParam[data[0]] = data[1];
-        }
-      }
-    });
-    return key ? urlParam[key] : urlParam;
-  }
   function getParamsUrl(obj, url = '') {
-    if (url) {
-      url = new URL(url);
-      obj = Object.assign(getUrlParams(null, url), obj);
-      url = url.origin + url.pathname;
-    }
-    else {
-      url = url || '';
-    }
-    let str = getObjToUrl(obj);
-    return str ? (url + '?' + str) : url;
+    return url ? appendParamsToUrl(obj, url) : getObjToUrl(obj);
+  }
+  function appendParamsToUrl(obj, url) {
+    const baseUrl = new URL(url);
+    const searchParams = new URLSearchParams(baseUrl.search);
+    Object.entries(obj).forEach(([key, value]) => {
+      searchParams.set(key, encodeUrlParamValue(value));
+    });
+    baseUrl.search = searchParams.toString();
+    return url.toString();
+  }
+  function encodeUrlParamValue(value) {
+    return value ? encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value) : '';
   }
   function getObjToUrl(obj) {
-    let keys = Object.keys(obj);
-    if (keys.length) {
-      return keys.map(key => {
-        let v = obj[key];
-        v = (v === null || v === undefined) ? '' : v;
-        return key + '=' + encodeURIComponent(typeof v === 'object' ? JSON.stringify(v) : v);
-      }).join('&');
-    }
-    return '';
+    return Object.entries(obj).map(([key, value]) => {
+      return `${key}=${encodeUrlParamValue(value)}`;
+    }).join('&');
   }
   function strToUrl(str, type) {
     return URL.createObjectURL(new Blob([str], { type }));
@@ -352,6 +269,80 @@
         input.click();
       }, 0);
     });
+  }
+  function validateAndFormatNumber(value) {
+    value = value.toString().trim();
+    if (value) {
+      const decimalMatch = /^[-+]?[0-9]*(\.[0-9]{1,15})?$/.test(value);
+      if (!decimalMatch) {
+        return ['', ''];
+      }
+      const [integerPart = '0', decimalPart = ''] = value.split('.');
+      return [integerPart, decimalPart];
+    }
+    return ['0', '1'];
+  }
+  function preciseDecimal(num, { precision, type = 1 }) {
+    if (isNaN(num)) {
+      return false;
+    }
+    num = parseFloat(num);
+    switch (type) {
+      case 2:
+        return Math.floor(num * Math.pow(10, precision)) / Math.pow(10, precision);
+      case 3:
+        return Math.ceil(num * Math.pow(10, precision)) / Math.pow(10, precision);
+      default:
+        return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);
+    }
+  }
+  function calc(firstOperand, secondOperand, operation, param) {
+    // 验证并格式化输入数字
+    const [firstOperandInteger, firstOperandDecimals] = validateAndFormatNumber(firstOperand);
+    const [secondOperandInteger, secondOperandDecimals] = validateAndFormatNumber(secondOperand);
+    if (!firstOperandInteger || !secondOperandInteger)
+      return false;
+    // 确定需要扩大的小数位数
+    var maxDecimals = Math.max(firstOperandDecimals.length, secondOperandDecimals.length) || 1;
+    // 将操作数转换为扩大相应倍数的BigInt
+    const firstOperandBigInt = BigInt(firstOperandInteger + firstOperandDecimals.padEnd(maxDecimals, '0'));
+    const secondOperandBigInt = BigInt(secondOperandInteger + secondOperandDecimals.padEnd(maxDecimals, '0'));
+    let resultStr = '';
+    switch (operation) {
+      case '+':
+        resultStr = formatResult(firstOperandBigInt + secondOperandBigInt, maxDecimals);
+        break;
+      case '-':
+        resultStr = formatResult(firstOperandBigInt - secondOperandBigInt, maxDecimals);
+        break;
+      case '*':
+        resultStr = formatResult(firstOperandBigInt * secondOperandBigInt, maxDecimals * 2);
+        break;
+      case '/': {
+        if (secondOperandBigInt === BigInt(0)) {
+          console.error('除数不能为0');
+          return false;
+        }
+        const remainderBigInt = firstOperandBigInt % secondOperandBigInt;
+        const scale = BigInt(10) ** BigInt(15); // 使用当前最大小数位数作为基数
+        const fractionBigInt = remainderBigInt * scale / secondOperandBigInt;
+        const fractionStr = fractionBigInt.toString().slice(0, 15).padStart(15, '0'); // 保证有足够位数，不足补0
+        const resultBigInt = firstOperandBigInt / secondOperandBigInt;
+        resultStr = resultBigInt.toString() + '.' + fractionStr;
+        break;
+      }
+      default:
+        console.error('不支持的运算符');
+        return false;
+    }
+    return param ? preciseDecimal(resultStr, param) : resultStr;
+  }
+  function formatResult(res, maxDecimals) {
+    var resultStr = res.toString();
+    if (maxDecimals > 0) {
+      resultStr = resultStr.slice(0, -maxDecimals) + '.' + resultStr.slice(-maxDecimals).padStart(maxDecimals, '0');
+    }
+    return resultStr;
   }
   function debounce1(fun, delay) {
     let time = null;
@@ -422,16 +413,17 @@
       }
       return suuCallBack ? suuCallBack(res) : res;
     }
-    else if (res.code == 2) {
-      jq[jqMode](config, url, true);
-      return ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack);
+    else if (res.code == that.wjqCode && that.checkAuth) {
+      if (!that.checkAuth(config, url, true)) {
+        return ajax(url, data, param, option, config, type, async, errCallBack, suuCallBack);
+      }
     }
     res = ajaxError({ message: res.message || res.msg, code: 0, i }, option, res);
     return errCallBack ? errCallBack(res) : res;
   }
-  function ajaxPostData(data = {}, param = {}, option = {}, config = {}, type = 'POST') {
+  function ajaxPostData(data = {}, option = {}, config = {}, type = 'POST') {
     if (that && that.dealAjaxData) {
-      return that.dealAjaxData(data, param, option, config, type);
+      return that.dealAjaxData(data, option, config, type);
     }
     else {
       return JSON.stringify(Object.assign({}, user, data));
@@ -447,8 +439,8 @@
   }
   function ajax(url, data = {}, param = {}, option = {}, config = {}, type = 'GET', async = false, errCallBack = undefined, suuCallBack = undefined) {
     var layerIndex, value;
-    if (type === 'POST' && jqMode) {
-      jq[jqMode](config, url);
+    if (type === 'POST' && that.checkAuth) {
+      that.checkAuth(config, url);
     }
     if (option.isShowLoad) {
       layerIndex = loading();
@@ -479,16 +471,12 @@
   // 异步
   function ajaxSync(url, data, param, option = {}, config, type) {
     return new Promise((resolve, reject) => {
-      ajax(url, ajaxPostData(data, param, option, config, type), param, option, config, type, true, reject, resolve);
+      ajax(url, ajaxPostData(data, option, config, type), param, option, config, type, true, reject, resolve);
     });
   }
   // 同步
   function getAjax(url, data, option = {}, config = {}) {
     return ajax(url, option.param, data, option, config);
-  }
-  // 同步
-  function commonHttppost(url, data, option = {}, config = {}) {
-    return ajax(url, ajaxPostData(data, option.param, option, config), option.param, option, config, 'POST');
   }
   // 异步
   function commonQueryAsyncHttppost_callback(url, data, option = {}, config = {}) {
@@ -537,6 +525,31 @@
     }
     else {
       return data;
+    }
+  }
+  function getJtPhisSystem() {
+    let systemV = w.jthisJsObject;
+    if (systemV) {
+      setJtPhisSystem(systemV.jthis);
+    }
+  }
+  function getSystemVal(name, param = undefined) {
+    if (system) {
+      if (system[name]) {
+        if (param) {
+          return system[name](...param);
+        }
+        else {
+          return system[name]();
+        }
+      }
+      else {
+        alertMsg(`当前浏览器未定义该方法（${name}），请联系厂家提供技术支持`);
+      }
+    }
+    else {
+      // 报错
+      alertMsg("该方法依赖专有浏览器，请在专有浏览器中使用", name);
     }
   }
   function setWebName() {
@@ -682,7 +695,7 @@
       return Promise.reject(({ msg: '当前仅支持xls与xlsx格式的文件导入' }));
     }
   }
-  const expInventoryCols = ["xmid", "kcsl", "tzsl", "kfxs", "xmmc", "xmgg", "xmcd", "ph", "pc", "dcbdj", "dlsdj", "dbzsl", "dbzdw", "xbzsl", "xbzdw", "dpdsl", "dbzdwpd", "xpdsl", "xbzdwpd", "scrq", "sxrq", "kccbje", "kclsje", "pdcbje", "pdlsje", "pdcjje", "pdbz", "xmdm", "jx", "ksid", "pdlx", "pxgz", "pylx", "pdsj"], expInventoryHead = '<tr><th rowspan="2">xmid</th><th rowspan="2">kcsl</th><th rowspan="2">tzsl</th><th rowspan="2">kfxs</th><th rowspan="2">名称</th><th rowspan="2">规格</th><th rowspan="2">生产企业</th><th rowspan="2">批号</th><th rowspan="2">批次</th><th rowspan="2">成本单价</th><th rowspan="2">零售单价</th><th colspan="4">库存</th><th colspan="4">盘点</th><th rowspan="2">生产日期</th><th rowspan="2">失效日期</th><th rowspan="2">库存成本金额</th><th rowspan="2">库存零售金额</th><th rowspan="2">盘点成本金额</th><th rowspan="2">盘点零售金额</th><th rowspan="2">差价差金额</th><th rowspan="2">盘点标志</th><th rowspan="2">代码</th><th rowspan="2">剂型</th><th rowspan="2">盘点库房</th><th rowspan="2">盘点类型</th><th rowspan="2">排序规则</th><th rowspan="2">盘药类型</th><th rowspan="2">盘点时间</th></tr><tr><th >数量</th><th >库单</th><th>数量</th><th >计单</th><th >数量</th><th >库单</th><th >数量</th><th >计单</th></tr>';
+  const expInventoryCols = ["xmid", "kcsl", "tzsl", "kfxs", "mzypmc", "mzyppg", "mzypcd", "xmmc", "xmgg", "xmcd", "ph", "pc", "cbdj", "dcbdj", "lsdj", "dlsdj", "dbzsl", "dbzdw", "xbzsl", "xbzdw", "dpdsl", "dbzdwpd", "xpdsl", "xbzdwpd", "scrq", "sxrq", "kccbje", "kclsje", "pdcbje", "pdlsje", "pdcjje", "pdbz", "xmdm", "jx", "ksid", "pdlx", "pxgz", "pylx", "pdsj"], expInventoryHead = '<tr><th rowspan="2">xmid</th><th rowspan="2">kcsl</th><th rowspan="2">tzsl</th><th rowspan="2">kfxs</th><th rowspan="2">mzypmc</th><th rowspan="2">mzyppg</th><th rowspan="2">mzypcd</th><th rowspan="2">名称</th><th rowspan="2">规格</th><th rowspan="2">生产企业</th><th rowspan="2">批号</th><th rowspan="2">批次</th><th rowspan="2">成本单价</th><th rowspan="2">大成本单价</th><th rowspan="2">零售单价</th><th rowspan="2">大零售单价</th><th colspan="4">库存</th><th colspan="4">盘点</th><th rowspan="2">生产日期</th><th rowspan="2">失效日期</th><th rowspan="2">库存成本金额</th><th rowspan="2">库存零售金额</th><th rowspan="2">盘点成本金额</th><th rowspan="2">盘点零售金额</th><th rowspan="2">差价差金额</th><th rowspan="2">盘点标志</th><th rowspan="2">代码</th><th rowspan="2">剂型</th><th rowspan="2">盘点库房</th><th rowspan="2">盘点类型</th><th rowspan="2">排序规则</th><th rowspan="2">盘药类型</th><th rowspan="2">盘点时间</th></tr><tr><th >数量</th><th >库单</th><th>数量</th><th >计单</th><th >数量</th><th >库单</th><th >数量</th><th >计单</th></tr>';
   var pdtjResolve, pdtjReject, inputFile;
   function clearInputCheck(arr) {
     arr.forEach(el => {
@@ -779,21 +792,27 @@
       // 解析xlsx
       return readXlsx(file).then(dealSheetToArray).then(([res]) => {
         res = res.slice(2);
-        const cols = expInventoryCols.slice(0, -5), obj = {}, res1 = res[0], len = cols.length, mainCols = expInventoryCols.slice(-5);
+        const cols = expInventoryCols.slice(0, -5), res1 = res[0], len = cols.length, mainCols = expInventoryCols.slice(-5), obj = {};
+        mainCols.forEach((key, i) => {
+          obj[key] = res1[len + i];
+        });
         res = res.map(it => {
           var obj = {};
           cols.forEach((key, i) => {
             obj[key] = it[i];
           });
+          var dpdsl = obj.dpdsl || 0, kfxs = obj.kfxs, xpdsl = obj.xpdsl || 0, sl = calc(dpdsl * kfxs, xpdsl, '+', { precision: 5 }) || 0;
+          obj.tzsl = sl;
+          obj.pdcbje = calc(sl, obj.cbdj, '*', { precision: 2 });
+          obj.pdlsje = calc(sl, obj.lsdj, '*', { precision: 2 });
+          obj.pdcjje = calc(obj.pdlsje, obj.pdcbje, '-', { precision: 2 });
+          obj.pdbz = obj.tzsl > obj.kcsl ? '盈' : obj.tzsl < obj.kcsl ? '亏' : '平';
           return obj;
-        });
-        mainCols.forEach((key, i) => {
-          obj[key] = res1[len + i];
         });
         return { res, obj };
       });
     }).then(({ res, obj }) => {
-      w.commonUtil.openWind(addSkipParam({ res }, obj, 'loadExcel'), '药品盘点编辑');
+      w.commonUtil.openWind(addSkipParam({ res }, obj, 'addLoadExcel'), '药品盘点编辑');
     });
   }
   function getInputChecked(arr) {
@@ -974,7 +993,6 @@
   }
   getJtPhisSystem();
   setWebName();
-  setJqMode('');
   setAjaxContentType('application/x-www-form-urlencoded');
   setAjaxSuccessCode('1', '-1');
   Class.prototype = { addInventoryRecord, closePdtj, exportInventoryDetails, importInventoryDetails, submitPdtj, commonQueryAsyncHttppost_callback: commonQueryAsyncHttppost_callback, dealAjaxData: dealAjaxData };
