@@ -15,7 +15,7 @@ function getYypl() {
   if (yypl) {
     return Promise.resolve(yypl)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/yy10-ywjc/01/10/s-yypl', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/yy10/01/10/s-yypl', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.dm] = it.cs
@@ -28,7 +28,7 @@ function getGytj() {
   if (gytj) {
     return Promise.resolve(gytj)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq//yy10-ywjc/01/10/s-gytj', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq//yy10/01/10/s-gytj', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.mc] = it.dm

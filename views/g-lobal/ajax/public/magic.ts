@@ -34,6 +34,6 @@ function getMagicToken(magic: MagicData) {
     param,
     isNotGetUser: true,
     isNotWrapped: true
-  })
-  setAuthorization(res.Authorization || res.data.accessToken || true)
+  }) || {}
+  setAuthorization(res.Authorization || (res.data || {}).accessToken || true)
 }

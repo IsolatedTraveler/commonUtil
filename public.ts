@@ -6,7 +6,7 @@ export const buildModule = {
   src: {
     jtSync: false,
     commonUtil: false,
-    jtUtil: false
+    jtUtil: true
   },
   third: {
     dzjkk: {
