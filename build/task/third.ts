@@ -1,13 +1,13 @@
-import { exeBuild } from "../fun"
 import path from 'path'
 import { outMl, ml } from "../var/third"
+import { getCode } from '../fun'
+import { dbdq } from '../../public'
 
 
-function build(name: string, ml: string, version: string, outMl: Array<string>, ly: string, { module }: any) {
-  ml = path.resolve(ml, name)
-  outMl = outMl.map((it: string) => path.resolve(it, name))
-  return exeBuild(version, outMl, ml, name, { ly, reName: name, module })
-}
-export function buildThird(version: string) {
-  return exeBuild(version, outMl, ml, 'third', { fun: build })
+
+export async function buildThird(version: string, gn: string) {
+  const len = dbdq.length
+  for (let i = 0; i < len; i++) {
+    await getCode(dbdq[i], path.resolve(ml, gn), version, outMl.map(it => path.resolve(it, gn)), 'third', { reName: 'hlyy' })
+  }
 }
