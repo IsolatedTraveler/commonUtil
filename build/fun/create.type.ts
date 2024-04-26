@@ -16,7 +16,7 @@ declare global {
 export {
 
 }`
-  writeFile(path.resolve(ml, `${name}.d.ts`), code)
+  return writeFile(path.resolve(ml, `${name}.d.ts`), code)
 }
 export function createIndex(arr: Array<string>) {
   let sum = 0, code = `import {
