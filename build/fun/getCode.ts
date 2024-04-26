@@ -24,7 +24,8 @@ export function getCode(
   version: string,
   printSrc: Array<string>,
   ly: string,
-  { reName = '', outAddName = '' }) {
+  { reName = '', outAddName = '' } = {} as any) {
+  console.log(name, src, version, printSrc, ly, reName, outAddName)
   let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_'), code: string = ''
     , outName = name + outAddName + '.js'
   reName = reName || name
