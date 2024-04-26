@@ -3,7 +3,7 @@ import { Class } from "./core";
 // MODULE END
 import {
   ajaxErrorCode, ajaxSuccessCode, setAjaxContentType, setAjaxSuccessCode, setJqMode, getAjax, getAjaxSync,
-  commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, ajax, getAjaxRes,
+  commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData,
   getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam, skip, dealLogin, paramget,
   setWebName, getMd5, encryption, down, loadJs, loadStyle, readFile, uploadInputFile, alertMsg, confirmMsg,
   getLayui, load, loaded, loading, openPage, getName, getRouterW, redirect, router, session, local, setPageTemp,
