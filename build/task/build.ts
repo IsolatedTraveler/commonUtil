@@ -1,5 +1,5 @@
 export { buildCs as cs } from './cs'
-export { buildModule as gModule } from './gModule'
+export { buildModule as gModules } from './gModule'
 export { buildLayModule as layModules } from './layModules'
 export { buildSrc as src } from './src'
 export { buildThird as third } from './third'

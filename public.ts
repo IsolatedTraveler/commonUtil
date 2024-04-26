@@ -4,10 +4,10 @@ interface Dbnr {
 }
 export const dbdq: InstitutionCode[] = ['erdss']
 export const dbnr: Dbnr = {
-  // cs: ['hisAjax'],
-  // gModules: [],
+  // cs: [''],
+  // gModules: ['hisAjax'],
   // layModules: [],
   // src: ['jtUtil'],
-  third: ['hlyy'],
+  // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
