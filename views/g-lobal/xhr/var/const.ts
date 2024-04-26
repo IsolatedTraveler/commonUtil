@@ -1,0 +1,1 @@
+export const ajaxTimeOut = 1000 * 60 * 3

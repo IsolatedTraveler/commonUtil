@@ -1,7 +1,5 @@
 import { Class } from "../core";
-Class.prototype.commonHttppost = GLOBAL$AJAX$.commonHttppost
-Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$AJAX$.commonQueryAsyncHttppost_callback
-Class.prototype.getAjax = GLOBAL$AJAX$.getAjax
-Class.prototype.getAjaxSync = GLOBAL$AJAX$.getAjaxSync
-Class.prototype.getConfig = GLOBAL$AJAX$.getConfig
-Class.prototype.checkAuth = GLOBAL$AJAX$.magicCheckAuthV2
+Class.prototype.commonHttppost = GLOBAL$XHR$.commonHttppost
+Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$XHR$.commonQueryAsyncHttppost_callback
+Class.prototype.getAjax = GLOBAL$XHR$.getAjax
+Class.prototype.getAjaxSync = GLOBAL$XHR$.getAjaxSync

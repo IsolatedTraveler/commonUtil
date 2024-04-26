@@ -11,3 +11,4 @@ export const dbnr: Dbnr = {
   // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
+export const sfys = false

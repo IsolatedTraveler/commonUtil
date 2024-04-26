@@ -3,8 +3,10 @@ import { firstUppers } from "./firstUpper"
 import { renderModule } from "./renderModule"
 import { getFileCode } from "./getFileCode"
 import path from 'path'
+import { minify } from 'terser'
 import { date } from '../var/public'
 import { fileExit, fileRead } from './readFile'
+import { sfys } from "../../public"
 /**
 * @description 
 * @author 何波
@@ -17,7 +19,19 @@ import { fileExit, fileRead } from './readFile'
   printSrc: "输出路径"
 } 
 */
-
+function dealCode(code: string) {
+  if (sfys) {
+    return minify(code, {
+      mangle: false,
+      compress: true,
+      output: {
+        comments: false
+      }
+    }).then(({ code }) => code || '')
+  } else {
+    return Promise.resolve(code)
+  }
+}
 export function getCode(
   name: string,
   src: string,
@@ -39,13 +53,15 @@ export function getCode(
           .replace(/FIRSTMODULENAME/g, Name)
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
-        return Promise.all(printSrc.map(it => {
-          let outFile = path.resolve(it, outName)
-          return writeFile(outFile, code).catch(() => { }).then(() => {
-            console.log(outFile)
+        return dealCode(code).then((code) => {
+          return Promise.all(printSrc.map(it => {
+            let outFile = path.resolve(it, outName)
+            return writeFile(outFile, code).catch(() => { }).then(() => {
+              console.log(outFile)
+            })
+          })).then(() => {
+            return { back, code, url: outName }
           })
-        })).then(() => {
-          return { back, code, url: outName }
         })
       }).catch((e: any) => {
         console.log(moduleName + ':Failed')
