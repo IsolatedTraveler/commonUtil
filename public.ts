@@ -6,7 +6,7 @@ export const buildModule = {
   src: {
     jtSync: false,
     commonUtil: false,
-    jtUtil: true
+    jtUtil: false
   },
   third: {
     dzjkk: {
@@ -32,3 +32,8 @@ export const buildModule = {
     }
   }
 }
+const dbdqObj = {
+  sc: 'E:/jtGit/web/his-flie/sc/lib23/js/',
+  nm: 'E:/jtGit/web/his-flie/nmhis/lib23/js/'
+}
+export const dbdq = [dbdqObj.sc]
