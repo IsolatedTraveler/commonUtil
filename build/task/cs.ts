@@ -1,7 +1,7 @@
-import { exeBuild } from "../fun"
 import path from 'path'
 import { outMl, ml } from "../var/gModule"
+import { getCode } from '../fun'
 
-export function buildCs(version: string) {
-  return exeBuild(version, outMl, path.resolve(ml, '../cs'), 'cs')
+export function buildCs(version: string, gn: string) {
+  return getCode(gn, path.resolve(ml, '../cs'), version, outMl, 'cs')
 }
