@@ -28,6 +28,6 @@ export function createIndex(arr: Array<string>) {
     }
     return it
   }).join(', ')}
-} from '../../views/g-lobal'`
+} from '../views/g-lobal'`
   return writeFile(path.resolve(ml, '../globalLocal.ts'), code)
 }
