@@ -11,7 +11,7 @@ import { ajaxTimeOut } from "../var";
  * @param {string} type - 请求方式
  */
 export function sync(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
-  const xhr = setXhr(url, type, option.urlType, param, false)
+  const xhr = setXhr(url, type, option.urlType, param, config, false)
   try {
     xhr.send(data);
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -35,7 +35,11 @@ export function setXhr(
   type: 'GET' | 'POST',
   urlType: UrlType,
   param: any,
+  config: AjaxRequestConfig,
   async: boolean) {
+  if (type === 'POST' && that.checkAuth) {
+    that.checkAuth(config, url)
+  }
   url = getAllUrl(url, urlType)
   url = getParamsUrl(param, url)
   const xhr = new XMLHttpRequest()
