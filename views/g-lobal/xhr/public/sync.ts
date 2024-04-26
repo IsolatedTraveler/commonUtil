@@ -8,7 +8,7 @@ export function getAjax(
   data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}) {
-  return sync(url, data, option, config, 'GET')
+  return sync(url, option.param, data, option, config, 'GET')
 }
 export function commonHttppost(
   url: string,
@@ -16,5 +16,5 @@ export function commonHttppost(
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}) {
 
-  return sync(url, ajaxPostData(data, option, config), option, config, 'POST')
+  return sync(url, ajaxPostData(data, option, config), option.param, option, config, 'POST')
 }

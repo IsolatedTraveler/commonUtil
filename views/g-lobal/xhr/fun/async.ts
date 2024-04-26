@@ -9,7 +9,7 @@ import { setXhr } from "./sync";
  * @param {string} type - 请求类型
  * @returns {Promise} 返回处理Promise
  */
-export function async(url: string, data: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
+export function async(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
   return new Promise((resolve, reject) => {
     const xhr = setXhr(url, type, true)
     xhr.onload = () => {

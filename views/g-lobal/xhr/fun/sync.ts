@@ -8,7 +8,7 @@ import { ajaxTimeOut } from "../var";
  * @param {*} config - 配置信息
  * @param {string} type - 请求方式
  */
-export function sync(url: string, data: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
+export function sync(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
   const xhr = setXhr(url, type, false)
   try {
     xhr.send();

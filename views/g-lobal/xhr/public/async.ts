@@ -8,12 +8,12 @@ export function getAjaxAsync(
   data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}) {
-  return async(url, data, option, config, 'GET')
+  return async(url, option.param, data, option, config, 'GET')
 }
 export function commonQueryAsyncHttppost_callback(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}) {
-  return async(url, ajaxPostData(data, option, config), option, config, 'POST')
+  return async(url, ajaxPostData(data, option, config), option.param, option, config, 'POST')
 }
