@@ -4,3 +4,4 @@ Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$XHR$.commonQueryAsync
 Class.prototype.getAjax = GLOBAL$XHR$.getAjax
 Class.prototype.getAjaxAsync = GLOBAL$XHR$.getAjaxAsync
 Class.prototype.checkAuth = GLOBAL$AJAX$.magicCheckAuthV2
+Class.prototype.dealAjaxData = GLOBAL$AJAX$.magicData2

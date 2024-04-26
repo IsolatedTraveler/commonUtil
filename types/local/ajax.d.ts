@@ -1,5 +1,5 @@
 import {
-  ajaxErrorCode, ajaxSuccessCode, setAjaxContentType, setAjaxSuccessCode, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, magicCheckAuth, magicCheckAuthV2
+  ajaxErrorCode, ajaxSuccessCode, setAjaxContentType, setAjaxSuccessCode, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, magicCheckAuth, magicCheckAuthV2, magicData2
 } from '../../views/g-lobal/ajax'
 declare global {
   interface GLOBAL$AJAX$TYPE {
@@ -17,6 +17,7 @@ declare global {
     dealAjaxData: typeof dealAjaxData
     magicCheckAuth: typeof magicCheckAuth
     magicCheckAuthV2: typeof magicCheckAuthV2
+    magicData2: typeof magicData2
   }
   let GLOBAL$AJAX$: GLOBAL$AJAX$TYPE
 }

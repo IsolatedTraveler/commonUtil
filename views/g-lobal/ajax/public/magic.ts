@@ -1,5 +1,6 @@
 import { MagicData, ajaxJqMagic, ajaxJqMagicV2 } from "../../../../types"
 import { session } from "../../temp"
+import { AjaxRequestOption } from "../type"
 import { Authorization, setAuthorization } from "../var"
 import { commonHttppost } from "./post"
 
@@ -16,6 +17,35 @@ export function magicCheckAuth(config: any, url: string, rest: boolean = false) 
   config.headers = config.headers || {}
   config.headers[magic.AuthorizationName] = Authorization === true ? undefined : Authorization;
   return Authorization === true
+}
+export function magicData2(data: any,
+  {
+    isNotGetUser,
+    isBase64,
+    isPwd,
+    isNotWrapped
+  }: AjaxRequestOption = {}) {
+  if (data.pageSize) {
+    data.page = data.pageNumber
+    data.size = data.pageSize
+  }
+  if (!isNotGetUser) {
+    // eslint-disable-next-line no-import-assign
+    let user = GLOBAL$USER$.getUser() || {}
+    data = Object.assign({}, {
+      czryid: user.ryid,
+      czryjgid: user.jgid,
+      czryjgmc: user.jgmc,
+      czryjgjc: user.jgjc,
+      czryyhm: user.yhm,
+      czryxm: user.xm || user.username,
+      superadmin: user.superadmin
+    }, data)
+  }
+  if (isNotWrapped) {
+    return JSON.stringify(data)
+  }
+  return JSON.stringify({ data })
 }
 function setMagicToken(magic: MagicData, url: string, rest: boolean) {
   that.wjqCode = magic.wjqCode
