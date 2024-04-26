@@ -1,0 +1,1 @@
+export const contentType = 'application/json;charset=UTF-8'

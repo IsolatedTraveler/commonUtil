@@ -3,7 +3,7 @@ import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
 import { async } from "../fun";
 
 // 异步
-export function getAjaxSync(
+export function getAjaxAsync(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
