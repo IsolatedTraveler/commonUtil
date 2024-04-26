@@ -73,6 +73,6 @@
       layui.use(['layer']);
     }
   };
-  Class.prototype = { commonHttppost: commonHttppost, commonQueryAsyncHttppost_callback: commonQueryAsyncHttppost_callback, getAjax: getAjax, getAjaxSync: getAjaxSync };
+  Class.prototype = { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxSync };
   w.jtUtil = new Class();
 })(window, document);
