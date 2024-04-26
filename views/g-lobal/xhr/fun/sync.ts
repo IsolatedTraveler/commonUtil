@@ -1,4 +1,6 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
+import { getAllUrl, getParamsUrl } from "../../url";
+import { UrlType } from "../../url/type";
 import { ajaxTimeOut } from "../var";
 /**
  * 发送同步请求
@@ -9,7 +11,7 @@ import { ajaxTimeOut } from "../var";
  * @param {string} type - 请求方式
  */
 export function sync(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
-  const xhr = setXhr(url, type, false)
+  const xhr = setXhr(url, type, option.urlType, param, false)
   try {
     xhr.send();
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -28,7 +30,14 @@ export function sync(url: string, data: any, param: any, option: AjaxRequestOpti
  * @param {boolean} async - 是否异步请求
  * @returns {XMLHttpRequest} 配置好的XMLHttpRequest对象
  */
-export function setXhr(url: string, type: 'GET' | 'POST', async: boolean) {
+export function setXhr(
+  url: string,
+  type: 'GET' | 'POST',
+  urlType: UrlType,
+  param: any,
+  async: boolean) {
+  url = getAllUrl(url, urlType)
+  url = getParamsUrl(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
   xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType);

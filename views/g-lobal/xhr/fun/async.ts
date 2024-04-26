@@ -11,7 +11,7 @@ import { setXhr } from "./sync";
  */
 export function async(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
   return new Promise((resolve, reject) => {
-    const xhr = setXhr(url, type, true)
+    const xhr = setXhr(url, type, option.urlType, param, true)
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status < 300) {
         resolve(xhr.responseText);

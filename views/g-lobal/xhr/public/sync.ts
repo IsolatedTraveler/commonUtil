@@ -15,6 +15,5 @@ export function commonHttppost(
   data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}) {
-
   return sync(url, ajaxPostData(data, option, config), option.param, option, config, 'POST')
 }
