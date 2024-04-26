@@ -12,3 +12,4 @@ export const dbnr: Dbnr = {
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
 export const sfys = false
+export const qdzs = false

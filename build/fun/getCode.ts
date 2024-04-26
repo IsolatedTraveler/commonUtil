@@ -6,7 +6,7 @@ import path from 'path'
 import { minify } from 'terser'
 import { date } from '../var/public'
 import { fileExit, fileRead } from './readFile'
-import { sfys } from "../../public"
+import { qdzs, sfys } from "../../public"
 /**
 * @description 
 * @author 何波
@@ -20,12 +20,12 @@ import { sfys } from "../../public"
 } 
 */
 function dealCode(code: string) {
-  if (sfys) {
+  if (sfys || qdzs) {
     return minify(code, {
       mangle: false,
-      compress: true,
+      compress: sfys,
       output: {
-        comments: false
+        comments: qdzs
       }
     }).then(({ code }) => code || '')
   } else {
@@ -51,6 +51,7 @@ export function getCode(
         code = res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
           .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
           .replace(/FIRSTMODULENAME/g, Name)
+          .replace(/[ ]*\/\/ PLUGIN MODULE IGNORE START([\n\s\S]+)\/\/ PLUGIN MODULE IGNORE END\s/, '')
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
           .replace(/(\w+):[ ]*\1([ ]*)(,|\})/g, '$1$2$3')

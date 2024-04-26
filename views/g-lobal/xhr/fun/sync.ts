@@ -1,6 +1,13 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
 import { ajaxTimeOut } from "../var";
-
+/**
+ * 发送同步请求
+ * @param {string} url - 请求地址
+ * @param {*} data - 请求数据
+ * @param {*} option - 请求选项
+ * @param {*} config - 配置信息
+ * @param {string} type - 请求方式
+ */
 export function sync(url: string, data: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
   const xhr = setXhr(url, type, false)
   try {
@@ -14,10 +21,16 @@ export function sync(url: string, data: any, option: AjaxRequestOption, config: 
     console.error('请求过程中发生错误：', e);
   }
 }
-export function setXhr(url: string, type: 'GET' | 'POST', sync: boolean) {
+/**
+ * 初始化XMLHttpRequest对象并配置请求
+ * @param {string} url - 请求URL
+ * @param {string} type - 请求类型
+ * @param {boolean} async - 是否异步请求
+ * @returns {XMLHttpRequest} 配置好的XMLHttpRequest对象
+ */
+export function setXhr(url: string, type: 'GET' | 'POST', async: boolean) {
   const xhr = new XMLHttpRequest()
-  xhr.open(type, url, sync)
-  xhr.open(type, url, sync)
+  xhr.open(type, url, async)
   xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType);
   xhr.timeout = ajaxTimeOut
   return xhr

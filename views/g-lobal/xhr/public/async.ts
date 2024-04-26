@@ -2,7 +2,7 @@ import { ajaxPostData } from "../../ajax/fun/dealData";
 import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
 import { async } from "../fun";
 
-// 异步
+// 异步请求
 export function getAjaxAsync(
   url: string,
   data: any,
@@ -10,7 +10,6 @@ export function getAjaxAsync(
   config: AjaxRequestConfig = {}) {
   return async(url, data, option, config, 'GET')
 }
-// 异步
 export function commonQueryAsyncHttppost_callback(
   url: string,
   data: any,
