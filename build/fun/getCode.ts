@@ -53,6 +53,7 @@ export function getCode(
           .replace(/FIRSTMODULENAME/g, Name)
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
+          .replace(/(\w+): \1,/g, '$1,')
         return dealCode(code).then((code) => {
           return Promise.all(printSrc.map(it => {
             let outFile = path.resolve(it, outName)
