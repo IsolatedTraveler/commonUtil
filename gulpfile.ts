@@ -7,7 +7,7 @@ export default async function () {
   for (let i = 0; i < len; i++) {
     const [key, gn] = keys[i], j = gn ? gn.length : 0
     for (let z = 0; z < j; z++) {
-      await (build as any)[key](version, gn[z])
+      await gn[z] && (build as any)[key](version, gn[z])
     }
   }
 }

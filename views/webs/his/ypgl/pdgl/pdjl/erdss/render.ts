@@ -10,7 +10,7 @@ import {
   tempData, getAllUrl, getUploadUrl, dealsUrl, getUrl, getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl,
   getMainUrl, getServiceUrl, strToUrl, dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut,
   debounce1, formatTreeData, uuid, prefix, getAge, expExcel, readXlsx, dealSheetToArray, calc, preciseDecimal
-} from '../../../../../g-lobal'
+} from '../../../../../../g-lobal'
 // PLUGIN IGNORE START
 getSystemVal('')
 getAjax('', {})
