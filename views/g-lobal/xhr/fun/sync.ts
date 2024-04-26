@@ -1,7 +1,8 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
 import { getAllUrl, getParamsUrl } from "../../url";
 import { UrlType } from "../../url/type";
-import { ajaxTimeOut } from "../var";
+import { errFormat } from "../../util";
+import { ajaxRerr, ajaxTimeOut } from "../var";
 /**
  * 发送同步请求
  * @param {string} url - 请求地址
@@ -10,17 +11,26 @@ import { ajaxTimeOut } from "../var";
  * @param {*} config - 配置信息
  * @param {string} type - 请求方式
  */
-export function sync(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
-  const xhr = setXhr(url, type, option.urlType, param, config, false)
+export function dealXhrRes(xhr: XMLHttpRequest) {
+  if (xhr.status >= 200 && xhr.status < 300) {
+    return JSON.parse(xhr.responseText)
+  } else {
+    return errFormat('请求失败：' + ajaxRerr[xhr.status])
+  }
+}
+export function sync(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: 'GET' | 'POST') {
   try {
+    const xhr = setXhr(url, type, option.urlType, param, config, false)
+    const time = setTimeout(() => {
+      xhr.abort()
+    }, ajaxTimeOut);
+    console.time()
     xhr.send(data);
-    if (xhr.status >= 200 && xhr.status < 300) {
-      console.log('同步请求成功，响应内容：', xhr.responseText);
-    } else {
-      throw new Error(`同步请求失败，状态码：${xhr.status}`);
-    }
-  } catch (e) {
-    console.error('请求过程中发生错误：', e);
+    console.timeEnd()
+    clearTimeout(time)
+    return dealXhrRes(xhr)
+  } catch (e: any) {
+    return errFormat('请求过程中发生错误：' + (e.message || e))
   }
 }
 /**
@@ -44,7 +54,6 @@ export function setXhr(
   url = getParamsUrl(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
-  xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType);
-  xhr.timeout = ajaxTimeOut
+  xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType)
   return xhr
 }

@@ -5,6 +5,7 @@ import {
   getRouterW, redirect, router, session, local, setPageTemp, tempData, getAllUrl, getUploadUrl, dealsUrl, getUrl, 
   getObjToUrl, getParamsUrl, getUrlParams, getBaseUrl, getMainUrl, getServiceUrl, strToUrl, dealMenu, exited, 
   getMenu, getUser, getUserInfo, login, exit, logOut, calc, debounce1, errFormat, formatTreeData, extractIDInfo, 
-  idCard, uuid, preciseDecimal, prefix, resFormat, getAge, commonQueryAsyncHttppost_callback, getAjaxAsync, 
-  commonHttppost, getAjax, dealSheetToArray, expExcel, loadXlsx, readXlsx
+  idCard, uuid, preciseDecimal, prefix, resFormat, getAge, magicCheckAuthV2, magicData2, 
+  commonQueryAsyncHttppost_callback, getAjaxAsync, commonHttppost, getAjax, dealSheetToArray, expExcel, 
+  loadXlsx, readXlsx
 } from '../views/g-lobal'

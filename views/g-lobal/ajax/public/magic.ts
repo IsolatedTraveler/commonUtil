@@ -2,7 +2,7 @@ import { MagicData, ajaxJqMagic, ajaxJqMagicV2 } from "../../../../types"
 import { session } from "../../temp"
 import { AjaxRequestOption } from "../type"
 import { Authorization, setAuthorization } from "../var"
-import { commonHttppost } from "./post"
+
 
 export function magicCheckAuthV2(config: any, url: string, rest: boolean = false) {
   let magic: MagicData = ajaxJqMagicV2
@@ -60,7 +60,7 @@ function setMagicToken(magic: MagicData, url: string, rest: boolean) {
 }
 function getMagicToken(magic: MagicData) {
   const user = session('magicUser') || (session('magic') || {}).user || magic.user, param = magic.isParam ? user : undefined, data = magic.isParam ? undefined : user
-  let res: any = commonHttppost(magic.url, data, {
+  let res: any = that.commonHttppost(magic.url, data, {
     param,
     isNotGetUser: true,
     isNotWrapped: true
