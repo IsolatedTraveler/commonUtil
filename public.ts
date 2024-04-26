@@ -1,11 +1,13 @@
 import { InstitutionCode } from "./build/var/config"
-
+interface Dbnr {
+  [key: string]: string[]
+}
 export const dbdq: InstitutionCode[] = ['erdss']
-export const dbnr = {
+export const dbnr: Dbnr = {
   // cs: ['hisAjax'],
   // gModules: [],
   // layModules: [],
   // src: ['jtUtil'],
-  // third: ['hlyy'],
+  third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
