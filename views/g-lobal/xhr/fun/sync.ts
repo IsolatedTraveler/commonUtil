@@ -13,7 +13,7 @@ import { ajaxTimeOut } from "../var";
 export function sync(url: string, data: any, param: any, option: AjaxRequestOption, config: AjaxRequestConfig, type: 'GET' | 'POST') {
   const xhr = setXhr(url, type, option.urlType, param, false)
   try {
-    xhr.send();
+    xhr.send(data);
     if (xhr.status >= 200 && xhr.status < 300) {
       console.log('同步请求成功，响应内容：', xhr.responseText);
     } else {

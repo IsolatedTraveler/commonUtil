@@ -22,6 +22,6 @@ export function async(url: string, data: any, param: any, option: AjaxRequestOpt
     xhr.onerror = () => {
       reject(new Error('异步请求失败，网络错误'));
     };
-    xhr.send();
+    xhr.send(data);
   })
 }
