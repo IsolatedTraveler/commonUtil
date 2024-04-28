@@ -1,5 +1,6 @@
-export type AjaxRequestType = 'GET' | 'POST'
+import { UrlType } from "./url"
 
+export type AjaxRequestType = 'GET' | 'POST'
 export interface AjaxRequestHead {
   Authorization?: string
 }
