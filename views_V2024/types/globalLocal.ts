@@ -1,4 +1,5 @@
 import {
   contentType, setServerUrl, getConfig, getUser, buildAbsoluteUrl, getAppBaseUrl, 
-  convertObjectToQueryString, buildUrlWithQueryParams, getServerUrl, asyncGetPost, asyncQueryPost
+  convertObjectToQueryString, buildUrlWithQueryParams, getServerUrl, getAjax, asyncGetPost, asyncQueryPost, 
+  commonHttppost
 } from '../g-lobal'
