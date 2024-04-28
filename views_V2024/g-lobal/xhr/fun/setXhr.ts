@@ -1,3 +1,8 @@
+import { AjaxRequestConfig } from "../../../../views/g-lobal/ajax/type"
+import { UrlType } from "../../../../views/g-lobal/url/type"
+import { assembleAbsoluteUrl } from "../../url/public/buildAbsoluteUrl"
+import { createUrlWithParams } from "./createUrlWithParams"
+
 /**
  * 初始化XMLHttpRequest对象并配置请求
  * @param {string} url - 请求URL
@@ -15,8 +20,8 @@ export function setXhr(
   if (type === 'POST' && that.checkAuth) {
     that.checkAuth(config, url)
   }
-  url = getAllUrl(url, urlType)
-  url = getParamsUrl(param, url)
+  url = assembleAbsoluteUrl(url, urlType)
+  url = createUrlWithParams(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
   xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType)

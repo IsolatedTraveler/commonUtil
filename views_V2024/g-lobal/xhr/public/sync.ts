@@ -1,5 +1,5 @@
-import { ajaxPostData } from "../../ajax/fun/dealData";
-import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
+import { ajaxPostData } from "../../../../views/g-lobal/ajax/fun/dealData";
+import { AjaxRequestConfig, AjaxRequestOption } from "../../../../views/g-lobal/ajax/type";
 import { sync } from "../fun";
 
 // 同步请求
