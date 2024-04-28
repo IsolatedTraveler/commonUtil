@@ -1,6 +1,6 @@
 export const Class: any = function (this: any) {
   that = this
-  if (layui) {
+  if (w.layui) {
     layui.use(['layer'])
   }
 }
