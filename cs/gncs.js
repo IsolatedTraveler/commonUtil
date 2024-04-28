@@ -1,9 +1,6 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
-  function getConfig() {
-    return {};
-  }
   function errFormat(message, code = -1) {
     return { code, message, data: {} };
   }
@@ -20,9 +17,17 @@
   function setPageTemp(val, callBack, param = undefined) {
     return val ? val : callBack(param);
   }
-  var user;
+  var user // 用户信息
+  , configData; // 应用配置
   function setUser() {
     return user = {};
+  }
+  function setConfigData() {
+    return configData = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true });
+  }
+  function getConfig(key = '') {
+    setPageTemp(configData, setConfigData);
+    return key ? configData[key] : configData;
   }
   function getUser() {
     setPageTemp(user, setUser);
@@ -234,6 +239,86 @@
     503: '服务器目前无法使用（由于超载或停机维护）',
     504: '作为网关或代理的服务器未能及时从上游服务器收到请求'
   };
+  /*
+  * 处理 XMLHttpRequest 响应的函数。
+  *
+  * @param {XMLHttpRequest} xhr - XMLHttpRequest 实例，包含了从服务器返回的全部响应信息。
+  * @returns {any | string} 返回解析后的数据对象（如果成功且响应为JSON格式），
+  *                          原始响应文本（如果解析JSON失败），或者错误信息字符串（HTTP状态码非2xx时）。
+  *
+  * 函数首先检查HTTP响应状态码是否在200至299之间，这表示请求成功。
+  * - 如果请求成功，尝试将响应体（responseText）解析为JSON对象。
+  *   - 在解析前，设定数据对象的'message'字段为'message'或'msg'中的一个（如果存在），
+  *     以兼容不同API的响应格式。
+  *   - 同时，修正数据对象的'code'字段，如果其值为字符串'1'，则转换为数字1。
+  *   - 解析成功则返回处理后的数据对象。
+  *   - 如果解析JSON时发生错误，则直接返回响应体的原始文本。
+  * - 如果请求失败（HTTP状态码不在200-299范围内），则调用外部的`errFormat`函数，
+  *   使用`ajaxRerr`对象中相应状态码的错误信息，组合成错误字符串返回。
+  *
+  * 注意：此函数依赖于外部的`errFormat`函数和`ajaxRerr`对象的定义。
+  */
+  function dealXhrRes(xhr) {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        data.message = data.message || data.msg;
+        data.code = data.code === '1' ? 1 : data.code;
+        return data;
+      }
+      catch (e) {
+        return xhr.responseText;
+      }
+    }
+    else {
+      return errFormat('请求失败：' + ajaxRerr[xhr.status]);
+    }
+  }
+  /**
+  * 初始化XMLHttpRequest对象并配置请求
+  * @param {string} url - 请求URL
+  * @param {string} type - 请求类型
+  * @param {boolean} async - 是否异步请求
+  * @returns {XMLHttpRequest} 配置好的XMLHttpRequest对象
+  */
+  function setXhr(url, type, urlType, param, config, async) {
+    if (type === 'POST' && that.checkAuth) {
+      that.checkAuth(config, url);
+    }
+    url = buildAbsoluteUrl(url, urlType);
+    url = buildUrlWithQueryParams(param, url);
+    const xhr = new XMLHttpRequest();
+    xhr.open(type, url, async);
+    xhr.setRequestHeader('Content-Type', contentType);
+    return xhr;
+  }
+  /**
+  * @description 发送同步请求
+  * @param {string} url - 请求地址
+  * @param {*} data - 请求数据
+  * @param {*} option - 请求选项
+  * @param {*} config - 配置信息
+  * @param {string} type - 请求方式
+  */
+  function sync(url, data = {}, param = {}, option = {}, config = {}, type) {
+    try {
+      const xhr = setXhr(url, type, option.urlType, param, config, false);
+      const time = setTimeout(() => {
+        xhr.abort();
+      }, ajaxTimeOut);
+      console.time();
+      xhr.send(data);
+      console.timeEnd();
+      clearTimeout(time);
+      return dealXhrRes(xhr);
+    }
+    catch (e) {
+      return errFormat('请求过程中发生错误：' + (e.message || e));
+    }
+  }
+  function getAjax(url, data, option = {}, config = {}) {
+    return sync(url, option.param, data, option, config, 'GET');
+  }
   /**
   * 发起一个异步的HTTP请求（支持GET和POST）。
   *
@@ -252,19 +337,10 @@
   function async(url, data = {}, param = {}, option = {}, config = {}, type) {
     return new Promise((resolve, reject) => {
       try {
-        url = buildAbsoluteUrl(url, option.urlType);
-        url = buildUrlWithQueryParams(param, url);
-        const xhr = new XMLHttpRequest();
-        xhr.open(type, url, true);
-        xhr.setRequestHeader('Content-Type', contentType);
+        const xhr = setXhr(url, type, option.urlType, param, config, true);
         xhr.timeout = ajaxTimeOut;
         xhr.onload = () => {
-          if (xhr.status >= 200 && xhr.status < 300) {
-            return JSON.parse(xhr.responseText);
-          }
-          else {
-            return errFormat('请求失败：' + ajaxRerr[xhr.status]);
-          }
+          resolve(dealXhrRes(xhr));
         };
         xhr.onerror = () => {
           reject(errFormat('请求失败：网络错误'));
@@ -275,7 +351,7 @@
         xhr.send(data);
       }
       catch (e) {
-        return errFormat('请求过程中发生错误：' + (e.message || e));
+        return reject(errFormat('请求过程中发生错误：' + (e.message || e)));
       }
     });
   }
@@ -313,7 +389,7 @@
       return that.dealAjaxData(data, option, config, type);
     }
     else {
-      return JSON.stringify(Object.assign({}, getUser(), data));
+      return JSON.stringify({ data: Object.assign({}, getUser(), data) });
     }
   }
   /**
@@ -342,11 +418,11 @@
   }
   const Class = function () {
     that = this;
-    if (layui) {
+    if (w.layui) {
       layui.use(['layer']);
     }
   };
-  Class.prototype = { asyncGetPost, asyncQueryPost };
+  Class.prototype = { asyncGetPost, asyncQueryPost, getAjax };
   w.jtUtil = new Class();
 })(window, document);
-// jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
+jtUtil.asyncQueryPost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
