@@ -1,7 +1,9 @@
 import { setPageTemp } from "../../../../views/g-lobal";
 import { appBaseUrl, setAppBaseUrl } from "../var";
-
-// 分析当前页面URL，确定应用的基础URL。
-export function getAppBaseUrl() {
+/**
+ * @description 获取当前设置的应用程序基础URL。如果尚未设置，此函数会触发应用程序基础URL的初始化过程。
+ * @returns {string} 应用程序的基础URL。
+ */
+export function getAppBaseUrl(): string {
   return setPageTemp(appBaseUrl, setAppBaseUrl)
 }

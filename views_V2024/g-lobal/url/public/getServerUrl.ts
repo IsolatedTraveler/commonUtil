@@ -1,7 +1,10 @@
 import { setPageTemp } from "../../../../views/g-lobal";
 import { serverUrl, setServerUrl } from "../var";
 
-// 获取已设置的服务端URL，若未设置则初始化。
-export function getServerUrl() {
+/**
+ * @description 获取服务端URL。如果尚未设置，此函数会触发服务端URL的初始化过程。
+ * @returns {string} 当前设置的服务端URL。
+ */
+export function getServerUrl(): string {
   return setPageTemp(serverUrl, setServerUrl)
 }
