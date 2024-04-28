@@ -3,7 +3,7 @@ import { firstUppers } from "./firstUpper"
 import { renderModule } from "./renderModule"
 import { getFileCode } from "./getFileCode"
 import path from 'path'
-import { minify } from 'terser'
+import * as Terser from 'terser'
 import { date } from '../var/public'
 import { fileExit, fileRead } from './readFile'
 import { qdzs, sfys } from "../../public"
@@ -21,7 +21,7 @@ import { qdzs, sfys } from "../../public"
 */
 function dealCode(code: string) {
   if (sfys || qdzs) {
-    return minify(code, {
+    return Terser.minify(code, {
       mangle: false,
       compress: sfys,
       output: {
