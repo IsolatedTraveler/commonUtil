@@ -1,5 +1,5 @@
 // @GLOBAL START
-// export * from './ajax'
+export * from './ajax'
 export * from './browser'
 export * from './commonUtil'
 export * from './encrypt'
@@ -10,6 +10,6 @@ export * from './temp'
 export * from './url'
 export * from './user'
 export * from './util'
-export * from './xhr'
+// export * from './xhr'
 export * from './xlsx'
 // @GLOBAL END
