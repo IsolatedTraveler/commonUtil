@@ -1,12 +1,9 @@
 import { UrlType } from "./url"
 
 export type AjaxRequestType = 'GET' | 'POST'
-export interface AjaxRequestHead {
-  Authorization?: string
-}
 export interface AjaxRequestConfig {
   contentType?: string | boolean
-  headers?: AjaxRequestHead
+  headers?: any
   processData?: boolean
 }
 export interface AjaxRequestOption {

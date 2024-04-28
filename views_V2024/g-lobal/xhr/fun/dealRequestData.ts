@@ -1,17 +1,19 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
 import { getUser } from "../../system"
 /**
- * @param {any} data - 需要发送的基础数据对象，可以包含任何类型的数据。
- * @param {AjaxRequestOption} [option={}] - 请求的附加选项对象，用于进一步配置请求，如自定义头信息等。
- * @param {AjaxRequestConfig} [config={}] - 请求的配置对象，可能包含认证信息、超时设置等高级配置。
- * @param {AjaxRequestType} [type='POST'] - 请求类型，默认为POST，可选值有'GET', 'POST', 'PUT', 'DELETE'等。
+ * @param {any} data - 需要发送的数据对象。
+ * @param {AjaxRequestOption} [option={}] - 请求的可选配置对象，默认为空对象。
+ * @param {AjaxRequestConfig} [config={}] - 通用的Ajax请求配置，默认为空对象。
+ * @param {AjaxRequestType} [type='POST'] - 请求类型，默认为'POST'。
  *
- * @returns {string} - 返回处理后的数据字符串，如果是默认处理逻辑，则返回包含用户信息与请求数据的JSON字符串。
+ * @returns {string} 返回处理后的数据字符串，准备用于Ajax请求的发送。
  *
- * @description 处理Ajax请求的数据预处理逻辑。
- * - 如果存在`that.dealAjaxData`方法，则调用此方法处理数据，该方法应由外部实现并返回处理后的数据。
- * - 若无上述方法，则默认行为是将当前用户的登录信息（通过`getUser()`获取）与`data`合并，
- *   并将合并后的对象转换为JSON字符串，适用于大多数需要携带用户身份信息的请求场景。
+ * @description 功能描述：
+ * 1. 检查`option.isCheck`是否为`false`，但此处漏写了对应的逻辑处理，可能是一个待完成的条件判断。
+ * 2. 如果存在`that`对象且其具有`dealAjaxData`方法，则调用该方法处理数据，优先使用自定义逻辑。
+ * 3. 若`option.isNotGetUser`不为`true`，则将全局的用户信息`getUser()`与`data`合并。
+ * 4. 根据`option.isNotWrapped`决定数据是否需要额外包装。如果不包装（默认行为或明确指定不包装），直接将数据序列化为JSON字符串。
+ *    否则，将数据放入一个带有"data"键的对象中再进行序列化，这种做法常见于需要在服务端解析特定格式的场景。
  */
 export function dealRequestData(data: any,
   option: AjaxRequestOption = {},
@@ -19,7 +21,21 @@ export function dealRequestData(data: any,
   option.isCheck !== false
   if (that && that.dealAjaxData) {
     return that.dealAjaxData(data, option, config, type)
-  } else {
-    return JSON.stringify({ data: Object.assign({}, getUser(), data) })
   }
+  if (!option.isNotGetUser) {
+    const user = getUser()
+    data = Object.assign({}, {
+      czryid: user.ryid,
+      czryjgid: user.jgid,
+      czryjgmc: user.jgmc,
+      czryjgjc: user.jgjc,
+      czryyhm: user.yhm,
+      czryxm: user.xm || user.username,
+      superadmin: user.superadmin
+    }, data)
+  }
+  if (option.isNotWrapped) {
+    return JSON.stringify(data)
+  }
+  return JSON.stringify({ data })
 }

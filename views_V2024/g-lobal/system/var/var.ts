@@ -1,7 +1,7 @@
 
 export var user: any // 用户信息
   , configData: any // 应用配置
-export function setUser() {
+export function setUser(): any {
   return user = {}
 }
 /**
