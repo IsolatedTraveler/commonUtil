@@ -1,11 +1,11 @@
 import {
-  assembleAbsoluteUrl, determineApplicationBaseUrl, obtainServiceEndpoint
+  buildAbsoluteUrl, getAppBaseUrl, getServerUrl
 } from '../../views/g-lobal/url'
 declare global {
   interface GLOBAL$URL$V2024$TYPE {
-    assembleAbsoluteUrl: typeof assembleAbsoluteUrl
-    determineApplicationBaseUrl: typeof determineApplicationBaseUrl
-    obtainServiceEndpoint: typeof obtainServiceEndpoint
+    buildAbsoluteUrl: typeof buildAbsoluteUrl
+    getAppBaseUrl: typeof getAppBaseUrl
+    getServerUrl: typeof getServerUrl
   }
   let GLOBAL$URL$V2024$: GLOBAL$URL$V2024$TYPE
 }

@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../../../views/g-lobal";
+import { setPageTemp } from "../../util";
 import { appBaseUrl, setAppBaseUrl } from "../var";
 /**
  * @description 获取当前设置的应用程序基础URL。如果尚未设置，此函数会触发应用程序基础URL的初始化过程。

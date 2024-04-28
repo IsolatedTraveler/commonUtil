@@ -1,47 +1,29 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
-  // 将相对URL转换为绝对URL，处理'./', '../', 和基本路径。
-  function resolveRelativeUrl(url, base) {
-    if (/^http[s]*:\/\//i.test(url)) {
-      return url;
-    }
-    const baseUrl = getUrl(base);
-    let pathSegments = baseUrl.pathname.split('/').filter(Boolean);
-    url = url.replace(/^\.\//, '').replace(/\/$/, ''); // 移除开头的"./"和尾部的"/"
-    if (url.startsWith('../')) {
-      const levelUp = url.split('/').filter(part => part === '..').length;
-      pathSegments = pathSegments.slice(0, -levelUp);
-      url = url.replace(/\.\.\//g, '');
-    }
-    pathSegments = pathSegments.concat(url.split('/').filter(Boolean)); // 合并路径段，忽略空字符串
-    return `${baseUrl.origin}/${pathSegments.join('/')}`;
-  }
-  function getUrl(url) {
-    if (url instanceof URL || url instanceof Location) {
-      return url;
-    }
-    if (typeof url === 'string') {
-      try {
-        return new URL(url);
-      }
-      catch (error) {
-        // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
-        console.error('Invalid URL:', url);
+  /**
+  * @description 从给定的URL数组或单个URL字符串中，提取与当前页面起源匹配的首要URL。
+  * 如果提供的是字符串且不为空，直接返回该字符串。
+  * 若为数组，则遍历查找包含当前页面起源的URL，找到则返回；否则返回数组中的第一个URL。
+  *
+  * @param {string | string[]} urlsArray - 要检查的URL数组或单个URL字符串。
+  * @returns {string} 与当前页面起源匹配的URL，或数组中的首个URL。
+  */
+  function extractPrimaryUrl(urlsArray) {
+    if (typeof urlsArray === 'string')
+      return urlsArray;
+    for (var index = 0; index < urlsArray.length; index++) {
+      if (urlsArray[index].includes(location.origin)) {
+        return urlsArray[index];
       }
     }
-    return location;
+    return urlsArray[0];
   }
+  // 匹配特定URL模式的正则表达式
+  const urlPattern = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
   var dataConfig;
   function setDataConfig(a) {
     return dataConfig = a;
-  }
-  let urlServer, urlBase;
-  function setUrlServerVal(a) {
-    return urlServer = a;
-  }
-  function seturlBaseVal(a) {
-    return urlBase = a;
   }
   function setPageTemp(val, callBack, param = undefined) {
     if (!val) {
@@ -56,46 +38,40 @@
   function setConfig() {
     return setDataConfig(getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true }));
   }
-  const urlRegV = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
-  function getMainUrl(arr) {
-    if (typeof arr === 'string') {
-      return arr;
-    }
-    let len = arr.length;
-    for (let i = 0; i < len; i++) {
-      if (arr[i].indexOf(location.origin) > -1) {
-        return arr[i];
-      }
-    }
-    return arr[0];
-  }
-  // 分析当前页面URL，确定应用的基础URL。
-  function determineApplicationBaseUrl() {
-    return setPageTemp(urlBase, setBaseUrl);
-  }
-  function setBaseUrl() {
+  var appBaseUrl // 应用基础URL
+    , serverUrl // 服务端URL
+    ; // 存储配置数据
+  /**
+  *  @description 设置应用程序的基础URL。
+  * 此函数从当前窗口的location.href中提取协议、域名和端口部分，
+  * 然后确保URL以单个斜杠结尾。该URL用于作为应用内其他相对URL的基准。
+  * @returns {string} 应用程序的基础URL。
+  */
+  function setAppBaseUrl() {
     let url = window.location.href;
-    seturlBaseVal((url.split(urlRegV)[0] + '/').replace(/\/+/g, '/'));
-    return urlBase;
+    return appBaseUrl = (url.split(urlPattern)[0] + '/').replace(/\/+/g, '/');
   }
-  // 获取已设置的服务端URL，若未设置则初始化。
-  function obtainServiceEndpoint() {
-    return setPageTemp(urlServer, setServiceUrl);
+  /**
+  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。
+  * 首先通过`getConfig()`获取配置信息，然后从配置的`magicServer`属性中提取主要URL。
+  * @returns {string} 设置后的服务端URL。
+  */
+  function setServerUrl() {
+    return serverUrl = extractPrimaryUrl(getConfig().magicServer);
   }
-  function setServiceUrl() {
-    return setUrlServerVal(getMainUrl(getConfig().magicServer));
+  /**
+  * @description 获取当前设置的应用程序基础URL。如果尚未设置，此函数会触发应用程序基础URL的初始化过程。
+  * @returns {string} 应用程序的基础URL。
+  */
+  function getAppBaseUrl() {
+    return setPageTemp(appBaseUrl, setAppBaseUrl);
   }
-  // 根据给定URL和类型，构建完整的绝对URL。
-  function assembleAbsoluteUrl(url, type) {
-    if (/^http/.test(url)) {
-      return url;
-    }
-    else if (type === 'origin') {
-      return resolveRelativeUrl(url, determineApplicationBaseUrl());
-    }
-    else {
-      return resolveRelativeUrl(url, obtainServiceEndpoint());
-    }
+  /**
+  * @description 获取服务端URL。如果尚未设置，此函数会触发服务端URL的初始化过程。
+  * @returns {string} 当前设置的服务端URL。
+  */
+  function getServerUrl() {
+    return setPageTemp(serverUrl, setServerUrl);
   }
   const Class = function () {
     that = this;
@@ -103,7 +79,7 @@
       layui.use(['layer']);
     }
   };
-  Class.prototype = { getAllUrl: assembleAbsoluteUrl, getParamsUrl: determineApplicationBaseUrl, getParamsUrl: obtainServiceEndpoint };
+  Class.prototype = { getAppBaseUrl, getServerUrl };
   w.jtUtil = new Class();
 })(window, document);
 // jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })

@@ -1,4 +1,4 @@
-import { setPageTemp } from "../../../../views/g-lobal";
+import { setPageTemp } from "../../util";
 import { serverUrl, setServerUrl } from "../var";
 
 /**
