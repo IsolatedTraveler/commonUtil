@@ -1,3 +1,4 @@
+import { getConfig } from "../../system"
 import { extractPrimaryUrl } from "../../url/fun"
 
 export const contentType = 'application/json; charset=utf-8'
@@ -7,5 +8,5 @@ export const contentType = 'application/json; charset=utf-8'
  * @returns {string} 设置后的服务端URL。
  */
 export function setServerUrl(): string {
-  return GLOBAL$COMMON$.serverUrl = extractPrimaryUrl(GLOBAL$COMMON$.getConfig().magicServer)
+  return GLOBAL$COMMON$.serverUrl = extractPrimaryUrl(getConfig().magicServer)
 }
