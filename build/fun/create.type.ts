@@ -35,6 +35,6 @@ export function createIndex(arr: Array<string>) {
     }
     return it
   }).join(', ')}
-} from '../views/g-lobal'`
+} from '../g-lobal'`
   return writeFile(path.resolve(siteMl, '../globalLocal.ts'), code)
 }

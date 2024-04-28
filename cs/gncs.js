@@ -52,30 +52,13 @@
       return `${key}=${encodeUrlParamValue(value)}`;
     }).join('&');
   }
-  let webName = '';
-  function tempData(name, val, obj = sessionStorage) {
-    let name1 = webName + name;
-    if (val === undefined) {
-      var data = obj.getItem(name1) || obj.getItem(name) || 'null';
-      return JSON.parse(data);
-    }
-    else if (val === null) {
-      obj.removeItem(name1);
-    }
-    else {
-      obj.setItem(name1, JSON.stringify(val));
-    }
-  }
   function setPageTemp(val, callBack, param = undefined) {
     if (!val) {
       return callBack(param);
     }
     return val;
   }
-  var Authorization, dataConfig;
-  function setAuthorization(v) {
-    return Authorization = v;
-  }
+  var dataConfig;
   function setDataConfig(a) {
     return dataConfig = a;
   }
@@ -86,12 +69,6 @@
   function seturlBaseVal(a) {
     return urlBase = a;
   }
-  let user;
-  function session(name, val = undefined, mkdm = 'that') {
-    {
-      return tempData(name, val, sessionStorage);
-    }
-  }
   function getConfig(key = '') {
     setPageTemp(dataConfig, setConfig);
     return key ? dataConfig[key] : dataConfig;
@@ -99,15 +76,6 @@
   function setConfig() {
     return setDataConfig(getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true }));
   }
-  const ajaxJqMagicV2 = {
-    url: '/magic/oauth/login',
-    wjqCode: 101,
-    AuthorizationName: 'accessToken',
-    user: {
-      zh: '',
-      mm: ''
-    }
-  };
   const urlRegV = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
   function getBaseUrl() {
     return setPageTemp(urlBase, setBaseUrl);
@@ -146,184 +114,13 @@
       return dealsUrl(url, getServiceUrl());
     }
   }
-  function errFormat(message, code = -1) {
-    return { code, message, data: {} };
-  }
-  function ajaxPostData(data = {}, option = {}, config = {}, type = 'POST') {
-    if (that && that.dealAjaxData) {
-      return that.dealAjaxData(data, option, config, type);
-    }
-    else {
-      return JSON.stringify(Object.assign({}, user, data));
-    }
-  }
-  function magicCheckAuthV2(config, url, rest = false) {
-    let magic = ajaxJqMagicV2;
-    setMagicToken(magic, url, rest);
-    config.headers = config.headers || {};
-    config.headers[magic.AuthorizationName] = Authorization === true ? undefined : Authorization;
-    return Authorization === true;
-  }
-  function magicData2(data, { isNotGetUser, isBase64, isPwd, isNotWrapped } = {}) {
-    if (data.pageSize) {
-      data.page = data.pageNumber;
-      data.size = data.pageSize;
-    }
-    if (!isNotGetUser) {
-      // eslint-disable-next-line no-import-assign
-      let user = getUser() || {};
-      data = Object.assign({}, {
-        czryid: user.ryid,
-        czryjgid: user.jgid,
-        czryjgmc: user.jgmc,
-        czryjgjc: user.jgjc,
-        czryyhm: user.yhm,
-        czryxm: user.xm || user.username,
-        superadmin: user.superadmin
-      }, data);
-    }
-    if (isNotWrapped) {
-      return JSON.stringify(data);
-    }
-    return JSON.stringify({ data });
-  }
-  function setMagicToken(magic, url, rest) {
-    that.wjqCode = magic.wjqCode;
-    if (magic.url === url) {
-      return;
-    }
-    if (rest) {
-      getMagicToken(magic);
-    }
-    else if (!Authorization || Authorization == magic.Authorization) {
-      getMagicToken(magic);
-    }
-  }
-  function getMagicToken(magic) {
-    const user = session('magicUser') || (session('magic') || {}).user || magic.user, param = magic.isParam ? user : undefined, data = magic.isParam ? undefined : user;
-    let res = that.commonHttppost(magic.url, data, {
-      param,
-      isNotGetUser: true,
-      isNotWrapped: true
-    }) || {};
-    setAuthorization(res.Authorization || (res.data || {}).accessToken || true);
-  }
-  // 请求超时时间设置（3分钟）
-  const ajaxTimeOut = 1000 * 60 * 3, ajaxRerr = {
-    400: '客户端请求的语法错误，服务器无法理解请求',
-    401: '请求要求用户进行身份认证',
-    403: '服务器已接受客户端的请求，但是拒绝执行此请求。',
-    404: '请求服务不存在',
-    408: '请求超时',
-    409: '请求的资源与服务器中的资源冲突',
-    413: '请求内容过大，超出服务器允许的范围',
-    415: '服务器无法处理请求附带的媒体格式',
-    500: '服务器遇到了不知道如何处理的情况',
-    502: '作为网关或代理工作的服务器从上游服务器收到了无效的响应',
-    503: '服务器目前无法使用（由于超载或停机维护）',
-    504: '作为网关或代理的服务器未能及时从上游服务器收到请求'
-  };
-  /**
-  * 发送同步请求
-  * @param {string} url - 请求地址
-  * @param {*} data - 请求数据
-  * @param {*} option - 请求选项
-  * @param {*} config - 配置信息
-  * @param {string} type - 请求方式
-  */
-  function dealXhrRes(xhr) {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      return JSON.parse(xhr.responseText);
-    }
-    else {
-      return errFormat('请求失败：' + ajaxRerr[xhr.status]);
-    }
-  }
-  function sync(url, data = {}, param = {}, option = {}, config = {}, type) {
-    try {
-      const xhr = setXhr(url, type, option.urlType, param, config, false);
-      const time = setTimeout(() => {
-        xhr.abort();
-      }, ajaxTimeOut);
-      console.time();
-      xhr.send(data);
-      console.timeEnd();
-      clearTimeout(time);
-      return dealXhrRes(xhr);
-    }
-    catch (e) {
-      return errFormat('请求过程中发生错误：' + (e.message || e));
-    }
-  }
-  /**
-  * 初始化XMLHttpRequest对象并配置请求
-  * @param {string} url - 请求URL
-  * @param {string} type - 请求类型
-  * @param {boolean} async - 是否异步请求
-  * @returns {XMLHttpRequest} 配置好的XMLHttpRequest对象
-  */
-  function setXhr(url, type, urlType, param, config, async) {
-    if (type === 'POST' && that.checkAuth) {
-      that.checkAuth(config, url);
-    }
-    url = getAllUrl(url, urlType);
-    url = getParamsUrl(param, url);
-    const xhr = new XMLHttpRequest();
-    xhr.open(type, url, async);
-    xhr.setRequestHeader('Content-Type', contentType);
-    return xhr;
-  }
-  /**
-  * 异步发送请求
-  * @param {string} url - 请求URL
-  * @param {*} data - 请求数据
-  * @param {*} option - 请求选项
-  * @param {*} config - 配置信息
-  * @param {string} type - 请求类型
-  * @returns {Promise} 返回处理Promise
-  */
-  function async(url, data = {}, param = {}, option = {}, config = {}, type) {
-    return new Promise((resolve, reject) => {
-      try {
-        const xhr = setXhr(url, type, option.urlType, param, config, true);
-        xhr.timeout = ajaxTimeOut;
-        xhr.onload = () => {
-          resolve(dealXhrRes(xhr));
-        };
-        xhr.onerror = () => {
-          reject(errFormat('请求失败：网络错误'));
-        };
-        xhr.ontimeout = () => {
-          reject(errFormat('请求失败：网络连接超时'));
-        };
-        xhr.send(data);
-      }
-      catch (e) {
-        return errFormat('请求过程中发生错误：' + (e.message || e));
-      }
-    });
-  }
-  // 异步请求
-  function getAjaxAsync(url, data, option = {}, config = {}) {
-    return async(url, option.param, data, option, config, 'GET');
-  }
-  function commonQueryAsyncHttppost_callback(url, data, option = {}, config = {}) {
-    return async(url, ajaxPostData(data, option, config), option.param, option, config, 'POST');
-  }
-  // 同步请求
-  function getAjax(url, data, option = {}, config = {}) {
-    return sync(url, option.param, data, option, config, 'GET');
-  }
-  function commonHttppost(url, data, option = {}, config = {}) {
-    return sync(url, ajaxPostData(data, option, config), option.param, option, config, 'POST');
-  }
   const Class = function () {
     that = this;
     if (layui) {
       layui.use(['layer']);
     }
   };
-  Class.prototype = { commonHttppost, commonQueryAsyncHttppost_callback, getAjax, getAjaxAsync, checkAuth: magicCheckAuthV2, dealAjaxData: magicData2 };
+  Class.prototype = { getAllUrl, getParamsUrl };
   w.jtUtil = new Class();
 })(window, document);
 jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })

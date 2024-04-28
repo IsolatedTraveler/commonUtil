@@ -4,13 +4,13 @@ interface Dbnr {
 }
 export const dbdq: InstitutionCode[] = ['erdss']
 export const dbnr: Dbnr = {
-  cs: ['gncs'],
+  // cs: ['gncs'],
   // gModules: ['hisAjax'],
   // layModules: [],
   // src: ['jtUtil'],
   // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
-export const siteVesion = ''
+export const siteVesion = 'V2024'
 export const sfys = false
 export const qdzs = false
