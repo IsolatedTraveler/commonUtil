@@ -7,7 +7,7 @@
       layui.use(['layer']);
     }
   };
-  Class.prototype = { getAllUrl: GLOBAL$URL$V2024$.assembleAbsoluteUrl, getParamsUrl: GLOBAL$URL$V2024$.determineApplicationBaseUrl, getParamsUrl: GLOBAL$URL$V2024$.obtainServiceEndpoint };
+  Class.prototype = { getAllUrl: assembleAbsoluteUrl, getParamsUrl: determineApplicationBaseUrl, getParamsUrl: obtainServiceEndpoint };
   w.jtUtil = new Class();
 })(window, document);
 jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
