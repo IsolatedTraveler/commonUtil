@@ -1,3 +1,3 @@
 export * from './buildAbsoluteUrl'
 export * from './establishAppBaseUrl'
-export * from './obtainServiceEndpoint'
+export * from './fetchServiceEndpoint'

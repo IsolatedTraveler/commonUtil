@@ -1,7 +1,7 @@
 import { UrlType } from "../../../../types";
 import { convertToAbsoluteUrl } from "../fun";
 import { establishAppBaseUrl } from "./establishAppBaseUrl";
-import { obtainServiceEndpoint } from "./obtainServiceEndpoint";
+import { fetchServiceEndpoint } from "./fetchServiceEndpoint";
 // 根据给定URL和类型，构建完整的绝对URL。
 export function buildAbsoluteUrl(targetUrl: string, urlType: UrlType) {
   if (/^http/.test(targetUrl)) {
@@ -9,6 +9,6 @@ export function buildAbsoluteUrl(targetUrl: string, urlType: UrlType) {
   } else if (urlType === 'origin') {
     return convertToAbsoluteUrl(targetUrl, establishAppBaseUrl());
   } else {
-    return convertToAbsoluteUrl(targetUrl, obtainServiceEndpoint());
+    return convertToAbsoluteUrl(targetUrl, fetchServiceEndpoint());
   }
 }
