@@ -106,4 +106,4 @@
   Class.prototype = { getAllUrl: assembleAbsoluteUrl, getParamsUrl: determineApplicationBaseUrl, getParamsUrl: obtainServiceEndpoint };
   w.jtUtil = new Class();
 })(window, document);
-jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
+// jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
