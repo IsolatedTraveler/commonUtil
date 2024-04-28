@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { contentType } from "../../common";
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url";
 import { errFormat } from "../../util";
 import { ajaxRerr, ajaxTimeOut } from "../var";
@@ -24,7 +25,7 @@ export function async(url: string, data: any = {}, param: any = {}, option: Ajax
       url = buildUrlWithQueryParams(param, url)
       const xhr = new XMLHttpRequest()
       xhr.open(type, url, true)
-      xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType)
+      xhr.setRequestHeader('Content-Type', contentType)
       xhr.timeout = ajaxTimeOut
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {

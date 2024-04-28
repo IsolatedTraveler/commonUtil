@@ -7,7 +7,6 @@ import {
 } from '../../g-lobal'
 // @CODE
 // PLUGIN IGNORE START
-
 // PLUGIN IGNORE END
 w.jtUtil = new Class()
 export { Class }

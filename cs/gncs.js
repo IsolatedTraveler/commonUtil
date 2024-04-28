@@ -79,6 +79,33 @@
   function encodeUrlParamValue(value) {
     return value ? encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value) : '';
   }
+  /**
+  * @description 从给定的URL数组或单个URL字符串中，提取与当前页面起源匹配的首要URL。
+  * 如果提供的是字符串且不为空，直接返回该字符串。
+  * 若为数组，则遍历查找包含当前页面起源的URL，找到则返回；否则返回数组中的第一个URL。
+  *
+  * @param {string | string[]} urlsArray - 要检查的URL数组或单个URL字符串。
+  * @returns {string} 与当前页面起源匹配的URL，或数组中的首个URL。
+  */
+  function extractPrimaryUrl(urlsArray) {
+    if (typeof urlsArray === 'string')
+      return urlsArray;
+    for (var index = 0; index < urlsArray.length; index++) {
+      if (urlsArray[index].includes(location.origin)) {
+        return urlsArray[index];
+      }
+    }
+    return urlsArray[0];
+  }
+  const contentType = 'application/json; charset=utf-8';
+  /**
+  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。
+  * 首先通过`getConfig()`获取配置信息，然后从配置的`magicServer`属性中提取主要URL。
+  * @returns {string} 设置后的服务端URL。
+  */
+  function setServerUrl() {
+    return serverUrl = extractPrimaryUrl(getConfig().magicServer);
+  }
   function errFormat(message, code = -1) {
     return { code, message, data: {} };
   }
@@ -317,6 +344,7 @@
     }
   };
   Class.prototype = { asyncGetPost, asyncQueryPost };
+  // PLUGIN IGNORE END
   w.jtUtil = new Class();
 })(window, document);
 // jtUtil.commonHttppost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })
