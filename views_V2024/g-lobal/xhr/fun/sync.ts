@@ -17,9 +17,7 @@ export function sync(url: string, data: any = {}, param: any = {}, option: AjaxR
     const time = setTimeout(() => {
       xhr.abort()
     }, ajaxTimeOut);
-    console.time()
     xhr.send(data);
-    console.timeEnd()
     clearTimeout(time)
     return dealXhrRes(xhr)
   } catch (e: any) {
