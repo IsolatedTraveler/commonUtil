@@ -16,6 +16,7 @@ import { getUser } from "../../system"
 export function dealRequestData(data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}, type: AjaxRequestType = 'POST') {
+  option.isCheck !== false
   if (that && that.dealAjaxData) {
     return that.dealAjaxData(data, option, config, type)
   } else {

@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, UrlType } from "../../../../types"
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
 import { contentType } from "../../common"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 
@@ -11,12 +11,12 @@ import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
  */
 export function setXhr(
   url: string,
-  type: 'GET' | 'POST',
-  urlType: UrlType,
+  type: AjaxRequestType,
+  { urlType, isCheck }: AjaxRequestOption,
   param: any,
   config: AjaxRequestConfig,
   async: boolean) {
-  if (type === 'POST' && that.checkAuth) {
+  if (isCheck && that.checkAuth) {
     that.checkAuth(config, url)
   }
   url = buildAbsoluteUrl(url, urlType)

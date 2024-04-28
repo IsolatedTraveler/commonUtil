@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
@@ -18,10 +18,10 @@ import { setXhr } from "./setXhr";
  *
  * @returns {Promise<any>} 返回一个Promise，成功时携带响应数据，失败则抛出错误信息。
  */
-export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: 'GET' | 'POST') {
+export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType) {
   return new Promise((resolve, reject) => {
     try {
-      const xhr = setXhr(url, type, option.urlType, param, config, true)
+      const xhr = setXhr(url, type, option, param, config, true)
       xhr.timeout = ajaxTimeOut
       xhr.onload = () => {
         resolve(dealXhrRes(xhr))

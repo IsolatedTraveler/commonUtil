@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
@@ -11,9 +11,9 @@ import { setXhr } from "./setXhr";
  * @param {*} config - 配置信息
  * @param {string} type - 请求方式
  */
-export function sync(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: 'GET' | 'POST') {
+export function sync(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType) {
   try {
-    const xhr = setXhr(url, type, option.urlType, param, config, false)
+    const xhr = setXhr(url, type, option, param, config, false)
     const time = setTimeout(() => {
       xhr.abort()
     }, ajaxTimeOut);
