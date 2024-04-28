@@ -27,7 +27,7 @@ export function async(url: string, data: any = {}, param: any = {}, option: Ajax
       }
       xhr.send(data);
     } catch (e: any) {
-      return errFormat('请求过程中发生错误：' + (e.message || e))
+      return reject(errFormat('请求过程中发生错误：' + (e.message || e)))
     }
   })
 }
