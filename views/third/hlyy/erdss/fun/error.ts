@@ -54,8 +54,6 @@ export function confirm(jb: number, content: string, wt: number): Promise<void> 
       resize: false,
       yes: function (i: number) {
         window.YytPass.showRxReview()
-        window.YytPass.layer.close(i)
-        reject()
       },
       btn2: function (i: number) {
         window.YytPass.layer.close(i)
@@ -64,7 +62,8 @@ export function confirm(jb: number, content: string, wt: number): Promise<void> 
         } else {
           resolve()
         }
-      }
+      },
+      end: reject
     })
   })
 }
