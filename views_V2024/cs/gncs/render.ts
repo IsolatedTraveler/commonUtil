@@ -2,8 +2,8 @@
 import { Class } from "./core";
 // MODULE END
 import {
-  buildAbsoluteUrl, getAppBaseUrl, getServerUrl, commonQueryAsyncHttppost_callback, getAjaxAsync,
-  commonHttppost, getAjax
+  buildAbsoluteUrl, getAppBaseUrl, convertObjectToQueryString, buildUrlWithQueryParams, getServerUrl,
+  asyncGetPost, asyncQueryPost
 } from '../../g-lobal'
 // @CODE
 // PLUGIN IGNORE START

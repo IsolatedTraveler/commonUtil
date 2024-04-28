@@ -1,2 +1,2 @@
-export * from './async'
-export * from './sync'
+export * from './get'
+export * from './post'

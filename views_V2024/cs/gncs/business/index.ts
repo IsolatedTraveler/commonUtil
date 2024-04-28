@@ -1,3 +1,3 @@
 import { Class } from "../core";
-Class.prototype.getAppBaseUrl = GLOBAL$URL$V2024$.getAppBaseUrl
-Class.prototype.getServerUrl = GLOBAL$URL$V2024$.getServerUrl
+Class.prototype.asyncGetPost = GLOBAL$XHR$V2024$.asyncGetPost
+Class.prototype.asyncQueryPost = GLOBAL$XHR$V2024$.asyncQueryPost
