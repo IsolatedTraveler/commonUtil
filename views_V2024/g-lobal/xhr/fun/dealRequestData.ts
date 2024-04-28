@@ -19,6 +19,6 @@ export function dealRequestData(data: any,
   if (that && that.dealAjaxData) {
     return that.dealAjaxData(data, option, config, type)
   } else {
-    return JSON.stringify(Object.assign({}, getUser(), data))
+    return JSON.stringify({ data: Object.assign({}, getUser(), data) })
   }
 }
