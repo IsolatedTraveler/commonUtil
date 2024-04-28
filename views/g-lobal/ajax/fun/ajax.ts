@@ -4,7 +4,7 @@ import { ajaxDealData } from "./dealData";
 import { LayerIndex, loading } from "../../layer/public/index";
 import { getAllUrl } from "../../url/public/commonUtil";
 import { getParamsUrl } from "../../url/public/data";
-import { ajaxTimeOut } from "../../../../types";
+import { ajaxTimeOut } from "../../../types";
 export function getAjaxRes(res: any) {
   try {
     return JSON.parse(res)

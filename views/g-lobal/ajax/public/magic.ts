@@ -1,4 +1,4 @@
-import { MagicData, ajaxJqMagic, ajaxJqMagicV2 } from "../../../../types"
+import { MagicData, ajaxJqMagic, ajaxJqMagicV2 } from "../../../types"
 import { session } from "../../temp"
 import { AjaxRequestOption } from "../type"
 import { Authorization, setAuthorization } from "../var"

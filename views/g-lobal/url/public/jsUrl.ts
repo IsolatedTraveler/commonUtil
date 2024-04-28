@@ -1,4 +1,4 @@
-import { urlRegV } from "../../../../types"
+import { urlRegV } from "../../../types"
 import { setPageTemp } from "../../temp"
 import { urlBase } from "../var"
 import { seturlBaseVal } from "../var/global"

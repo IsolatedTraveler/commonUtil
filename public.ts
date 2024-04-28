@@ -11,6 +11,6 @@ export const dbnr: Dbnr = {
   // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
-export const siteVesion = 'V2024'
+export const siteVesion = ''
 export const sfys = false
 export const qdzs = false
