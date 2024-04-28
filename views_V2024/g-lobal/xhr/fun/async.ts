@@ -1,6 +1,6 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
 import { errFormat } from "../../util";
-import { ajaxRerr, ajaxTimeOut } from "../var";
+import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
 import { setXhr } from "./setXhr";
 /**
