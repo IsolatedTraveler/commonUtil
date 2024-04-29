@@ -1,79 +1,41 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
-  function session(name, val) {
-    return {};
-  }
   const contentType = 'application/json; charset=utf-8', XHR_JQ_CODE = 101 // 服务器返回的需要鉴权的标志（鉴权失效，第三方鉴权等情况导致鉴权失败）
   , XHR_JQ_URL = '/magic/oauth/login', // 服务器鉴权信息
   DEFAULT_AUTH_USER = {
     zh: '',
     mm: ''
   };
-  // 初始化鉴权令牌变量
-  var Authorization = '';
-  // 实现checkAuth方法
-  function checkAuth(config, option, url, reset = false) {
-    if (url === XHR_JQ_URL) {
-      return;
-    }
-    if (reset || !Authorization) {
-      option.isCheck = false;
-      getAuthorization();
-    }
-    config.headers = config.headers || {};
-    config.headers.accessToken = Authorization === true ? undefined : Authorization;
-  }
-  // 获取鉴权令牌的函数
-  function getAuthorization() {
-    try {
-      const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER, res = commonHttppost(XHR_JQ_URL, user, { isNotGetUser: true, isNotWrapped: true }) || {};
-      Authorization = res.data.accessToken || true;
-    }
-    catch (e) {
-      Authorization = true; // 在异常情况下设置为true，表示无需鉴权
-    }
-  }
-  function errFormat(message, code = -1) {
-    return { code, message, data: {} };
-  }
   /**
-  * @description 设置临时页面数据或通过回调函数计算数据。
-  * 函数的核心逻辑是：检查`val`是否已提供且有效；如果未提供，则通过调用`callBack`函数并传入
-  * `param`来动态获取数据。这种方式允许在数据可能已知或需要按需计算的场景下灵活运用。
+  * @param {string | URL | Location} [relativeUrl] - 可选参数，可以是字符串、URL对象或Location对象。
+  *   如果未提供，将默认使用当前页面的location。
+  * @returns {URL | Location} 返回一个URL对象或Location对象。
   *
-  * @param {any} val - 期望设置的值，可以是任意类型
-  * @param {Function} callBack - 一个函数类型的参数，当`val`未提供或无效时会被调用。此回调应当返回一个值，用于替代`val`。回调函数接收一个参数`param`。
-  * @param {any} [param=undefined] - 可选参数，用于传递给`callBack`函数。默认值为`undefined`，可根据需要指定。
-  * @returns {any} - 返回最终设置的值，无论是直接提供的`val`还是通过回调函数计算得到的值。
-  */
-  function setPageTemp(val, callBack, param = undefined) {
-    return val ? val : callBack(param);
-  }
-  var user // 用户信息
-  , configData; // 应用配置
-  function setUser() {
-    return user = {};
-  }
-  /**
-  * @description 同步获取应用的配置信息。
+  * @description 获取或构建URL对象。
+  * 该函数检查输入`relativeUrl`的类型，根据以下规则处理：
+  * 1. 如果输入已经是URL对象或Location对象，直接返回该对象。
+  * 2. 如果输入是字符串，尝试将其解析为URL对象。如果字符串格式正确，则返回新的URL对象；
+  *    若格式错误，则在控制台打印错误信息（但当前实现中错误被吞没，无异常抛出）。
+  * 3. 如果没有提供输入或输入无法处理，函数将返回当前页面的`location`对象作为默认。
   *
-  * 函数执行过程：
-  * 1. 向'/public/data/config.json'发起GET请求，该请求包含一个查询参数v，其值为当前时间的时间戳，用以防止浏览器缓存旧的配置信息。
-  * 2. 请求配置的同时，传入一个配置对象，指定了错误提示信息前缀、请求的URL类型为'origin'（通常意味着直接使用当前页面的协议和主机），
-  *    以及标志isNotGetUser为true，可能用于在请求中指示不需要附加用户身份验证信息或其他特定于用户的处理逻辑。
-  * 3. 调用全局的getAjax方法来发起请求，此方法应为外部定义的一个处理Ajax请求的函数或类方法。
-  * 4. 函数返回configData的设置操作，虽然实际上此返回值在异步操作的上下文中可能不会被直接使用，因为getAjax方法通常是异步的。
+  * 注意：当字符串输入无法转换为URL对象时，当前实现仅记录错误日志而不抛出异常。
+  *       在某些应用场景下，可能需要调整错误处理逻辑以适应特定需求。
   */
-  function setConfigData() {
-    return configData = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true });
-  }
-  function getConfig(key = '') {
-    setPageTemp(configData, setConfigData);
-    return key ? configData[key] : configData;
-  }
-  function getUser() {
-    setPageTemp(user, setUser);
+  function getUrl(relativeUrl) {
+    if (relativeUrl instanceof URL || relativeUrl instanceof Location) {
+      return relativeUrl;
+    }
+    if (typeof relativeUrl === 'string') {
+      try {
+        return new URL(relativeUrl);
+      }
+      catch (error) {
+        // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
+        console.error('Invalid URL:', relativeUrl);
+      }
+    }
+    return location;
   }
   /**
   * 将相对URL转换为绝对URL。
@@ -112,36 +74,6 @@
     return baseAddress.origin + '/' + pathParts.join('/');
   }
   /**
-  * @param {string | URL | Location} [relativeUrl] - 可选参数，可以是字符串、URL对象或Location对象。
-  *   如果未提供，将默认使用当前页面的location。
-  * @returns {URL | Location} 返回一个URL对象或Location对象。
-  *
-  * @description 获取或构建URL对象。
-  * 该函数检查输入`relativeUrl`的类型，根据以下规则处理：
-  * 1. 如果输入已经是URL对象或Location对象，直接返回该对象。
-  * 2. 如果输入是字符串，尝试将其解析为URL对象。如果字符串格式正确，则返回新的URL对象；
-  *    若格式错误，则在控制台打印错误信息（但当前实现中错误被吞没，无异常抛出）。
-  * 3. 如果没有提供输入或输入无法处理，函数将返回当前页面的`location`对象作为默认。
-  *
-  * 注意：当字符串输入无法转换为URL对象时，当前实现仅记录错误日志而不抛出异常。
-  *       在某些应用场景下，可能需要调整错误处理逻辑以适应特定需求。
-  */
-  function getUrl(relativeUrl) {
-    if (relativeUrl instanceof URL || relativeUrl instanceof Location) {
-      return relativeUrl;
-    }
-    if (typeof relativeUrl === 'string') {
-      try {
-        return new URL(relativeUrl);
-      }
-      catch (error) {
-        // 如果字符串不是有效的URL格式，可以选择抛出错误或默认处理
-        console.error('Invalid URL:', relativeUrl);
-      }
-    }
-    return location;
-  }
-  /**
   * @description 编码URL参数值，确保特殊字符被安全地转换以便于URL传输。
   *
   * 如果值为对象，则先转换为JSON字符串再进行编码。对于非对象的值，直接进行编码。
@@ -171,13 +103,21 @@
     }
     return urlsArray[0];
   }
+  function errFormat(message, code = -1) {
+    return { code, message, data: {} };
+  }
   /**
-  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。
-  * 首先通过`getConfig()`获取配置信息，然后从配置的`magicServer`属性中提取主要URL。
-  * @returns {string} 设置后的服务端URL。
+  * @description 设置临时页面数据或通过回调函数计算数据。
+  * 函数的核心逻辑是：检查`val`是否已提供且有效；如果未提供，则通过调用`callBack`函数并传入
+  * `param`来动态获取数据。这种方式允许在数据可能已知或需要按需计算的场景下灵活运用。
+  *
+  * @param {any} val - 期望设置的值，可以是任意类型
+  * @param {Function} callBack - 一个函数类型的参数，当`val`未提供或无效时会被调用。此回调应当返回一个值，用于替代`val`。回调函数接收一个参数`param`。
+  * @param {any} [param=undefined] - 可选参数，用于传递给`callBack`函数。默认值为`undefined`，可根据需要指定。
+  * @returns {any} - 返回最终设置的值，无论是直接提供的`val`还是通过回调函数计算得到的值。
   */
-  function setServerUrl() {
-    return serverUrl = extractPrimaryUrl(getConfig().magicServer);
+  function setPageTemp(val, callBack, param = undefined) {
+    return val ? val : callBack(param);
   }
   // 匹配特定URL模式的正则表达式
   const urlPattern = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
@@ -190,7 +130,7 @@
   * @returns {string} 应用程序的基础URL。
   */
   function setAppBaseUrl() {
-    let url = window.location.href;
+    let url = location.href;
     return appBaseUrl = (url.split(urlPattern)[0] + '/').replace(/\/+/g, '/');
   }
   /**
@@ -265,6 +205,128 @@
     });
     baseUrl.search = searchParams.toString();
     return url.toString();
+  }
+  // 获取应用程序名
+  const webName = `/${getAppBaseUrl().split('/').filter(Boolean)}/`;
+  /**
+  * @description 提供一种便捷的方式来读取、写入或删除浏览器sessionStorage中的数据，同时支持对存储键名进行前缀处理，增强数据管理的灵活性和区分度
+  *
+  * @param {string} name - 用于sessionStorage的键名。
+  * @param {any} [val]  - 如果省略或为undefined，函数将尝试获取指定键名的值。
+  *                     - 如果为null，函数将删除该键名对应的sessionStorage项。
+  *                     - 否则，该值将被设置为指定键名在sessionStorage中的值。
+  * @returns {any} - 如果操作是获取值，则返回读取到的值；
+  *                如果是设置或删除操作，则返回传入的val。
+  */
+  function session(name, val) {
+    const name1 = webName + name;
+    if (val === undefined) {
+      return JSON.parse(sessionStorage.getItem(name1) || sessionStorage.getItem(name) || 'null');
+    }
+    else if (val === null) {
+      sessionStorage.removeItem(name);
+      sessionStorage.removeItem(name1);
+    }
+    else {
+      sessionStorage.setItem(name1, JSON.stringify(val));
+    }
+    return val;
+  }
+  var Authorization = ''; // 初始化鉴权令牌变量
+  /**
+  * @description 获取或刷新鉴权令牌的函数。
+  *
+  * 此函数尝试从客户端会话存储中检索用户信息，并使用这些信息通过AJAX请求向服务器获取新的鉴权令牌。
+  * 如果过程中出现任何异常，函数会默认设置鉴权状态为无需鉴权（`true`），以保证系统能够继续运行，尽管可能需要进一步的人工干预或错误处理。
+  *
+  * 主要步骤包括：
+  * 1. **用户信息检索**: 从会话存储中查找`magicUser`信息，如果不存在，则尝试从`magic`对象中提取用户信息，最后使用默认认证用户信息（`DEFAULT_AUTH_USER`）作为备选。
+  * 2. **发送鉴权请求**: 使用全局的XHR工具函数`commonHttppost`向预定义的URL（`XHR_JQ_URL`）发送POST请求，携带用户信息，并设置特定选项以控制请求行为（如不获取用户信息、不包装响应等）。
+  * 3. **处理响应与异常**: 如果请求成功，从响应的`data`中提取`accessToken`并更新全局鉴权变量`Authorization`。如果响应无效或发生任何异常，将鉴权状态设置为`true`，意味着放弃鉴权要求。
+  */
+  function getAuthorization() {
+    try {
+      const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER, res = commonHttppost(XHR_JQ_URL, user, { isNotGetUser: true, isNotWrapped: true }) || {};
+      Authorization = res.data.accessToken || true;
+    }
+    catch (e) {
+      Authorization = true; // 在异常情况下设置为true，表示无需鉴权
+    }
+  }
+  /**
+  * @description 检查并设置AJAX请求的鉴权信息。
+  *
+  * @param {AjaxRequestConfig} config - AJAX请求的配置对象，将会被修改以添加或更新鉴权头信息。
+  * @param {AjaxRequestOption} option - AJAX请求的选项对象，用于控制是否需要进行鉴权检查。
+  * @param {string} url - 当前请求的URL，用于判断是否需要跳过特定的内部处理。
+  * @param {boolean} [reset=false] - 是否重置鉴权信息，如果为真，将强制重新获取鉴权令牌。
+  *
+  * 此函数主要做了以下几件事：
+  * 1. **跳过特定URL**: 如果请求的URL与`XHR_JQ_URL`相同，则直接返回，不做鉴权处理。
+  * 2. **鉴权逻辑控制**: 当需要重置鉴权信息或当前鉴权令牌未设置时，关闭此次请求的鉴权检查，并调用`getAuthorization`方法获取新的鉴权令牌。
+  * 3. **设置鉴权头**: 更新请求配置的`headers`属性，加入`accessToken`。如果鉴权令牌有效，则设置其值；如果为`true`（表示无需鉴权或鉴权失败），则不设置此头信息。
+  */
+  function checkAuth(config, option, url, reset = false) {
+    if (url === XHR_JQ_URL) {
+      return;
+    }
+    if (reset || !Authorization) {
+      option.isCheck = false;
+      getAuthorization();
+    }
+    config.headers = config.headers || {};
+    config.headers.accessToken = Authorization === true ? undefined : Authorization;
+  }
+  var user // 用户信息
+  , configData; // 应用配置
+  /**
+  * @description
+  * @author 何波
+  * @date 2024-04-29 10:01:38
+  * @param {}
+  */
+  function setUser() {
+    return user = session('userinfo');
+  }
+  /**
+  * @description 同步获取应用的配置信息。
+  *
+  * 函数执行过程：
+  * 1. 向'/public/data/config.json'发起GET请求，该请求包含一个查询参数v，其值为当前时间的时间戳，用以防止浏览器缓存旧的配置信息。
+  * 2. 请求配置的同时，传入一个配置对象，指定了错误提示信息前缀、请求的URL类型为'origin'（通常意味着直接使用当前页面的协议和主机），
+  *    以及标志isNotGetUser为true，可能用于在请求中指示不需要附加用户身份验证信息或其他特定于用户的处理逻辑。
+  * 3. 调用全局的getAjax方法来发起请求，此方法应为外部定义的一个处理Ajax请求的函数或类方法。
+  * 4. 函数返回configData的设置操作，虽然实际上此返回值在异步操作的上下文中可能不会被直接使用，因为getAjax方法通常是异步的。
+  */
+  function setConfigData() {
+    return configData = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true });
+  }
+  /**
+  * @description 获取配置信息。如果尚未设置，此函数会触发应用程序配置信息的初始化过程。
+  * 然后根据提供的`key`返回配置对象中的相应属性值。如果没有提供`key`，则直接返回整个配置对象。
+  *
+  * @param {string} [key=''] - 配置项的键名，可选，默认为空字符串。
+  * @returns {any} 如果提供了`key`，返回对应的配置值；否则，返回整个配置对象。
+  */
+  function getConfig(key = '') {
+    setPageTemp(configData, setConfigData);
+    return key ? configData[key] : configData;
+  }
+  /**
+  * @description 获取用户信息。如果尚未设置，此函数会触发应用程序用户信息的初始化过程。
+  *
+  * @returns {any}
+  */
+  function getUser() {
+    setPageTemp(user, setUser);
+  }
+  /**
+  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。
+  * 首先通过`getConfig()`获取配置信息，然后从配置的`magicServer`属性中提取主要URL。
+  * @returns {string} 设置后的服务端URL。
+  */
+  function setServerUrl() {
+    return serverUrl = extractPrimaryUrl(getConfig().magicServer);
   }
   // 请求超时时间设置（3分钟）
   const ajaxTimeOut = 1000 * 60 * 3, ajaxRerr = {
