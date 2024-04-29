@@ -12,5 +12,5 @@ export const dbnr: Dbnr = {
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
 export const siteVesion = 'V2024'
-export const sfys = false
-export const qdzs = false
+export const sfys = true
+export const qdzs = /^!/
