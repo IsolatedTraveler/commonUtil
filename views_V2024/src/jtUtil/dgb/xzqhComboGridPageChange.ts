@@ -23,6 +23,6 @@ export function xzqhComboGridPageChange(gridObject: Object, param: any) {
       onSelectPage: reloadData
     });
   } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e);
+    GLOBAL$LAYER$V2024$.alertMsg(e)
   }
 }

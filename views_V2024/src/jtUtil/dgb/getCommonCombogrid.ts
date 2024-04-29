@@ -1,49 +1,49 @@
 export function getCommonCombogrid({
   id,
-  columns= [], // 动态生成
-  idField= 'id',
-  textField= 'text',
+  columns = [], // 动态生成
+  idField = 'id',
+  textField = 'text',
   querymethod,
   selectmethod,
   nextid,
   comboclass,
   extramethod,
   flag,
-  panelWidth=300,
+  panelWidth = 300,
   nowrap,
-  panelHeight= 'auto',
+  panelHeight = 'auto',
   pagination,
   one_index_show,
   required,
-  pageSize= 10,
-  pageList= [10, 20, 30, 40, 50],
-  blanksearch}={} as any) {
+  pageSize = 10,
+  pageList = [10, 20, 30, 40, 50],
+  blanksearch } = {} as any) {
   try {
     required = Boolean(required)
     pagination = Boolean(pagination)
     nowrap = !nowrap
     var selectedindex = 0;
     var firstsearch = true;
-    var value:string
+    var value: string
     const domElem = $("#" + id)
-    columns = columns.map((col:any[]) => col.map(item => {
+    columns = columns.map((col: any[]) => col.map(item => {
       var [field, title, customWidth, align = 'center', rowspan = 1, colspan = 1, width = 100] = item;
-        return{
-            field,
-            title,
-            sortable: false,
-            align,
-            rowspan,
-            colspan,
-            halign: "center",
-            width: customWidth || width,
-            formatter: function(value:string) {
-                if (value && 200 / 14 * value.length > (customWidth || width)) {
-                    return `<span title="${value}">${value}</span>`;
-                }
-                return value;
-            }
+      return {
+        field,
+        title,
+        sortable: false,
+        align,
+        rowspan,
+        colspan,
+        halign: "center",
+        width: customWidth || width,
+        formatter: function (value: string) {
+          if (value && 200 / 14 * value.length > (customWidth || width)) {
+            return `<span title="${value}">${value}</span>`;
+          }
+          return value;
         }
+      }
     }))
     if (pagination) {
       pagination = true;
@@ -75,7 +75,7 @@ export function getCommonCombogrid({
             selectmethod(index, row);
           }
         } catch (e) {
-          GLOBAL$BROWSER$.errorTrace(e);
+          GLOBAL$LAYER$V2024$.alertMsg(e)
         }
       },
       keyHandler: {
@@ -146,7 +146,7 @@ export function getCommonCombogrid({
               }
             }
           } catch (e) {
-            GLOBAL$BROWSER$.errorTrace(e);
+            GLOBAL$LAYER$V2024$.alertMsg(e)
           }
         },
         query: function () {
@@ -155,7 +155,7 @@ export function getCommonCombogrid({
             domElem.combogrid("grid").datagrid("highlightRow", -1);
             return false;
           } catch (e) {
-            GLOBAL$BROWSER$.errorTrace(e);
+            GLOBAL$LAYER$V2024$.alertMsg(e)
           }
         }
       }
@@ -233,7 +233,7 @@ export function getCommonCombogrid({
           }
         }
       } catch (e) {
-        GLOBAL$BROWSER$.errorTrace(e);
+        GLOBAL$LAYER$V2024$.alertMsg(e)
       }
     }
     //是否展示combogrid右侧图标

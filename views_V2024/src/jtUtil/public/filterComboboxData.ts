@@ -16,7 +16,7 @@ function isMatch(value: string, lowerQ: string): Boolean {
  * @param rowData {Record<string, any>} - 单行数据对象。
  * @param keysToCheck {string[]} - 要检查的键数组，默认为空时使用textField作为匹配键。
  * @returns {boolean} - 如果数据匹配查询条件，返回true；否则，返回false。
- * @throws 可能抛出错误，由`GLOBAL$BROWSER$.errorTrace`处理。
+ * @throws 可能抛出错误，由`alertMsg`处理。
  */
 export function filterComboboxData(this: any, q: string, row: any, keys: string[] = []): Boolean {
   try {
@@ -29,7 +29,8 @@ export function filterComboboxData(this: any, q: string, row: any, keys: string[
       return isMatch(row[opts.textField], lowerQ);
     }
   } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e);
+
+    GLOBAL$LAYER$V2024$.alertMsg(e)
     return false;
   }
 }

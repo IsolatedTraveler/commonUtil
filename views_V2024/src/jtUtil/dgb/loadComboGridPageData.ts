@@ -17,7 +17,7 @@ export function loadComboGrigPageData(gridObject: string, url: string, param: an
     }
     const query = param.dm;
     if (query || param.blanksearch || param.key || param.jsm) {
-      const { list, total } = GLOBAL$AJAX$.commonHttppost(url, param).data
+      const { list, total } = GLOBAL$XHR$V2024$.commonHttppost(url, param).data
       if (total > 0) {
         gridObj.combogrid('setValue', query);
         grid.datagrid('loadData', { total, rows: list });

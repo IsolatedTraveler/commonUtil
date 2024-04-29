@@ -60,6 +60,6 @@ export async function initDadaGrid_tab(
     }, 0)
 
   } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e);
+    GLOBAL$LAYER$V2024$.alertMsg(e)
   }
 }

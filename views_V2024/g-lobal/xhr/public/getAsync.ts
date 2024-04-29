@@ -15,7 +15,7 @@ import { async } from "../fun";
  *
  * @returns {Promise<any>} 返回一个包含响应数据的Promise对象。
  */
-export function asyncGetPost(
+export function asyncQueryGet(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
