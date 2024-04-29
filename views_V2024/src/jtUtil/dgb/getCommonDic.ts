@@ -41,7 +41,7 @@ export async function getCommonDic({
       , dicSelect = (record: any) => {
         try {
           if (nextid) {
-            domElem.textbox("textbox").focus();
+            $('#' + nextid).textbox("textbox").focus();
           }
           if (method) {
             method(record);
