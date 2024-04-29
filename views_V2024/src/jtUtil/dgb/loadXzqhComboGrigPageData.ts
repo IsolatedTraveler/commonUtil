@@ -7,6 +7,7 @@ import { getXzqh } from "./getXzqh";
 
 export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
   try {
+    gridObject = $(gridObject)
     const grid = gridObject.combogrid("grid");
     const pager = grid.datagrid('getPager');
     // 同步Combogrid的分页器页码
