@@ -1,5 +1,5 @@
-import { getConfig } from "../../../system";
-import { extractPrimaryUrl } from "../../../url/fun";
+import { getConfig } from "../../../../system";
+import { extractPrimaryUrl } from "../../../../url/fun";
 
 /**
  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。

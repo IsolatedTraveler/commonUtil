@@ -1,3 +1,3 @@
-export * from './checkAuth'
+export * from './public/checkAuth'
 export * from './const'
-export * from './setServerUrl'
+export * from './public/setServerUrl'
