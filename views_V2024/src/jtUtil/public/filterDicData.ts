@@ -5,6 +5,6 @@
  * @param {number} [mj=1] - 过滤条件，指定mj字段的值，默认为1。
  * @returns {DictionaryItemType[]} - 符合条件的字典项数组。
  */
-export function filterDicData(data: Array<any>, mj: number = 1) {
+export function filterDicData(data: Array<any> = [], mj: number = 1) {
   return data.filter(it => it.mj == mj)
 }
