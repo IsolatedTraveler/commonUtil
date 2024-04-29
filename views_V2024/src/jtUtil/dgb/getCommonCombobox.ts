@@ -96,6 +96,6 @@ export function getCommonCombobox({
     dicEvent(domElem, data, valueField, dicSelect, panelOptions)
     dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
   } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e);
+    GLOBAL$LAYER$V2024$.alertMsg(e)
   }
 }

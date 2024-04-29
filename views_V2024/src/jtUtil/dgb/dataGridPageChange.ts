@@ -25,6 +25,6 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
       onSelectPage: reloadData
     });
   } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e);
+    GLOBAL$LAYER$V2024$.alertMsg(e)
   }
 }
