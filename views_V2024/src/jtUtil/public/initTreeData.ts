@@ -45,8 +45,8 @@ export function initTreedata<T extends TreeNode>(
       setInitialState(tree)
     }
     return tree;
-  } catch (e) {
-    GLOBAL$BROWSER$.errorTrace(e)
+  } catch (e: any) {
+    GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
     return []
   }
 }
