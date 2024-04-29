@@ -1,6 +1,9 @@
 (function (w, d) {
   // eslint-disable-next-line no-unused-vars
   let that
+  function session(name, val) {
+    return {};
+  }
   function errFormat(message, code = -1) {
     return { code, message, data: {} };
   }
@@ -17,20 +20,55 @@
   function setPageTemp(val, callBack, param = undefined) {
     return val ? val : callBack(param);
   }
-  var user // 用户信息
-  , configData; // 应用配置
-  function setUser() {
-    return user = {};
-  }
-  function setConfigData() {
-    return configData = getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true });
-  }
-  function getConfig(key = '') {
-    setPageTemp(configData, setConfigData);
-    return key ? configData[key] : configData;
-  }
-  function getUser() {
-    setPageTemp(user, setUser);
+  // 请求超时时间设置（3分钟）
+  const ajaxTimeOut = 1000 * 60 * 3, ajaxRerr = {
+    400: '客户端请求的语法错误，服务器无法理解请求',
+    401: '请求要求用户进行身份认证',
+    403: '服务器已接受客户端的请求，但是拒绝执行此请求。',
+    404: '请求服务不存在',
+    408: '请求超时',
+    409: '请求的资源与服务器中的资源冲突',
+    413: '请求内容过大，超出服务器允许的范围',
+    415: '服务器无法处理请求附带的媒体格式',
+    500: '服务器遇到了不知道如何处理的情况',
+    502: '作为网关或代理工作的服务器从上游服务器收到了无效的响应',
+    503: '服务器目前无法使用（由于超载或停机维护）',
+    504: '作为网关或代理的服务器未能及时从上游服务器收到请求'
+  };
+  /*
+  * 处理 XMLHttpRequest 响应的函数。
+  *
+  * @param {XMLHttpRequest} xhr - XMLHttpRequest 实例，包含了从服务器返回的全部响应信息。
+  * @returns {any | string} 返回解析后的数据对象（如果成功且响应为JSON格式），
+  *                          原始响应文本（如果解析JSON失败），或者错误信息字符串（HTTP状态码非2xx时）。
+  *
+  * 函数首先检查HTTP响应状态码是否在200至299之间，这表示请求成功。
+  * - 如果请求成功，尝试将响应体（responseText）解析为JSON对象。
+  *   - 在解析前，设定数据对象的'message'字段为'message'或'msg'中的一个（如果存在），
+  *     以兼容不同API的响应格式。
+  *   - 同时，修正数据对象的'code'字段，如果其值为字符串'1'，则转换为数字1。
+  *   - 解析成功则返回处理后的数据对象。
+  *   - 如果解析JSON时发生错误，则直接返回响应体的原始文本。
+  * - 如果请求失败（HTTP状态码不在200-299范围内），则调用外部的`errFormat`函数，
+  *   使用`ajaxRerr`对象中相应状态码的错误信息，组合成错误字符串返回。
+  *
+  * 注意：此函数依赖于外部的`errFormat`函数和`ajaxRerr`对象的定义。
+  */
+  function dealXhrRes(xhr) {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        data.message = data.message || data.msg;
+        data.code = data.code === '1' ? 1 : data.code;
+        return data;
+      }
+      catch (e) {
+        return xhr.responseText;
+      }
+    }
+    else {
+      return errFormat('请求失败：' + ajaxRerr[xhr.status]);
+    }
   }
   /**
   * 将相对URL转换为绝对URL。
@@ -109,33 +147,6 @@
   */
   function encodeUrlParamValue(value) {
     return value ? encodeURIComponent(typeof value === 'object' ? JSON.stringify(value) : value) : '';
-  }
-  /**
-  * @description 从给定的URL数组或单个URL字符串中，提取与当前页面起源匹配的首要URL。
-  * 如果提供的是字符串且不为空，直接返回该字符串。
-  * 若为数组，则遍历查找包含当前页面起源的URL，找到则返回；否则返回数组中的第一个URL。
-  *
-  * @param {string | string[]} urlsArray - 要检查的URL数组或单个URL字符串。
-  * @returns {string} 与当前页面起源匹配的URL，或数组中的首个URL。
-  */
-  function extractPrimaryUrl(urlsArray) {
-    if (typeof urlsArray === 'string')
-      return urlsArray;
-    for (var index = 0; index < urlsArray.length; index++) {
-      if (urlsArray[index].includes(location.origin)) {
-        return urlsArray[index];
-      }
-    }
-    return urlsArray[0];
-  }
-  const contentType = 'application/json; charset=utf-8';
-  /**
-  *  @description 设置服务端URL。此函数从应用程序配置中提取主要的服务端URL。
-  * 首先通过`getConfig()`获取配置信息，然后从配置的`magicServer`属性中提取主要URL。
-  * @returns {string} 设置后的服务端URL。
-  */
-  function setServerUrl() {
-    return serverUrl = extractPrimaryUrl(getConfig().magicServer);
   }
   // 匹配特定URL模式的正则表达式
   const urlPattern = /\/webs\/|\/public\/|\/public21\/|\/public23\/|\/lib\/|\/lib21\/|\/lib23\/|\/.+\[^\/].js|\/[^/]+\.html/;
@@ -224,56 +235,6 @@
     baseUrl.search = searchParams.toString();
     return url.toString();
   }
-  // 请求超时时间设置（3分钟）
-  const ajaxTimeOut = 1000 * 60 * 3, ajaxRerr = {
-    400: '客户端请求的语法错误，服务器无法理解请求',
-    401: '请求要求用户进行身份认证',
-    403: '服务器已接受客户端的请求，但是拒绝执行此请求。',
-    404: '请求服务不存在',
-    408: '请求超时',
-    409: '请求的资源与服务器中的资源冲突',
-    413: '请求内容过大，超出服务器允许的范围',
-    415: '服务器无法处理请求附带的媒体格式',
-    500: '服务器遇到了不知道如何处理的情况',
-    502: '作为网关或代理工作的服务器从上游服务器收到了无效的响应',
-    503: '服务器目前无法使用（由于超载或停机维护）',
-    504: '作为网关或代理的服务器未能及时从上游服务器收到请求'
-  };
-  /*
-  * 处理 XMLHttpRequest 响应的函数。
-  *
-  * @param {XMLHttpRequest} xhr - XMLHttpRequest 实例，包含了从服务器返回的全部响应信息。
-  * @returns {any | string} 返回解析后的数据对象（如果成功且响应为JSON格式），
-  *                          原始响应文本（如果解析JSON失败），或者错误信息字符串（HTTP状态码非2xx时）。
-  *
-  * 函数首先检查HTTP响应状态码是否在200至299之间，这表示请求成功。
-  * - 如果请求成功，尝试将响应体（responseText）解析为JSON对象。
-  *   - 在解析前，设定数据对象的'message'字段为'message'或'msg'中的一个（如果存在），
-  *     以兼容不同API的响应格式。
-  *   - 同时，修正数据对象的'code'字段，如果其值为字符串'1'，则转换为数字1。
-  *   - 解析成功则返回处理后的数据对象。
-  *   - 如果解析JSON时发生错误，则直接返回响应体的原始文本。
-  * - 如果请求失败（HTTP状态码不在200-299范围内），则调用外部的`errFormat`函数，
-  *   使用`ajaxRerr`对象中相应状态码的错误信息，组合成错误字符串返回。
-  *
-  * 注意：此函数依赖于外部的`errFormat`函数和`ajaxRerr`对象的定义。
-  */
-  function dealXhrRes(xhr) {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      try {
-        var data = JSON.parse(xhr.responseText);
-        data.message = data.message || data.msg;
-        data.code = data.code === '1' ? 1 : data.code;
-        return data;
-      }
-      catch (e) {
-        return xhr.responseText;
-      }
-    }
-    else {
-      return errFormat('请求失败：' + ajaxRerr[xhr.status]);
-    }
-  }
   /**
   * 初始化XMLHttpRequest对象并配置请求
   * @param {string} url - 请求URL
@@ -281,9 +242,9 @@
   * @param {boolean} async - 是否异步请求
   * @returns {XMLHttpRequest} 配置好的XMLHttpRequest对象
   */
-  function setXhr(url, type, urlType, param, config, async) {
-    if (type === 'POST' && that.checkAuth) {
-      that.checkAuth(config, url);
+  function setXhr(url, type, { urlType, isCheck }, param, config, async, isRest) {
+    if (isCheck && that.checkAuth) {
+      that.checkAuth(config, url, isRest);
     }
     url = buildAbsoluteUrl(url, urlType);
     url = buildUrlWithQueryParams(param, url);
@@ -300,22 +261,37 @@
   * @param {*} config - 配置信息
   * @param {string} type - 请求方式
   */
-  function sync(url, data = {}, param = {}, option = {}, config = {}, type) {
+  function sync(url, data = {}, param = {}, option = {}, config = {}, type, isRest = false) {
     try {
-      const xhr = setXhr(url, type, option.urlType, param, config, false);
+      const xhr = setXhr(url, type, option, param, config, false, isRest);
       const time = setTimeout(() => {
         xhr.abort();
       }, ajaxTimeOut);
-      console.time();
       xhr.send(data);
-      console.timeEnd();
       clearTimeout(time);
-      return dealXhrRes(xhr);
+      const val = dealXhrRes(xhr);
+      if (option.isCheck && val.code === XHR_JQ_CODE) {
+        return sync(url, data, param, option, config, type, true);
+      }
+      return val;
     }
     catch (e) {
       return errFormat('请求过程中发生错误：' + (e.message || e));
     }
   }
+  /**
+  * 发起一个同步的HTTP GET请求。
+  *
+  * 此函数封装了发送GET请求的过程，允许附带查询数据。
+  * 它结合了基础请求参数、请求数据处理，并根据提供的选项和配置自定义请求。
+  *
+  * @param {string} url - 目标API的URL。
+  * @param {any} data - 需要附加到URL作为查询参数的数据。
+  * @param {AjaxRequestOption} [option={}] - 自定义请求选项，默认为一个空对象。
+  * @param {AjaxRequestConfig} [config={}] - 额外的请求配置，默认为一个空对象。
+  *
+  * @returns {any}
+  */
   function getAjax(url, data, option = {}, config = {}) {
     return sync(url, option.param, data, option, config, 'GET');
   }
@@ -334,13 +310,18 @@
   *
   * @returns {Promise<any>} 返回一个Promise，成功时携带响应数据，失败则抛出错误信息。
   */
-  function async(url, data = {}, param = {}, option = {}, config = {}, type) {
+  function async(url, data = {}, param = {}, option = {}, config = {}, type, isRest = false) {
     return new Promise((resolve, reject) => {
       try {
-        const xhr = setXhr(url, type, option.urlType, param, config, true);
+        const xhr = setXhr(url, type, option, param, config, true, isRest);
         xhr.timeout = ajaxTimeOut;
         xhr.onload = () => {
-          resolve(dealXhrRes(xhr));
+          const val = dealXhrRes(xhr);
+          if (option.isCheck && val.code === XHR_JQ_CODE) {
+            resolve(async(url, data, param, option, config, type, true));
+          }
+          else
+            resolve(val);
         };
         xhr.onerror = () => {
           reject(errFormat('请求失败：网络错误'));
@@ -371,26 +352,50 @@
   function asyncGetPost(url, data, option = {}, config = {}) {
     return async(url, option.param, data, option, config, 'GET');
   }
+  var user // 用户信息
+  ; // 应用配置
+  function setUser() {
+    return user = {};
+  }
+  function getUser() {
+    setPageTemp(user, setUser);
+  }
   /**
-  * @param {any} data - 需要发送的基础数据对象，可以包含任何类型的数据。
-  * @param {AjaxRequestOption} [option={}] - 请求的附加选项对象，用于进一步配置请求，如自定义头信息等。
-  * @param {AjaxRequestConfig} [config={}] - 请求的配置对象，可能包含认证信息、超时设置等高级配置。
-  * @param {AjaxRequestType} [type='POST'] - 请求类型，默认为POST，可选值有'GET', 'POST', 'PUT', 'DELETE'等。
+  * @param {any} data - 需要发送的数据对象。
+  * @param {AjaxRequestOption} [option={}] - 请求的可选配置对象，默认为空对象。
+  * @param {AjaxRequestConfig} [config={}] - 通用的Ajax请求配置，默认为空对象。
+  * @param {AjaxRequestType} [type='POST'] - 请求类型，默认为'POST'。
   *
-  * @returns {string} - 返回处理后的数据字符串，如果是默认处理逻辑，则返回包含用户信息与请求数据的JSON字符串。
+  * @returns {string} 返回处理后的数据字符串，准备用于Ajax请求的发送。
   *
-  * @description 处理Ajax请求的数据预处理逻辑。
-  * - 如果存在`that.dealAjaxData`方法，则调用此方法处理数据，该方法应由外部实现并返回处理后的数据。
-  * - 若无上述方法，则默认行为是将当前用户的登录信息（通过`getUser()`获取）与`data`合并，
-  *   并将合并后的对象转换为JSON字符串，适用于大多数需要携带用户身份信息的请求场景。
+  * @description 功能描述：
+  * 1. 检查`option.isCheck`是否为`false`，但此处漏写了对应的逻辑处理，可能是一个待完成的条件判断。
+  * 2. 如果存在`that`对象且其具有`dealAjaxData`方法，则调用该方法处理数据，优先使用自定义逻辑。
+  * 3. 若`option.isNotGetUser`不为`true`，则将全局的用户信息`getUser()`与`data`合并。
+  * 4. 根据`option.isNotWrapped`决定数据是否需要额外包装。如果不包装（默认行为或明确指定不包装），直接将数据序列化为JSON字符串。
+  *    否则，将数据放入一个带有"data"键的对象中再进行序列化，这种做法常见于需要在服务端解析特定格式的场景。
   */
   function dealRequestData(data, option = {}, config = {}, type = 'POST') {
+    option.isCheck !== false;
     if (that && that.dealAjaxData) {
       return that.dealAjaxData(data, option, config, type);
     }
-    else {
-      return JSON.stringify({ data: Object.assign({}, getUser(), data) });
+    if (!option.isNotGetUser) {
+      const user = getUser();
+      data = Object.assign({}, {
+        czryid: user.ryid,
+        czryjgid: user.jgid,
+        czryjgmc: user.jgmc,
+        czryjgjc: user.jgjc,
+        czryyhm: user.yhm,
+        czryxm: user.xm || user.username,
+        superadmin: user.superadmin
+      }, data);
     }
+    if (option.isNotWrapped) {
+      return JSON.stringify(data);
+    }
+    return JSON.stringify({ data });
   }
   /**
   * 发起一个异步的HTTP POST请求，适用于常见的查询操作。
@@ -404,17 +409,56 @@
   *
   * @description
   * 此函数封装了HTTP POST请求的过程，通过组合基础请求参数、处理请求数据，
-  * 并根据提供的选项和配置来定制请求。它内部调用了`async`函数（未在此代码段中定义），
-  * 该函数应负责实际发起网络请求并处理响应。`dealRequestData`函数（同样未在此定义）
-  * 用于处理请求数据，可能是为了序列化或其他预处理步骤。
-  *
-  * 示例用法：
-  * asyncQueryPost('/api/data', { query: 'value' })
-  *   .then(response => console.log(response))
-  *   .catch(error => console.error('请求失败:', error));
+  * 并根据提供的选项和配置来定制请求
   */
   function asyncQueryPost(url, data, option = {}, config = {}) {
     return async(url, dealRequestData(data, option, config), option.param, option, config, 'POST');
+  }
+  /**
+  * 发起一个同步的HTTP POST请求，适用于常见的查询操作。
+  *
+  * @param {string} url - 请求的目标URL。
+  * @param {any} data - 需要发送到服务器的数据。
+  * @param {AjaxRequestOption} [option={}] - 请求的附加选项，例如错误处理信息等，默认为空对象。
+  * @param {AjaxRequestConfig} [config={}] - 配置选项，用于进一步定制请求行为，默认为空对象。
+  *
+  * @returns {any}
+  *
+  * @description
+  * 此函数封装了HTTP POST请求的过程，通过组合基础请求参数、处理请求数据，
+  * 并根据提供的选项和配置来定制请求
+  */
+  function commonHttppost(url, data, option = {}, config = {}) {
+    return sync(url, dealRequestData(data, option, config), option.param, option, config, 'POST');
+  }
+  const XHR_JQ_URL = '/magic/oauth/login', // 服务器鉴权信息
+  DEFAULT_AUTH_USER = {
+    zh: '',
+    mm: ''
+  };
+  // 初始化鉴权令牌变量
+  var Authorization = '';
+  // 实现checkAuth方法
+  function checkAuth(config, option, url, reset = false) {
+    if (url === XHR_JQ_URL) {
+      return;
+    }
+    if (reset || !Authorization) {
+      option.isCheck = false;
+      getAuthorization();
+    }
+    config.headers = config.headers || {};
+    config.headers.accessToken = Authorization === true ? undefined : Authorization;
+  }
+  // 获取鉴权令牌的函数
+  function getAuthorization() {
+    try {
+      const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER, res = commonHttppost(XHR_JQ_URL, user, { isNotGetUser: true, isNotWrapped: true }) || {};
+      Authorization = res.data.accessToken || true;
+    }
+    catch (e) {
+      Authorization = true; // 在异常情况下设置为true，表示无需鉴权
+    }
   }
   const Class = function () {
     that = this;
@@ -422,7 +466,7 @@
       layui.use(['layer']);
     }
   };
-  Class.prototype = { asyncGetPost, asyncQueryPost, getAjax };
+  Class.prototype = { asyncGetPost, asyncQueryPost, getAjax, checkAuth };
   w.jtUtil = new Class();
 })(window, document);
 jtUtil.asyncQueryPost('/magic/jcgl/other/s-bjg', { bm: 'sqldy' }, { isNotGetUser: true })

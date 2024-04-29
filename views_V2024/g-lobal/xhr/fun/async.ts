@@ -18,13 +18,17 @@ import { setXhr } from "./setXhr";
  *
  * @returns {Promise<any>} 返回一个Promise，成功时携带响应数据，失败则抛出错误信息。
  */
-export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType) {
+export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType, isRest: boolean = false) {
   return new Promise((resolve, reject) => {
     try {
-      const xhr = setXhr(url, type, option, param, config, true)
+      const xhr = setXhr(url, type, option, param, config, true, isRest)
       xhr.timeout = ajaxTimeOut
       xhr.onload = () => {
-        resolve(dealXhrRes(xhr))
+        const val = dealXhrRes(xhr)
+        if (option.isCheck && val.code === GLOBAL$COMMON$.XHR_JQ_CODE) {
+          resolve(async(url, data, param, option, config, type, true))
+        } else
+          resolve(val)
       };
       xhr.onerror = () => {
         reject(errFormat('请求失败：网络错误'))

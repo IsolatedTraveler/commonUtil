@@ -1,4 +1,3 @@
-import { setServerUrl } from "../../common";
 import { setPageTemp } from "../../util";
 import { serverUrl } from "../var";
 
@@ -7,5 +6,5 @@ import { serverUrl } from "../var";
  * @returns {string} 当前设置的服务端URL。
  */
 export function getServerUrl(): string {
-  return setPageTemp(serverUrl, setServerUrl)
+  return setPageTemp(serverUrl, GLOBAL$COMMON$.setServerUrl)
 }

@@ -1,5 +1,4 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
-import { contentType } from "../../common"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 
 /**
@@ -15,14 +14,15 @@ export function setXhr(
   { urlType, isCheck }: AjaxRequestOption,
   param: any,
   config: AjaxRequestConfig,
-  async: boolean) {
+  async: boolean,
+  isRest: boolean) {
   if (isCheck && that.checkAuth) {
-    that.checkAuth(config, url)
+    that.checkAuth(config, url, isRest)
   }
   url = buildAbsoluteUrl(url, urlType)
   url = buildUrlWithQueryParams(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
-  xhr.setRequestHeader('Content-Type', contentType)
+  xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType)
   return xhr
 }

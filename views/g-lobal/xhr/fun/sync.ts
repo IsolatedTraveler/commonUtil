@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../ajax/type";
+import { contentType } from "../../allVar";
 import { getAllUrl, getParamsUrl } from "../../url";
 import { UrlType } from "../../url/type";
 import { errFormat } from "../../util";
@@ -54,6 +55,6 @@ export function setXhr(
   url = getParamsUrl(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
-  xhr.setRequestHeader('Content-Type', GLOBAL$COMMON$.contentType)
+  xhr.setRequestHeader('Content-Type', contentType)
   return xhr
 }
