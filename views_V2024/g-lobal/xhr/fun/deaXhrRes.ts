@@ -1,4 +1,3 @@
-import { AjaxRequestOption } from "../../../../types"
 import { errFormat } from "../../util"
 import { ajaxRerr } from "../var"
 /* 
