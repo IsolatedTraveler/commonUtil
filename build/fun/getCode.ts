@@ -52,6 +52,7 @@ export function getCode(
           .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
           .replace(/FIRSTMODULENAME/g, Name)
           .replace(/[ ]*\/\/ PLUGIN MODULE IGNORE START([\n\s\S]+)\/\/ PLUGIN MODULE IGNORE END\s/, '')
+          .replace(/[ ]*\/\/ PLUGIN WIN IGNORE START([\n\s\S]+)\/\/ PLUGIN WIN IGNORE END\s/, '')
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
           .replace(/(\w+):[ ]*\1([ ]*)(,|\})/g, '$1$2$3')
