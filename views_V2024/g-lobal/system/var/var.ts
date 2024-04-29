@@ -1,8 +1,15 @@
+import { session } from "../../util"
 
 export var user: any // 用户信息
   , configData: any // 应用配置
+/**
+* @description 
+* @author 何波
+* @date 2024-04-29 10:01:38
+* @param {} 
+*/
 export function setUser(): any {
-  return user = {}
+  return user = session('userinfo')
 }
 /**
  * @description 同步获取应用的配置信息。
