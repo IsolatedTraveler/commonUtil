@@ -1,5 +1,5 @@
 import { urlPattern } from "./const"
-import { GLOBAL$WIN$ } from '../../../../window'
+import { GLOBAL$WIN$ } from '../../../../w/window'
 
 export var appBaseUrl: string // 应用基础URL
   , serverUrl: string // 服务端URL
