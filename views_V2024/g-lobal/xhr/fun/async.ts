@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
+import { XHR_JQ_CODE } from "../../common";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
@@ -25,7 +26,7 @@ export function async(url: string, data: any = {}, param: any = {}, option: Ajax
       xhr.timeout = ajaxTimeOut
       xhr.onload = () => {
         const val = dealXhrRes(xhr)
-        if (option.isCheck && val.code === GLOBAL$COMMON$.XHR_JQ_CODE) {
+        if (option.isCheck && val.code === XHR_JQ_CODE) {
           resolve(async(url, data, param, option, config, type, true))
         } else
           resolve(val)

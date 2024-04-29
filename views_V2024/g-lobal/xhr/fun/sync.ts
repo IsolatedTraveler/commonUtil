@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
+import { XHR_JQ_CODE } from "../../common";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
@@ -20,7 +21,7 @@ export function sync(url: string, data: any = {}, param: any = {}, option: AjaxR
     xhr.send(data);
     clearTimeout(time)
     const val = dealXhrRes(xhr)
-    if (option.isCheck && val.code === GLOBAL$COMMON$.XHR_JQ_CODE) {
+    if (option.isCheck && val.code === XHR_JQ_CODE) {
       return sync(url, data, param, option, config, type, true)
     }
     return val
