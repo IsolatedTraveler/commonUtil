@@ -8,7 +8,7 @@ import { mkqx } from "../var"
  * @param {string} [dm] - 可选的模块细分代码，用于获取特定细分的权限信息。
  * @returns {Promise<string | Record<string, number>>} - 返回权限值（当有细分代码时）或权限对象（无细分代码时）的Promise。
  */
-export async function possessMkqx(mkbh: string, dm?: string) {
+export async function possessMkqx(mkbh: string, dm?: string): Promise<string | Record<string, string>> {
   try {
     const id = dm ? `${mkbh}-${dm}` : mkbh;
     if (mkqx[id]) {
@@ -21,7 +21,7 @@ export async function possessMkqx(mkbh: string, dm?: string) {
           const firstItem = list[0];
           return firstItem ? String(firstItem.mr) : String(0);
         } else {
-          return list.reduce((acc: any, item: any) => ({ ...acc, [item.dm]: item.mr }), {});
+          return list.reduce((acc: any, item: any) => ({ ...acc, [item.dm]: String(item.mr) }), {});
         }
       } else {
         throw new Error(`获取权限失败: ${res.message}`);
@@ -30,4 +30,5 @@ export async function possessMkqx(mkbh: string, dm?: string) {
   } catch (e: any) {
     GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
   }
+  return '0'
 }
