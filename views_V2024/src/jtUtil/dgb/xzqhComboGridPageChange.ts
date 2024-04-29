@@ -19,7 +19,7 @@ export function xzqhComboGridPageChange(gridObject: Object, param: any) {
     $(pager).pagination({
       displayMsg: '',
       onRefresh: reloadData,
-      onChangePageSize:  (pageSize: number) => reloadData(1, pageSize),
+      onChangePageSize: (pageSize: number) => reloadData(1, pageSize),
       onSelectPage: reloadData
     });
   } catch (e) {

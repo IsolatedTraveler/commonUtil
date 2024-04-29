@@ -20,25 +20,25 @@ import { filterDicData } from "../public/filterDicData";
  * - method: 选择记录后的回调方法
  */
 export async function getCommonDic({
-  domId, 
-  mrz, 
-  mrz_index, 
-  dicKey, 
-  flag, 
-  nextid, 
-  changemethod, 
-  required, 
-  valueField = 'dm', 
-  textField = 'dmmc', 
-  multiple, 
-  addnull, 
-  panelHeight, 
-  method 
-}:any = {}) {
-  try{
+  domId,
+  mrz,
+  mrz_index,
+  dicKey,
+  flag,
+  nextid,
+  changemethod,
+  required,
+  valueField = 'dm',
+  textField = 'dmmc',
+  multiple,
+  addnull,
+  panelHeight,
+  method
+}: any = {}) {
+  try {
     const data = await dicget(dicKey).then(filterDicData)
-    ,domElem = $('#' + domId)
-    , dicSelect = (record:any) => {
+      , domElem = $('#' + domId)
+      , dicSelect = (record: any) => {
         try {
           if (nextid) {
             domElem.textbox("textbox").focus();
@@ -46,23 +46,23 @@ export async function getCommonDic({
           if (method) {
             method(record);
           }
-      } catch(e:any) {
-        GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+        } catch (e: any) {
+          GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+        }
       }
-    }
     flag = flag == '1'
     multiple = Boolean(multiple)
     required = Boolean(required)
     if (addnull === '1' && data.length) {
       data.unshift({ dm: '', mc: '所有', pym: '', dmmc: '所有' });
     }
-    const  dataLen = data.length
+    const dataLen = data.length
     panelHeight = panelHeight || (dataLen > 10 ? 200 : '');
     domElem.combobox({
       data,
       valueField,
       textField,
-      selectOnNavigation:false,
+      selectOnNavigation: false,
       required,
       panelHeight,
       multiple,
@@ -75,7 +75,7 @@ export async function getCommonDic({
               domElem.combobox('select', data[0][valueField]);
             }
           }
-        } catch(e:any) {
+        } catch (e: any) {
           GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
         }
       },
@@ -91,31 +91,31 @@ export async function getCommonDic({
           if (changemethod) {
             changemethod(newValue, oldValue);
           }
-        } catch(e:any) {
+        } catch (e: any) {
           GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
         }
       },
       onHidePanel: function () {
         try {
           panel.children("div").removeClass("combobox-item-hover");
-        }  catch(e:any) {
+        } catch (e: any) {
           GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
         }
       }
     })
     // 初始化后处理事件
     const panel = domElem.combobox("panel"), panelOptions = panel.panel("options")
-    dicEvent(domElem, data, valueField, dicSelect,  panelOptions)
+    dicEvent(domElem, data, valueField, dicSelect, panelOptions)
     dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
-  } catch(e:any) {
+  } catch (e: any) {
     GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
   }
 }
-function dicEvent($dom:any, data :any,valueField:string, dicSelect:any,  panelOptions:any) {
+function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, panelOptions: any) {
   let datalength = data.length;
   let index = -1;
   if (datalength > 0) {
-    $dom.textbox("textbox").keyup((event:KeyboardEvent) => {
+    $dom.textbox("textbox").keyup((event: KeyboardEvent) => {
       try {
         const key = event.key;
         const updateIndexAndSetValue = (step: number) => {
@@ -132,20 +132,20 @@ function dicEvent($dom:any, data :any,valueField:string, dicSelect:any,  panelOp
         if (key === 'Enter') {
           dicSelect(data[index])
         }
-      } catch (e:any) {
+      } catch (e: any) {
         GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
       }
     });
   }
 }
-function dicBlur($dom:any, valueField:string, textField:string, flag:Boolean, required:Boolean, panelOptions:any, combodata:any[]) {
+function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, panelOptions: any, combodata: any[]) {
   $dom.next().children(":text").blur(() => {
     try {
       const pClosed = panelOptions.closed;
       if (pClosed) {
         const textvalue = $dom.combobox('getText');
         const idvalue = $dom.combobox('getValue');
-        const match = combodata.find((n:any) => n[textField] === textvalue);
+        const match = combodata.find((n: any) => n[textField] === textvalue);
         const setValue = match ? match[valueField] : (flag ? textvalue : "");
 
         if (setValue !== idvalue || setValue === "") {
@@ -158,7 +158,7 @@ function dicBlur($dom:any, valueField:string, textField:string, flag:Boolean, re
           }
         }
       }
-    } catch (e:any) {
+    } catch (e: any) {
       GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
     }
   })

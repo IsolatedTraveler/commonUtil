@@ -24,10 +24,10 @@ export function comboGridPageChange(gridObject: any, url: any, q: any, param: an
     $(pager).pagination({
       displayMsg: '',
       onRefresh: reloadData,
-      onChangePageSize:  (pageSize: number) => reloadData(1, pageSize),
+      onChangePageSize: (pageSize: number) => reloadData(1, pageSize),
       onSelectPage: reloadData
     });
-  } catch(e:any) {
+  } catch (e: any) {
     GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
   }
 }

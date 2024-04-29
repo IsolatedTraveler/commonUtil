@@ -17,14 +17,14 @@ export function loadComboGrigPageData(gridObject: string, url: string, param: an
     }
     const query = param.dm;
     if (query || param.blanksearch || param.key || param.jsm) {
-      const { list, total } =  GLOBAL$AJAX$.commonHttppost(url, param).data
-      if (total> 0) {
+      const { list, total } = GLOBAL$AJAX$.commonHttppost(url, param).data
+      if (total > 0) {
         gridObj.combogrid('setValue', query);
-        grid.datagrid('loadData', {total, rows: list});
+        grid.datagrid('loadData', { total, rows: list });
         gridObj.combogrid('showPanel');
         grid.datagrid("highlightRow", 0)
       } else {
-        grid.datagrid('loadData',[])
+        grid.datagrid('loadData', [])
       }
     }
   } catch (e) {

@@ -22,38 +22,38 @@ export async function initDadaGrid_tab(
     pageSize = pageSize || 10;
     // 确定是否启用分页
     const pagination = pageSize > 0
-    // 根据配置构建列模型
-    , columns = columnDefs.map(colGroup => 
-      colGroup.map((columnDef: any) => ({
-        field: columnDef.field,
-        title: columnDef.title || '',
-        align: columnDef.align || 'center',
-        width: columnDef.width,
-        sortable: columnDef.sortable ?? false,
-        formatter: columnDef.width && (200 / 14 * (columnDef.title?.length || 0) > columnDef.width)
-          ? (value: any) => `<span title='${value}'>${value}</span>`
-          : undefined,
-      }))
-    )
+      // 根据配置构建列模型
+      , columns = columnDefs.map(colGroup =>
+        colGroup.map((columnDef: any) => ({
+          field: columnDef.field,
+          title: columnDef.title || '',
+          align: columnDef.align || 'center',
+          width: columnDef.width,
+          sortable: columnDef.sortable ?? false,
+          formatter: columnDef.width && (200 / 14 * (columnDef.title?.length || 0) > columnDef.width)
+            ? (value: any) => `<span title='${value}'>${value}</span>`
+            : undefined,
+        }))
+      )
 
-    // 初始化DataGrid
-    , gridOptions = {
-      url,
-      title,
-      fitColumns,
-      idField: 'id',
-      fit: true,
-      loadMsg: "加载数据中...",
-      rownumbers: true,
-      singleSelect: true,
-      remoteSort: false,
-      pagination,
-      pageSize,
-      queryParams,
-      columns,
-      nowrap,
-    }
-    , grid = $("#" + gridId)
+      // 初始化DataGrid
+      , gridOptions = {
+        url,
+        title,
+        fitColumns,
+        idField: 'id',
+        fit: true,
+        loadMsg: "加载数据中...",
+        rownumbers: true,
+        singleSelect: true,
+        remoteSort: false,
+        pagination,
+        pageSize,
+        queryParams,
+        columns,
+        nowrap,
+      }
+      , grid = $("#" + gridId)
     grid.datagrid(gridOptions)
     setTimeout(function () {
       $(".align_center").parent().parent().css("text-align", "center");

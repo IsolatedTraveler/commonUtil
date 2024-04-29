@@ -11,12 +11,12 @@ export function loadDataGrigPageData(gridObject: string, url: string, params: an
     gridObject = $(gridObject)
     const pager = $(gridObject).datagrid('getPager');
     if (params.pageNumber != pager.pageNumber) {
-      pager.pagination( { pageNumber: params.pageNumber });
+      pager.pagination({ pageNumber: params.pageNumber });
     }
     // 显示加载状态
     $(gridObject).datagrid("loading");
     // 异步请求数据，使用await确保数据获取完成后再继续执行
-    const res =  GLOBAL$AJAX$.commonHttppost(url, params);
+    const res = GLOBAL$AJAX$.commonHttppost(url, params);
     const resData = res.data.list;
     // 加载数据到datagrid
     $(gridObject).datagrid('loadData', resData);

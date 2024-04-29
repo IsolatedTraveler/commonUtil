@@ -18,13 +18,13 @@ export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
     }
     const query = param.dm;
     if (query) {
-      const { list, total } =  getXzqh(query, param.pageNumber, param.pageSize);
-      if (total> 0) {
+      const { list, total } = getXzqh(query, param.pageNumber, param.pageSize);
+      if (total > 0) {
         gridObject.combogrid('setValue', query);
-        grid.datagrid('loadData', {total, rows: list});
+        grid.datagrid('loadData', { total, rows: list });
         gridObject.combogrid('showPanel');
       } else {
-        grid.datagrid('loadData',[])
+        grid.datagrid('loadData', [])
       }
     }
   } catch (e) {
