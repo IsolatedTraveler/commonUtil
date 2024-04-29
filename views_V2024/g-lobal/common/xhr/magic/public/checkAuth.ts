@@ -1,6 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../../../types";
-import { Authorization, getAuthorization } from "../var";
-import { XHR_JQ_URL } from "../var/const";
+import { Authorization, getAuthorization, XHR_JQ_URL } from "../var";
 /**
  * @description 检查并设置AJAX请求的鉴权信息。
  * 
