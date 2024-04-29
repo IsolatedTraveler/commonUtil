@@ -2,14 +2,6 @@ import { createType, readDir, createIndex } from '../fun'
 import * as path from 'path'
 import { ml } from '../var/public';
 var siteMl = path.resolve(ml, 'g-lobal')
-export function getFileUrl(url: string) {
-  if (process.platform === 'win32') {
-    url = new URL(`file:///${url.replace(/\\/g, '/')}`).href;
-  } else {
-    url = new URL(`file://${url}`).href;
-  }
-  return url
-}
 export function taskGlobal(version: string) {
   return readDir(siteMl).then(async (res: Array<string> = []) => {
     return Promise.all(res.map((name) => {
