@@ -47,7 +47,7 @@ export function initTreedata<T extends TreeNode>(
     return tree;
   } catch (e: any) {
     GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
-    return []
+    return data
   }
 }
 /**
