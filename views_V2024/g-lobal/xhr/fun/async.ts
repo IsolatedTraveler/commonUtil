@@ -1,5 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
-import { XHR_JQ_CODE } from "../../common";
+import { XHR_JQ_CODE } from "../../common/xhr/magic/var";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
 import { dealXhrRes } from "./deaXhrRes";

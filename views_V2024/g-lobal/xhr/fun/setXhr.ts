@@ -1,5 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
-import { contentType } from "../../common"
+import { contentType } from "../../common/xhr/magic/var"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 
 /**
