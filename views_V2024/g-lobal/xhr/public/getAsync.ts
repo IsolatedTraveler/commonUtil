@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { XhrRes } from "../../common";
 import { async } from "../fun";
 
 /**
@@ -18,6 +19,6 @@ export function asyncGetPost(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = {}) {
+  config: AjaxRequestConfig = {}): XhrRes | any {
   return async(url, option.param, data, option, config, 'GET')
 }

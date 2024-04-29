@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../views/g-lobal/ajax/type";
+import { XhrRes } from "../../common";
 import { async } from "../fun";
 import { dealRequestData } from "../fun/dealRequestData";
 
@@ -20,6 +21,6 @@ export function asyncQueryPost(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = {}) {
+  config: AjaxRequestConfig = {}): Promise<XhrRes | any> {
   return async(url, dealRequestData(data, option, config), option.param, option, config, 'POST')
 }

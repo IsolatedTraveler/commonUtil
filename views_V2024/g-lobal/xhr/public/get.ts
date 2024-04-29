@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { XhrRes } from "../../common";
 import { sync } from "../fun/sync";
 /**
  * 发起一个同步的HTTP GET请求。
@@ -17,6 +18,6 @@ export function getAjax(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = {}): any {
+  config: AjaxRequestConfig = {}): XhrRes | any {
   return sync(url, option.param, data, option, config, 'GET')
 }

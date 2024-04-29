@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
+import { XhrRes } from "../../common";
 import { dealRequestData } from "../fun/dealRequestData";
 import { sync } from "../fun/sync";
 /**
@@ -19,6 +20,6 @@ export function commonHttppost(
   url: string,
   data: any,
   option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = {}): any {
+  config: AjaxRequestConfig = {}): XhrRes | any {
   return sync(url, dealRequestData(data, option, config), option.param, option, config, 'POST')
 }
