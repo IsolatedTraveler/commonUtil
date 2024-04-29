@@ -1,6 +1,6 @@
 import {
   buildAbsoluteUrl, getAppBaseUrl, convertObjectToQueryString, buildUrlWithQueryParams, getServerUrl
-} from '../../views/g-lobal/url'
+} from '../../g-lobal/url'
 declare global {
   interface GLOBAL$URL$V2024$TYPE {
     buildAbsoluteUrl: typeof buildAbsoluteUrl

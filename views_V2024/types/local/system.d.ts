@@ -1,6 +1,6 @@
 import {
   getConfig, getUser
-} from '../../views/g-lobal/system'
+} from '../../g-lobal/system'
 declare global {
   interface GLOBAL$SYSTEM$V2024$TYPE {
     getConfig: typeof getConfig

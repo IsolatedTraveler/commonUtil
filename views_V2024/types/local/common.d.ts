@@ -1,6 +1,6 @@
 import {
   checkAuth, setServerUrl
-} from '../../views/g-lobal/common'
+} from '../../g-lobal/common'
 declare global {
   interface GLOBAL$COMMON$V2024$TYPE {
     checkAuth: typeof checkAuth

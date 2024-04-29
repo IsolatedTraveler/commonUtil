@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
+import { XhrRes } from "../../common";
 import { XHR_JQ_CODE } from "../../common/xhr/magic/var";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
@@ -19,7 +20,7 @@ import { setXhr } from "./setXhr";
  *
  * @returns {Promise<any>} 返回一个Promise，成功时携带响应数据，失败则抛出错误信息。
  */
-export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType, isRest: boolean = false) {
+export function async(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType, isRest: boolean = false): Promise<XhrRes | any> {
   return new Promise((resolve, reject) => {
     try {
       const xhr = setXhr(url, type, option, param, config, true, isRest)

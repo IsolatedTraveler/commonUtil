@@ -11,7 +11,7 @@ if (siteVesion) {
 export function createType(name: string, arr: Array<string>) {
   let NAME = name.toUpperCase(), varName = `GLOBAL$${NAME + add}$`, code = `import {
   ${arr.join(', ')}
-} from '../../views/g-lobal/${name}'
+} from '../../g-lobal/${name}'
 declare global {
   interface ${varName}TYPE {
     ${arr.map(key => {

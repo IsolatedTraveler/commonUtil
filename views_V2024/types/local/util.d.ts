@@ -1,6 +1,6 @@
 import {
   errFormat, session, setPageTemp
-} from '../../views/g-lobal/util'
+} from '../../g-lobal/util'
 declare global {
   interface GLOBAL$UTIL$V2024$TYPE {
     errFormat: typeof errFormat

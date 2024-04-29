@@ -1,6 +1,6 @@
 import {
   getAjax, asyncGetPost, asyncQueryPost, commonHttppost
-} from '../../views/g-lobal/xhr'
+} from '../../g-lobal/xhr'
 declare global {
   interface GLOBAL$XHR$V2024$TYPE {
     getAjax: typeof getAjax

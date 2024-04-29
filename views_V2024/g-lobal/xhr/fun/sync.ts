@@ -1,4 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types";
+import { XhrRes } from "../../common";
 import { XHR_JQ_CODE } from "../../common/xhr/magic/var";
 import { errFormat } from "../../util";
 import { ajaxTimeOut } from "../var";
@@ -12,7 +13,7 @@ import { setXhr } from "./setXhr";
  * @param {*} config - 配置信息
  * @param {string} type - 请求方式
  */
-export function sync(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType, isRest: boolean = false) {
+export function sync(url: string, data: any = {}, param: any = {}, option: AjaxRequestOption = {}, config: AjaxRequestConfig = {}, type: AjaxRequestType, isRest: boolean = false): XhrRes | any {
   try {
     const xhr = setXhr(url, type, option, param, config, false, isRest)
     const time = setTimeout(() => {
