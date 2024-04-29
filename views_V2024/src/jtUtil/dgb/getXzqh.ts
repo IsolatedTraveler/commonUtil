@@ -7,7 +7,15 @@
 * @param {number | string} size 一页查询多少条数据，默认20
 */
 export function getXzqh(jsm: string, page: number | string = 1, size: number | string = 20) {
-  const data = GLOBAL$XHR$V2024$.commonHttppost('/magic/yy10/01/10/s-xzqh', { jsm, page, size }).data
-  data.rows = data.list
-  return data
+  try {
+    const data = GLOBAL$XHR$V2024$.commonHttppost('/magic/yy10/01/10/s-xzqh', { jsm, page, size }).data
+    data.rows = data.list || []
+    return data
+  } catch (e) {
+    console.error(e)
+    return {
+      rows: [],
+      total: 0
+    }
+  }
 }
