@@ -7,9 +7,9 @@
  * @returns {any} - 原始数据或备选值。
  */
 export function nvl(data: any, mrz: any) {
-  if (!data || data === 'null' || data === null) {
+  if (data === 'null') {
     return mrz || ''
   } else {
-    return data;
+    return data || mrz || '';
   }
 }
