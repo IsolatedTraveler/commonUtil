@@ -1,5 +1,5 @@
 
 import { Class } from "./core"
 import './business'
-import '../../g-lobal/w'
+import '../../../w'
 export { Class }

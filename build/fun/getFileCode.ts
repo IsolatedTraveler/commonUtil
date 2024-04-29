@@ -45,7 +45,7 @@ function dealCode(code: string, kg = '', space = '\n') {
     keys.push(`${b}: ${c}`)
     return ''
   })
-  code = code.replace(/GLOBAL\$[A-Z]+\$\./g, '')
+  code = code.replace(/GLOBAL\$[A-Z]+\$(V[0-9]+\$)?\./g, '')
   code = code.replace(/(\n)(\s*)([^\s])/g, (a, b, c, d) => {
     return b + c.substr(Math.ceil(c.length / 2)) + kg + d
   })

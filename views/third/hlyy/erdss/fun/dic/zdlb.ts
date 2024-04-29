@@ -12,5 +12,10 @@ export type Zdlb = 0 | 1 | 2 | 3 | 4
 * } 
 */
 export function dicZdlb(lb: string): Zdlb {
+  if (lb === '1') {
+    return 2
+  } else if (lb === '2') {
+    return 3
+  }
   return 0
 }

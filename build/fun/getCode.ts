@@ -3,8 +3,10 @@ import { firstUppers } from "./firstUpper"
 import { renderModule } from "./renderModule"
 import { getFileCode } from "./getFileCode"
 import path from 'path'
+import * as Terser from 'terser'
 import { date } from '../var/public'
 import { fileExit, fileRead } from './readFile'
+import { qdzs, sfys } from "../../public"
 /**
 * @description 
 * @author 何波
@@ -17,16 +19,28 @@ import { fileExit, fileRead } from './readFile'
   printSrc: "输出路径"
 } 
 */
-
+function dealCode(code: string) {
+  if (sfys || qdzs) {
+    return Terser.minify(code, {
+      mangle: false,
+      compress: sfys,
+      output: {
+        comments: qdzs
+      }
+    }).then(({ code }) => code || '')
+  } else {
+    return Promise.resolve(code)
+  }
+}
 export function getCode(
   name: string,
   src: string,
   version: string,
   printSrc: Array<string>,
   ly: string,
-  { reName = '', outAddName = '' }) {
+  { reName = '', outAddName = '', fileName = '' } = {} as any) {
   let moduleFile = path.resolve(src, name), moduleName = [reName, name].filter(it => it).join('_'), code: string = ''
-    , outName = name + outAddName + '.js'
+    , outName = (fileName || name) + outAddName + '.js'
   reName = reName || name
   console.log(ly, moduleName)
   return renderModule(moduleFile, reName).then((back: any) => {
@@ -37,15 +51,20 @@ export function getCode(
         code = res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
           .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
           .replace(/FIRSTMODULENAME/g, Name)
+          .replace(/[ ]*\/\/ PLUGIN MODULE IGNORE START([\n\s\S]+)\/\/ PLUGIN MODULE IGNORE END\s/, '')
+          .replace(/[ ]*\/\/ PLUGIN WIN IGNORE START([\n\s\S]+)\/\/ PLUGIN WIN IGNORE END\s/, '')
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
           .replace(/MODULENAME/g, reName)
-        return Promise.all(printSrc.map(it => {
-          let outFile = path.resolve(it, outName)
-          return writeFile(outFile, code).catch(() => { }).then(() => {
-            console.log(outFile)
+          .replace(/(\w+):[ ]*\1([ ]*)(,|\})/g, '$1$2$3')
+        return dealCode(code).then((code) => {
+          return Promise.all(printSrc.map(it => {
+            let outFile = path.resolve(it, outName)
+            return writeFile(outFile, code).catch(() => { }).then(() => {
+              console.log(outFile)
+            })
+          })).then(() => {
+            return { back, code, url: outName }
           })
-        })).then(() => {
-          return { back, code, url: outName }
         })
       }).catch((e: any) => {
         console.log(moduleName + ':Failed')

@@ -1,34 +1,17 @@
-export const buildModule = {
-  cs: {
-    dzpj: false,
-    hisAjax: false
-  },
-  src: {
-    jtSync: false,
-    commonUtil: false,
-    jtUtil: true
-  },
-  third: {
-    dzjkk: {
-      erdss: false
-    },
-    page: {
-      dz: false
-    },
-    hlyy: {
-      erdss: false
-    },
-    yprkgl: {
-      erdss: false
-    }
-  },
-  webs: {
-    his: {
-      ypgl: {
-        pdgl: {
-          pdjl: false
-        }
-      }
-    }
-  }
+import { InstitutionCode } from "./build/var/config"
+interface Dbnr {
+  [key: string]: string[]
 }
+export const dbnr: Dbnr = {
+  // cs: ['gncs'],
+  // gModules: ['hisAjax'],
+  // layModules: [],
+  src: ['jtUtil'],
+  // third: ['hlyy'],
+  // webs: ['his\\ypgl\\pdgl\\pdjl']
+}
+export const dbdq: InstitutionCode[] = ['smq']
+export const siteVesion = 'V2024'
+export const sfys = false
+export const qdzs = false
+// export const qdzs = /^!/

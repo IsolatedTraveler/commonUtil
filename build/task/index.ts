@@ -1,7 +1,2 @@
-export * from './cs'
 export * from './global'
-export * from './gModule'
-export * from './layModules'
-export * from './src'
-export * from './third'
-export * from './webs'
+export * as build from './build'

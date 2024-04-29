@@ -18,13 +18,7 @@ export function getMainUrl(arr: string | Array<string>) {
   return arr[0]
 }
 function setServiceUrl() {
-  let url
-  if (system) {
-    url = JSON.parse(system.getmainurl()).data
-  } else {
-    url = getConfig().magicServer
-  }
-  return setUrlServerVal(getMainUrl(url))
+  return setUrlServerVal(getMainUrl(getConfig().magicServer))
 }
 export function getServiceUrl() {
   return setPageTemp(urlServer, setServiceUrl)

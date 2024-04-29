@@ -15,7 +15,7 @@ function getYypl() {
   if (yypl) {
     return Promise.resolve(yypl)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/yy10-ywjc/01/10/s-yypl', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq/yy10/01/10/s-yypl', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.dm] = it.cs
@@ -28,7 +28,7 @@ function getGytj() {
   if (gytj) {
     return Promise.resolve(gytj)
   } else {
-    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq//yy10-ywjc/01/10/s-gytj', {}).then(({ data: { list } }) => {
+    return GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magicJq//yy10/01/10/s-gytj', {}).then(({ data: { list } }) => {
       var obj = {} as any
       (list || []).forEach((it: any) => {
         obj[it.mc] = it.dm
@@ -54,7 +54,7 @@ function getCfxx(is_current: number, ddxx: any, lx: Mzlx) {
       medical_advice_type: dicYzlx(lx, it.yzlx == '1'), // 医嘱类型
       prescription_time: (it.kzrq ? new Date(it.kzrq) : new Date() as any).format('yyyy-MM-dd hh:mm:ss'), // 处方时间
       amount: '', // 处方金额
-      prescription_order_list: yzmx.map((yp: any, i: number) => {
+      drug_info_list: yzmx.map((yp: any, i: number) => {
         var day = getDay(yp), kszxrq: any = it.kszxrq ? new Date(it.kszxrq) : new Date()
         return {
           pres_order_detail_num: i, // 医嘱明细序号
