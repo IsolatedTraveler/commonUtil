@@ -111,7 +111,7 @@ export async function getCommonDic({
     GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
   }
 }
-function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, panelOptions: any) {
+export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, panelOptions: any) {
   let datalength = data.length;
   let index = -1;
   if (datalength > 0) {
@@ -138,7 +138,7 @@ function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, pane
     });
   }
 }
-function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, panelOptions: any, combodata: any[]) {
+export function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, panelOptions: any, combodata: any[]) {
   $dom.next().children(":text").blur(() => {
     try {
       const pClosed = panelOptions.closed;
