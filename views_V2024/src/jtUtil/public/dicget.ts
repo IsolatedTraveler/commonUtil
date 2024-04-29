@@ -7,7 +7,7 @@ import { dics } from "../var";
  * @param {string} fldm - 字段代码，用于定位要获取的字典条目。
  * @returns {Promise<any[]>} 返回一个包含字典数据的Promise，数据格式为数组。
  */
-export async function dicget(fldm: string): Promise<any> {
+export async function dicget(fldm: string): Promise<any[]> {
   try {
     if (dics[fldm]) {
       return dics[fldm]
