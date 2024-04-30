@@ -18,7 +18,8 @@ export function openMsgBox(title: string, msg: string, type: string, button: str
   if (type == '0') {
     alertMsg(msg, title)
     return Promise.resolve()
-  } else if (!button) {
+  }
+  if (!button) {
     switch (type) {
       case '1':
         button = ['确定', '取消']
