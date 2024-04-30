@@ -1,1 +1,2 @@
-export * from './xhr/magic'
+export * from './system'
+export * from './xhr'
