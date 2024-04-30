@@ -1,6 +1,8 @@
+import { gridColumnsFormat } from "../fun";
+
 export function getCommonCombogrid({
   id,
-  columns = [], // 动态生成
+  columns = [],
   idField = 'id',
   textField = 'text',
   querymethod,
@@ -26,25 +28,7 @@ export function getCommonCombogrid({
     var firstsearch = true;
     var value: string
     const domElem = $("#" + id)
-    columns = columns.map((col: any[]) => col.map(item => {
-      var [field, title, customWidth, align = 'center', rowspan = 1, colspan = 1, width = 100] = item;
-      return {
-        field,
-        title,
-        sortable: false,
-        align,
-        rowspan,
-        colspan,
-        halign: "center",
-        width: customWidth || width,
-        formatter: function (value: string) {
-          if (value && 200 / 14 * value.length > (customWidth || width)) {
-            return `<span title="${value}">${value}</span>`;
-          }
-          return value;
-        }
-      }
-    }))
+    columns = gridColumnsFormat(columns, 100, { halign: 'center' })
     if (pagination) {
       pagination = true;
     } else {

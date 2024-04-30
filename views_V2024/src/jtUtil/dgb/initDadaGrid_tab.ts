@@ -25,7 +25,7 @@ export function initDadaGrid_tab(
     // 确定是否启用分页
     const pagination = pageSize > 0
       // 根据配置构建列模型
-      , columns = gridColumnsFormat(columnDefs, fitColumns)
+      , columns = gridColumnsFormat(columnDefs, fitColumns ? undefined : 56)
       // 初始化DataGrid
       , gridOptions = {
         url,
