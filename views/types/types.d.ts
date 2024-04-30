@@ -9,6 +9,7 @@ declare global {
     wdphisJsObject: any
     commonUtil: any
     FIRSTMODULENAME: any
+    MODULENAME: any
     $: any
     hex_md5: any
   }
