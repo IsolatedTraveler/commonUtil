@@ -1,5 +1,5 @@
-import { alertMsg } from "./alertMsg";
-import { confirmMsg } from "./confirmMsg";
+import { alertMsg, confirmMsg } from "../../common";
+
 /**
  * @description 打开消息提示框或确认对话框，根据类型自动选择合适的提示方式。
  *
