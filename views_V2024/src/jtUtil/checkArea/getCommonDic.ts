@@ -27,6 +27,7 @@ export async function getCommonDic(param: ComboBoxConfig) {
     param.valueField = param.valuefield || 'dm'
     param.textField = param.textfield || 'dmmc'
     param.panelHeight = param.panelHeight || (dataLen > 10 ? 200 : undefined)
+    param.data = data
     if (param.addnull == 1) {
       data.unshift({ dm: '', mc: '所有', pym: '', dmmc: '所有' });
     }
