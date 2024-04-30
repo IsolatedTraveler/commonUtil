@@ -1,6 +1,5 @@
 import { Class } from "../core";
-import { closeParentPop, dicget, filterComboboxData, filterDicData, initTreedata, loadDataGrigPageData, possessMkqx, setVar } from "../public";
-Class.prototype.closeParentPop = closeParentPop
+import { dicget, filterComboboxData, filterDicData, initTreedata, loadDataGrigPageData, possessMkqx, setVar } from "../public";
 Class.prototype.dicget = dicget
 Class.prototype.filterComboboxData = filterComboboxData
 Class.prototype.filterDicData = filterDicData
