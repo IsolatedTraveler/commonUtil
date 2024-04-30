@@ -19,7 +19,7 @@ import { filterDicData } from "../public/filterDicData";
  * - method: 选择记录后的回调方法
  */
 export async function getCommonDic({
-  domId,
+  domid: domId,
   mrz,
   mrz_index,
   dicKey,
@@ -112,55 +112,63 @@ export async function getCommonDic({
   }
 }
 export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any) {
-  let datalength = data.length;
-  let index = -1;
-  if (datalength > 0) {
-    $dom.textbox("textbox").keyup((event: KeyboardEvent) => {
+  try {
+    let datalength = data.length;
+    let index = -1;
+    if (datalength > 0) {
+      $dom.textbox("textbox").keyup((event: KeyboardEvent) => {
+        // try {
+        //   const key = event.key, panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
+        //   const updateIndexAndSetValue = (step: number) => {
+        //     index = (index + step + datalength) % datalength; // 使用取模简化边界循环
+        //     $dom.combobox("setValue", data[index][valueField]);
+        //   };
+        //   if (panelOptions.closed) {
+        //     if (key === 'ArrowUp') {
+        //       updateIndexAndSetValue(-1);
+        //     } else if (key === 'ArrowDown') {
+        //       updateIndexAndSetValue(1);
+        //     }
+        //   }
+        //   if (key === 'Enter') {
+        //     dicSelect(data[index])
+        //   }
+        // } catch (e: any) {
+        //   GLOBAL$COMMON$V2024$.alertMsg(e);
+        // }
+      });
+    }
+  } catch (e: any) {
+    GLOBAL$COMMON$V2024$.alertMsg(e)
+  }
+}
+export function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, combodata: any[]) {
+  try {
+    $dom.next().children(":text").blur(() => {
       try {
-        const key = event.key, panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
-        const updateIndexAndSetValue = (step: number) => {
-          index = (index + step + datalength) % datalength; // 使用取模简化边界循环
-          $dom.combobox("setValue", data[index][valueField]);
-        };
-        if (panelOptions.closed) {
-          if (key === 'ArrowUp') {
-            updateIndexAndSetValue(-1);
-          } else if (key === 'ArrowDown') {
-            updateIndexAndSetValue(1);
+        const panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
+        const pClosed = panelOptions.closed;
+        if (pClosed) {
+          const textvalue = $dom.combobox('getText');
+          const idvalue = $dom.combobox('getValue');
+          const match = combodata.find((n: any) => n[textField] === textvalue);
+          const setValue = match ? match[valueField] : (flag ? textvalue : "");
+
+          if (setValue !== idvalue || setValue === "") {
+            $dom.combobox("setValue", setValue);
+            if (flag) {
+              $dom.combobox("setText", textvalue);
+            }
+            if (required && !$dom.combobox("getText")) {
+              // 重新聚焦逻辑可以根据需要决定是否启用
+            }
           }
-        }
-        if (key === 'Enter') {
-          dicSelect(data[index])
         }
       } catch (e: any) {
         GLOBAL$COMMON$V2024$.alertMsg(e);
       }
-    });
+    })
+  } catch (e: any) {
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
-}
-export function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, combodata: any[]) {
-  $dom.next().children(":text").blur(() => {
-    try {
-      const panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
-      const pClosed = panelOptions.closed;
-      if (pClosed) {
-        const textvalue = $dom.combobox('getText');
-        const idvalue = $dom.combobox('getValue');
-        const match = combodata.find((n: any) => n[textField] === textvalue);
-        const setValue = match ? match[valueField] : (flag ? textvalue : "");
-
-        if (setValue !== idvalue || setValue === "") {
-          $dom.combobox("setValue", setValue);
-          if (flag) {
-            $dom.combobox("setText", textvalue);
-          }
-          if (required && !$dom.combobox("getText")) {
-            // 重新聚焦逻辑可以根据需要决定是否启用
-          }
-        }
-      }
-    } catch (e: any) {
-      GLOBAL$COMMON$V2024$.alertMsg(e);
-    }
-  })
 }
