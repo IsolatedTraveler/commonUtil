@@ -8,6 +8,8 @@ Class.prototype.getUser = GLOBAL$COMMON$V2024$.getUser
 Class.prototype.openDialog = GLOBAL$COMMON$V2024$.openDialog
 Class.prototype.dicget = GLOBAL$COMMON$V2024$.dicget
 Class.prototype.possessMkqx = GLOBAL$COMMON$V2024$.possessMkqx
+Class.prototype.getXzqh = GLOBAL$COMMON$V2024$.getXzqh
+Class.prototype.getXzqhmc = GLOBAL$COMMON$V2024$.getXzqhmc
 // layer
 Class.prototype.closeParentPop = GLOBAL$LAYER$V2024$.closeParentPop
 Class.prototype.openMsgBox = GLOBAL$LAYER$V2024$.openMsgBox

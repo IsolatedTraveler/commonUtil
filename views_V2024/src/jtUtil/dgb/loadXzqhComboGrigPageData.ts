@@ -1,4 +1,3 @@
-import { getXzqh } from "./getXzqh";
 /**
  * @description 根据参数加载Combogrid的数据并处理分页
  * @param {Object} gridObject Combogrid对象的jQuery引用
@@ -18,7 +17,7 @@ export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
     }
     const query = param.dm;
     if (query) {
-      const { list, total } = getXzqh(query, param.pageNumber, param.pageSize);
+      const { list, total } = GLOBAL$COMMON$V2024$.getXzqh(query, param.pageNumber, param.pageSize);
       if (total > 0) {
         gridObject.combogrid('setValue', query);
         grid.datagrid('loadData', { total, rows: list });
