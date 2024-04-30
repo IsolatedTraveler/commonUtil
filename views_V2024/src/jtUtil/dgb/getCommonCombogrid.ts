@@ -1,39 +1,32 @@
 import { gridColumnsFormat } from "../fun";
 
-export function getCommonCombogrid({
-  id,
-  columns = [],
-  idField = 'id',
-  textField = 'text',
-  querymethod,
-  selectmethod,
-  nextid,
-  comboclass,
-  extramethod,
-  flag,
-  panelWidth = 300,
-  nowrap,
-  panelHeight = 'auto',
-  pagination,
-  one_index_show,
-  required,
-  pageSize = 10,
-  pageList = [10, 20, 30, 40, 50],
-  blanksearch } = {} as any) {
+export function getCommonCombogrid(config: any) {
   try {
-    required = Boolean(required)
-    pagination = Boolean(pagination)
+    var {
+      id,
+      idField = 'id',
+      textField = 'text',
+      querymethod,
+      selectmethod,
+      nextid,
+      comboclass,
+      extramethod,
+      flag,
+      panelWidth = 300,
+      nowrap,
+      panelHeight = 'auto',
+      one_index_show,
+      pageSize = 10,
+      pageList = [10, 20, 30, 40, 50],
+      blanksearch } = config
     nowrap = !nowrap
     var selectedindex = 0;
     var firstsearch = true;
     var value: string
     const domElem = $("#" + id)
-    columns = gridColumnsFormat(columns, 100, { halign: 'center' })
-    if (pagination) {
-      pagination = true;
-    } else {
-      pagination = false;
-    }
+      , columns = gridColumnsFormat(config.columns, 100, { halign: 'center' })
+      , required = Boolean(config.required)
+      , pagination = Boolean(config.pagination)
     domElem.combogrid({
       idField,
       textField,
