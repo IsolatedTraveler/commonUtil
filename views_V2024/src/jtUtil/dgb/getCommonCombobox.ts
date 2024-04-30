@@ -75,6 +75,7 @@ export function getCommonCombobox({
       onSelect: dicSelect,
       onChange: function (newValue: any, oldValue: any) {
         try {
+          const panel = domElem.combobox("panel")
           const item = panel.children("div:visible").eq(0);
           item.addClass("combobox-item-hover");
           if (changemethod) {
@@ -86,15 +87,15 @@ export function getCommonCombobox({
       },
       onHidePanel: function () {
         try {
+          const panel = domElem.combobox("panel")
           panel.children("div").removeClass("combobox-item-hover");
         } catch (e) {
           GLOBAL$COMMON$V2024$.alertMsg(e);
         }
       }
     });
-    const panel = domElem.combobox("panel"), panelOptions = panel.panel("options")
-    dicEvent(domElem, data, valueField, dicSelect, panelOptions)
-    dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
+    dicEvent(domElem, data, valueField, dicSelect)
+    dicBlur(domElem, valueField, textField, flag, required, data)
   } catch (e) {
     GLOBAL$COMMON$V2024$.alertMsg(e)
   }

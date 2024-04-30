@@ -85,6 +85,7 @@ export async function getCommonDic({
       onSelect: dicSelect,
       onChange: function (newValue: any, oldValue: any) {
         try {
+          const panel = domElem.combobox("panel")
           const item = panel.children("div:visible").eq(0);
           item.addClass("combobox-item-hover");
           if (changemethod) {
@@ -96,6 +97,7 @@ export async function getCommonDic({
       },
       onHidePanel: function () {
         try {
+          const panel = domElem.combobox("panel")
           panel.children("div").removeClass("combobox-item-hover");
         } catch (e: any) {
           GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
@@ -103,20 +105,19 @@ export async function getCommonDic({
       }
     })
     // 初始化后处理事件
-    const panel = domElem.combobox("panel"), panelOptions = panel.panel("options")
-    dicEvent(domElem, data, valueField, dicSelect, panelOptions)
-    dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
+    dicEvent(domElem, data, valueField, dicSelect)
+    dicBlur(domElem, valueField, textField, flag, required, data)
   } catch (e: any) {
     GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
   }
 }
-export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, panelOptions: any) {
+export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any) {
   let datalength = data.length;
   let index = -1;
   if (datalength > 0) {
     $dom.textbox("textbox").keyup((event: KeyboardEvent) => {
       try {
-        const key = event.key;
+        const key = event.key, panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
         const updateIndexAndSetValue = (step: number) => {
           index = (index + step + datalength) % datalength; // 使用取模简化边界循环
           $dom.combobox("setValue", data[index][valueField]);
@@ -137,9 +138,10 @@ export function dicEvent($dom: any, data: any, valueField: string, dicSelect: an
     });
   }
 }
-export function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, panelOptions: any, combodata: any[]) {
+export function dicBlur($dom: any, valueField: string, textField: string, flag: Boolean, required: Boolean, combodata: any[]) {
   $dom.next().children(":text").blur(() => {
     try {
+      const panel = $dom.combobox("panel"), panelOptions = panel.panel("options")
       const pClosed = panelOptions.closed;
       if (pClosed) {
         const textvalue = $dom.combobox('getText');
