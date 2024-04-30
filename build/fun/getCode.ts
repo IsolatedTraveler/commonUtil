@@ -54,6 +54,7 @@ export function getCode(
           .replace(/[ ]*\/\/ PLUGIN MODULE IGNORE START([\n\s\S]+)\/\/ PLUGIN MODULE IGNORE END\s/, '')
           .replace(/[ ]*\/\/ PLUGIN WIN IGNORE START([\n\s\S]+)\/\/ PLUGIN WIN IGNORE END\s/, '')
           .replace(/[ ]*\/\/ PLUGIN IGNORE START([\n\s\S]+)\/\/ PLUGIN IGNORE END\s/, '')
+          .replace(/\[MODULENAME\]/g, '.' + reName)
           .replace(/MODULENAME/g, reName)
           .replace(/(\w+):[ ]*\1([ ]*)(,|\})/g, '$1$2$3')
         return dealCode(code).then((code) => {
