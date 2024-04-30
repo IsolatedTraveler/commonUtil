@@ -21,19 +21,32 @@ export function initDadaGrid_tab(
   try {
     pageSize = pageSize || 10;
     // 确定是否启用分页
+    console.log(columnDefs)
     const pagination = pageSize > 0
       // 根据配置构建列模型
       , columns = columnDefs.map(colGroup =>
-        colGroup.map((columnDef: any) => ({
-          field: columnDef.field,
-          title: columnDef.title || '',
-          align: columnDef.align || 'center',
-          width: columnDef.width,
-          sortable: columnDef.sortable ?? false,
-          formatter: columnDef.width && (200 / 14 * (columnDef.title?.length || 0) > columnDef.width)
-            ? (value: any) => `<span title='${value}'>${value}</span>`
-            : undefined,
-        }))
+        colGroup.map((columnDef: any) => {
+          const [field, title = '', width, align = 'cente', rowspan, colspan, sortable = false] = columnDef
+            , obj: any = {
+              field,
+              title,
+              align,
+              sortable,
+              rowspan,
+              colspan
+            }
+          if (width || !fitColumns) {
+            obj.width = width || 56
+          }
+          if (width) {
+            obj.formatter = (v: string) => {
+              if (v && (200 / 14 * v.length > width)) {
+                return `<span title=${v}>${v}</span>`
+              }
+              return v
+            }
+          }
+        })
       )
 
       // 初始化DataGrid
