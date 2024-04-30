@@ -1,5 +1,5 @@
-import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
-import { getUser } from "../../common"
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../../../types"
+import { getUser } from "./getUser"
 /**
  * @param {any} data - 需要发送的数据对象。
  * @param {AjaxRequestOption} [option={}] - 请求的可选配置对象，默认为空对象。
@@ -19,9 +19,6 @@ export function dealRequestData(data: any,
   option: AjaxRequestOption = {},
   config: AjaxRequestConfig = {}, type: AjaxRequestType = 'POST') {
   option.isCheck !== false
-  if (that && that.dealAjaxData) {
-    return that.dealAjaxData(data, option, config, type)
-  }
   if (!option.isNotGetUser) {
     const user = getUser()
     data = Object.assign({}, {
@@ -33,6 +30,10 @@ export function dealRequestData(data: any,
       czryxm: user.xm || user.username,
       superadmin: user.superadmin
     }, data)
+  }
+  if (data.pageSize || data.pageNumber) {
+    data.page = data.page || data.pageNumber
+    data.size = data.size || data.pageSize
   }
   if (option.isNotWrapped) {
     return JSON.stringify(data)

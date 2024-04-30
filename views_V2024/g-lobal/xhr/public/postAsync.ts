@@ -1,7 +1,6 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../views/g-lobal/ajax/type";
-import { XhrRes } from "../../common";
+import { XhrRes, dealRequestData } from "../../common/";
 import { async } from "../fun";
-import { dealRequestData } from "../fun/dealRequestData";
 
 /**
  * 发起一个异步的HTTP POST请求，适用于常见的查询操作。

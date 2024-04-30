@@ -1,6 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
-import { XhrRes } from "../../common";
-import { dealRequestData } from "../fun/dealRequestData";
+import { XhrRes, dealRequestData } from "../../common";
 import { sync } from "../fun/sync";
 /**
  * 发起一个同步的HTTP POST请求，适用于常见的查询操作。

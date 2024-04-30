@@ -1,11 +1,12 @@
 import {
-  alertMsg, confirmMsg, openDialog, dicget, getConfig, getUser, getXzqh, getXzqhmc, possessMkqx, checkAuth, setServerUrl
+  alertMsg, confirmMsg, openDialog, dealRequestData, dicget, getConfig, getUser, getXzqh, getXzqhmc, possessMkqx, checkAuth, setServerUrl
 } from '../../g-lobal/common'
 declare global {
   interface GLOBAL$COMMON$V2024$TYPE {
     alertMsg: typeof alertMsg
     confirmMsg: typeof confirmMsg
     openDialog: typeof openDialog
+    dealRequestData: typeof dealRequestData
     dicget: typeof dicget
     getConfig: typeof getConfig
     getUser: typeof getUser
