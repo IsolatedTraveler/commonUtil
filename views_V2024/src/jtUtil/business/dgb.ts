@@ -1,5 +1,5 @@
 import { Class } from "../core";
-import { initShortcutKey, initBaseBar, getCommonDic, initDadaGrid_tab, getCommonCombobox, dataGridPageChange, getCommonCombogrid, initNextInputFocus, comboGridPageChange, loadComboGrigPageData, toDecimalNumber, nvl, loadXzqhComboGrigPageData, xzqhComboGridPageChange, loadDataGrigPageData } from "../dgb";
+import { initShortcutKey, initBaseBar, getCommonDic, initDadaGrid_tab, getCommonCombobox, dataGridPageChange, getCommonCombogrid, initNextInputFocus, comboGridPageChange, loadComboGrigPageData, nvl, loadXzqhComboGrigPageData, xzqhComboGridPageChange, loadDataGrigPageData } from "../dgb";
 Class.prototype.comboGridPageChange = comboGridPageChange
 Class.prototype.dataGridPageChange = dataGridPageChange
 Class.prototype.getCommonCombogrid = getCommonCombogrid
@@ -13,5 +13,4 @@ Class.prototype.loadComboGrigPageData = loadComboGrigPageData
 Class.prototype.loadDataGrigPageData = loadDataGrigPageData
 Class.prototype.loadXzqhComboGrigPageData = loadXzqhComboGrigPageData
 Class.prototype.nvl = nvl
-Class.prototype.toDecimalNumber = toDecimalNumber
 Class.prototype.xzqhComboGridPageChange = xzqhComboGridPageChange

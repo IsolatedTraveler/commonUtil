@@ -1,3 +1,5 @@
+import { GLOBAL$WIN$ } from "../../../../../../w/window";
+
 export const dics: { [key: string]: any } = {}
   , mkqx: { [key: string]: any } = {}
-  , system = (w.jthisJsObject || {}).jthis
+  , system = (GLOBAL$WIN$.w.jthisJsObject || {}).jthis

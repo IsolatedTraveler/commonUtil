@@ -16,6 +16,7 @@ Class.prototype.openMsgBox = GLOBAL$LAYER$V2024$.openMsgBox
 // url
 Class.prototype.getUrlParams = GLOBAL$URL$V2024$.getUrlParams
 // util
+Class.prototype.toDecimalNumber = GLOBAL$UTIL$V2024$.toDecimalNumber
 // xhr
 Class.prototype.commonHttppost = GLOBAL$XHR$V2024$.commonHttppost
 Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$XHR$V2024$.asyncQueryPost

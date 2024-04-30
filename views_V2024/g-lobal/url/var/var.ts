@@ -10,6 +10,6 @@ export var appBaseUrl: string // 应用基础URL
  * @returns {string} 应用程序的基础URL。
  */
 export function setAppBaseUrl(): string {
-  let url = GLOBAL$WIN$.location.href
+  let url = GLOBAL$WIN$.w.location.href
   return appBaseUrl = (url.split(urlPattern)[0] + '/').replace(/\/+/g, '/')
 }
