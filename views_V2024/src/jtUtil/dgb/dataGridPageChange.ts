@@ -1,4 +1,4 @@
-import { loadDataGrigPageData } from "../public/loadDataGrigPageData";
+import { loadDataGrigPageData } from "./loadDataGrigPageData";
 /**
  * 处理组合网格（Combogrid）的分页变化事件，包括页面切换、每页显示数量改变及刷新。
  * @param {any} gridObject 组合网格对象的选择器或实例

@@ -1,5 +1,4 @@
 export * from './filterComboboxData'
 export * from './filterDicData'
 export * from './initTreeData'
-export * from './loadDataGrigPageData'
 export * from './setVar'
