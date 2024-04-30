@@ -1,5 +1,3 @@
 export * from './getCommonCombogrid'
 export * from './initNextInputFocus'
 export * from './initShortcutKey'
-export * from './loadXzqhComboGrigPageData'
-export * from './xzqhComboGridPageChange'

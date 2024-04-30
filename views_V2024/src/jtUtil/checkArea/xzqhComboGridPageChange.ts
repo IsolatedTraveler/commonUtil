@@ -1,5 +1,4 @@
 import { gridPageChange } from "../fun";
-import { loadXzqhComboGrigPageData } from "./loadXzqhComboGrigPageData";
 /**
  * @description 处理Combogrid网格分页变化事件的函数
  * @param {Object} gridObject Combogrid对象的jQuery引用

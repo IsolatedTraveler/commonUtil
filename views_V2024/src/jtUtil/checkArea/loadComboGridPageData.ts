@@ -1,4 +1,5 @@
-import { GrigPage, loadDataGrigPageData } from "./loadDataGrigPageData";
+import { GrigPage } from "../fun/grid/getPager";
+import { loadDataGrigPageData } from "./loadDataGrigPageData";
 
 /**
  * @description 为Combogrid控件加载分页数据的便捷函数
