@@ -1,7 +1,8 @@
 import { alertMsg } from "./alertMsg";
 import { setCloseFun } from "../fun";
 import { convertToAbsoluteUrl } from "../../../../url/fun";
-import { buildUrlWithQueryParams, getAppBaseUrl } from "../../../../url";
+import { buildUrlWithQueryParams } from "../../../../url/public/buildUrlWithQueryParams";
+import { getAppBaseUrl } from "../../../../url/public/getAppBaseUrl";
 /**
  * @description 打开一个自定义的弹出对话框，并根据用户操作返回Promise结果。
  *
