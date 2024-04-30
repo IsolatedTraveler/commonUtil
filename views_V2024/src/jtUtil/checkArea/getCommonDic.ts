@@ -23,7 +23,6 @@ export async function getCommonDic(param: ComboBoxConfig) {
   try {
     if (!param.dicKey) throw new Error('未设置要查询的字典信息')
     const data = await GLOBAL$COMMON$V2024$.dicget(param.dicKey).then(filterDicData), dataLen = data.length
-    if (dataLen) return
     param.flag = param.flag == '1'
     param.valueField = param.valuefield || 'dm'
     param.textField = param.textfield || 'dmmc'

@@ -7,15 +7,9 @@ import { dics } from "../var";
  * @param {string} fldm - 字段代码，用于定位要获取的字典条目。
  * @returns {Promise<any[]>} 返回一个包含字典数据的Promise，数据格式为数组。
  */
-export async function dicget(fldm: string): Promise<any[]> {
-  try {
-    if (dics[fldm]) {
-      return dics[fldm]
-    }
-    const res = await GLOBAL$XHR$V2024$.asyncQueryPost('/magic/yy10/01/10/s-tyzd', { fldm })
-    return res.data.list
-  } catch (error) {
-    console.error(`获取字典数据时发生错误: ${error}`);
-    return []
+export function dicget(fldm: string): Promise<any[]> {
+  if (dics[fldm]) {
+    return dics[fldm]
   }
+  return dics[fldm] = GLOBAL$XHR$V2024$.asyncQueryPost('/magic/yy10/01/10/s-tyzd', { fldm }).then(res => res.data.list).catch(() => [])
 }
