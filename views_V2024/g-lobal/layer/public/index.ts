@@ -1,4 +1,5 @@
 export * from './alertMsg'
+export * from './closeParentPop'
 export * from './confirmMsg'
 export * from './openDialog'
 export * from './openMsgBox'
