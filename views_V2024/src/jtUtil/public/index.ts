@@ -1,4 +1,3 @@
-export * from './dicget'
 export * from './filterComboboxData'
 export * from './filterDicData'
 export * from './initTreeData'
