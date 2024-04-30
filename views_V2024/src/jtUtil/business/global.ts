@@ -9,11 +9,25 @@ Class.prototype.openDialog = GLOBAL$COMMON$V2024$.openDialog
 // layer
 Class.prototype.closeParentPop = GLOBAL$LAYER$V2024$.closeParentPop
 Class.prototype.openMsgBox = GLOBAL$LAYER$V2024$.openMsgBox
+// url
+Class.prototype.getUrlParams = GLOBAL$URL$V2024$.getUrlParams
+// util
 // xhr
 Class.prototype.commonHttppost = GLOBAL$XHR$V2024$.commonHttppost
 Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$XHR$V2024$.asyncQueryPost
 Class.prototype.getAjax = GLOBAL$XHR$V2024$.getAjax
 Class.prototype.getAjaxSync = GLOBAL$XHR$V2024$.asyncQueryGet
-// url
-Class.prototype.getUrlParams = GLOBAL$URL$V2024$.getUrlParams
 // 未确认加载
+// common
+Class.prototype.confirmMsg = GLOBAL$COMMON$V2024$.confirmMsg
+Class.prototype.setServerUrl = GLOBAL$COMMON$V2024$.setServerUrl
+// url
+Class.prototype.buildAbsoluteUrl = GLOBAL$URL$V2024$.buildAbsoluteUrl
+Class.prototype.buildUrlWithQueryParams = GLOBAL$URL$V2024$.buildUrlWithQueryParams
+Class.prototype.convertObjectToQueryString = GLOBAL$URL$V2024$.convertObjectToQueryString
+Class.prototype.getAppBaseUrl = GLOBAL$URL$V2024$.getAppBaseUrl
+Class.prototype.getServerUrl = GLOBAL$URL$V2024$.getServerUrl
+// util
+Class.prototype.errFormat = GLOBAL$UTIL$V2024$.errFormat
+Class.prototype.session = GLOBAL$UTIL$V2024$.session
+Class.prototype.setPageTemp = GLOBAL$UTIL$V2024$.setPageTemp
