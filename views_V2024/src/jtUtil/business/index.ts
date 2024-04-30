@@ -1,3 +1,4 @@
+import './checkArea'
 import './dgb'
 import './global'
 import './public'
