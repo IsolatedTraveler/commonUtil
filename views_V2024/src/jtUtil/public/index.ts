@@ -1,4 +1,3 @@
-export * from './closeParentPop'
 export * from './dicget'
 export * from './filterComboboxData'
 export * from './filterDicData'
