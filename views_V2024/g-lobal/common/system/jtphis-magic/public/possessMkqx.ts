@@ -30,7 +30,7 @@ export async function possessMkqx(mkbh: string, dm?: string): Promise<string | R
       }
     }
   } catch (e: any) {
-    alertMsg(e.message || e);
+    alertMsg(e);
   }
   return '0'
 }

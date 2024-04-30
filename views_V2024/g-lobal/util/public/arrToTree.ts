@@ -43,7 +43,7 @@ export function arrToTree<T extends TreeNode>(
     });
     return tree;
   } catch (e: any) {
-    alertMsg(e.message || e)
+    alertMsg(e)
     return data
   }
 }

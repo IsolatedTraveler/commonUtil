@@ -30,7 +30,7 @@ export function initNextInputFocus(formID: string, domID: string) {
         $buttonSub.click();
       }
     } catch (e: any) {
-      GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+      GLOBAL$COMMON$V2024$.alertMsg(e)
     }
   })
 }

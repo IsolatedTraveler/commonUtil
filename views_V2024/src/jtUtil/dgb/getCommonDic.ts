@@ -46,7 +46,7 @@ export async function getCommonDic({
             method(record);
           }
         } catch (e: any) {
-          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       }
     flag = flag == '1'
@@ -75,7 +75,7 @@ export async function getCommonDic({
             }
           }
         } catch (e: any) {
-          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       },
       filter: function (q: string, row: any) {
@@ -92,7 +92,7 @@ export async function getCommonDic({
             changemethod(newValue, oldValue);
           }
         } catch (e: any) {
-          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       },
       onHidePanel: function () {
@@ -100,7 +100,7 @@ export async function getCommonDic({
           const panel = domElem.combobox("panel")
           panel.children("div").removeClass("combobox-item-hover");
         } catch (e: any) {
-          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       }
     })
@@ -108,7 +108,7 @@ export async function getCommonDic({
     dicEvent(domElem, data, valueField, dicSelect)
     dicBlur(domElem, valueField, textField, flag, required, data)
   } catch (e: any) {
-    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }
 export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any) {
@@ -133,7 +133,7 @@ export function dicEvent($dom: any, data: any, valueField: string, dicSelect: an
           dicSelect(data[index])
         }
       } catch (e: any) {
-        GLOBAL$COMMON$V2024$.alertMsg(e.message || e);
+        GLOBAL$COMMON$V2024$.alertMsg(e);
       }
     });
   }
@@ -160,7 +160,7 @@ export function dicBlur($dom: any, valueField: string, textField: string, flag: 
         }
       }
     } catch (e: any) {
-      GLOBAL$COMMON$V2024$.alertMsg(e.message || e);
+      GLOBAL$COMMON$V2024$.alertMsg(e);
     }
   })
 }

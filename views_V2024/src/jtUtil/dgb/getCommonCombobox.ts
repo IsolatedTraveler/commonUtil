@@ -33,7 +33,7 @@ export function getCommonCombobox({
             }
           }
         } catch (e: any) {
-          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       }
     multiple = Boolean(multiple)

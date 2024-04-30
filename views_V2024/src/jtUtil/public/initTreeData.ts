@@ -23,7 +23,7 @@ export function initTreedata<T extends TreeNode>(
       setInitialState(tree)
     return tree;
   } catch (e: any) {
-    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
     return data
   }
 }

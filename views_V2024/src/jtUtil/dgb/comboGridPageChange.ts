@@ -28,6 +28,6 @@ export function comboGridPageChange(gridObject: any, url: any, q: any, param: an
       onSelectPage: reloadData
     });
   } catch (e: any) {
-    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }
