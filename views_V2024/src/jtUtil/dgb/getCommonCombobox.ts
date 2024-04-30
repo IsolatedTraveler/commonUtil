@@ -2,7 +2,7 @@ import { filterComboboxData } from "../public/filterComboboxData";
 import { dicBlur, dicEvent } from "./getCommonDic";
 
 export function getCommonCombobox({
-  domId,
+  domid: domId,
   data = [],
   valueField = 'code',
   textField = 'name',
