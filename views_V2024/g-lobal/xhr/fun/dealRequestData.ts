@@ -1,5 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
-import { getUser } from "../../system"
+import { getUser } from "../../common"
 /**
  * @param {any} data - 需要发送的数据对象。
  * @param {AjaxRequestOption} [option={}] - 请求的可选配置对象，默认为空对象。
