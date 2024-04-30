@@ -18,7 +18,11 @@ export function getFileCode(input: string, wrapper: string) {
       cleanupPlugin(),
       nodeResolve(),
       commonjs(),
-      typescript()
+      typescript({
+        target: 'es2017',
+        module: 'esnext',
+        declaration: true
+      })
     ]
   }).then((res: any) => {
     return res.generate({ format: 'esm', intro: '', outro: '' }).then(({ output: [{ code = '' }] }) => {

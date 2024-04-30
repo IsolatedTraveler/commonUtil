@@ -9,7 +9,7 @@
  * @param {boolean} fitColumns 是否自动调整列宽以适应表格宽度
  * @param {boolean} nowrap 是否禁用文本换行，默认不禁用
  */
-export async function initDadaGrid_tab(
+export function initDadaGrid_tab(
   gridId: string,
   columnDefs: any[][],
   url: string,

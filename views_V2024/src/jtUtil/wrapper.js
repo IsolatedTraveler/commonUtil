@@ -25,7 +25,7 @@
       });
       return serializedData;
     } catch (e) {
-      errorTrace(e);
+      alertMsg(e);
     }
   };
 })(window, document);

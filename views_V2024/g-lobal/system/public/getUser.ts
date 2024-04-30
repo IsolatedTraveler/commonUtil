@@ -6,5 +6,5 @@ import { setUser, user } from "../var";
  * @returns {any}
  */
 export function getUser(): any {
-  setPageTemp(user, setUser)
+  return setPageTemp(user, setUser)
 }

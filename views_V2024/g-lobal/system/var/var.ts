@@ -9,7 +9,7 @@ export var user: any // 用户信息
 * @param {} 
 */
 export function setUser(): any {
-  return user = session('userinfo')
+  return user = session('userinfo').ryxx
 }
 /**
  * @description 同步获取应用的配置信息。

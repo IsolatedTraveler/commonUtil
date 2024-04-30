@@ -5,12 +5,16 @@
  * @param {string} [title='提示信息'] - 警告框的标题，默认为'提示信息'。
  */
 export function alertMsg(msg: any, title: string = '提示信息') {
+  if (msg.message) {
+    console.error(msg)
+    msg = msg.message
+  }
   if (w.layer) {
     w.layer.alert(msg)
   } else if ($.messager && $.messager.alert) {
     $.messager.alert({
       title,
-      msg: msg.message || msg,
+      msg,
       icon: 'warning'
     })
   } else {
