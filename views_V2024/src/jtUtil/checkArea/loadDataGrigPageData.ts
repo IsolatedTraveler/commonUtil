@@ -17,42 +17,18 @@ export function loadDataGrigPageData(gridObject: any, url: string, param: GrigPa
     const { total, list = [] } = GLOBAL$XHR$V2024$.commonHttppost(url, param).data || {};
     grid.datagrid('loadData', total ? { total, rows: list } : []);
     // 加载数据到datagrid
-    if (ly === 'comboGrid' && total > 0) {
+    if (total > 0 && (ly === 'comboGrid' || ly === 'xzqh')) {
       gridObj.combogrid('setValue', param.dm);
       gridObj.combogrid('showPanel');
-      grid.datagrid("highlightRow", 0)
+      if (ly === 'comboGrid') {
+        grid.datagrid("highlightRow", 0);
+      }
     }
     // 数据加载完毕后，模拟延迟隐藏加载状态（如果datagrid本身不自动处理）
     setTimeout(() => {
       grid.datagrid("loaded");
     }, 200);
     return list;
-  } catch (e) {
-    GLOBAL$COMMON$V2024$.alertMsg(e);
-  }
-}
-export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
-  try {
-    gridObject = $(gridObject)
-    const grid = gridObject.combogrid("grid");
-    const pager = grid.datagrid('getPager');
-    // 同步Combogrid的分页器页码
-    if (param.pageNumber) {
-      if (param.pageNumber !== pager.pageNumber) {
-        pager.pagination({ pageNumber: param.pageNumber });
-      }
-    }
-    const query = param.dm;
-    if (query) {
-      const { list, total } = GLOBAL$COMMON$V2024$.getXzqh(query, param.pageNumber, param.pageSize);
-      if (total > 0) {
-        gridObject.combogrid('setValue', query);
-        grid.datagrid('loadData', { total, rows: list });
-        gridObject.combogrid('showPanel');
-      } else {
-        grid.datagrid('loadData', [])
-      }
-    }
   } catch (e) {
     GLOBAL$COMMON$V2024$.alertMsg(e);
   }
