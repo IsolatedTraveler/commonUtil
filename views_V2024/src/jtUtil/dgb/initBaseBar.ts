@@ -35,7 +35,7 @@ function renderMenuItems(elem: HTMLElement, menus: InitBaseBarMenu[][]) {
             item.method();
           }
         } catch (e: any) {
-          GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e);
         }
       })
     })
@@ -77,6 +77,6 @@ export function initBaseBar(menus: InitBaseBarMenu[][], buttons: InitBaseBarMenu
       topMenuElem.after("<div class=\"menuclass\" style=\"margin-top: 10px;color: white;float:left;height: " + height + "px;vertical-align: middle;\"></div>");
     }, 10)
   } catch (e: any) {
-    GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
   }
 }

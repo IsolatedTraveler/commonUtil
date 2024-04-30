@@ -29,7 +29,7 @@ export function filterComboboxData(this: any, q: string, row: any, keys: string[
       return isMatch(row[opts.textField], lowerQ);
     }
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
     return false;
   }
 }

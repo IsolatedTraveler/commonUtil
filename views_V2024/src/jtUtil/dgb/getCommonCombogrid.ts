@@ -75,7 +75,7 @@ export function getCommonCombogrid({
             selectmethod(index, row);
           }
         } catch (e) {
-          GLOBAL$LAYER$V2024$.alertMsg(e)
+          GLOBAL$COMMON$V2024$.alertMsg(e)
         }
       },
       keyHandler: {
@@ -146,7 +146,7 @@ export function getCommonCombogrid({
               }
             }
           } catch (e) {
-            GLOBAL$LAYER$V2024$.alertMsg(e)
+            GLOBAL$COMMON$V2024$.alertMsg(e)
           }
         },
         query: function () {
@@ -155,7 +155,7 @@ export function getCommonCombogrid({
             domElem.combogrid("grid").datagrid("highlightRow", -1);
             return false;
           } catch (e) {
-            GLOBAL$LAYER$V2024$.alertMsg(e)
+            GLOBAL$COMMON$V2024$.alertMsg(e)
           }
         }
       }
@@ -233,7 +233,7 @@ export function getCommonCombogrid({
           }
         }
       } catch (e) {
-        GLOBAL$LAYER$V2024$.alertMsg(e)
+        GLOBAL$COMMON$V2024$.alertMsg(e)
       }
     }
     //是否展示combogrid右侧图标
@@ -248,6 +248,6 @@ export function getCommonCombogrid({
       domElem.next("span").children("span").hide();
     }
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }

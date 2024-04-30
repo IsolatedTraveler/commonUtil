@@ -15,7 +15,7 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
         param.pageSize = pageSize;
         loadDataGrigPageData(gridObject, url, param);
       } catch (e) {
-        GLOBAL$LAYER$V2024$.alertMsg(e);
+        GLOBAL$COMMON$V2024$.alertMsg(e);
       }
     }
     $(pager).pagination({
@@ -25,6 +25,6 @@ export function dataGridPageChange(gridObject: string, url: string, param: any) 
       onSelectPage: reloadData
     });
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }

@@ -1,4 +1,3 @@
-import { dicget } from "../public";
 import { filterComboboxData } from "../public/filterComboboxData";
 import { filterDicData } from "../public/filterDicData";
 /**
@@ -36,7 +35,7 @@ export async function getCommonDic({
   method
 }: any = {}) {
   try {
-    const data = await dicget(dicKey).then(filterDicData)
+    const data = await GLOBAL$COMMON$V2024$.dicget(dicKey).then(filterDicData)
       , domElem = $('#' + domId)
       , dicSelect = (record: any) => {
         try {
@@ -47,7 +46,7 @@ export async function getCommonDic({
             method(record);
           }
         } catch (e: any) {
-          GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
         }
       }
     flag = flag == '1'
@@ -76,7 +75,7 @@ export async function getCommonDic({
             }
           }
         } catch (e: any) {
-          GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
         }
       },
       filter: function (q: string, row: any) {
@@ -92,14 +91,14 @@ export async function getCommonDic({
             changemethod(newValue, oldValue);
           }
         } catch (e: any) {
-          GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
         }
       },
       onHidePanel: function () {
         try {
           panel.children("div").removeClass("combobox-item-hover");
         } catch (e: any) {
-          GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
         }
       }
     })
@@ -108,7 +107,7 @@ export async function getCommonDic({
     dicEvent(domElem, data, valueField, dicSelect, panelOptions)
     dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
   } catch (e: any) {
-    GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
   }
 }
 export function dicEvent($dom: any, data: any, valueField: string, dicSelect: any, panelOptions: any) {
@@ -133,7 +132,7 @@ export function dicEvent($dom: any, data: any, valueField: string, dicSelect: an
           dicSelect(data[index])
         }
       } catch (e: any) {
-        GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
+        GLOBAL$COMMON$V2024$.alertMsg(e.message || e);
       }
     });
   }
@@ -159,7 +158,7 @@ export function dicBlur($dom: any, valueField: string, textField: string, flag: 
         }
       }
     } catch (e: any) {
-      GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
+      GLOBAL$COMMON$V2024$.alertMsg(e.message || e);
     }
   })
 }

@@ -28,6 +28,6 @@ export function loadComboGrigPageData(gridObject: string, url: string, param: an
       }
     }
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e);
+    GLOBAL$COMMON$V2024$.alertMsg(e);
   }
 }

@@ -18,7 +18,7 @@ export function comboGridPageChange(gridObject: any, url: any, q: any, param: an
           loadComboGrigPageData(gridObject, url, param);
         }
       } catch (e) {
-        GLOBAL$LAYER$V2024$.alertMsg(e);
+        GLOBAL$COMMON$V2024$.alertMsg(e);
       }
     }
     $(pager).pagination({
@@ -28,6 +28,6 @@ export function comboGridPageChange(gridObject: any, url: any, q: any, param: an
       onSelectPage: reloadData
     });
   } catch (e: any) {
-    GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
+    GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
   }
 }

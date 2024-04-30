@@ -13,7 +13,7 @@ export function xzqhComboGridPageChange(gridObject: Object, param: any) {
         param.pageSize = pageSize;
         loadXzqhComboGrigPageData(gridObject, param);
       } catch (e) {
-        GLOBAL$LAYER$V2024$.alertMsg(e);
+        GLOBAL$COMMON$V2024$.alertMsg(e);
       }
     }
     $(pager).pagination({
@@ -23,6 +23,6 @@ export function xzqhComboGridPageChange(gridObject: Object, param: any) {
       onSelectPage: reloadData
     });
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }

@@ -11,36 +11,36 @@ export function getCommonCombobox({
   nextid,
   method,
   changemethod,
-  flag ,
-  required ,
+  flag,
+  required,
   filter_arr,
-  multiple ,
-  editable ,
-  emptofirst ,
-  readonly 
+  multiple,
+  editable,
+  emptofirst,
+  readonly
 }: any) {
   try {
-    const  domElem = $('#' + domId),
-    dataLen = data.length
-    , dicSelect = (record: any) => {
-      try {
-        if (isselect) {
-          if (nextid) {
-            $('#' + nextid).textbox("textbox").focus();
+    const domElem = $('#' + domId),
+      dataLen = data.length
+      , dicSelect = (record: any) => {
+        try {
+          if (isselect) {
+            if (nextid) {
+              $('#' + nextid).textbox("textbox").focus();
+            }
+            if (method) {
+              method(record);
+            }
           }
-          if (method) {
-            method(record);
-          }
+        } catch (e: any) {
+          GLOBAL$COMMON$V2024$.alertMsg(e.message || e)
         }
-      } catch (e: any) {
-        GLOBAL$LAYER$V2024$.alertMsg(e.message || e)
       }
-    }
     multiple = Boolean(multiple)
     required = Boolean(required)
     emptofirst = Boolean(emptofirst)
     editable = editable === undefined || Boolean(editable)
-   
+
     var isselect = true;
     domElem.combobox({
       data,//json格式的数据
@@ -53,7 +53,7 @@ export function getCommonCombobox({
       readonly: readonly,
       onLoadSuccess: function () {
         try {
-          if (dataLen> 0) {
+          if (dataLen > 0) {
             if (mrz && mrz != '') {
               if (multiple) {
                 domElem.combobox('setValues', mrz);
@@ -65,7 +65,7 @@ export function getCommonCombobox({
             }
           }
         } catch (e) {
-          GLOBAL$LAYER$V2024$.alertMsg(e);
+          GLOBAL$COMMON$V2024$.alertMsg(e);
         }
       },
       filter: function (q: any, row: any) {
@@ -81,14 +81,14 @@ export function getCommonCombobox({
             changemethod(newValue, oldValue);
           }
         } catch (e) {
-          GLOBAL$LAYER$V2024$.alertMsg(e);
+          GLOBAL$COMMON$V2024$.alertMsg(e);
         }
       },
       onHidePanel: function () {
         try {
           panel.children("div").removeClass("combobox-item-hover");
         } catch (e) {
-          GLOBAL$LAYER$V2024$.alertMsg(e);
+          GLOBAL$COMMON$V2024$.alertMsg(e);
         }
       }
     });
@@ -96,6 +96,6 @@ export function getCommonCombobox({
     dicEvent(domElem, data, valueField, dicSelect, panelOptions)
     dicBlur(domElem, valueField, textField, flag, required, panelOptions, data)
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e)
+    GLOBAL$COMMON$V2024$.alertMsg(e)
   }
 }

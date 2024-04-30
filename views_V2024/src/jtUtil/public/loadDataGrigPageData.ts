@@ -26,6 +26,6 @@ export function loadDataGrigPageData(gridObject: string, url: string, params: an
     }, 200);
     return resData;
   } catch (e) {
-    GLOBAL$LAYER$V2024$.alertMsg(e);
+    GLOBAL$COMMON$V2024$.alertMsg(e);
   }
 }

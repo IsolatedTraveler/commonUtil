@@ -1,4 +1,6 @@
-import { mkqx } from "../var"
+import { alertMsg } from "../../../pop";
+import { mkqx } from "../var";
+
 /**
  * @description 根据给定的模块编号(mkbh)和(可选的)模块细分代码(dm)，异步获取权限信息。
  * 首先尝试从缓存中获取权限信息，如果不存在，则发起异步请求获取并缓存结果。
@@ -28,7 +30,7 @@ export async function possessMkqx(mkbh: string, dm?: string): Promise<string | R
       }
     }
   } catch (e: any) {
-    GLOBAL$LAYER$V2024$.alertMsg(e.message || e);
+    alertMsg(e.message || e);
   }
   return '0'
 }

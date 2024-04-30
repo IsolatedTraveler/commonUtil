@@ -23,7 +23,7 @@ export function initShortcutKey() {
         shortcutKeys[e.code]()
       }
     } catch (e) {
-      GLOBAL$LAYER$V2024$.alertMsg(e)
+      GLOBAL$COMMON$V2024$.alertMsg(e)
     }
   });
 }
