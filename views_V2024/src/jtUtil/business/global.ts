@@ -19,9 +19,9 @@ Class.prototype.getUrlParams = GLOBAL$URL$V2024$.getUrlParams
 Class.prototype.toDecimalNumber = GLOBAL$UTIL$V2024$.toDecimalNumber
 // xhr
 Class.prototype.commonHttppost = GLOBAL$XHR$V2024$.commonHttppost
-Class.prototype.commonQueryAsyncHttppost_callback = GLOBAL$XHR$V2024$.asyncQueryPost
+Class.prototype.asyncQueryPost = GLOBAL$XHR$V2024$.asyncQueryPost
 Class.prototype.getAjax = GLOBAL$XHR$V2024$.getAjax
-Class.prototype.getAjaxSync = GLOBAL$XHR$V2024$.asyncQueryGet
+Class.prototype.asyncQueryGet = GLOBAL$XHR$V2024$.asyncQueryGet
 // 未确认加载
 // common
 Class.prototype.confirmMsg = GLOBAL$COMMON$V2024$.confirmMsg
