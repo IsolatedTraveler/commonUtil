@@ -1,1 +1,1 @@
-export * from './jtphis'
+export * from './jtphis-magic'
