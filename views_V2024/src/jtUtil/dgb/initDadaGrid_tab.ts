@@ -21,7 +21,6 @@ export function initDadaGrid_tab(
   try {
     pageSize = pageSize || 10;
     // 确定是否启用分页
-    console.log(columnDefs)
     const pagination = pageSize > 0
       // 根据配置构建列模型
       , columns = columnDefs.map(colGroup =>
@@ -46,9 +45,9 @@ export function initDadaGrid_tab(
               return v
             }
           }
+          return obj
         })
       )
-
       // 初始化DataGrid
       , gridOptions = {
         url,
