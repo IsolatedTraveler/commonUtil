@@ -1,4 +1,4 @@
-import { getConfig } from "../../../../system";
+import { getConfig } from "../../../system";
 import { extractPrimaryUrl } from "../../../../url/fun";
 
 /**

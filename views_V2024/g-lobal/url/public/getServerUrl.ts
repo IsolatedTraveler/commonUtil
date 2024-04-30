@@ -1,4 +1,4 @@
-import { setServerUrl } from "../../common";
+import { setServerUrl } from "../../common/xhr";
 import { setPageTemp } from "../../util";
 import { serverUrl } from "../var";
 
