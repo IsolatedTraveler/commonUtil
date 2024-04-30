@@ -1,5 +1,7 @@
 export * from './comboGridPageChange'
 export * from './dataGridPageChange'
+export * from './getCommonCombobox'
+export * from './getCommonDic'
 export * from './loadComboGridPageData'
 export * from './loadDataGrigPageData'
 export * from './initBaseBar'
