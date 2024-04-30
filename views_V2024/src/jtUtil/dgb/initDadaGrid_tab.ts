@@ -11,15 +11,7 @@ import { gridColumnsFormat } from "../fun";
  * @param {boolean} fitColumns 是否自动调整列宽以适应表格宽度
  * @param {boolean} nowrap 是否禁用文本换行，默认不禁用
  */
-export function initDadaGrid_tab(
-  gridId: string,
-  columnDefs: any[][],
-  url: string,
-  queryParams: any,
-  pageSize: number,
-  title = "",
-  fitColumns = false,
-  nowrap = true) {
+export function initDadaGrid_tab(gridId: string, columnDefs: any[][], url: string, queryParams: any, pageSize: number, title = "", fitColumns = false, nowrap = true) {
   try {
     pageSize = pageSize || 10;
     // 确定是否启用分页
