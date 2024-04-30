@@ -2,7 +2,7 @@ import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../
 import { XhrRes } from "../../common";
 import { XHR_JQ_CODE } from "../../common/xhr/magic/var";
 import { errFormat } from "../../util";
-import { ajaxTimeOut } from "../var";
+import { AJAXTIMEOUT } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
 import { setXhr } from "./setXhr";
 /**
@@ -24,7 +24,7 @@ export function async(url: string, data: any = {}, param: any = {}, option: Ajax
   return new Promise((resolve, reject) => {
     try {
       const xhr = setXhr(url, type, option, param, config, true, isRest)
-      xhr.timeout = ajaxTimeOut
+      xhr.timeout = AJAXTIMEOUT
       xhr.onload = () => {
         const val = dealXhrRes(xhr)
         if (option.isCheck && val.code === XHR_JQ_CODE) {

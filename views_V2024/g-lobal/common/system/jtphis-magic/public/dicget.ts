@@ -1,4 +1,4 @@
-import { dics } from "../var";
+import { DICS } from "../var";
 
 /**
  * @description 根据分类代码异步获取字典数据。
@@ -8,8 +8,8 @@ import { dics } from "../var";
  * @returns {Promise<any[]>} 返回一个包含字典数据的Promise，数据格式为数组。
  */
 export function dicget(fldm: string): Promise<any[]> {
-  if (dics[fldm]) {
-    return dics[fldm]
+  if (DICS[fldm]) {
+    return DICS[fldm]
   }
-  return dics[fldm] = GLOBAL$XHR$V2024$.asyncQueryPost('/magic/yy10/01/10/s-tyzd', { fldm }).then(res => res.data.list).catch(() => [])
+  return DICS[fldm] = GLOBAL$XHR$V2024$.asyncQueryPost('/magic/yy10/01/10/s-tyzd', { fldm }).then(res => res.data.list).catch(() => [])
 }

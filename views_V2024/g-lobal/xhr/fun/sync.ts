@@ -2,7 +2,7 @@ import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../
 import { XhrRes } from "../../common";
 import { XHR_JQ_CODE } from "../../common/xhr/magic/var";
 import { errFormat } from "../../util";
-import { ajaxTimeOut } from "../var";
+import { AJAXTIMEOUT } from "../var";
 import { dealXhrRes } from "./deaXhrRes";
 import { setXhr } from "./setXhr";
 /**
@@ -18,7 +18,7 @@ export function sync(url: string, data: any = {}, param: any = {}, option: AjaxR
     const xhr = setXhr(url, type, option, param, config, false, isRest)
     const time = setTimeout(() => {
       xhr.abort()
-    }, ajaxTimeOut);
+    }, AJAXTIMEOUT);
     xhr.send(data);
     clearTimeout(time)
     const val = dealXhrRes(xhr)

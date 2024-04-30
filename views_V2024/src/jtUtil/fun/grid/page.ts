@@ -1,4 +1,5 @@
-import { loadDataGrigPageData, GrigPage, DataGridLy } from "../../checkArea/loadDataGrigPageData";
+import { loadDataGrigPageData } from "../../checkArea/loadDataGrigPageData";
+import { DataGridLy, GrigPage } from "./getPager";
 
 export function gridPageChange(gridObject: any, param: GrigPage, url: string, pager: any, ly: DataGridLy = 'grid', q?: string) {
   try {

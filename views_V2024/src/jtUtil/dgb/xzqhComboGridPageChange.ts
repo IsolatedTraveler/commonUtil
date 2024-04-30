@@ -1,3 +1,4 @@
+import { gridPageChange } from "../fun";
 import { loadXzqhComboGrigPageData } from "./loadXzqhComboGrigPageData";
 /**
  * @description 处理Combogrid网格分页变化事件的函数
@@ -6,22 +7,8 @@ import { loadXzqhComboGrigPageData } from "./loadXzqhComboGrigPageData";
  */
 export function xzqhComboGridPageChange(gridObject: Object, param: any) {
   try {
-    var pager = $(gridObject).combogrid('grid').datagrid('getPager');
-    const reloadData = (pageNumber: number, pageSize: number) => {
-      try {
-        param.pageNumber = pageNumber;
-        param.pageSize = pageSize;
-        loadXzqhComboGrigPageData(gridObject, param);
-      } catch (e) {
-        GLOBAL$COMMON$V2024$.alertMsg(e);
-      }
-    }
-    $(pager).pagination({
-      displayMsg: '',
-      onRefresh: reloadData,
-      onChangePageSize: (pageSize: number) => reloadData(1, pageSize),
-      onSelectPage: reloadData
-    });
+    const grid = $(gridObject)
+    gridPageChange(grid, param, GLOBAL$COMMON$.XZQHURL, grid.combogrid('grid').datagrid('getPager'), 'xzqh')
   } catch (e) {
     GLOBAL$COMMON$V2024$.alertMsg(e)
   }

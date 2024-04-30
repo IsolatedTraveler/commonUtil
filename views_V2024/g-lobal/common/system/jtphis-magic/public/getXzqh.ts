@@ -1,3 +1,5 @@
+import { XZQHURL } from "../var"
+
 /**
 * @description 获取行政区划
 * @author 何波
@@ -8,7 +10,7 @@
 */
 export function getXzqh(jsm: string, page: number | string = 1, size: number | string = 20) {
   try {
-    const data = GLOBAL$XHR$V2024$.commonHttppost('/magic/yy10/01/10/s-xzqh', { jsm, page, size }).data
+    const data = GLOBAL$XHR$V2024$.commonHttppost(XZQHURL, { jsm, page, size }).data
     data.rows = data.list || []
     return data
   } catch (e) {

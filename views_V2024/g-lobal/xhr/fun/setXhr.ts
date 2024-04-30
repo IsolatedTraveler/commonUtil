@@ -1,5 +1,5 @@
 import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
-import { contentType } from "../../common/xhr/magic/var"
+import { CONTENTTYPE } from "../../common/xhr/magic/var"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 
 /**
@@ -24,6 +24,6 @@ export function setXhr(
   url = buildUrlWithQueryParams(param, url)
   const xhr = new XMLHttpRequest()
   xhr.open(type, url, async)
-  xhr.setRequestHeader('Content-Type', contentType)
+  xhr.setRequestHeader('Content-Type', CONTENTTYPE)
   return xhr
 }

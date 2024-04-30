@@ -1,5 +1,5 @@
 import { session } from "../../../../util"
-import { system } from "./const"
+import { SYSTEM } from "./const"
 
 export var user: any // 用户信息
   , configData: any // 应用配置
@@ -10,8 +10,8 @@ export var user: any // 用户信息
 * @param {} 
 */
 export function setUser(): any {
-  if (system) {
-    return user = JSON.parse(system.varget('0', 'ryxx'))
+  if (SYSTEM) {
+    return user = JSON.parse(SYSTEM.varget('0', 'ryxx'))
   }
   return user = session('userinfo').ryxx
 }

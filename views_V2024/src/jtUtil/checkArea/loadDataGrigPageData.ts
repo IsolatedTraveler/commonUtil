@@ -1,22 +1,5 @@
+import { DataGridLy, GrigPage, getPager } from "../fun/grid/getPager";
 
-export interface GrigPage {
-  pageNumber: number
-  pageSize: number
-  blanksearch?: string
-  dm?: string
-}
-export type DataGridLy = 'grid' | 'comboGrid'
-function getPager(gridObject: any, pageNumber: number, ly: DataGridLy): { gridObj: any, grid: any } {
-  const gridObj = $(gridObject), grid = ly === 'comboGrid' ? gridObj.combogrid("grid") : gridObj
-    , pager = grid.datagrid('getPager')
-  if (pageNumber && pageNumber !== pager.pageNumber) {
-    pager.pagination({ pageNumber });
-  }
-  return {
-    gridObj,
-    grid
-  }
-}
 /**
  * @description 同步加载Grid或Combogrid控件的分页数据
  * @param {string} gridSelector Grid或Combogrid的选择器字符串
@@ -28,7 +11,6 @@ function getPager(gridObject: any, pageNumber: number, ly: DataGridLy): { gridOb
 export function loadDataGrigPageData(gridObject: any, url: string, param: GrigPage, ly: DataGridLy = 'grid') {
   try {
     const { gridObj, grid } = getPager(gridObject, param.pageNumber, ly)
-
     // 显示加载状态
     grid.datagrid("loading");
     // 异步请求数据，使用await确保数据获取完成后再继续执行
@@ -45,6 +27,32 @@ export function loadDataGrigPageData(gridObject: any, url: string, param: GrigPa
       grid.datagrid("loaded");
     }, 200);
     return list;
+  } catch (e) {
+    GLOBAL$COMMON$V2024$.alertMsg(e);
+  }
+}
+export function loadXzqhComboGrigPageData(gridObject: any, param: any) {
+  try {
+    gridObject = $(gridObject)
+    const grid = gridObject.combogrid("grid");
+    const pager = grid.datagrid('getPager');
+    // 同步Combogrid的分页器页码
+    if (param.pageNumber) {
+      if (param.pageNumber !== pager.pageNumber) {
+        pager.pagination({ pageNumber: param.pageNumber });
+      }
+    }
+    const query = param.dm;
+    if (query) {
+      const { list, total } = GLOBAL$COMMON$V2024$.getXzqh(query, param.pageNumber, param.pageSize);
+      if (total > 0) {
+        gridObject.combogrid('setValue', query);
+        grid.datagrid('loadData', { total, rows: list });
+        gridObject.combogrid('showPanel');
+      } else {
+        grid.datagrid('loadData', [])
+      }
+    }
   } catch (e) {
     GLOBAL$COMMON$V2024$.alertMsg(e);
   }

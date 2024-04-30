@@ -1,4 +1,4 @@
-import { urlPattern } from "./const"
+import { URLPATTERN } from "./const"
 import { GLOBAL$WIN$ } from '../../../../w/window'
 
 export var appBaseUrl: string // 应用基础URL
@@ -11,5 +11,5 @@ export var appBaseUrl: string // 应用基础URL
  */
 export function setAppBaseUrl(): string {
   let url = GLOBAL$WIN$.w.location.href
-  return appBaseUrl = (url.split(urlPattern)[0] + '/').replace(/\/+/g, '/')
+  return appBaseUrl = (url.split(URLPATTERN)[0] + '/').replace(/\/+/g, '/')
 }
