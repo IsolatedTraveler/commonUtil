@@ -37,8 +37,12 @@ export function initializeComboboxBase(param: ComboBoxConfig) {
       editable: param.editable,
       readonly: Boolean(param.readonly),
       panelHeight: param.panelHeight,
-      onLoadSuccess: () => {
-
+      onLoadSuccess: (a,b,c) => {
+        try {
+          console.log(a,b,c)
+        } catch(e) {
+          GLOBAL$COMMON$V2024$.alertMsg(e)
+        }
       }
     })
   } catch (e) {
