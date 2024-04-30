@@ -10,13 +10,12 @@ import { mkqx } from "../var";
  * @param {string} [dm] - 可选的模块细分代码，用于获取特定细分的权限信息。
  * @returns {Promise<string | Record<string, number>>} - 返回权限值（当有细分代码时）或权限对象（无细分代码时）的Promise。
  */
-export async function possessMkqx(mkbh: string, dm?: string): Promise<string | Record<string, string>> {
-  try {
-    const id = dm ? `${mkbh}-${dm}` : mkbh;
-    if (mkqx[id]) {
-      return mkqx[id]
-    } else {
-      const res = await GLOBAL$XHR$V2024$.asyncQueryPost('/magic/xt01-xtjc/03/11/s-mkqx', { mkbh, dm })
+export function possessMkqx(mkbh: string, dm?: string): Promise<string | Record<string, string>> {
+  const id = dm ? `${mkbh}-${dm}` : mkbh;
+  if (mkqx[id]) {
+    return mkqx[id]
+  } else {
+    return mkqx[id] = GLOBAL$XHR$V2024$.asyncQueryPost('/magic/xt01-xtjc/03/11/s-mkqx', { mkbh, dm }).then(res => {
       if (res.code === 1) {
         const list = res.data.list || []
         if (dm) {
@@ -28,9 +27,9 @@ export async function possessMkqx(mkbh: string, dm?: string): Promise<string | R
       } else {
         throw new Error(`获取权限失败: ${res.message}`);
       }
-    }
-  } catch (e: any) {
-    alertMsg(e);
+    }).catch(e => {
+      alertMsg(e);
+      return dm ? '0' : {}
+    })
   }
-  return '0'
 }
