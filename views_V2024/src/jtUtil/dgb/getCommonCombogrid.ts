@@ -1,5 +1,5 @@
 import { gridColumnsFormat } from "../fun";
-
+// 改成数据检索异步
 export function getCommonCombogrid(config: any) {
   try {
     var {
@@ -137,6 +137,19 @@ export function getCommonCombogrid(config: any) {
         }
       }
     });
+    /*
+    根据您的要求，这里列出给定数字与标准计算机键盘上对应按键的整理：
+
+      - `13`: **回车键(Enter)**
+      - `27`: **Escape键(Esc)**
+      - `37`: **左箭头键(Left Arrow)**
+      - `38`: **上箭头键(Up Arrow)**
+      - `39`: **右箭头键(Right Arrow)**
+      - `40`: **下箭头键(Down Arrow)**
+      - `48-57`: 这个范围对应的是数字键 `0` 到 `9`。
+
+      这样，您就可以直观地看到这些数字编码所代表的键盘按键了。
+    */
     document.onkeyup = function (event) {
       try {
         if (JSON.stringify(domElem[0]) != "{}") {
