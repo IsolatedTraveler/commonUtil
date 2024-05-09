@@ -11,5 +11,6 @@ import {
 // PLUGIN IGNORE START
 
 // PLUGIN IGNORE END
+// @ts-ignore
 w.jtUtil = new Class()
 export { Class }

@@ -1,6 +1,6 @@
 import {
   session, local, setPageTemp, tempData
-} from '../../views/g-lobal/temp'
+} from '../../g-lobal/temp'
 declare global {
   interface GLOBAL$TEMP$TYPE {
     session: typeof session

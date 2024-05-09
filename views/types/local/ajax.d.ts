@@ -1,6 +1,6 @@
 import {
   ajaxErrorCode, ajaxSuccessCode, setAjaxContentType, setAjaxSuccessCode, setJqMode, getAjax, getAjaxSync, commonHttppost, commonQueryAsyncHttppost_callback, getConfig, upload, dealAjaxData, magicCheckAuth, magicCheckAuthV2, magicData2
-} from '../../views/g-lobal/ajax'
+} from '../../g-lobal/ajax'
 declare global {
   interface GLOBAL$AJAX$TYPE {
     ajaxErrorCode: typeof ajaxErrorCode

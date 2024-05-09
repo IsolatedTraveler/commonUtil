@@ -20,7 +20,7 @@ export function renderButtons(elem: HTMLElement, menus: InitBaseBarMenu[]) {
         id: item.id
       }
       if (item.menuid) {
-        obj.menu = '#' + item.menuid
+        obj.menu = '#' + item.menuid;
         $(btnId$).splitbutton(obj)
       } else {
         $(btnId$).linkbutton(obj)

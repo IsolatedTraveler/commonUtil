@@ -1,3 +1,5 @@
+export { divideString } from '../../../../views_V2024/g-lobal/util/public/divideString'
+
 export * from './calc'
 export * from './debounce'
 export * from './errFormat'

@@ -1,6 +1,6 @@
 import {
   getMd5, encryption
-} from '../../views/g-lobal/encrypt'
+} from '../../g-lobal/encrypt'
 declare global {
   interface GLOBAL$ENCRYPT$TYPE {
     getMd5: typeof getMd5

@@ -3,6 +3,7 @@ export function getYsxx(ysxx: any) {
     if (data) {
       data = (data.list || [])[0] || {}
       return {
+        login_user_name: ysxx.yhm,
         doctor_job_num: ysxx.ryid, // 医生工号
         doctor_name: ysxx.xm,
         department_code: ysxx.ksid,

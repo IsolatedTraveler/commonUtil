@@ -1,4 +1,8 @@
 // 字符串处理
+interface String {
+  dateFormat(fmt: string): string
+  toDate(fmt: string, fmt1: string): Date | string
+}
 function dateFormat(this: any, fmt: string = 'yyyy/MM/dd') {
   const fmtArr = fmt.split('')
   let i = 0, v = this.match(/[0-9]/g)

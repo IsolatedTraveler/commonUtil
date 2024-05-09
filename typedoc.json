@@ -1,0 +1,11 @@
+{
+  "entryPoints": [
+    "views_V2024/g-lobal/index.ts"
+  ],
+  "out": "docs",
+  "name": "常用代码整理",
+  "theme": "default",
+  "readme": "none",
+  "excludeExternals": true,
+  "excludePrivate": true
+}

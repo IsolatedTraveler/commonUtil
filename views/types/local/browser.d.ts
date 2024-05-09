@@ -1,6 +1,6 @@
 import {
   getJtPhisSystem, getSystemVal, bbPrint, getBrowserParam, setBrowserParam, errorTrace, openDialog, openMsgBox, skip
-} from '../../views/g-lobal/browser'
+} from '../../g-lobal/browser'
 declare global {
   interface GLOBAL$BROWSER$TYPE {
     getJtPhisSystem: typeof getJtPhisSystem

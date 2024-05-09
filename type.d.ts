@@ -1,7 +1,6 @@
 declare module 'rollup-plugin-typescript';
 interface DateConstructor {
   new(...args: any[]): Date;
-  prototype: Date;
 }
 interface Date {
   format(fmt?: string): string;
@@ -23,6 +22,9 @@ interface String {
 }
 // 1 代表成功   -1 代表失败
 type SelfResCode = -1 | 1
-declare global {
-  interface Date extends DateConstructor { }
-}
+declare const jQuery: any;
+declare const $: any;
+declare const layer: any;
+declare const layui: any;
+declare var that: any;
+declare const w: any;

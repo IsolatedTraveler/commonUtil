@@ -13,9 +13,9 @@ import { judgeConfig } from "../fun/judgeConfig"
  */
 export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'], title: string = '提示') {
   return new Promise((resolve, reject) => {
-    if (window.layer) {
+    if (layer) {
       var len = btn.length, judge = true
-      window.layer.confirm(msg, {
+      layer.confirm(msg, {
         title,
         btn,
         btn3(i: string) {

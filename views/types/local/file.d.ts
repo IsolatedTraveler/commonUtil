@@ -1,6 +1,6 @@
 import {
   down, loadJs, loadJsJudge, loadStyle, readFile, uploadInputFile
-} from '../../views/g-lobal/file'
+} from '../../g-lobal/file'
 declare global {
   interface GLOBAL$FILE$TYPE {
     down: typeof down

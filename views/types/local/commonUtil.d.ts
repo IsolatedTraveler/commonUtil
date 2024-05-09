@@ -1,6 +1,6 @@
 import {
   dealLogin, paramget, setWebName
-} from '../../views/g-lobal/commonUtil'
+} from '../../g-lobal/commonUtil'
 declare global {
   interface GLOBAL$COMMONUTIL$TYPE {
     dealLogin: typeof dealLogin

@@ -1,6 +1,6 @@
 import {
   alertMsg, confirmMsg, getLayui, load, loaded, loading, openPage
-} from '../../views/g-lobal/layer'
+} from '../../g-lobal/layer'
 declare global {
   interface GLOBAL$LAYER$TYPE {
     alertMsg: typeof alertMsg

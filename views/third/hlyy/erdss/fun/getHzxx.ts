@@ -15,6 +15,7 @@ export function getHzxx(brxx: any = {}) {
     medical_insurance_type: "",
     complained: null,
     hpi: null,
+    tcm_syndrome: '',// v2新增字段  中医证型（中成药开具需要）
     onset_time: null,
     is_pregnancy: false, // 是否怀孕 非必填
     is_lactation: false, // 是否哺乳 非必填

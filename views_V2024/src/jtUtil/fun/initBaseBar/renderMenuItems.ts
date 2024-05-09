@@ -7,7 +7,7 @@ export function renderMenuItems(elem: HTMLElement, menus: InitBaseBarMenu[][]) {
     menus.forEach((items, i) => {
       if (!items || !items.length) return
       const menuId = 'menu' + i, menuDivId = 'menudiv' + i, menuDivId$ = '#' + menuDivId
-      elem.append(`<a id="${menuId}" href="#" style="margin-left:1px;">${menutitles[i]}</a><div id="${menuDivId}"></div>`)
+      elem.append(`<a id="${menuId}" href="#" style="margin-left:1px;">${menutitles[i]}</a><div id="${menuDivId}"></div>`);
       $('#' + menuId).menubutton({
         plain: false,
         width: 80,

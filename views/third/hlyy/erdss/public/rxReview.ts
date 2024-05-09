@@ -7,10 +7,11 @@ export function rxReview(brxx: any, data: any, ysxx: any, sjly: Sjly = 100) {
       his_company_code,
       his_medical_org_code,
       his_time: Date.now(),
-      is_formal_review: false,
+      is_formal_review: true,
       outpati_inpati_flag,
       treat_type: sjly,
       treat_code: brxx.mzh || brxx.zyh,
+      bed_number: '',
       doctor_info: ysxx1, // 医生信息
       patient_info: getHzxx(brxx), // 患者信息
       diagnosis: zdxx, // 诊断信息

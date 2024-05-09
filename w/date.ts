@@ -8,6 +8,20 @@ interface DateFormats {
   'q+': number
   S: number
 }
+interface Date {
+  format(fmt: string): string
+  addYear(num: string | number): Date
+  addMonth(num: string | number): Date
+  addDay(num: string | number): Date
+  addHour(num: string | number): Date
+  addMinute(num: string | number): Date
+  addSeconds(num: string | number): Date
+  getMonthDay(num: number): Date
+  getSeason(num: number): Date
+  getWeek(num: string | number): Date
+  getMonthDays(): number
+  getYearDay(): number
+}
 function format(this: any, fmt = 'yyyy/MM/dd'): string {
   var o: DateFormats = {
     "M+": this.getMonth() + 1, //月份

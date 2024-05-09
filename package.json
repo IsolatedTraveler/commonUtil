@@ -15,7 +15,8 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript": "^1.0.1",
-    "terser": "^5.30.4"
+    "terser": "^5.30.4",
+    "typedoc": "^0.25.13"
   },
   "dependencies": {
     "agora-rtc-sdk-ng": "^4.18.0",

@@ -1,5 +1,5 @@
 
-export let webNameReg: RegExp, jse: any, promiseResove: any, promiseCore, BASE64: any
+export let webNameReg: RegExp, jse: any, promiseResove: any, promiseCore: any, BASE64: any
   , srcWEventInputNot = ':not([lay-submit],[disabled],[readonly],.layui-table-edit)'
   , srcWEventKbjbg = `input[type="text"]${srcWEventInputNot},input[type="password"]${srcWEventInputNot},input:not([type])${srcWEventInputNot},textarea,td[data-edit],input[laydate][readonly],.layui-select-title input.jt-select:not(.layui-disabled)`, initPop = {
     // 库所在位置

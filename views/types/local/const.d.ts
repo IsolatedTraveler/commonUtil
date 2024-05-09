@@ -1,6 +1,6 @@
 import {
   
-} from '../../views/g-lobal/const'
+} from '../../g-lobal/const'
 declare global {
   interface GLOBAL$CONST$TYPE {
     

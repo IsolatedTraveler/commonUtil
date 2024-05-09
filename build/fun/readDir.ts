@@ -1,14 +1,8 @@
 import * as  fs from 'fs'
 import path from 'path'
-import { judgeBuild } from './judgeBuild'
-import { buildModule } from '../../public'
 interface SonFileAndDir {
   file: string[]
   dir: string[]
-}
-interface JudgeSonDir {
-  module?: any
-  moduleName?: string
 }
 function getFileStats(url: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
@@ -46,9 +40,6 @@ function getSonDir(url: string, isDir: boolean = true): Promise<SonFileAndDir> {
     })
   })
 }
-function getFileReg(arr: string[], reg: RegExp, len: number): boolean {
-  return arr.filter(it => reg.test(it)).length === len
-}
 export function readDir(url: string, judge: any = true): Promise<Array<string>> {
   return new Promise((resolve, reject) => {
     fs.readdir(url, (err, files) => {
@@ -70,22 +61,6 @@ export function getAllSonDir(url: string, arr: Array<string> = []): Promise<Arra
       }))
     } else {
       arr.push(url)
-    }
-  }).then(() => {
-    return arr
-  })
-}
-export function getSpecifiedFileDir(url: string, module: any = buildModule, reg: RegExp = /(index.ts|core.ts|render.ts)$/, len = 3, arr: Array<string> = []): Promise<Array<string>> {
-  return getSonDir(url).then(({ dir, file }) => {
-    if (getFileReg(file, reg, len)) {
-      arr.push(url)
-    } else if (dir.length) {
-      return Promise.all(dir.map(it => {
-        const name = it.replace(url, '').replace(/^[\\\/]*/g, '')
-        module = judgeBuild(module, name)
-        if (module)
-          return getSpecifiedFileDir(it, module, reg, len, arr)
-      }))
     }
   }).then(() => {
     return arr

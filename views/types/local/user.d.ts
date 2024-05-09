@@ -1,6 +1,6 @@
 import {
   dealMenu, exited, getMenu, getUser, getUserInfo, login, exit, logOut
-} from '../../views/g-lobal/user'
+} from '../../g-lobal/user'
 declare global {
   interface GLOBAL$USER$TYPE {
     dealMenu: typeof dealMenu
