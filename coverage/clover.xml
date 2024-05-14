@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1715660659587" clover="3.2.0">
+  <project timestamp="1715660659587" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2" elements="18" coveredelements="18" complexity="0" loc="11" ncloc="11" packages="4" files="6" classes="6"/>
+    <package name="g-lobal">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="g-lobal.type">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\type\index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="g-lobal.util">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\util\index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="g-lobal.util.public">
+      <metrics statements="7" coveredstatements="7" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
+      <file name="errFormat.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\util\public\errFormat.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="10" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="3" type="stmt"/>
+      </file>
+      <file name="index.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\util\public\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+      </file>
+      <file name="toDecimalNumber.ts" path="E:\gitHub\xbcommonUtil\views_V2024\g-lobal\util\public\toDecimalNumber.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="8" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="9" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="7" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>

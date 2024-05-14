@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "doc": "npx  typedoc"
+    "doc": "npx  typedoc",
+    "test": "jest",
+    "test-cov": "jest --coverage"
   },
   "devDependencies": {
     "@esbuild-kit/cjs-loader": "^2.4.4",
