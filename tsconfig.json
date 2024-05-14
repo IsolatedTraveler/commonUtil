@@ -12,6 +12,6 @@
   "include": [
     "views_V2024/**/*.ts",
     "w/**/*.ts",
-    "type.d.ts"
+    "type/*.d.ts"
   ]
 }
