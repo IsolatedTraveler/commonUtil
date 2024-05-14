@@ -11,7 +11,7 @@
  */
 export function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
   that.closeFun = () => {
-    layer.close(i)
+    window.layer.close(i)
     resolve(btn)
   }
   if (w && w.$) {

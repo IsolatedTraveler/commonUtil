@@ -29,7 +29,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
       height += 'px'
     }
     url += '?' + buildUrlWithQueryParams(Object.assign({ isShowPopup: true }, data))
-    if (layui && layer) {
+    if (window.layui && window.layer) {
       var w: any, loadIndex: number
       const param: any = {
         type: 2,
@@ -40,7 +40,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
         shade: 0.3,
         success: function (layero: any) {
           w = layero.find('iframe')[0].contentWindow
-          layer.close(loadIndex)
+          window.layer.close(loadIndex)
           if (!title) {
             var el = layero.find('.layui-layer-title')
             el.html(w.document.title)
@@ -55,8 +55,8 @@ export function openDialog(url: string, data: any, width: string | number, heigh
         const z = j + 1
         param[j === 0 ? 'yes' : `btn${z}`] = (i: number) => setCloseFun(i, w, resolve, z)
       })
-      layer.open(param)
-      loadIndex = layer.load(2, { time: 30 * 1000, shade: 0.3 })
+      window.layer.open(param)
+      loadIndex = window.layer.load(2, { time: 30 * 1000, shade: 0.3 })
     } else {
       alertMsg('当前页面未引入layui，暂未实现该方案')
     }

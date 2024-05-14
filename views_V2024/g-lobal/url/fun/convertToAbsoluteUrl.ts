@@ -19,10 +19,11 @@ export function convertToAbsoluteUrl(relativeUrl: string, base?: string | URL | 
     return relativeUrl;
   }
   const baseAddress = getUrl(base);
+  if (/^\//.test(relativeUrl)) return baseAddress.origin + relativeUrl
   // 分割基础URL的路径并过滤掉空字符串
   let pathParts = baseAddress.pathname.split('/').filter(Boolean);
-  // 清理relativeUrl，移除开头的"./"和尾部的"/"
-  relativeUrl = relativeUrl.replace(/^\.\//, '').replace(/\/$/, '');
+  // 清理relativeUrl，移除开头的"./"
+  relativeUrl = relativeUrl.replace(/^\.\//, '');
   // 处理relativeUrl中的"../"，计算需要上溯的层数
   if (relativeUrl.startsWith('../')) {
     const levelUp = relativeUrl.split('/').filter(part => part === '..').length;

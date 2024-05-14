@@ -9,8 +9,8 @@ export function alertMsg(msg: any, title: string = '提示信息') {
     console.error(msg)
     msg = msg.message
   }
-  if (w.layer) {
-    w.layer.alert(msg)
+  if (window.layer) {
+    window.layer.alert(msg)
   } else if ($.messager && $.messager.alert) {
     $.messager.alert({
       title,
