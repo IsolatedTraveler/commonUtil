@@ -26,5 +26,5 @@ export function setUser(): any {
  * 4. 函数返回configData的设置操作，虽然实际上此返回值在异步操作的上下文中可能不会被直接使用，因为getAjax方法通常是异步的。
  */
 export function setConfigData() {
-  return configData = GLOBAL$XHR$V2024$.getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true })
+  // return configData = GLOBAL$XHR$V2024$.getAjax('/public/data/config.json', { v: new Date().getTime() }, { msg: '获取配置信息出错：', urlType: 'origin', isNotGetUser: true })
 }

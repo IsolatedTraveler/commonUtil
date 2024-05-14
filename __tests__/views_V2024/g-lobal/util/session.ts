@@ -1,5 +1,4 @@
 import { session } from '../../../../views_V2024/g-lobal'
-let href = 'http://example.com/zshis123/webs/some/path/index.html'
 describe('session Function', () => {
   beforeEach(() => {
     // 重置所有可能影响后续测试的模拟
