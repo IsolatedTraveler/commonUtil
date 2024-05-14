@@ -9,9 +9,9 @@
 export function extractPrimaryUrl(urlsArray: string | string[]): string {
   if (typeof urlsArray === 'string') return urlsArray;
   for (var index = 0; index < urlsArray.length; index++) {
-    if (urlsArray[index].includes(location.origin)) {
+    if (urlsArray[index].includes(window.location.origin)) {
       return urlsArray[index];
     }
   }
-  return urlsArray[0];
+  return urlsArray[0] || '';
 }
