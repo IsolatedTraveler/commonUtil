@@ -11,8 +11,9 @@ export function appendParamsToUrl(obj: any, url: string | URL) {
   const baseUrl = new URL(url);
   const searchParams = new URLSearchParams(baseUrl.search);
   Object.entries(obj).forEach(([key, value]) => {
-    searchParams.set(key, encodeUrlParamValue(value));
+    if (!(value === undefined || value === null))
+      searchParams.set(key, encodeUrlParamValue(value));
   })
   baseUrl.search = searchParams.toString();
-  return url.toString();
+  return baseUrl.toString();
 }
