@@ -1,5 +1,5 @@
 import { errFormat } from "../../util"
-import { AJAXRESS } from "../var"
+import { AJAX_RES } from "../var"
 /* 
  * 处理 XMLHttpRequest 响应的函数。
  *
@@ -15,9 +15,9 @@ import { AJAXRESS } from "../var"
  *   - 解析成功则返回处理后的数据对象。
  *   - 如果解析JSON时发生错误，则直接返回响应体的原始文本。
  * - 如果请求失败（HTTP状态码不在200-299范围内），则调用外部的`errFormat`函数，
- *   使用`AJAXRESS`对象中相应状态码的错误信息，组合成错误字符串返回。
+ *   使用`AJAX_RES`对象中相应状态码的错误信息，组合成错误字符串返回。
  *
- * 注意：此函数依赖于外部的`errFormat`函数和`AJAXRESS`对象的定义。
+ * 注意：此函数依赖于外部的`errFormat`函数和`AJAX_RES`对象的定义。
  */
 export function dealXhrRes(xhr: XMLHttpRequest): any {
   if (xhr.status >= 200 && xhr.status < 300) {
@@ -30,6 +30,6 @@ export function dealXhrRes(xhr: XMLHttpRequest): any {
       return xhr.responseText
     }
   } else {
-    return errFormat('请求失败：' + AJAXRESS[xhr.status])
+    return errFormat('请求失败：' + AJAX_RES[xhr.status])
   }
 }
