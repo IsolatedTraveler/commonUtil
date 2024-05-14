@@ -1,5 +1,5 @@
 import { setPageTemp } from '../../../../views_V2024/g-lobal'
-describe('setPageTemp 函数测试', () => {
+describe('setPageTemp Function', () => {
   it('当 val 有值时，应直接返回 val', () => {
     const val = 'someValue';
     const mockCallback = jest.fn(); // 创建一个模拟的回调函数

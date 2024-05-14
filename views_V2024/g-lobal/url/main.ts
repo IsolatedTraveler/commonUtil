@@ -1,0 +1,1 @@
+export { setAppBaseUrl } from "./var";
