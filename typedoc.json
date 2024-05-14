@@ -1,7 +1,6 @@
 {
   "entryPoints": [
-    "views_V2024/g-lobal/index.ts",
-    "views_V2024/g-lobal/cs.ts"
+    "views_V2024/g-lobal/index.ts"
   ],
   "out": "docs",
   "name": "常用代码整理",

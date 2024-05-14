@@ -10,7 +10,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "types/**/*.ts",
     "views_V2024/**/*.ts",
     "w/**/*.ts",
     "type.d.ts"
