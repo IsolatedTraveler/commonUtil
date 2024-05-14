@@ -10,6 +10,8 @@ import { encodeUrlParamValue } from "../fun";
  */
 export function convertObjectToQueryString(obj: any): string {
   return Object.entries(obj).map(([key, value]) => {
-    return `${key}=${encodeUrlParamValue(value)}`;
-  }).join('&');
+    if (!(value === undefined || value === null))
+      return `${key}=${encodeUrlParamValue(value)}`;
+    return undefined
+  }).filter(it => it).join('&');
 }
