@@ -1,10 +1,6 @@
 import { alertMsg } from "../../common/pop";
+import { TreeNode } from "../../type";
 
-interface TreeNode {
-  state?: 'closed'
-  children?: TreeNode[]
-  [key: string]: any
-}
 /**
  * @description 初始化树形数据结构
  * @param data 数据源
@@ -35,8 +31,7 @@ export function arrToTree<T extends TreeNode>(
       const node = nodeMap.get(item[idKey])!;
       if (parentId && nodeMap.has(parentId)) {
         const parentNode = nodeMap.get(parentId)!; // 确信parentId存在
-        parentNode.children = parentNode.children || [];
-        parentNode.children.push(node);
+        parentNode.children!.push(node);
       } else {
         tree.push(node); // 确信item[idKey]存在
       }
