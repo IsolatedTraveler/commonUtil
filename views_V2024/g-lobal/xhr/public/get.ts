@@ -2,6 +2,9 @@ import { AjaxRequestConfig, AjaxRequestOption } from "../../../../types";
 import { XhrRes } from "../../common";
 import { sync } from "../fun/sync";
 /**
+ * @module get
+ */
+/**
  * 发起一个同步的HTTP GET请求。
  *
  * 此函数封装了发送GET请求的过程，允许附带查询数据。

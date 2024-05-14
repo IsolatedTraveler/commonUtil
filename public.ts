@@ -12,6 +12,7 @@ export const dbnr: Dbnr = {
 }
 export const dbdq: InstitutionCode[] = ['erdss']
 // export const siteVesion = 'V2024'
+export const siteVesion = ''
 export const sfys = false
 export const qdzs = false
 // export const qdzs = /^!/

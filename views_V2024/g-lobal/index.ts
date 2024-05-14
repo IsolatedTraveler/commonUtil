@@ -1,6 +1,5 @@
 /**
- * @fileoverview 全局通用方法
- * @author 何波
+ * @module global
  */
 export * from './common'
 export * from './layer'
