@@ -1,5 +1,5 @@
 // 请求超时时间设置（3分钟）
-export const AJAXTIMEOUT = 1000 * 60 * 3, AJAXRESS: { [key: number]: string } = {
+export const AJAX_TIMEOUT = 1000 * 60 * 3, AJAX_RES: { [key: number]: string } = {
   400: '客户端请求的语法错误，服务器无法理解请求',
   401: '请求要求用户进行身份认证',
   403: '服务器已接受客户端的请求，但是拒绝执行此请求。',
