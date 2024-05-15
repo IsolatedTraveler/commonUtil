@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, AjaxRequestOption } from "../../../../../../types";
+import { AjaxRequestConfig, AjaxRequestOption } from "../../../../type";
 import { Authorization, getAuthorization, XHR_JQ_URL } from "../var";
 /**
  * @description 检查并设置AJAX请求的鉴权信息。

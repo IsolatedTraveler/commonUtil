@@ -16,8 +16,8 @@ export var Authorization: string | true = '' // 初始化鉴权令牌变量
 export function getAuthorization() {
   try {
     const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER
-      , res: any = GLOBAL$XHR$V2024$.commonHttppost(XHR_JQ_URL, user, { isNotGetUser: true, isNotWrapped: true }) || {}
-    Authorization = res.data.accessToken || true
+    // , res: any = GLOBAL$XHR$V2024$.commonHttppost(XHR_JQ_URL, user, { isNotGetUser: true, isNotWrapped: true }) || {}
+    // Authorization = res.data.accessToken || true
   } catch (e) {
     Authorization = true  // 在异常情况下设置为true，表示无需鉴权
   }

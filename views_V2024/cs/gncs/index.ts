@@ -1,1 +1,0 @@
-export { Class } from './render'

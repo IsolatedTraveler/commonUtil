@@ -7,5 +7,6 @@ import { extractPrimaryUrl } from "../../../../url/fun";
  * @returns {string} 设置后的服务端URL。
  */
 export function setServerUrl(): string {
-  return GLOBAL$COMMON$.serverUrl = extractPrimaryUrl(getConfig().magicServer)
+  // return GLOBAL$COMMON$.serverUrl = extractPrimaryUrl(getConfig().magicServer)
+  return ''
 }

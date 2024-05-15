@@ -1,2 +1,2 @@
 export * from './public'
-export { XZQHURL } from './var'
+export { XZQH_URL } from './var'

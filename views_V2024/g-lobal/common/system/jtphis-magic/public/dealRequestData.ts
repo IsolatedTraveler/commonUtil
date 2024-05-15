@@ -1,4 +1,4 @@
-import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../../../types"
+import { AjaxRequestOption } from "../../../../type/xhr"
 import { getUser } from "./getUser"
 /**
  * @param {any} data - 需要发送的数据对象。
@@ -16,8 +16,7 @@ import { getUser } from "./getUser"
  *    否则，将数据放入一个带有"data"键的对象中再进行序列化，这种做法常见于需要在服务端解析特定格式的场景。
  */
 export function dealRequestData(data: any,
-  option: AjaxRequestOption = {},
-  config: AjaxRequestConfig = {}, type: AjaxRequestType = 'POST') {
+  option: AjaxRequestOption = {}) {
   option.isCheck !== false
   if (!option.isNotGetUser) {
     const user = getUser()

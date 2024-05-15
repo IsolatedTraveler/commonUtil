@@ -6,8 +6,8 @@
  * @returns {void}
  */
 export function closeParentPop() {
-  if (w.parent.MODULENAME && w.parent.MODULENAME.closeFun)
-    w.parent.MODULENAME.closeFun()
+  if (window.parent.MODULENAME && window.parent.MODULENAME.closeFun)
+    window.parent.MODULENAME.closeFun()
   else {
     // 记录jtUtil未定义或父窗口不存在的日志，用于调试
     console.warn('closeParentPop: parent window or jtUtil or closeFun is not defined.');
