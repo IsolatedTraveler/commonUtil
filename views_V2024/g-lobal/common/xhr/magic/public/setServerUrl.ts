@@ -8,5 +8,5 @@ import { extractPrimaryUrl } from "../../../../url/fun";
  */
 export function setServerUrl(): string {
   // return GLOBAL$COMMON$.serverUrl = extractPrimaryUrl(getConfig().magicServer)
-  return ''
+  return 'http://192.168.0.242:8080/jtphis/'
 }
