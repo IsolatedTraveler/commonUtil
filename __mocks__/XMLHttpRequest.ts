@@ -38,7 +38,11 @@ export class XMLHttpRequest {
   private getSjData(sjlx: XMLSjlx) {
     var data, str = 'success'
     if (new RegExp(XHR_JQ_URL).test(this.url)) {
-      const accessToken = sessionStorage.getItem('Authorization')
+      var accessToken = sessionStorage.getItem('Authorization')
+      if (!accessToken) {
+        const { jqcs } = getXmlCalc()
+        accessToken = sessionStorage.getItem(`Authorization${jqcs}`)
+      }
       data = { code: 1, data: { accessToken } }
     } else if (sjlx === 'jsonS') {
       data = { code: 1, data: {}, message: '' }
@@ -47,7 +51,15 @@ export class XMLHttpRequest {
     }
     this.responseText = data ? JSON.stringify(data) : str
   }
+  calc(str?: string | null) {
+    if (str && new RegExp(str).test(this.url)) {
+      const v = Number(sessionStorage.getItem(str) || 0)
+      sessionStorage.setItem(str, `${v + 1}`)
+    }
+  }
   onreadystatechange({ state, sjlx }: XMLData) {
+    this.calc(XHR_JQ_URL)
+    this.calc(sessionStorage.getItem('xhrUrl'))
     if (state == 'error') {
       this.status = 404
       this.onerror()
@@ -66,5 +78,18 @@ export class XMLHttpRequest {
   onerror() {
   }
   ontimeout() {
+  }
+}
+export function initXml(url: string) {
+  sessionStorage.setItem('xhrUrl', url)
+  sessionStorage.setItem('xhrJqUrl', XHR_JQ_URL)
+  sessionStorage.setItem(url, '0')
+  sessionStorage.setItem(XHR_JQ_URL, '0')
+}
+export function getXmlCalc(): any {
+  const url = sessionStorage.getItem('xhrUrl') || ''
+  return {
+    [url]: sessionStorage.getItem(url),
+    jqcs: sessionStorage.getItem(XHR_JQ_URL)
   }
 }
