@@ -1,6 +1,6 @@
 import { XMLData, XMLHttpRequest, getXmlCalc, initXml, setXmlRes } from '../../../../__mocks__/XMLHttpRequest';
 import { setLoaction } from '../../../../__mocks__/location';
-import { Authorization, XHR_JQ_CODE, getAuthorization } from '../../../../views_V2024/g-lobal/common/xhr/magic/var';
+import { Authorization, XHR_JQ_CODE } from '../../../../views_V2024/g-lobal/common/xhr/magic/var';
 import { setXhr } from '../../../../views_V2024/g-lobal/main';
 global.XMLHttpRequest = XMLHttpRequest as any
 const url: string = '/api/test'

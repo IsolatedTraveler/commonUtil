@@ -7,6 +7,9 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
-  preset: 'ts-jest/presets/default'
+  preset: 'ts-jest/presets/default',
+  coveragePathIgnorePatterns: [
+    'views_V2024/g-lobal/util/var/const'
+  ]
 };
 export default config;

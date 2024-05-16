@@ -1,4 +1,4 @@
-import { WEBNAME } from "../var"
+import { WEB_NAME } from "../var"
 /**
  * @description 提供一种便捷的方式来读取、写入或删除浏览器sessionStorage中的数据，同时支持对存储键名进行前缀处理，增强数据管理的灵活性和区分度
  * 
@@ -10,7 +10,7 @@ import { WEBNAME } from "../var"
  *                如果是设置或删除操作，则返回传入的val。
  */
 export function session(name: string, val?: any): any {
-  const name1: string = WEBNAME + name
+  const name1: string = WEB_NAME + name
   if (val === undefined) {
     return JSON.parse(sessionStorage.getItem(name1) || sessionStorage.getItem(name) || 'null')
   } else if (val === null) {
