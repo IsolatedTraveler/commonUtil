@@ -1,6 +1,7 @@
-import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../../../types"
 import { CONTENTTYPE } from "../../common/xhr/magic/var"
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../type"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
+import { getXhr } from "./getXhr"
 
 /**
  * 初始化XMLHttpRequest对象并配置请求
@@ -11,19 +12,14 @@ import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
  */
 export function setXhr(
   url: string,
+  data: any,
   type: AjaxRequestType,
   { urlType, isCheck }: AjaxRequestOption,
   param: any,
   config: AjaxRequestConfig,
-  async: boolean,
   isRest: boolean) {
   if (isCheck && that.checkAuth) {
     that.checkAuth(config, url, isRest)
   }
-  url = buildAbsoluteUrl(url, urlType)
-  url = buildUrlWithQueryParams(param, url)
-  const xhr = new XMLHttpRequest()
-  xhr.open(type, url, async)
-  xhr.setRequestHeader('Content-Type', CONTENTTYPE)
-  return xhr
+  return getXhr(url, data, param, type, urlType)
 }
