@@ -1,0 +1,1 @@
+export { setConfigData } from "./var";

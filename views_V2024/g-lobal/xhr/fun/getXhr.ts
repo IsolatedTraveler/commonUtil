@@ -3,7 +3,7 @@ import { AjaxRequestType, UrlType, XhrRes } from "../../type"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 import { errFormat } from "../../util"
 import { AJAX_TIMEOUT } from "../var"
-import { dealXhrRes } from "./deaXhrRes"
+import { dealXhrRes } from "./dealXhrRes"
 
 /**
  * 初始化XMLHttpRequest对象并配置请求
@@ -37,7 +37,7 @@ export function getXhr(
       }
       xhr.send(data);
     } catch (e: any) {
-      return reject(errFormat('请求过程中发生错误：' + (e.message || e)))
+       reject(errFormat('请求过程中发生错误：' + (e.message || e)))
     }
   })
 }

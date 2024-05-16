@@ -51,7 +51,7 @@ export class XMLHttpRequest {
       data = { code: 1, data: {}, message: '' }
     } else if (sjlx === 'jsonE') {
       data = { code: -1, data: null, message: '错误测试' }
-    } else if (sjlx === 'session') {
+    } else if (sjlx === 'session' || sessionStorage.getItem('xml') === 'session') {
       const url = sessionStorage.getItem('xhrUrl') || ''
       const i =sessionStorage.getItem(url)
       data = JSON.parse(sessionStorage.getItem('session'+i) as string)
