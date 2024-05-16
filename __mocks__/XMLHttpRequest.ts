@@ -1,4 +1,5 @@
-import { AjaxRequestType } from "../views_V2024/g-lobal";
+import { AjaxRequestType, buildAbsoluteUrl } from "../views_V2024/g-lobal";
+import { XHR_JQ_URL } from "../views_V2024/g-lobal/common/xhr/magic/var";
 type XMLSjlx = 'string' | 'jsonS' | 'jsonE'
 export interface XMLData {
   state: 'success' | 'error' | 'timeout'
@@ -35,24 +36,29 @@ export class XMLHttpRequest {
     }
   }
   private getSjData(sjlx: XMLSjlx) {
-    if (sjlx === 'string') {
-      this.responseText = 'success'
+    var data, str = 'success'
+    if (new RegExp(XHR_JQ_URL).test(this.url)) {
+      const accessToken = sessionStorage.getItem('Authorization')
+      data = { code: 1, data: { accessToken } }
     } else if (sjlx === 'jsonS') {
-      this.responseText = JSON.stringify({ code: 1, data: {}, message: '' })
+      data = { code: 1, data: {}, message: '' }
     } else if (sjlx === 'jsonE') {
-      this.responseText = JSON.stringify({ code: -1, data: null, message: '错误测试' })
+      data = { code: -1, data: null, message: '错误测试' }
     }
+    this.responseText = data ? JSON.stringify(data) : str
   }
   onreadystatechange({ state, sjlx }: XMLData) {
-    if (state == 'success') {
+    if (state == 'error') {
+      this.status = 404
+      this.onerror()
+      return
+    } else if (state === 'timeout') {
+      this.ontimeout()
+      return
+    } else {
       this.status = 200
       this.getSjData(sjlx)
       this.onload()
-    } else if (state == 'error') {
-      this.status = 404
-      this.onerror()
-    } else if (state === 'timeout') {
-      this.ontimeout()
     }
   }
   onload() {

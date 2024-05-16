@@ -18,3 +18,16 @@ export interface AjaxRequestOption {
   isPwd?: Boolean
   isJson?: Boolean
 }
+export interface XhrRes {
+  code: 1 | number
+  message: string
+  data: {
+    list: any[]
+    total: number
+    accessToken: string
+  }
+}
+export interface XhrAuthParam {
+  isCheck?: Boolean
+  reset?: Boolean
+}

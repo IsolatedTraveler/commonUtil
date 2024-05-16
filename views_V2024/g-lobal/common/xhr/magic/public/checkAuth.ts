@@ -1,26 +1,23 @@
-import { AjaxRequestConfig, AjaxRequestOption } from "../../../../type";
+import { AjaxRequestConfig, XhrAuthParam } from "../../../../type";
 import { Authorization, getAuthorization, XHR_JQ_URL } from "../var";
 /**
- * @description 检查并设置AJAX请求的鉴权信息。
- * 
- * @param {AjaxRequestConfig} config - AJAX请求的配置对象，将会被修改以添加或更新鉴权头信息。
- * @param {AjaxRequestOption} option - AJAX请求的选项对象，用于控制是否需要进行鉴权检查。
- * @param {string} url - 当前请求的URL，用于判断是否需要跳过特定的内部处理。
- * @param {boolean} [reset=false] - 是否重置鉴权信息，如果为真，将强制重新获取鉴权令牌。
- * 
- * 此函数主要做了以下几件事：
- * 1. **跳过特定URL**: 如果请求的URL与`XHR_JQ_URL`相同，则直接返回，不做鉴权处理。
- * 2. **鉴权逻辑控制**: 当需要重置鉴权信息或当前鉴权令牌未设置时，关闭此次请求的鉴权检查，并调用`getAuthorization`方法获取新的鉴权令牌。
- * 3. **设置鉴权头**: 更新请求配置的`headers`属性，加入`accessToken`。如果鉴权令牌有效，则设置其值；如果为`true`（表示无需鉴权或鉴权失败），则不设置此头信息。
+ * @description 检查请求是否需要进行鉴权处理
+ * @param {AjaxRequestConfig} config - HTTP请求的配置对象，用于存储鉴权后的头部信息
+ * @param {string} url - 请求的URL，用于判断是否为特定的鉴权URL
+ * @param {{ isCheck?: boolean, reset?: boolean }} options - 配置项，包括是否执行鉴权检查（isCheck，默认为true）和是否重置鉴权信息（reset，默认为false）
+ * @returns {Promise<boolean>} - 表示鉴权是否成功的Promise
  */
-export function checkAuth(config: AjaxRequestConfig, option: AjaxRequestOption, url: string, reset: boolean = false) {
-  if (url === XHR_JQ_URL) {
-    return
-  }
-  if (reset || !Authorization) {
-    option.isCheck = false
-    getAuthorization()
-  }
-  config.headers = config.headers || {}
-  config.headers.accessToken = Authorization === true ? undefined : Authorization;
+export function checkAuth(config: AjaxRequestConfig, url: string, { isCheck = true, reset = false }: XhrAuthParam): Promise<Boolean> {
+  // url 等于 鉴权url  直接返回
+  if (url === XHR_JQ_URL) return Promise.resolve(true)
+  // 不鉴权  返回
+  if (!isCheck) return Promise.resolve(false)
+  // 通过是否重置鉴权参数 和 鉴权信息判断是否重新获取鉴权信息
+  let isAuthenticated = reset || !Authorization
+  return getAuthorization(isAuthenticated).then(() => {
+    // 鉴权信息写入请求
+    config.headers = config.headers || {}
+    config.headers.accessToken = Authorization === true ? undefined : Authorization;
+    return isAuthenticated
+  })
 }

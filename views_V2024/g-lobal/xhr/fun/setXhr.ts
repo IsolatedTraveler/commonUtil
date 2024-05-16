@@ -1,6 +1,5 @@
-import { CONTENTTYPE } from "../../common/xhr/magic/var"
-import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType } from "../../type"
-import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
+import { checkAuth } from "../../common/xhr"
+import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType, XhrRes } from "../../type"
 import { getXhr } from "./getXhr"
 
 /**
@@ -13,13 +12,16 @@ import { getXhr } from "./getXhr"
 export function setXhr(
   url: string,
   data: any,
+  param: any,
   type: AjaxRequestType,
   { urlType, isCheck }: AjaxRequestOption,
-  param: any,
-  config: AjaxRequestConfig,
-  isRest: boolean) {
-  if (isCheck && that.checkAuth) {
-    that.checkAuth(config, url, isRest)
-  }
-  return getXhr(url, data, param, type, urlType)
+  config: AjaxRequestConfig
+  , reset: Boolean): Promise<XhrRes> {
+  // 是否鉴权
+  return checkAuth(config, url, { isCheck, reset }).then((isRest) => {
+    return getXhr(url, data, param, type, urlType).then((res) => {
+      if (reset || isRest) return res
+      return setXhr(url, data, param, type, { urlType, isCheck: true }, config, true)
+    })
+  })
 }

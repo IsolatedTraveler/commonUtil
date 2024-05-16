@@ -1,5 +1,5 @@
 import { CONTENTTYPE } from "../../common/xhr/magic/var"
-import { AjaxRequestType, UrlType } from "../../type"
+import { AjaxRequestType, UrlType, XhrRes } from "../../type"
 import { buildAbsoluteUrl, buildUrlWithQueryParams } from "../../url"
 import { errFormat } from "../../util"
 import { AJAX_TIMEOUT } from "../var"
@@ -17,7 +17,7 @@ export function getXhr(
   data: any,
   param: any,
   type: AjaxRequestType = 'GET',
-  urlType: UrlType = 'origin') {
+  urlType: UrlType = 'origin'): Promise<XhrRes> {
   return new Promise((resolve, reject) => {
     try {
       url = buildAbsoluteUrl(url, urlType)

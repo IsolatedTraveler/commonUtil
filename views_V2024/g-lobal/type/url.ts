@@ -1,1 +1,1 @@
-export type UrlType = 'origin' | undefined
+export type UrlType = 'origin' | 'service' | undefined
