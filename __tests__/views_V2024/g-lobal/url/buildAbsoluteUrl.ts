@@ -1,5 +1,5 @@
 import { setLoaction } from '../../../../__mocks__/location';
-import { buildAbsoluteUrl, getAppBaseUrl } from '../../../../views_V2024/g-lobal'
+import { buildAbsoluteUrl } from '../../../../views_V2024/g-lobal'
 describe('buildAbsoluteUrl Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {
