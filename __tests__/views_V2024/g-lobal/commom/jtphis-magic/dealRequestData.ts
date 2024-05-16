@@ -1,11 +1,8 @@
+import { setLoaction } from '../../../../../__mocks__/location';
 import { session } from '../../../../../views_V2024/g-lobal';
 import { dealRequestData } from '../../../../../views_V2024/g-lobal/common/system/jtphis-magic'
 describe('dealRequestData Function', () => {
-  beforeEach(() => {
-    // 重置所有可能影响后续测试的模拟
-    jest.restoreAllMocks();
-    jest.resetAllMocks();
-  });
+  beforeEach(() => setLoaction());
   afterEach(() => {
     // 确保每次测试后清理模拟，避免测试间互相影响
     jest.clearAllMocks();

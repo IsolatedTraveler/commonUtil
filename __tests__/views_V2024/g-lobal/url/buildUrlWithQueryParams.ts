@@ -1,16 +1,8 @@
+import { setLoaction } from '../../../../__mocks__/location';
 import { buildUrlWithQueryParams } from '../../../../views_V2024/g-lobal'
 let href = 'http://example.com/zshis123/webs/some/path/index.html'
 describe('buildUrlWithQueryParams Function', () => {
-  beforeEach(() => {
-    // 重置所有可能影响后续测试的模拟
-    jest.restoreAllMocks();
-    jest.resetAllMocks();
-    // 确保location.href在每个测试开始前都被重置
-    Object.defineProperty(window, 'location', {
-      value: { href: href }, // 或者设置一个默认值，如果需要的话
-      writable: true
-    });
-  });
+  beforeEach(() => setLoaction(href));
   afterEach(() => {
     // 确保每次测试后清理模拟，避免测试间互相影响
     jest.clearAllMocks();

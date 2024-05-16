@@ -1,5 +1,5 @@
 import { dealXhrRes } from '../../../../views_V2024/g-lobal/main'
-describe('buildUrlWithQueryParams Function', () => {
+describe('dealXhrRes Function', () => {
   it('处理成功的HTTP响应（200-299状态码）且响应为JSON格式', () => {
     // 模拟一个成功的xhr对象
     const mockXhr = {

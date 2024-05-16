@@ -4,8 +4,8 @@ const config: Config = {
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   testEnvironment: "jest-environment-jsdom",
   clearMocks: true,
-  collectCoverage: true,
-  coverageDirectory: "coverage",
+  // collectCoverage: true,
+  // coverageDirectory: "coverage",
   coverageProvider: "v8",
   preset: 'ts-jest/presets/default'
 };

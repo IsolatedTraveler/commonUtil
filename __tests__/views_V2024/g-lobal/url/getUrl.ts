@@ -1,11 +1,11 @@
 import { getUrl } from '../../../../views_V2024/g-lobal/main'
-describe('setAppBaseUrl Function', () => {
+describe('getUrl Function', () => {
   it('当输入为 URL 对象时，应返回相同的 URL 对象', () => {
     const urlObj = new URL('https://example.com');
     expect(getUrl(urlObj)).toBe(urlObj);
   });
   // 输入为 Location 对象的测试（注意实际执行环境）
-  it.skip('当输入为 Location 对象时，应返回相同的 Location 对象', () => {
+  it('当输入为 Location 对象时，应返回相同的 Location 对象', () => {
     expect(getUrl(window.location)).toBe(window.location);
   });
   // 输入为有效字符串 URL 的测试
