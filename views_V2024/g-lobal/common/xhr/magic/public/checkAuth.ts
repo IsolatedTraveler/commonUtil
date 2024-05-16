@@ -7,7 +7,7 @@ import { Authorization, getAuthorization, XHR_JQ_URL } from "../var";
  * @param {{ isCheck?: boolean, reset?: boolean }} options - 配置项，包括是否执行鉴权检查（isCheck，默认为true）和是否重置鉴权信息（reset，默认为false）
  * @returns {Promise<boolean>} - 表示鉴权是否成功的Promise
  */
-export function checkAuth(config: AjaxRequestConfig, url: string, { isCheck = true, reset = false }: XhrAuthParam): Promise<Boolean> {
+export function checkAuth(url: string, config: AjaxRequestConfig = {}, { isCheck = true, reset = false }: XhrAuthParam): Promise<Boolean> {
   // url 等于 鉴权url  直接返回
   if (url === XHR_JQ_URL) return Promise.resolve(true)
   // 不鉴权  返回

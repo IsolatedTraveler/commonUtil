@@ -22,9 +22,9 @@ export function setXhr(
   type: AjaxRequestType,
   { urlType, isCheck }: AjaxRequestOption,
   config: AjaxRequestConfig
-  , reset: Boolean): Promise<XhrRes> {
+  , reset?: Boolean): Promise<XhrRes> {
   // 是否鉴权
-  return checkAuth(config, url, { isCheck, reset }).then((isRest) => {
+  return checkAuth(url, config, { isCheck, reset }).then((isRest) => {
     // 获取远程数据
     return getXhr(url, data, param, type, urlType).then((res) => {
       // 判断是否因未鉴权报错 不是直接返回

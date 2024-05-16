@@ -1,6 +1,6 @@
 import { AjaxRequestType, buildAbsoluteUrl } from "../views_V2024/g-lobal";
 import { XHR_JQ_URL } from "../views_V2024/g-lobal/common/xhr/magic/var";
-type XMLSjlx = 'string' | 'jsonS' | 'jsonE'
+type XMLSjlx = 'string' | 'jsonS' | 'jsonE' | 'session'
 export interface XMLData {
   state: 'success' | 'error' | 'timeout'
   sjlx: XMLSjlx
@@ -38,16 +38,23 @@ export class XMLHttpRequest {
   private getSjData(sjlx: XMLSjlx) {
     var data, str = 'success'
     if (new RegExp(XHR_JQ_URL).test(this.url)) {
-      var accessToken = sessionStorage.getItem('Authorization')
-      if (!accessToken) {
-        const { jqcs } = getXmlCalc()
+      const { jqcs } = getXmlCalc()
+      var accessToken
+      if (jqcs) {
         accessToken = sessionStorage.getItem(`Authorization${jqcs}`)
+      }
+      if(!accessToken) {
+        accessToken = sessionStorage.getItem('Authorization')
       }
       data = { code: 1, data: { accessToken } }
     } else if (sjlx === 'jsonS') {
       data = { code: 1, data: {}, message: '' }
     } else if (sjlx === 'jsonE') {
       data = { code: -1, data: null, message: '错误测试' }
+    } else if (sjlx === 'session') {
+      const url = sessionStorage.getItem('xhrUrl') || ''
+      const i =sessionStorage.getItem(url)
+      data = JSON.parse(sessionStorage.getItem('session'+i) as string)
     }
     this.responseText = data ? JSON.stringify(data) : str
   }
@@ -89,7 +96,12 @@ export function initXml(url: string) {
 export function getXmlCalc(): any {
   const url = sessionStorage.getItem('xhrUrl') || ''
   return {
-    [url]: sessionStorage.getItem(url),
+    xhrUrl: sessionStorage.getItem(url),
     jqcs: sessionStorage.getItem(XHR_JQ_URL)
   }
+}
+export function setXmlRes(data:any[]) {
+  data.forEach((it,i)=>{
+    sessionStorage.setItem('session'+(i+1), JSON.stringify(it))
+  })
 }
