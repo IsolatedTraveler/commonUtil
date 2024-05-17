@@ -1,13 +1,14 @@
-import { AjaxRequestType, buildAbsoluteUrl } from "../views_V2024/g-lobal";
+import { AjaxRequestType } from "../views_V2024/g-lobal";
 import { XHR_JQ_URL } from "../views_V2024/g-lobal/common/xhr/magic/var";
 type XMLSjlx = 'string' | 'jsonS' | 'jsonE' | 'session'
 export interface XMLData {
-  state: 'success' | 'error' | 'timeout'
+  state: 'success' | 'error' | 'timeout' | 'xhrError'
   sjlx: XMLSjlx
   data?: XMLData
 }
 export const XML_ERROR_DATA = { "code": -1, "data": null, "message": "请求失败：网络错误" }
 export const XML_TIMEOUT_DATA = { "code": -1, "data": null, "message": "请求失败：网络连接超时" }
+export const XML_XHR_ERROR_DATA = { "code": -1, "data": null, "message": "请求过程中发生错误：请求过程报错" }
 export const XML_JSON_E_DATA = { code: -1, message: "错误测试", data: null }
 export const XML_JSON_S_DATA = { code: 1, message: undefined, data: {} }
 export class XMLHttpRequest {
@@ -35,6 +36,9 @@ export class XMLHttpRequest {
       }
     } catch (e) {
       // 
+    }
+    if ((data as XMLData).state === 'xhrError') {
+      throw '请求过程报错'
     }
     if (this.async) {
       setTimeout(() => {

@@ -24,7 +24,6 @@ describe('getUrlParams Function', () => {
     const url = new URL('http://example.com/?key=special+value');
     expect(getUrlParams('key', url)).toBe('special+value');
   });
-
   it('未找到指定键时返回undefined', () => {
     const url = new URL('http://example.com/?key=value');
     expect(getUrlParams('nonExistentKey', url)).toBe(undefined);

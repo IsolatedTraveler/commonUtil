@@ -1,5 +1,5 @@
 import {
-  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, CONFIG_URL, DICS, MKQX, MKQX_URL, SYSTEM, XZQH_URL, configData, setConfigData, setUser, user, checkAuth, setServerUrl
+  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, CONFIG_URL, DICS, MKQX, MKQX_URL, SYSTEM, XZQH_URL, getSystem, configData, setConfigData, setUser, user, checkAuth, setServerUrl
 } from '../../g-lobal/common'
 declare global {
   interface GLOBAL$COMMON$V2024$TYPE {
@@ -15,6 +15,7 @@ declare global {
     MKQX_URL: typeof MKQX_URL
     SYSTEM: typeof SYSTEM
     XZQH_URL: typeof XZQH_URL
+    getSystem: typeof getSystem
     configData: typeof configData
     setConfigData: typeof setConfigData
     setUser: typeof setUser

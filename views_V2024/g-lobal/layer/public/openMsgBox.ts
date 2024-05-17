@@ -14,7 +14,7 @@ import { alertMsg, confirmMsg } from "../../common";
  * @param {string[]} [button] - 自定义按钮数组，如果不提供且`type`不是`'0'`，则使用预设按钮。
  * @returns {Promise<any>} - 如果弹出的是确认对话框，根据用户点击按钮的结果返回Promise。
  */
-export function openMsgBox(title: string, msg: string, type: string, button: string[]) {
+export function openMsgBox(title: string, msg: string, type: string, button?: string[]) {
   if (type == '0') {
     alertMsg(msg, title)
     return Promise.resolve()

@@ -1,8 +1,7 @@
 import { getSystem } from "../../../../../views_V2024/g-lobal/common/system";
-const w: any = undefined
 describe('getSystem function', () => {
   it('如未定义window.jthisJsObject时应返回Undefined', () => {
-    (window as any).jthisJsObject = {} as any
+    (window as any).jthisJsObject = undefined
     const v = getSystem()
     expect(v).toBeUndefined()
   })

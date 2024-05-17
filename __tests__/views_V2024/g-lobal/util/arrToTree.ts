@@ -1,11 +1,20 @@
 import { TreeNode, arrToTree } from '../../../../views_V2024/g-lobal'
+const layer: any = { alert: () => { }, close: (i: number) => i }
 describe('arrToTree Function', () => {
+  beforeEach(() => {
+    (window as any).layer = layer
+    jest.spyOn(layer, 'alert').mockImplementation((msg: any) => {
+    })
+    jest.spyOn(console, 'error').mockImplementation(() => { });
+  })
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
   it('应正确处理空数组', () => {
     const data: TreeNode[] = [];
     const tree = arrToTree(data);
     expect(tree).toEqual([]);
   });
-
   it('应正确处理只有一个元素的数组', () => {
     const data: TreeNode[] = [{ id: 1, name: 'root' }];
     const tree = arrToTree(data);
@@ -50,4 +59,15 @@ describe('arrToTree Function', () => {
     ];
     expect(tree).toEqual(expectedResult);
   });
+  it('发生错误时应调用alertMsg', () => {
+    jest.spyOn(Array.prototype, 'forEach').mockImplementationOnce((cb) => {
+      throw new Error('Test Error'); // 强制抛出错误
+    });
+    const data: any[] = [
+      { customId: 1, customParentId: undefined, name: 'root' },
+      { customId: 2, customParentId: 1, name: 'child' }
+    ];
+    const tree = arrToTree(data, 'customId', 'customParentId');
+    expect(tree).toEqual(data);
+  })
 });

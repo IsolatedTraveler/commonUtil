@@ -1,4 +1,4 @@
-import { XMLHttpRequest, XMLData, XML_TIMEOUT_DATA, XML_ERROR_DATA, XML_JSON_E_DATA, initXml, getXmlCalc } from '../../../../__mocks__/XMLHttpRequest';
+import { XMLHttpRequest, XMLData, XML_TIMEOUT_DATA, XML_ERROR_DATA, XML_JSON_E_DATA, initXml, getXmlCalc, XML_XHR_ERROR_DATA } from '../../../../__mocks__/XMLHttpRequest';
 import { setLoaction } from '../../../../__mocks__/location';
 import { getXhr } from '../../../../views_V2024/g-lobal/main'
 
@@ -54,5 +54,13 @@ describe('getXhr Function', () => {
       sjlx: 'string'
     }
     await expect(getXhr(url, data, {}, 'GET')).rejects.toEqual(XML_TIMEOUT_DATA)
+  });
+  it('xhr 测试请求报错', async () => {
+    let url = 'http://127.0.0.1:8020/his-flie/sc/public/data/config.json'
+    const data: XMLData = {
+      state: 'xhrError',
+      sjlx: 'string'
+    }
+    await expect(getXhr(url, data, {}, 'GET')).rejects.toEqual(XML_XHR_ERROR_DATA)
   });
 });

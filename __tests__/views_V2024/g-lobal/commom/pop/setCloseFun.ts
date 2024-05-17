@@ -5,7 +5,6 @@ import { closeFun, setCloseFun } from "../../../../../views_V2024/g-lobal/main";
 describe('setCloseFun function', () => {
   let mockWindowLayerClose: any;
   let spyClick: any;
-  let mockVueInstance: any;
   beforeAll(() => {
     // 模拟window.layer.close
     mockWindowLayerClose = jest.fn();
@@ -18,7 +17,7 @@ describe('setCloseFun function', () => {
     jest.restoreAllMocks();
   });
   it('应当调用window.layer.close正确关闭窗口', () => {
-    setCloseFun(1, mockVueInstance, jest.fn(), 1);
+    setCloseFun(1, window, jest.fn(), 1);
     closeFun?.();
     expect(closeFun).toBeUndefined()
     expect(mockWindowLayerClose).toHaveBeenCalledWith(1);

@@ -6,11 +6,7 @@ export function getUrlParams(key: string | null | undefined = '', url: string | 
   search.forEach(function (it) {
     if (it) {
       var data = it.split('=');
-      try {
-        urlParam[data[0]] = decodeURIComponent(data[1]);
-      } catch (e) {
-        urlParam[data[0]] = data[1];
-      }
+      urlParam[data[0]] = decodeURIComponent(data[1]);
     }
   });
   return key ? urlParam[key] : urlParam

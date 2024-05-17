@@ -6,7 +6,7 @@ export const DICS: { [key: string]: any } = {}
   , MKQX_URL = '/magic/xt01-xtjc/03/11/s-mkqx'
 export function getSystem() {
   try {
-    return (window.jthisJsObject || {}).jthis
+    return window.jthisJsObject.jthis
   } catch {
     return
   }
