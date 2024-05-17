@@ -4,10 +4,12 @@ type XMLSjlx = 'string' | 'jsonS' | 'jsonE' | 'session'
 export interface XMLData {
   state: 'success' | 'error' | 'timeout'
   sjlx: XMLSjlx
+  data?: XMLData
 }
 export const XML_ERROR_DATA = { "code": -1, "data": null, "message": "请求失败：网络错误" }
 export const XML_TIMEOUT_DATA = { "code": -1, "data": null, "message": "请求失败：网络连接超时" }
 export const XML_JSON_E_DATA = { code: -1, message: "错误测试", data: null }
+export const XML_JSON_S_DATA = { code: 1, message: undefined, data: {} }
 export class XMLHttpRequest {
   status = 0
   responseText = ''
@@ -26,13 +28,20 @@ export class XMLHttpRequest {
   setRequestHeader(header: string, value: string) {
     this.requestHeaders[header] = value;
   }
-  send(data: XMLData) {
+  send(data: XMLData | string) {
+    try {
+      if (typeof data === 'string') {
+        data = JSON.parse(data) as XMLData
+      }
+    } catch (e) {
+      // 
+    }
     if (this.async) {
       setTimeout(() => {
-        this.onreadystatechange(data);
+        this.onreadystatechange(data as XMLData);
       }, 0);
     } else {
-      this.onreadystatechange(data)
+      this.onreadystatechange(data as XMLData)
     }
   }
   private getSjData(sjlx: XMLSjlx) {
@@ -43,7 +52,7 @@ export class XMLHttpRequest {
       if (jqcs) {
         accessToken = sessionStorage.getItem(`Authorization${jqcs}`)
       }
-      if(!accessToken) {
+      if (!accessToken) {
         accessToken = sessionStorage.getItem('Authorization')
       }
       data = { code: 1, data: { accessToken } }
@@ -53,8 +62,8 @@ export class XMLHttpRequest {
       data = { code: -1, data: null, message: '错误测试' }
     } else if (sjlx === 'session' || sessionStorage.getItem('xml') === 'session') {
       const url = sessionStorage.getItem('xhrUrl') || ''
-      const i =sessionStorage.getItem(url)
-      data = JSON.parse(sessionStorage.getItem('session'+i) as string)
+      const i = sessionStorage.getItem(url)
+      data = JSON.parse(sessionStorage.getItem('session' + i) as string)
     }
     this.responseText = data ? JSON.stringify(data) : str
   }
@@ -62,22 +71,31 @@ export class XMLHttpRequest {
     if (str && new RegExp(str).test(this.url)) {
       const v = Number(sessionStorage.getItem(str) || 0)
       sessionStorage.setItem(str, `${v + 1}`)
+      sessionStorage.setItem(str + '-header', JSON.stringify(this.requestHeaders))
     }
   }
-  onreadystatechange({ state, sjlx }: XMLData) {
+  onreadystatechange({ state, sjlx, data }: XMLData) {
+    if (data) {
+      state = state || data.state
+      sjlx = sjlx || data.sjlx
+    }
     this.calc(XHR_JQ_URL)
     this.calc(sessionStorage.getItem('xhrUrl'))
-    if (state == 'error') {
+    const stateV = sessionStorage.getItem('state')
+    if (state == 'error' || stateV === 'error') {
       this.status = 404
       this.onerror()
       return
-    } else if (state === 'timeout') {
+    } else if (state === 'timeout' || stateV === 'timeout') {
       this.ontimeout()
       return
     } else {
       this.status = 200
       this.getSjData(sjlx)
       this.onload()
+    }
+    if (stateV) {
+      sessionStorage.removeItem('state')
     }
   }
   onload() {
@@ -92,16 +110,20 @@ export function initXml(url: string) {
   sessionStorage.setItem('xhrJqUrl', XHR_JQ_URL)
   sessionStorage.setItem(url, '0')
   sessionStorage.setItem(XHR_JQ_URL, '0')
+  sessionStorage.removeItem(url + '-header')
+  sessionStorage.removeItem(XHR_JQ_URL + '-header')
 }
 export function getXmlCalc(): any {
   const url = sessionStorage.getItem('xhrUrl') || ''
   return {
     xhrUrl: sessionStorage.getItem(url),
-    jqcs: sessionStorage.getItem(XHR_JQ_URL)
+    jqcs: sessionStorage.getItem(XHR_JQ_URL),
+    head: sessionStorage.getItem(url + '-header'),
+    jqHead: sessionStorage.getItem(XHR_JQ_URL + '-header')
   }
 }
-export function setXmlRes(data:any[]) {
-  data.forEach((it,i)=>{
-    sessionStorage.setItem('session'+(i+1), JSON.stringify(it))
+export function setXmlRes(data: any[]) {
+  data.forEach((it, i) => {
+    sessionStorage.setItem('session' + (i + 1), JSON.stringify(it))
   })
 }

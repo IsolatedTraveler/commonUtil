@@ -1,4 +1,4 @@
-import { getXhr } from "../../../../main"
+import { getXhr } from "../../../../xhr/fun/getXhr"
 import { session } from "../../../../util/public/session"
 import { DEFAULT_AUTH_USER, XHR_JQ_URL } from "./const"
 
@@ -14,7 +14,7 @@ export function getAuthorization(judge: Boolean): Promise<void> {
   // 获取鉴权参数
   const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER
   // 发起鉴权请求 并设置鉴权信息
-  return getXhr(XHR_JQ_URL, JSON.stringify(user), {}, 'POST', 'service').then((res) => {
+  return getXhr(XHR_JQ_URL, JSON.stringify(user), {}, 'POST', 'service', {}).then((res) => {
     Authorization = res.data.accessToken || true
   }).catch(() => {
     Authorization = true

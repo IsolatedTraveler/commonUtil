@@ -11,5 +11,5 @@ import { convertObjectToQueryString } from "./convertObjectToQueryString";
  * @returns {string} 完整的URL字符串，包含追加的查询参数。
  */
 export function buildUrlWithQueryParams(obj: any, url: string | URL = ''): string {
-  return url ? appendParamsToUrl(obj, url) : convertObjectToQueryString(obj)
+  return obj ? (url ? appendParamsToUrl(obj, url) : convertObjectToQueryString(obj)) : String(url)
 }

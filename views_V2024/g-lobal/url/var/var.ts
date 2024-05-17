@@ -7,6 +7,10 @@ export var appBaseUrl: string // 应用基础URL
  * @returns {string} 应用程序的基础URL。
  */
 export function setAppBaseUrl(): string {
-  let url = window.location.href
-  return appBaseUrl = url.split(URL_PATTERN)[0]
+  try {
+    let url = window.location.href
+    return appBaseUrl = url.split(URL_PATTERN)[0]
+  } catch {
+    return ''
+  }
 }

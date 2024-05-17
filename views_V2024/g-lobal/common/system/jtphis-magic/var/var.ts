@@ -1,5 +1,5 @@
-import { getXhr } from "../../../../main"
-import { session } from "../../../../util"
+import { getXhr } from "../../../../xhr/fun/getXhr"
+import { session } from "../../../../util/public/session"
 import { CONFIG_URL, SYSTEM } from "./const"
 
 export var user: any // 用户信息
@@ -8,7 +8,6 @@ export var user: any // 用户信息
 * @description 
 * @author 何波
 * @date 2024-04-29 10:01:38
-* @param {} 
 */
 export function setUser(): any {
   if (SYSTEM) {
@@ -27,5 +26,5 @@ export function setUser(): any {
  * 4. 函数返回configData的设置操作，虽然实际上此返回值在异步操作的上下文中可能不会被直接使用，因为getAjax方法通常是异步的。
  */
 export function setConfigData() {
-  return configData=getXhr(CONFIG_URL, {},{v:new Date()}, 'GET')
+  return configData = getXhr(CONFIG_URL, {}, { v: new Date() }, 'GET', 'origin', {})
 }

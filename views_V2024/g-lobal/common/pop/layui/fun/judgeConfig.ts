@@ -13,7 +13,8 @@
  * @returns {boolean} - 始终返回`false`，表示函数执行完毕且无其他值需要关注。
  */
 export function judgeConfig(i: string, j: number, len: number, resolve: Function, reject: Function) {
-  window.layer.close(i)
+  if (window.layer)
+    window.layer.close(i)
   if (len == j) {
     reject()
   } else {

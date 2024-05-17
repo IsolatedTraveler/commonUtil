@@ -1,1 +1,2 @@
-export { setConfigData } from "./var";
+export * from "./var";
+export * from "./public";

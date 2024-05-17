@@ -14,7 +14,7 @@ describe('dealRequestData Function', () => {
       jgmc: '公司名称',
       jgjc: '公司简称',
       yhm: 'username',
-      xm: '张三',
+      username: '张三',
       superadmin: false
     }
   })

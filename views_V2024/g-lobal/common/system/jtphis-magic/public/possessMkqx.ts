@@ -1,5 +1,6 @@
+import { ajaxPost } from "../../../../xhr/public";
 import { alertMsg } from "../../../pop";
-import { MKQX } from "../var";
+import { MKQX, MKQX_URL } from "../var";
 
 /**
  * @description 根据给定的模块编号(mkbh)和(可选的)模块细分代码(dm)，异步获取权限信息。
@@ -15,7 +16,7 @@ export function possessMkqx(mkbh: string, dm?: string): Promise<string | Record<
   if (MKQX[id]) {
     return MKQX[id]
   } else {
-    return MKQX[id] = GLOBAL$XHR$V2024$.asyncQueryPost('/magic/xt01-xtjc/03/11/s-mkqx', { mkbh, dm }).then(res => {
+    return MKQX[id] = ajaxPost(MKQX_URL, { mkbh, dm }).then(res => {
       if (res.code === 1) {
         const list = res.data.list || []
         if (dm) {

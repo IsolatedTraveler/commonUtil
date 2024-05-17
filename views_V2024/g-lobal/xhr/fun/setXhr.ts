@@ -21,12 +21,12 @@ export function setXhr(
   param: any,
   type: AjaxRequestType,
   { urlType, isCheck }: AjaxRequestOption,
-  config: AjaxRequestConfig
+  config: AjaxRequestConfig = {}
   , reset?: Boolean): Promise<XhrRes> {
   // 是否鉴权
   return checkAuth(url, config, { isCheck, reset }).then((isRest) => {
     // 获取远程数据
-    return getXhr(url, data, param, type, urlType).then((res) => {
+    return getXhr(url, data, param, type, urlType, config).then((res) => {
       // 判断是否因未鉴权报错 不是直接返回
       if (res.code !== XHR_JQ_CODE) return res
       // 判断本次请求是否刷新鉴权信息，是直接返回

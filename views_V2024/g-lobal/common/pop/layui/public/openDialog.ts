@@ -1,5 +1,5 @@
 import { alertMsg } from "./alertMsg";
-import { setCloseFun } from "../fun";
+import { setCloseFun } from "../var";
 import { convertToAbsoluteUrl } from "../../../../url/fun";
 import { buildUrlWithQueryParams } from "../../../../url/public/buildUrlWithQueryParams";
 import { getAppBaseUrl } from "../../../../url/public/getAppBaseUrl";

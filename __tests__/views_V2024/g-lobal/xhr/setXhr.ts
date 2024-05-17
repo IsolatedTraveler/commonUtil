@@ -15,10 +15,11 @@ describe('setXhr Function', () => {
   });
   it('当isCheck为true时，应调用checkAuth和getXhr', async () => {
     initXml(url)
-    const data: XMLData = {state: 'success',sjlx: 'jsonS'}
+    const data: XMLData = { state: 'success', sjlx: 'jsonS' }
+    const cs = Authorization ? '0' : '1'
     const v = await setXhr('/api/test', data, {}, 'GET', { urlType: 'service', isCheck: true }, {});
     const res = getXmlCalc()
-    expect(res.jqcs).toBe('1')
+    expect(res.jqcs).toBe(cs)
     expect(res.xhrUrl).toBe('1')
     expect(Authorization).toBe(true)
     expect(v).toEqual({ code: 1, message: undefined, data: {} })
@@ -26,25 +27,25 @@ describe('setXhr Function', () => {
   it('测试二次鉴权，后返回成功数据', async () => {
     initXml(url)
     sessionStorage.setItem('Authorization1', 'cs1')
-    setXmlRes([{code: XHR_JQ_CODE,message: '鉴权失败'},{code: 1,data: 'cs'}])
-    const data: XMLData = {state: 'success',sjlx: 'session'}
+    setXmlRes([{ code: XHR_JQ_CODE, message: '鉴权失败' }, { code: 1, data: 'cs' }])
+    const data: XMLData = { state: 'success', sjlx: 'session' }
     const v = await setXhr('/api/test', data, {}, 'GET', { urlType: 'service', isCheck: true }, {}, false);
     const res = getXmlCalc()
     expect(res.jqcs).toBe('1')
     expect(res.xhrUrl).toBe('2')
     expect(Authorization).toBe('cs1')
-    expect(v).toEqual({code: 1,data: 'cs'})
+    expect(v).toEqual({ code: 1, data: 'cs' })
   });
   it('测试二次鉴权，后返回鉴权失败数据', async () => {
     initXml(url)
     sessionStorage.setItem('Authorization1', 'cs1')
-    setXmlRes([{code: XHR_JQ_CODE,message: '鉴权失败'},{code: XHR_JQ_CODE,message: '鉴权失败'}])
-    const data: XMLData = {state: 'success',sjlx: 'session'}
+    setXmlRes([{ code: XHR_JQ_CODE, message: '鉴权失败' }, { code: XHR_JQ_CODE, message: '鉴权失败' }])
+    const data: XMLData = { state: 'success', sjlx: 'session' }
     const v = await setXhr('/api/test', data, {}, 'GET', { urlType: 'service', isCheck: true }, {}, false);
     const res = getXmlCalc()
     expect(res.jqcs).toBe('1')
     expect(res.xhrUrl).toBe('2')
     expect(Authorization).toBe('cs1')
-    expect(v).toEqual({code: XHR_JQ_CODE,message: '鉴权失败'})
+    expect(v).toEqual({ code: XHR_JQ_CODE, message: '鉴权失败' })
   });
 });

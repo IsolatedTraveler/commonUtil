@@ -1,23 +1,21 @@
 import { AjaxRequestOption } from "../../../../type/xhr"
 import { getUser } from "./getUser"
 /**
- * @param {any} data - 需要发送的数据对象。
- * @param {AjaxRequestOption} [option={}] - 请求的可选配置对象，默认为空对象。
- * @param {AjaxRequestConfig} [config={}] - 通用的Ajax请求配置，默认为空对象。
- * @param {AjaxRequestType} [type='POST'] - 请求类型，默认为'POST'。
+ * 处理请求数据，根据配置选项对数据进行预处理。
  *
- * @returns {string} 返回处理后的数据字符串，准备用于Ajax请求的发送。
+ * 此函数会对传入的数据对象进行一系列的加工处理，包括但不限于：
+ * - 根据`option.isNotGetUser`决定是否合并当前用户信息到数据中。
+ * - 若数据中包含分页参数，则统一转换为`page`和`size`格式。
+ * - 最后根据`option.isNotWrapped`决定是否将数据包装在"data"键下进行序列化。
  *
- * @description 功能描述：
- * 1. 检查`option.isCheck`是否为`false`，但此处漏写了对应的逻辑处理，可能是一个待完成的条件判断。
- * 2. 如果存在`that`对象且其具有`dealAjaxData`方法，则调用该方法处理数据，优先使用自定义逻辑。
- * 3. 若`option.isNotGetUser`不为`true`，则将全局的用户信息`getUser()`与`data`合并。
- * 4. 根据`option.isNotWrapped`决定数据是否需要额外包装。如果不包装（默认行为或明确指定不包装），直接将数据序列化为JSON字符串。
- *    否则，将数据放入一个带有"data"键的对象中再进行序列化，这种做法常见于需要在服务端解析特定格式的场景。
+ * @param {any} data - 原始请求数据对象，将被处理和/或附加其他信息。
+ * @param {AjaxRequestOption} [option={}] - 处理数据的选项配置，默认为空对象。
+   - `isNotGetUser`: 布尔值，指示是否不获取并添加用户信息到请求数据中。
+   - `isNotWrapped`: 布尔值，指示是否不将数据包裹在"data"键内返回，直接返回原始数据对象的序列化形式。
+ *
+ * @returns {string} - 处理后的数据，以JSON字符串的形式返回，适配Ajax请求的发送。
  */
-export function dealRequestData(data: any,
-  option: AjaxRequestOption = {}) {
-  option.isCheck !== false
+export function dealRequestData(data: any, option: AjaxRequestOption = {}) {
   if (!option.isNotGetUser) {
     const user = getUser()
     data = Object.assign({}, {

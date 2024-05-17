@@ -14,9 +14,15 @@ describe('getAuthorization Function', () => {
     await getAuthorization(true);
     expect(Authorization).toBe('cs');
   });
-  it('鉴权请求失败时，应有合理的错误处理', async () => {
+  it('鉴权失败，应有合理的错误处理', async () => {
     // 执行鉴权检查
     sessionStorage.removeItem('Authorization')
+    await getAuthorization(true);
+    expect(Authorization).toBe(true);
+  });
+  it('鉴权请求失败，应有合理的错误处理', async () => {
+    // 执行鉴权检查
+    sessionStorage.setItem('state', 'timeout')
     await getAuthorization(true);
     expect(Authorization).toBe(true);
   });

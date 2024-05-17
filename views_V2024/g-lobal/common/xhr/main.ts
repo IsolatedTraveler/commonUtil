@@ -1,2 +1,1 @@
-
-export { getAuthorization, Authorization, XHR_JQ_URL } from "./magic/var";
+export * from './magic/main'

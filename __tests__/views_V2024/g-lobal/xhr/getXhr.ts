@@ -1,4 +1,4 @@
-import { XMLHttpRequest, XMLData, XML_TIMEOUT_DATA, XML_ERROR_DATA, XML_JSON_E_DATA } from '../../../../__mocks__/XMLHttpRequest';
+import { XMLHttpRequest, XMLData, XML_TIMEOUT_DATA, XML_ERROR_DATA, XML_JSON_E_DATA, initXml, getXmlCalc } from '../../../../__mocks__/XMLHttpRequest';
 import { setLoaction } from '../../../../__mocks__/location';
 import { getXhr } from '../../../../views_V2024/g-lobal/main'
 
@@ -29,11 +29,14 @@ describe('getXhr Function', () => {
   });
   it('xhr 测试成功返回数据String', async () => {
     let url = 'http://127.0.0.1:8020/his-flie/sc/public/data/config.json'
+    initXml(url)
     const data: XMLData = {
       state: 'success',
       sjlx: 'string'
     }
-    const xhr = await getXhr(url, data, {}, 'GET')
+    const xhr = await getXhr(url, data, {}, 'GET', 'origin', { headers: { accessToken: 'cs' } })
+    const res = getXmlCalc()
+    expect(res.head).toBe(JSON.stringify({ "Content-Type": "application/json; charset=utf-8", "accessToken": "cs" }))
     expect(xhr).toBe('success')
   });
   it('xhr 测试返回错误数据', async () => {

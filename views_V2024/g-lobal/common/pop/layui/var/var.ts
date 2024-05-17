@@ -1,3 +1,4 @@
+export var closeFun: undefined | (() => void)
 /**
  * @description 设置关闭窗口的回调函数，并可模拟点击指定按钮。多数情况和closeParentPop方法结合使用
  * 
@@ -10,11 +11,12 @@
  * @param {number} [btn=1] - 默认模拟点击的按钮序号，按钮序号从1开始计数。
  */
 export function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
-  that.closeFun = () => {
+  closeFun = () => {
     window.layer.close(i)
     resolve(btn)
+    closeFun = undefined
   }
-  if (w && w.$) {
-    w.$('#layerBtn .btn').eq(btn - 1).click();
+  if (window && window.$) {
+    window.$('#layerBtn .btn').eq(btn - 1).click();
   }
 }
