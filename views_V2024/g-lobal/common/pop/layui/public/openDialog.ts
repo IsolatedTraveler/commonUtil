@@ -20,7 +20,7 @@ import { getAppBaseUrl } from "../../../../url/public/getAppBaseUrl";
 export function openDialog(url: string, data: any, width: string | number, height: string | number, btn = ['确定', '取消'], title?: string) {
   return new Promise((resolve, reject) => {
     if (url === 'xtcs.html') {
-      url = convertToAbsoluteUrl('./webs/xtcs/xtcs.html', getAppBaseUrl())
+      url = convertToAbsoluteUrl('webs/xtcs/xtcs.html', getAppBaseUrl())
     }
     if (!isNaN(width as number)) {
       width += 'px'
@@ -29,7 +29,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
       height += 'px'
     }
     url += '?' + buildUrlWithQueryParams(Object.assign({ isShowPopup: true }, data))
-    if (window.layui && window.layer) {
+    if (window.layer) {
       var w: any, loadIndex: number
       const param: any = {
         type: 2,

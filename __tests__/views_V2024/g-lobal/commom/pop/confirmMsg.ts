@@ -9,6 +9,7 @@ describe('confirmMsg function', () => {
       options.cancel = cancelFn;
       option = options
     })
+    jest.spyOn(window, 'alert').mockImplementation(() => { });
   })
   afterEach(() => {
     (window as any).layer?.confirm?.mockRestore();

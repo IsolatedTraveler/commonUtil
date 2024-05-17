@@ -40,7 +40,7 @@ export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'
         judge = judgeConfig(i, 2, len, resolve, reject)
       })
     } else {
-      alert('未提供弹出层解决方案：' + msg)
+      window.alert('未提供弹出层解决方案：' + msg)
       reject('未提供弹出层解决方案：' + msg)
     }
   })

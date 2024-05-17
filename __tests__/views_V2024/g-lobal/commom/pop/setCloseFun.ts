@@ -1,7 +1,7 @@
 import { jquery } from "../../../../../__mocks__/jquery";
 import { closeFun, setCloseFun } from "../../../../../views_V2024/g-lobal/main";
-(global.window as any).$ = jquery
-console.log(jquery('1'))
+(global.window as any).$ = jquery;
+(global as any).that = {} as any
 describe('setCloseFun function', () => {
   let mockWindowLayerClose: any;
   let spyClick: any;

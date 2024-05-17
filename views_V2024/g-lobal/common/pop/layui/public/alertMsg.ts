@@ -18,6 +18,6 @@ export function alertMsg(msg: any, title: string = '提示信息') {
       icon: 'warning'
     })
   } else {
-    alert('该方法依赖layer或jQuery messager，请引用相关依赖。\n消息内容：' + msg)
+    window.alert('该方法依赖layer或jQuery messager，请引用相关依赖。\n消息内容：' + msg)
   }
 }
