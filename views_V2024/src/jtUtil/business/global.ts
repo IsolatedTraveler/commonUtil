@@ -1,6 +1,4 @@
-import { ajaxGet, ajaxPost, getUrlParams, toDecimalNumber } from "../../../g-lobal";
-import { alertMsg, getConfig, getUser, openDialog } from "../../../g-lobal/common";
-import { possessMkqx } from "../../../g-lobal/common/system/jtphis-magic/public/possessMkqx";
+import { ajaxGet, ajaxPost, getUrlParams, toDecimalNumber, alertMsg, getConfig, getUser, openDialog, possessMkqx } from "../../../g-lobal";
 import { Class } from "../core";
 // common
 Class.prototype.getConfig = getConfig

@@ -1,6 +1,6 @@
 import {
-  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, CONFIG_URL, DICS, MKQX, MKQX_URL, 
-  SYSTEM, XZQH_URL, getSystem, configData, setConfigData, setUser, user, checkAuth, setServerUrl, 
+  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, possessMkqx, CONFIG_URL, DICS, MKQX, 
+  MKQX_URL, SYSTEM, XZQH_URL, getSystem, configData, setConfigData, setUser, user, checkAuth, setServerUrl, 
   closeParentPop, openMsgBox, buildAbsoluteUrl, buildUrlWithQueryParams, convertObjectToQueryString, 
   getAppBaseUrl, getServerUrl, getUrlParams, arrToTree, divideString, errFormat, session, setPageTemp, 
   toDecimalNumber, ajaxGet, ajaxPost

@@ -11,8 +11,8 @@ export function alertMsg(msg: any, title: string = '提示信息') {
   }
   if (window.layer) {
     window.layer.alert(msg)
-  } else if ($.messager && $.messager.alert) {
-    $.messager.alert({
+  } else if ((<any>$).messager && (<any>$).messager.alert) {
+    (<any>$).messager.alert({
       title,
       msg,
       icon: 'warning'

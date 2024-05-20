@@ -1,1 +1,1 @@
-export * from './jtUtil'
+export * from './jtUtil/main'

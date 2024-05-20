@@ -5,7 +5,8 @@
     "views_V2024/g-lobal/type/index.ts",
     "views_V2024/g-lobal/url/main.ts",
     "views_V2024/g-lobal/util/main.ts",
-    "views_V2024/g-lobal/xhr/main.ts"
+    "views_V2024/g-lobal/xhr/main.ts",
+    "views_V2024/src/jtUtil/main.ts"
   ],
   "out": "docs",
   "name": "常用代码整理",

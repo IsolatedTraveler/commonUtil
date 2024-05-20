@@ -4,18 +4,33 @@ export interface LayuiTableCol {
 
 }
 export interface LayuiTableRes {
-  data:any[]
+  data: any[]
 }
 export interface LayuiTableParam {
-  elem: string 
+  elem: string
   cols: LayuiTableCol[][]
-  id:string
+  id: string
   height?: string
-  disabled?:boolean
+  disabled?: boolean
   data?: any[]
-  page?:LayuiPage|Boolean
+  page?: LayuiPage | boolean
   limit?: number
-  limits?:number[]
+  limits?: number[]
   // 加载完成后执行的方法
-  done?:(res: LayuiTableRes, curr:number, count:number)=>void
+  done?: (res: LayuiTableRes, curr: number, count: number) => void
+}
+export interface LayuiTablePage {
+  limit?: number
+  curr?: number
+  count?: number
+}
+export interface LayuiTableReloadParam {
+  height?: string | number
+  data?: any[]
+  count?: number
+  page?: LayuiTablePage
+}
+export interface LayuiTable {
+  on: (key: string, callBack: (rowData: any) => void) => void
+  reload: (param: LayuiTableReloadParam) => void
 }

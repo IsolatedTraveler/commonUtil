@@ -1,4 +1,4 @@
-import { ajaxPost } from "../../../../xhr/public";
+import { ajaxPost } from "../../../../xhr/public/post";
 import { alertMsg } from "../../../pop";
 import { MKQX, MKQX_URL } from "../var";
 

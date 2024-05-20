@@ -1,2 +1,6 @@
+export * from './getTablePageSize'
+export * from './getTBody'
+export * from './getTr'
 export * from './initQueryTable'
+export * from './initTable'
 export * from './tableReload'
