@@ -9,10 +9,11 @@ export interface JtTableParam extends LayuiTableParam {
   name?: string
   // table当前页面关联Form表单
   select?: string
+  cover?: LayuiTableParam
   getData?: (param: JtPage) => void
   // 行样式
   rowClass?: (row: any, i: number) => string
-  cover?: LayuiTableParam
+  click?: (row: any) => boolean
 }
 export interface JtTableData {
   list: any[]

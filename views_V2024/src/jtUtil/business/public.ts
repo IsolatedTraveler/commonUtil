@@ -1,3 +1,4 @@
 import { Class } from "../core";
-import { initQueryPage } from "../public";
+import { initQueryPage, initTable } from "../public";
 Class.prototype.initQueryPage = initQueryPage
+Class.prototype.initTable = initTable
