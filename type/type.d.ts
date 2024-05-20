@@ -5,8 +5,3 @@ declare interface Window {
   MODULENAME: any
   jthisJsObject: any
 }
-declare interface JQueryStatic {
-  messager: {
-    alert:(data:any)=>JQueryStatic
-  };
-}
