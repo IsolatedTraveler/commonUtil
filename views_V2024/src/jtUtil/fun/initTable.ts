@@ -5,10 +5,10 @@ import { getTr } from "./getTr"
  * 初始化并渲染一个 Layui 的表格组件，支持自定义列样式、数据处理逻辑及分页配置。
  *
  * @param {JtTableParam} param - 表格初始化参数对象。
- * @param {JtPage} [obj={}] - 可选，分页相关参数对象，当需要联动分页时使用。
+ * @param {JtPage} [page={}] - 可选，分页相关参数对象，当需要联动分页时使用。
  * @returns {void} 无直接返回值，但会初始化并渲染表格到指定元素。
  */
-export function initTable(param: JtTableParam, obj: JtPage = {}): LayuiTable {
+export function initTable(param: JtTableParam, page: JtPage = {}): LayuiTable {
   // 行样式
   const rowClass = param.rowClass
     // table渲染完成后执行的方法
@@ -55,8 +55,8 @@ export function initTable(param: JtTableParam, obj: JtPage = {}): LayuiTable {
       curr: 1,
       // 当分页被切换时触发
       jump(res: LayuiPage, first: Boolean) {
-        obj.size = res.limit
-        obj.page = res.curr
+        page.size = res.limit
+        page.page = res.curr
         //首次不执行
         if (!first) {
           if (param.select) {
@@ -64,7 +64,7 @@ export function initTable(param: JtTableParam, obj: JtPage = {}): LayuiTable {
             $(param.select).find('[lay-submit]').trigger('click')
           } else if (param.getData) {
             // 通过提供的加载数据方法加载
-            param.getData(obj)
+            param.getData(page)
           }
         }
       }

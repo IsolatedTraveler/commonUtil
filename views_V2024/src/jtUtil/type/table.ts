@@ -4,7 +4,8 @@ export interface JtPage {
   size?: number
 }
 export interface JtTableParam extends LayuiTableParam {
-  filter?: string
+  mxElem: string
+  filter: string
   // table当前页面唯一标识符
   name?: string
   // table当前页面关联Form表单
