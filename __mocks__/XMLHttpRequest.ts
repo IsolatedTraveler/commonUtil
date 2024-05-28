@@ -1,5 +1,6 @@
 import { AjaxRequestType } from "../views_V2024/g-lobal";
-import { XHR_JQ_URL } from "../views_V2024/g-lobal/common/xhr/magic/var";
+import { XHR_JQ_URL, CONFIG_URL } from "../views_V2024/g-lobal/common/main";
+import { config } from "./config";
 type XMLSjlx = 'string' | 'jsonS' | 'jsonE' | 'session'
 export interface XMLData {
   state: 'success' | 'error' | 'timeout' | 'xhrError'
@@ -49,6 +50,7 @@ export class XMLHttpRequest {
     }
   }
   private getSjData(sjlx: XMLSjlx) {
+    // console.log(, this.url)
     var data, str = 'success'
     if (new RegExp(XHR_JQ_URL).test(this.url)) {
       const { jqcs } = getXmlCalc()
@@ -68,6 +70,10 @@ export class XMLHttpRequest {
       const url = sessionStorage.getItem('xhrUrl') || ''
       const i = sessionStorage.getItem(url)
       data = JSON.parse(sessionStorage.getItem('session' + i) as string)
+    } else if (sjlx === 'string') {
+      str = 'success'
+    } else if (new RegExp(CONFIG_URL).test(this.url)) {
+      data = config
     }
     this.responseText = data ? JSON.stringify(data) : str
   }

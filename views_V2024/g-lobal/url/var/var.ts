@@ -1,7 +1,6 @@
 import { URL_PATTERN } from "./const"
 
 export var appBaseUrl: string // 应用基础URL
-  , serverUrl: string // 服务端URL
 /**
  * @description 设置应用程序的基础URL。
  * @returns {string} 应用程序的基础URL。

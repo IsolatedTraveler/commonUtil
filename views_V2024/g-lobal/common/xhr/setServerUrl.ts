@@ -1,1 +1,0 @@
-export { setServerUrl } from "./magic/public/setServerUrl";

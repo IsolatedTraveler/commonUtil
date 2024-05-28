@@ -1,10 +1,9 @@
 export const config = {
-  
-  "inURL":"http://172.16.10.3.8080/jtphis/",
-  "outURL":"http://smq.frp.cdjtwx.com:81/jtphis/",
-  "serverurl":["http://172.16.10.3.8080/jtphis/"],
-  "defaulturl":"http://172.16.10.3.8080/jtphis/",
-"magicServer": "http://172.16.10.3.8080/jtphis/",
+  "inURL": "http://172.16.10.3:8080/jtphis/",
+  "outURL": "http://smq.frp.cdjtwx.com:81/jtphis/",
+  "serverurl": ["http://172.16.10.3:8080/jtphis/"],
+  "defaulturl": "http://172.16.10.3:8080/jtphis/",
+  "magicServer": "http://172.16.10.3:8080/jtphis/",
   "xtxx": {
     "icon": "/public/images/yun/yun_logo.png",
     "title": "服务中心",

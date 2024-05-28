@@ -13,22 +13,22 @@ describe('buildAbsoluteUrl Function', () => {
   it('未指定URL类型时，能正确处理包含"./"的相对路径', () => {
     const relativePath = './relative/path';
     const result = buildAbsoluteUrl(relativePath);
-    expect(result).toBe('http://192.168.0.242:8080/jtphis/relative/path');
+    expect(result).toBe('http://127.0.0.1:8020/his-flie/sc/relative/path');
   });
   it('未指定URL类型时，能正确处理包含""的相对路径', () => {
     const relativePath = 'relative/path';
     const result = buildAbsoluteUrl(relativePath);
-    expect(result).toBe('http://192.168.0.242:8080/jtphis/relative/path');
+    expect(result).toBe('http://127.0.0.1:8020/his-flie/sc/relative/path');
   });
   it('未指定URL类型时，能正确处理包含"/"的相对路径', () => {
     const relativePath = '/relative/path';
     const result = buildAbsoluteUrl(relativePath);
-    expect(result).toBe('http://192.168.0.242:8080/relative/path');
+    expect(result).toBe('http://127.0.0.1:8020/relative/path');
   });
   it('未指定URL类型时，能正确处理包含"../"的相对路径', () => {
     const relativePathWithParentRef = '../parent/path';
     const result = buildAbsoluteUrl(relativePathWithParentRef);
-    expect(result).toBe('http://192.168.0.242:8080/parent/path');
+    expect(result).toBe('http://127.0.0.1:8020/his-flie/parent/path');
   });
   it('指定URL类型为"origin"时，能正确处理包含"./"的相对路径', () => {
     const relativePath = './another/path';

@@ -1,6 +1,7 @@
 import { getXhr } from "../../../../xhr/fun/getXhr"
 import { session } from "../../../../util/public/session"
 import { CONFIG_URL, SYSTEM } from "./const"
+import { setConfig } from "./config"
 
 export var user: any // 用户信息
   , configData: any // 应用配置

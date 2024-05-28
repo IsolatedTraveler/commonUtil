@@ -1,5 +1,5 @@
 import {
-  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, possessMkqx, CONFIG_URL, DICS, MKQX, MKQX_URL, SYSTEM, XZQH_URL, getSystem, configData, setConfigData, setUser, user, checkAuth, setServerUrl
+  alertMsg, confirmMsg, openDialog, dealRequestData, getConfig, getUser, possessMkqx, CONFIG_URL, DICS, MKQX, MKQX_URL, SYSTEM, XZQH_URL, getSystem, configData, setConfigData, setUser, user, serverUrl, setServerUrl, config, setConfig, checkAuth
 } from '../../g-lobal/common'
 declare global {
   interface GLOBAL$COMMON$V2024$TYPE {
@@ -21,8 +21,11 @@ declare global {
     setConfigData: typeof setConfigData
     setUser: typeof setUser
     user: typeof user
-    checkAuth: typeof checkAuth
+    serverUrl: typeof serverUrl
     setServerUrl: typeof setServerUrl
+    config: typeof config
+    setConfig: typeof setConfig
+    checkAuth: typeof checkAuth
   }
   let GLOBAL$COMMON$V2024$: GLOBAL$COMMON$V2024$TYPE
 }

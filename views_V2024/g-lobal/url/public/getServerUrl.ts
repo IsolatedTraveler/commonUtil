@@ -1,6 +1,5 @@
-import { setServerUrl } from "../../common/xhr/setServerUrl";
+import { serverUrl, setServerUrl } from "../../common/system/server";
 import { setPageTemp } from "../../util";
-import { serverUrl } from "../var";
 
 /**
  * @description 获取服务端URL。如果尚未设置，此函数会触发服务端URL的初始化过程。

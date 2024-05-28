@@ -3,4 +3,4 @@ import { initBaseBar, initQueryPage, initShortcutKey, initTable } from "../publi
 Class.prototype.initQueryPage = initQueryPage
 Class.prototype.initTable = initTable
 Class.prototype.initShortcutKey = initShortcutKey
-Class.prototype.initShortcutKey = initBaseBar
+Class.prototype.initBaseBar = initBaseBar

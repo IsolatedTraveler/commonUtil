@@ -1,6 +1,8 @@
 import { getXhr } from "../../../../xhr/fun/getXhr"
 import { session } from "../../../../util/public/session"
 import { DEFAULT_AUTH_USER, XHR_JQ_URL } from "./const"
+// import { extractPrimaryUrl } from "../../../../url/fun/extractPrimaryUrl"
+// import { getConfig } from "../../../system"
 
 export var Authorization: string | true = '' // 初始化鉴权令牌变量
 /**
