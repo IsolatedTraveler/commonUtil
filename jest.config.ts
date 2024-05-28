@@ -10,7 +10,9 @@ const config: Config = {
   preset: 'ts-jest/presets/default',
   coveragePathIgnorePatterns: [
     'views_V2024/g-lobal/util/var/const',
-    'views_V2024/g-lobal/xhr/fun/setXhrKeyVal'
+    'views_V2024/g-lobal/xhr/fun/setXhrKeyVal',
+    '/type/',
+    '/node_modules/'
   ]
 };
 export default config;

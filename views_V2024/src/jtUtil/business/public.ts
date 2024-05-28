@@ -1,4 +1,6 @@
 import { Class } from "../core";
-import { initQueryPage, initTable } from "../public";
+import { initBaseBar, initQueryPage, initShortcutKey, initTable } from "../public";
 Class.prototype.initQueryPage = initQueryPage
 Class.prototype.initTable = initTable
+Class.prototype.initShortcutKey = initShortcutKey
+Class.prototype.initShortcutKey = initBaseBar

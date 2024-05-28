@@ -6,19 +6,18 @@ import { LayuiTableReloadParam } from "../type";
  * 
  * @param data - 用于填充表格的数据数组。
  * @param count - 数据总条数。
- * @param pelem - 父元素的jQuery对象，用于计算高度。
  * @param page - 分页信息对象，包含当前页码和每页大小等（可选）。
  * @returns 返回一个符合 Layui 表格重载参数格式的对象。
  */
 export function tableReload(
-  data: any[]
-  , count: number
-  , page: any): LayuiTableReloadParam {
+  data: any[] = []
+  , count?: number
+  , page?: any): LayuiTableReloadParam {
   let val: LayuiTableReloadParam = {
-    data: data || []
+    data: data || [],
+    count
   }
   if (page) {
-    count && (val.count = count)
     val.page = { count, curr: page.page, limit: (page.size || 20) }
   }
   return val
