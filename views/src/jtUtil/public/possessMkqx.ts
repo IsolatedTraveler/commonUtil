@@ -9,7 +9,7 @@ export function possessMkqx(mkbh: string, dm?: string) {
     if (mkqx[id]) {
       return mkqx[id]
     } else {
-      return mkqx[id] = GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magic/xt01-xtjc/03/11/s-mkqx', { mkbh, dm }).then(res => {
+      return mkqx[id] = GLOBAL$AJAX$.commonQueryAsyncHttppost_callback('/magic/jtmis/03/11/s-mkqx', { mkbh, dm }).then(res => {
         if (res.code === 1) {
           const list = res.data.list || []
           if (dm) {

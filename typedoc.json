@@ -8,7 +8,7 @@
     "views_V2024/g-lobal/xhr/main.ts",
     "views_V2024/src/jtUtil/main.ts"
   ],
-  "out": "docs",
+  "out": "E:/jtGit/web/his-flie/commonUtilDoc",
   "name": "常用代码整理",
   "theme": "default",
   "readme": "none",
