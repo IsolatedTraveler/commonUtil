@@ -1,6 +1,12 @@
 import { getTablePageSize, initQueryTable, tableReload } from "../fun"
 import { JtTableData, JtTableParam } from "../type"
-
+/**
+ * 初始化查询页面，包括主表格、翻页功能及相关交互。
+ * 
+ * @param param - 查询页面的配置参数，包含表格和翻页的相关设置。
+ * @param mx - 可选参数，用于处理与主表格关联的子表格或额外的查询逻辑。
+ * @returns 返回一个对象，包含对主表格的操作方法和状态信息。
+ */
 export function initQueryPage(param: JtTableParam, mx: any) {
   // 主表
   var zTable: any

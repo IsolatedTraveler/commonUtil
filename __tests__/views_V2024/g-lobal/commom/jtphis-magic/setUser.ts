@@ -1,10 +1,10 @@
-import { SYSTEM, session, setUser } from "../../../../../views_V2024/g-lobal"
-const ryxx = { cs: 'cs' };
 describe('setUser function', () => {
-  session('userinfo', { ryxx })
-  it('如未定义window.jthisJsObject.jthis时应返回Undefined', () => {
-    (window as any).jthisJsObject = {} as any
-    const v = setUser()
-    expect(v).toEqual(ryxx)
+  const ryxx = { cs: 'cs' };
+  it('如未定义window.jthisJsObject.jthis时应返回session中的数据', async () => {
+    await import('../../../../../views_V2024/g-lobal').then(({ setUser, session }) => {
+      session('userinfo', { ryxx })
+      const v = setUser()
+      expect(v).toEqual(ryxx)
+    })
   })
 })

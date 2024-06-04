@@ -1,4 +1,4 @@
-import { AjaxRequestType } from "../views_V2024/g-lobal";
+import { AjaxRequestType, session } from "../views_V2024/g-lobal";
 import { XHR_JQ_URL, CONFIG_URL } from "../views_V2024/g-lobal/common/main";
 import { config } from "./config";
 type XMLSjlx = 'string' | 'jsonS' | 'jsonE' | 'session'
@@ -50,7 +50,6 @@ export class XMLHttpRequest {
     }
   }
   private getSjData(sjlx: XMLSjlx) {
-    // console.log(, this.url)
     var data, str = 'success'
     if (new RegExp(XHR_JQ_URL).test(this.url)) {
       const { jqcs } = getXmlCalc()
@@ -74,6 +73,10 @@ export class XMLHttpRequest {
       str = 'success'
     } else if (new RegExp(CONFIG_URL).test(this.url)) {
       data = config
+    } else {
+      const url = sessionStorage.getItem('xhrUrl') || ''
+      const i = sessionStorage.getItem(url)
+      data = JSON.parse(sessionStorage.getItem('session' + i) as string)
     }
     this.responseText = data ? JSON.stringify(data) : str
   }
@@ -116,6 +119,7 @@ export class XMLHttpRequest {
   }
 }
 export function initXml(url: string) {
+  session('userinfo', { ryxx: {} })
   sessionStorage.setItem('xhrUrl', url)
   sessionStorage.setItem('xhrJqUrl', XHR_JQ_URL)
   sessionStorage.setItem(url, '0')
@@ -135,5 +139,10 @@ export function getXmlCalc(): any {
 export function setXmlRes(data: any[]) {
   data.forEach((it, i) => {
     sessionStorage.setItem('session' + (i + 1), JSON.stringify(it))
+  })
+}
+export function setXmlResMagicFormat(data: any[]) {
+  data.forEach((it, i) => {
+    sessionStorage.setItem('session' + (i + 1), JSON.stringify({ code: 1, data: { list: it }, message: 'cs' }))
   })
 }

@@ -1,4 +1,4 @@
-export var config: any = {}
+export var hisConfig: any = {}
 export function setConfig(v: any) {
-  return config = v
+  return hisConfig = v
 }

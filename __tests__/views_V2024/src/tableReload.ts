@@ -9,6 +9,10 @@ describe('tableReload function', () => {
     const result = tableReload([], 100);
     expect(result).toHaveProperty('count', 100);
   });
+  it('should include count when provided', () => {
+    const result = tableReload(null, 100);
+    expect(result).toHaveProperty('count', 100);
+  });
 
   it('should construct page object when page parameter is provided', () => {
     const result = tableReload([], undefined, { page: 2, size: 50 });

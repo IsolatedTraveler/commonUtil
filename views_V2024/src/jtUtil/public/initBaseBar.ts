@@ -1,7 +1,12 @@
 import { alertMsg } from "../../../g-lobal";
 import { renderButtons, renderMenuItems } from "../fun";
 import { MenuItem } from "../type/menu";
-
+/**
+ * 初始化基础工具栏，包括顶部菜单和按钮。
+ * 
+ * @param menus - 一个二维数组，每个子数组包含多个 `MenuItem` 对象，代表一个菜单下的各个条目。
+ * @param buttons - 一个包含多个 `MenuItem` 对象的一维数组，代表工具栏上的按钮。
+ */
 export function initBaseBar(menus: MenuItem[][], buttons: MenuItem[]) {
   try {
     const topMenuElem: any = $('#topmenu'), topbuttonElem = $("#topbutton");

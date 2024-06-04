@@ -3,7 +3,15 @@ import { getTablePageSize } from "./getTablePageSize";
 import { getTr } from "./getTr";
 import { initTable } from "./initTable";
 import { tableReload } from "./tableReload";
-
+/**
+ * 初始化查询表格，并处理行点击事件。
+ * 
+ * @param param - 表格初始化参数。
+ * @param mx - 可选参数，用于处理与主表格关联的子表格。
+ * @param res - 返回的对象，用于存储表格相关数据和方法。
+ * @param pelem - 包含表格的JQuery元素。
+ * @returns 初始化后的表格实例。
+ */
 export function initQueryTable(param: JtTableParam, mx: JtTableParam, res: any, pelem: JQuery) {
   const table = initTable(param, res.page), mxPage: JtPage = { page: 1 }
   if (mx) {

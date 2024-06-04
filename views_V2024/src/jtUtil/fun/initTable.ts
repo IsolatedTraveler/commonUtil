@@ -2,7 +2,7 @@ import { JtPage, JtTableParam, LayuiPage, LayuiTable, LayuiTableParam, LayuiTabl
 import { getTBody } from "./getTBody"
 import { getTr } from "./getTr"
 /**
- * 初始化并渲染一个 Layui 的表格组件，支持自定义列样式、数据处理逻辑及分页配置。
+ * @description 初始化并渲染一个 Layui 的表格组件，支持自定义列样式、数据处理逻辑及分页配置。
  *
  * @param {JtTableParam} param - 表格初始化参数对象。
  * @param {JtPage} [page={}] - 可选，分页相关参数对象，当需要联动分页时使用。
