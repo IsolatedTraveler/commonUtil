@@ -1,6 +1,6 @@
-import { JtPage, JtTableParam, LayuiPage, LayuiTable, LayuiTableParam, LayuiTableRes } from "../type"
-import { getTBody } from "./getTBody"
-import { getTr } from "./getTr"
+import { JtPage, JtTableParam, LayuiPage, LayuiTable, LayuiTableParam, LayuiTableRes } from "../../type"
+import { getTBody } from "../../fun/getTBody"
+import { getTr } from "../../fun/getTr"
 /**
  * @description 初始化并渲染一个 Layui 的表格组件，支持自定义列样式、数据处理逻辑及分页配置。
  *

@@ -1,5 +1,6 @@
-import { getTablePageSize, initQueryTable, tableReload } from "../fun"
-import { JtTableData, JtTableParam } from "../type"
+import { getTablePageSize, tableReload } from "../../fun"
+import { JtTableData, JtTableParam } from "../../type"
+import { initQueryTable } from "../fun"
 /**
  * 初始化查询页面，包括主表格、翻页功能及相关交互。
  * 

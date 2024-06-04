@@ -25,4 +25,5 @@ export function setCloseFun(i: number, w: any, resolve: any, btn = 1) {
     // 在子页面中根据btn参数找到对应的按钮并模拟点击事件
     w.$('#layerBtn .btn').eq(btn - 1).click();
   }
+  return false
 }

@@ -12,6 +12,7 @@ const config: Config = {
     'views_V2024/g-lobal/util/var/const',
     'views_V2024/g-lobal/xhr/fun/setXhrKeyVal',
     '/type/',
+    '/ignore/',
     '/node_modules/'
   ]
 };

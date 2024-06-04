@@ -5,6 +5,7 @@ import { DEFAULT_AUTH_USER, XHR_JQ_URL } from "./const"
 // import { getConfig } from "../../../system"
 
 export var Authorization: string | true = '' // 初始化鉴权令牌变量
+  , getAuthorizationResove: any
 /**
  * @description 根据条件获取鉴权信息
  * @param {boolean} judge - 是否需要执行获取鉴权信息的操作
@@ -16,9 +17,10 @@ export function getAuthorization(judge: Boolean): Promise<void> {
   // 获取鉴权参数
   const user = session('magicUser') || (session('magic') || {}).user || DEFAULT_AUTH_USER
   // 发起鉴权请求 并设置鉴权信息
-  return getXhr(XHR_JQ_URL, JSON.stringify(user), {}, 'POST', 'service', {}).then((res) => {
+  return getAuthorizationResove || (getAuthorizationResove = getXhr(XHR_JQ_URL, JSON.stringify(user), {}, 'POST', 'service', {}).then((res) => {
     Authorization = res.data.accessToken || true
+    getAuthorizationResove = null
   }).catch(() => {
     Authorization = true
-  })
+  }))
 }

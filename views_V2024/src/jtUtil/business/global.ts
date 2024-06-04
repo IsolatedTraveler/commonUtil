@@ -1,4 +1,4 @@
-import { ajaxGet, ajaxPost, getUrlParams, toDecimalNumber, alertMsg, getConfig, getUser, openDialog, possessMkqx, debounce } from "../../../g-lobal";
+import { dicget, ajaxGet, ajaxPost, getUrlParams, toDecimalNumber, alertMsg, getConfig, getUser, openDialog, possessMkqx, debounce, openMsgBox, closeParentPop } from "../../../g-lobal";
 import { Class } from "../core";
 // common
 Class.prototype.getConfig = getConfig
@@ -6,6 +6,10 @@ Class.prototype.alertMsg = alertMsg
 Class.prototype.getUser = getUser
 Class.prototype.openDialog = openDialog
 Class.prototype.possessMkqx = possessMkqx
+Class.prototype.dicget = dicget
+// layer
+Class.prototype.closeParentPop = closeParentPop
+Class.prototype.openMsgBox = openMsgBox
 // url
 Class.prototype.getUrlParams = getUrlParams
 // util

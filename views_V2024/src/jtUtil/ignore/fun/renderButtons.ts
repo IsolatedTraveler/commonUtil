@@ -1,5 +1,5 @@
-import { alertMsg } from "../../../g-lobal";
-import { MenuItem } from "../type/menu";
+import { alertMsg } from "../../../../g-lobal";
+import { MenuItem } from "../../type/menu";
 /**
  * 渲染按钮到指定的JQuery元素。
  *

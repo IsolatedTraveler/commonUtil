@@ -1,6 +1,6 @@
-import { alertMsg } from "../../../g-lobal";
-import { renderButtons, renderMenuItems } from "../fun";
-import { MenuItem } from "../type/menu";
+import { alertMsg } from "../../../../g-lobal";
+import { MenuItem } from "../../type/menu";
+import { renderMenuItems, renderButtons } from "../fun";
 /**
  * 初始化基础工具栏，包括顶部菜单和按钮。
  * 

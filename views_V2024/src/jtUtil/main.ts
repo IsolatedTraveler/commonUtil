@@ -1,4 +1,5 @@
 export * from './public'
+export * from './ignore/main'
 export * from './fun'
 export * from './type'
 export * from './var'

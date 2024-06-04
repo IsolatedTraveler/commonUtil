@@ -1,8 +1,8 @@
-import { JtPage, JtTableData, JtTableParam } from "../type";
-import { getTablePageSize } from "./getTablePageSize";
-import { getTr } from "./getTr";
+import { JtPage, JtTableData, JtTableParam } from "../../type";
+import { getTablePageSize } from "../../fun/getTablePageSize";
+import { getTr } from "../../fun/getTr";
 import { initTable } from "./initTable";
-import { tableReload } from "./tableReload";
+import { tableReload } from "../../fun/tableReload";
 /**
  * 初始化查询表格，并处理行点击事件。
  * 

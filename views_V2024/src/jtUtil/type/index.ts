@@ -1,3 +1,5 @@
+export * from './comBoxConfig'
 export * from './layui'
 export * from './menu'
 export * from './table'
+export * from './tree'
