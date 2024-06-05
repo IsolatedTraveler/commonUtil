@@ -1,5 +1,5 @@
+import { TreeNode } from "../../../main";
 import { alertMsg } from "../../common/pop";
-import { TreeNode } from "../../type";
 
 /**
  * @description 初始化树形数据结构

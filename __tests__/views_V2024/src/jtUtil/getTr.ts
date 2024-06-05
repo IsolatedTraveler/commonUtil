@@ -1,5 +1,5 @@
-import { getTr } from '../../../views_V2024/main'
-import { LAYUI_TABLE_HTML } from '../../../__mocks__/layui.tabl'
+import { getTr } from '../../../../views_V2024/main'
+import { LAYUI_TABLE_HTML } from '../../../../__mocks__/layui.tabl'
 const $ = require('jquery/dist/jquery.js')
 const elem = $(LAYUI_TABLE_HTML);
 describe('getTr function', () => {

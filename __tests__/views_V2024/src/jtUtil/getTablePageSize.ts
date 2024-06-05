@@ -1,4 +1,4 @@
-import { LayuiPage, getTablePageSize } from '../../../views_V2024/main'
+import { LayuiPage, getTablePageSize } from '../../../../views_V2024/main'
 describe('getTablePageSize Function', () => {
   it('should return default page size when no parameter is provided', () => {
     expect(getTablePageSize()).toBe(20);

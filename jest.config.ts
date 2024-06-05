@@ -13,7 +13,8 @@ const config: Config = {
     'views_V2024/g-lobal/xhr/fun/setXhrKeyVal',
     '/type/',
     '/ignore/',
-    '/node_modules/'
+    '/node_modules/',
+    'core.ts'
   ]
 };
 export default config;

@@ -1,4 +1,4 @@
-import { initShortcutKey, domKeydown } from '../../../views_V2024/main'
+import { initShortcutKey, domKeydown } from '../../../../views_V2024/main'
 describe('initShortcutKey function', () => {
   let addEventListenerSpy: any;
   beforeAll(() => {

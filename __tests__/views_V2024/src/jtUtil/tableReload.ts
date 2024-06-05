@@ -1,4 +1,4 @@
-import { tableReload } from '../../../views_V2024/main'
+import { tableReload } from '../../../../views_V2024/main'
 describe('tableReload function', () => {
   it('should return correct reload parameters with only data', () => {
     const result = tableReload([{ id: 1, name: 'Test' }]);

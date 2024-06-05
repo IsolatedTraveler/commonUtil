@@ -1,4 +1,5 @@
-import { TreeNode, arrToTree } from '../../../../views_V2024/g-lobal'
+import { arrToTree } from '../../../../views_V2024/g-lobal'
+import { TreeNode } from '../../../../views_V2024/main';
 const layer: any = { alert: () => { }, close: (i: number) => i }
 describe('arrToTree Function', () => {
   beforeEach(() => {
