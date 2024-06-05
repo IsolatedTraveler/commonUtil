@@ -1,5 +1,5 @@
 import { serverUrl, setServerUrl } from "../../common/system/server";
-import { setPageTemp } from "../../util";
+import { setPageTemp } from "../../util/public/setPageTemp";
 
 /**
  * @description 获取服务端URL。如果尚未设置，此函数会触发服务端URL的初始化过程。

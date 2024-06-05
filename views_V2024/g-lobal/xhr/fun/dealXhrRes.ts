@@ -1,4 +1,4 @@
-import { errFormat } from "../../util"
+import { errFormat } from "../../util/public/errFormat"
 import { AJAX_RES } from "../var"
 /* 
  * 处理 XMLHttpRequest 响应的函数。
