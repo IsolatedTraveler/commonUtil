@@ -1,5 +1,5 @@
 import {
-  arrToTree, debounce, divideString, errFormat, session, setPageTemp, toDecimalNumber
+  arrToTree, debounce, divideString, errFormat, setPageTemp, toDecimalNumber
 } from '../../g-lobal/util'
 declare global {
   interface GLOBAL$UTIL$V2024$TYPE {
@@ -7,7 +7,6 @@ declare global {
     debounce: typeof debounce
     divideString: typeof divideString
     errFormat: typeof errFormat
-    session: typeof session
     setPageTemp: typeof setPageTemp
     toDecimalNumber: typeof toDecimalNumber
   }

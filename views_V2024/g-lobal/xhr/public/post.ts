@@ -1,4 +1,4 @@
-import { dealRequestData } from "../../common/dealRequestData";
+import { dealRequestData } from "../../common/xhr";
 import { AjaxRequestConfig, AjaxRequestOption } from "../../type";
 import { setXhr } from "../fun";
 /**

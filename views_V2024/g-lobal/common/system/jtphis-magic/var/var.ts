@@ -1,5 +1,5 @@
 import { getXhr } from "../../../../xhr/fun/getXhr"
-import { session } from "../../../../util/public/session"
+import { session } from "../public/session"
 import { CONFIG_URL, SYSTEM } from "./const"
 
 export var user: any // 用户信息

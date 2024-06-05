@@ -1,5 +1,5 @@
 import { AjaxRequestOption } from "../../../../type/xhr"
-import { getUser } from "./getUser"
+import { getUser } from "../../../system/jtphis-magic/public/getUser"
 /**
  * 处理请求数据，根据配置选项对数据进行预处理。
  *

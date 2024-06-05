@@ -1,6 +1,5 @@
 import { setLoaction } from '../../../../../__mocks__/location';
-import { session } from '../../../../../views_V2024/g-lobal';
-import { dealRequestData } from '../../../../../views_V2024/g-lobal/common/system/jtphis-magic'
+import { dealRequestData, session } from '../../../../../views_V2024/g-lobal';
 describe('dealRequestData Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {

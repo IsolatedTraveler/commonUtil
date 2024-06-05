@@ -1,5 +1,5 @@
-import { setLoaction } from '../../../../__mocks__/location';
-import { session } from '../../../../views_V2024/g-lobal'
+import { setLoaction } from '../../../../../__mocks__/location';
+import { session } from '../../../../../views_V2024/g-lobal'
 describe('session Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {
