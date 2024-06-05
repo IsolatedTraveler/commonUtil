@@ -1,6 +1,6 @@
 import { getTr } from '../../../../views_V2024/main'
 import { LAYUI_TABLE_HTML } from '../../../../__mocks__/layui.tabl'
-const $ = require('jquery/dist/jquery.js')
+const $ = require('jQuery')
 const elem = $(LAYUI_TABLE_HTML);
 describe('getTr function', () => {
   it('should find the tbody element correctly', () => {

@@ -1,6 +1,6 @@
-export function gridColumnsFormat(arr: any[][], defWidth?: number, option: any = {}) {
+export function gridColumnsFormat(arr: any[][][], defWidth?: number, option: any = {}) {
   return arr.map(col => col.map((columnDef: any) => {
-    const [field, title = '', width, align = 'cente', rowspan = 1, colspan = 1, sortable = false] = columnDef
+    const [field, title = '', width, align = option.align || 'cente', rowspan = 1, colspan = 1, sortable = option.sortable || false] = columnDef
       , obj: any = {
         ...option,
         field,

@@ -14,12 +14,16 @@ export function session(name: string, val?: any): any {
   const name1: string = WEB_NAME + name
   if (val === undefined) {
     if (SYSTEM) {
-      return JSON.parse(SYSTEM.varget('that', name) || null)
+      return JSON.parse(SYSTEM.varget('that', name) || 'null')
     } else {
       return JSON.parse(sessionStorage.getItem(name1) || 'null')
     }
   } else if (val === null) {
-    sessionStorage.removeItem(name1)
+    if (SYSTEM) {
+      SYSTEM.varpost('that', name, JSON.stringify(val))
+    } else {
+      sessionStorage.removeItem(name1)
+    }
   } else {
     if (SYSTEM) {
       SYSTEM.varpost('that', name, JSON.stringify(val))

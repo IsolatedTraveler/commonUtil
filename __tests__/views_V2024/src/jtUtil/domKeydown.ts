@@ -1,5 +1,5 @@
 import { domKeydown, SHORTCUT_KEYS } from '../../../../views_V2024/main'
-(window as any).$ = require('jquery/dist/jquery.js')
+(window as any).$ = require('jQuery')
 const event: any = {
   code: 'Backspace',
   target: document.createElement('input'),

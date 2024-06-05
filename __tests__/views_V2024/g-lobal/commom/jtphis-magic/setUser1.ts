@@ -17,7 +17,6 @@ describe('setUser function', () => {
     await import('../../../../../views_V2024/g-lobal').then(({ setUser }) => {
       const v = setUser()
       expect(v).toEqual({ "username": "testUser", "role": "admin" })
-      jthisJsObject = undefined
     });
   })
 })
