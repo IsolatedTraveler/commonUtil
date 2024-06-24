@@ -3,12 +3,12 @@ import { setInitialState } from "../fun";
 import { TreeNode } from "../type";
 
 /**
- * @description 初始化树形数据结构
- * @param data 数据源
- * @param idKey 主键字段，默认'id'
- * @param parentIdKey 父键字段，默认'fid'
- * @param initialStateClosed 是否初始状态为关闭，默认false
- * @returns 初始化后的树形数据
+ * @description 初始化树形数据，将扁平化的数据转换为树形结构。
+ * @param data - 要转换的数据数组。
+ * @param idKey - 数据中表示节点ID的键名，默认为 'id'。
+ * @param parentIdKey - 数据中表示父节点ID的键名，默认为 'fid'。
+ * @param initialStateClosed - 是否将树的初始状态设置为关闭，默认为 false。
+ * @returns 转换后的树形数据。
  */
 export function initTreedata<T extends TreeNode>(
   data: T[],
@@ -16,13 +16,8 @@ export function initTreedata<T extends TreeNode>(
   parentIdKey: keyof T = 'fid',
   initialStateClosed: boolean = false
 ): T[] {
-  try {
-    const tree = arrToTree(data, idKey, parentIdKey)
-    if (initialStateClosed)
-      setInitialState(tree)
-    return tree;
-  } catch (e: any) {
-    alertMsg(e)
-    return data
-  }
+  const tree = arrToTree(data, idKey, parentIdKey)
+  if (initialStateClosed)
+    setInitialState(tree)
+  return tree;
 }

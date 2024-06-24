@@ -1,6 +1,6 @@
-import { init } from "./public"
+import { initJtUtil } from "./public"
 
 export const Class: any = function (this: any) {
   that = this
-  init()
+  initJtUtil()
 }
