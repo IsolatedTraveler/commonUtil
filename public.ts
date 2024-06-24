@@ -6,7 +6,7 @@ export const dbnr: Dbnr = {
   // cs: ['gncs'],
   // gModules: ['hisAjax'],
   // layModules: [],
-  src: ['jtUtil', 'math'],
+  src: ['jtUtil'],
   // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }

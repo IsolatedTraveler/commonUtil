@@ -28,7 +28,6 @@ export function getCommonDic(param: ComboBoxConfig) {
     param.flag = param.flag == '1'
     param.valueField = param.valueField || 'dm'
     param.textField = param.textField || 'dmmc'
-    console.log(dataLen, param.panelHeight, param.panelHeight || (dataLen > 10 ? 200 : undefined))
     param.panelHeight = param.panelHeight || (dataLen > 10 ? 200 : undefined)
     param.data = data
     if (param.addnull == 1) {
