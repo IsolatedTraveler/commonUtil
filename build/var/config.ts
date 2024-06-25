@@ -19,7 +19,7 @@ export type InstitutionCode = ScFbdq | NmDbqq | YqFbdq;
  */
 export const deploymentDirectories: DeploymentDirectories = {
   sc: 'E:/jtGit/web/his-flie/sc/lib23/js/', // 四川
-  nm: 'E:/jtGit/web/his-flie/nmhis/lib23/js/', // 内蒙
+  nm: 'E:/jtGit/web/his-flie/nm/lib23/js/', // 内蒙
   yq: 'E:/jtGit/web/his-flie/yq/lib23/js/' // 伊旗
 }
 /**

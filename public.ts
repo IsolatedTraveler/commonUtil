@@ -6,11 +6,11 @@ export const dbnr: Dbnr = {
   // cs: ['gncs'],
   // gModules: ['hisAjax'],
   // layModules: [],
-  src: ['jtUtil'],
+  src: ['jtSync'],
   // third: ['hlyy'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
-export const dbdq: InstitutionCode[] = ['smq']
+export const dbdq: InstitutionCode[] = ['wsq']
 export const siteVesion = 'V2024'
 // export const siteVesion = ''
 export const sfys = false

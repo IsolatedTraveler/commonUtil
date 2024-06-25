@@ -1,0 +1,1 @@
+export { initJtSync } from "../var";
