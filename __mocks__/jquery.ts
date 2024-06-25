@@ -1,8 +1,11 @@
 export const jquery = function (str: string) {
   return new Jquery(str)
 }
-class Jquery {
+export class Jquery {
   constructor(str: string) {
+  }
+  on(name:string, Fun: Function){
+    Fun({type: 'load'})
   }
   eq(i: number) {
     return this
