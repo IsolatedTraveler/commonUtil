@@ -1,5 +1,5 @@
 import { getConfig, getUser } from "../../../g-lobal"
-import { getXhr } from "../../../main"
+import { getXhr } from "../../../g-lobal/main"
 import { StartRule } from "../type"
 import { dicUrl } from "./const"
 
