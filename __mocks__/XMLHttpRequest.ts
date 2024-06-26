@@ -119,7 +119,8 @@ export class XMLHttpRequest {
   }
 }
 export function initXml(url: string) {
-  session('userinfo', { ryxx: {} })
+  const user = session('userinfo')
+  session('userinfo', user && user.ryxx ? user : { ryxx: {} })
   sessionStorage.setItem('xhrUrl', url)
   sessionStorage.setItem('xhrJqUrl', XHR_JQ_URL)
   sessionStorage.setItem(url, '0')

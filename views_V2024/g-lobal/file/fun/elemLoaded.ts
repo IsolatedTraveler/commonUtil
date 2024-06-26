@@ -10,7 +10,7 @@
 */
 export function elemLoaded(e: any, resolve: Function, reject: Function) {
   if (e.type === 'load') {
-    resolve()
+    resolve('success')
   } else {
     reject()
   }

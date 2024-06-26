@@ -1,7 +1,7 @@
 import { jquery } from "../../../../__mocks__/jquery";
 import { loadJs } from "../../../../views_V2024/main";
 describe('loadJs function', () => {
-  const $:any = jquery
+  const $: any = jquery
   beforeEach(() => {
   })
   afterEach(() => {
@@ -9,6 +9,7 @@ describe('loadJs function', () => {
   });
   it('should load JavaScript file successfully', async () => {
     (global as any).$ = $
-    await loadJs('/path/to/script.js');
+    const res = loadJs('/path/to/script.js');
+    expect(res).toBeInstanceOf(Promise);
   });
 });

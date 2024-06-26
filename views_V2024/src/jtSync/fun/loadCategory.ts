@@ -1,21 +1,12 @@
 import { loadJs } from "../../../g-lobal/"
-import { initJtSync, organization, region, startRule } from "../var"
-function getThirdUrl(category: string) {
-  var urlArr = ['/lib23/js/third']
-    , regionRule = startRule[region] || {}
-    , organizationRule = regionRule[organization] || {}
-    , organizationDefRule = regionRule.def || {}
-  if (organizationRule[category]) {
-    urlArr.push(category, region + '_' + organization)
-  } else if (organizationDefRule[category]) {
-    urlArr.push(category, region)
-  } else if ((startRule.def || {})[category]) {
-    urlArr.push(category, 'def')
-  } else {
-    return ''
-  }
-  return urlArr.join('/') + '.js'
-}
+import { initJtSync } from "../var"
+import { getThirdUrl } from "./getThirdUrl"
+/**
+ * 根据指定分类加载脚本资源
+ * 
+ * @param {string} category - 需要加载的脚本分类标识
+ * @returns {Promise<void>} - 成功加载或抛出错误的 Promise
+ */
 export function loadCategory(category: string) {
   return initJtSync().then(() => {
     var url = getThirdUrl(category)

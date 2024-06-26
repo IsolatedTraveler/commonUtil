@@ -16,6 +16,12 @@ export function setStartRule() {
   return getXhr(dicUrl, {}, {}).then((e: any) => startRule = e)
 }
 export function getFbdq() {
-  organization = getUser().jgid
-  return getConfig('xtxx').then((res: any) => region = res.fbdq)
+  setOrganization(getUser().jgid)
+  return getConfig('xtxx').then((res: any) => setRegion(res.fbdq))
+}
+export function setOrganization(v: string) {
+  organization = v
+}
+export function setRegion(v: string) {
+  region = v
 }
