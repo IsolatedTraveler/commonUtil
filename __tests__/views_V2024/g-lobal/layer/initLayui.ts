@@ -1,13 +1,13 @@
-import {  initLayui } from '../../../../views_V2024/main'
+import { initLayui } from '../../../../views_V2024/main'
 const layui = {
-  use: (name:string[] | string, callback:Function) => {
+  use: (name: string[] | string, callback: Function) => {
     callback()
   }
 };
 (window as any).layui = layui
 describe('initLayui function', () => {
   beforeEach(() => {
-    jest.spyOn(layui, 'use').mockImplementation((_n:any, callback:any) => {
+    jest.spyOn(layui, 'use').mockImplementation((_n: any, callback: any) => {
       callback()
     });
   })

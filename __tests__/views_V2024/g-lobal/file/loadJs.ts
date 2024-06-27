@@ -9,7 +9,7 @@ describe('loadJs function', () => {
   });
   it('should load JavaScript file successfully', async () => {
     (global as any).$ = $
-    const res = loadJs('/path/to/script.js');
-    expect(res).toBeInstanceOf(Promise);
+    const res = await loadJs('/path/to/script.js');
+    expect(res).toBe('success')
   });
 });

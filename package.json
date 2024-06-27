@@ -7,7 +7,7 @@
     "dev": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
     "doc": "npx  typedoc",
     "test": "jest ",
-    "test-cs": "jest --detectOpenHandles",
+    "test-cs": "jest --testNamePattern loadFunBySql",
     "test-cov": "jest --coverage"
   },
   "devDependencies": {

@@ -1,5 +1,4 @@
-import { getConfig } from "../../../../g-lobal"
-import { initLayui } from "../../fun"
+import { getConfig, initLayui } from "../../../../g-lobal"
 
 export function initJtUtil() {
   return Promise.all([getConfig(), initLayui()])

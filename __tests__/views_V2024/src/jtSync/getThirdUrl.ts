@@ -17,6 +17,17 @@ describe('getThirdUrl function', () => {
     expect(url).toBe('/lib23/js/third/libA/reg1_org1.js');
   });
 
+  it('should return URL for specific organization and region rule', () => {
+    setOrganization('org2')
+    const url = getThirdUrl('libA');
+    expect(url).toBe('');
+  });
+  it('should return URL for specific organization and region rule', () => {
+    setRegion('reg2')
+    const url = getThirdUrl('libA');
+    expect(url).toBe('');
+  });
+
   it('should return URL using default organization rule', () => {
     const url = getThirdUrl('libB');
     expect(url).toBe('/lib23/js/third/libB/reg1.js');
@@ -25,6 +36,12 @@ describe('getThirdUrl function', () => {
   it('should return URL using global default rule', () => {
     const url = getThirdUrl('libC');
     expect(url).toBe('/lib23/js/third/libC/def.js');
+  });
+
+  it('should return URL using global default rule', () => {
+    startRule.def = undefined
+    const url = getThirdUrl('libC');
+    expect(url).toBe('');
   });
 
   it('should return empty string when no rule matches', () => {

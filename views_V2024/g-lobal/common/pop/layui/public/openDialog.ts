@@ -53,7 +53,7 @@ export function openDialog(url: string, data: any, width: string | number, heigh
       }
       btn.forEach((it, j) => {
         const z = j + 1
-        param[j === 0 ? 'yes' : `btn${z}`] = (i: number) => setCloseFun(i, w, resolve, z)
+        param[j === 0 ? 'yes' : `btn${z}`] = (layerIndex: number) => setCloseFun(layerIndex, w, resolve, z)
       })
       window.layer.open(param)
       loadIndex = window.layer.load(2, { time: 30 * 1000, shade: 0.3 })
