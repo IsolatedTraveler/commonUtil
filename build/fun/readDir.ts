@@ -4,7 +4,7 @@ interface SonFileAndDir {
   file: string[]
   dir: string[]
 }
-function getFileStats(url: string): Promise<boolean> {
+export function getFileStats(url: string): Promise<boolean> {
   return new Promise((resolve, reject) => {
     fs.stat(url, (err, stats) => {
       if (err) {
@@ -19,7 +19,7 @@ function getFileStats(url: string): Promise<boolean> {
     })
   })
 }
-function getSonDir(url: string, isDir: boolean = true): Promise<SonFileAndDir> {
+export function getSonDir(url: string, isDir: boolean = true): Promise<SonFileAndDir> {
   return new Promise((resolve, reject) => {
     fs.readdir(url, (err, files) => {
       if (err) {
