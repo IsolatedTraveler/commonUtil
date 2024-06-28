@@ -25,4 +25,4 @@ export const DZPJ_KPPZ: DzPjKpPz = {
     }
   }
 },
-  PZXX_URL = 'magic/yy201-dzpj/dzpj/s-pzxx'
+  DZPJ_PZXX_URL = 'magic/yy201-dzpj/dzpj/s-pzxx'

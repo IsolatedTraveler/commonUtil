@@ -1,21 +1,21 @@
 
-export type KpJgid = string
-export type KpIsPrint = '是' | '否' | '提示'
-export interface KpJgConfig {
+export type DzpjKpJgid = string
+export type DzpjKpIsPrint = '是' | '否' | '提示'
+export interface DzpjKpJgConfig {
   url: string
   kpdbm: string,
   jkdm: string
 }
-export interface KpConfig {
-  [index: KpJgid]: Promise<KpJgConfig>
+export interface DzpjKpConfig {
+  [index: DzpjKpJgid]: Promise<DzpjKpJgConfig>
 }
-export interface KpJgParam {
+export interface DzpjKpJgParam {
   sync: boolean
-  isPrint: KpIsPrint
+  isPrint: DzpjKpIsPrint
 }
-export interface KpParam {
-  [index: KpJgid]: KpJgParam
+export interface DzpjKpParam {
+  [index: DzpjKpJgid]: DzpjKpJgParam
 }
-export interface KpPrintParam {
+export interface DzpjKpPrintParam {
   printer?: ''
 }

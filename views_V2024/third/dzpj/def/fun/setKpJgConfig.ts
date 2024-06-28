@@ -1,9 +1,9 @@
 import { ajaxPost } from "../../../../g-lobal"
-import { KpJgConfig, KpJgid } from "../../type"
-import { PZXX_URL } from "../var"
+import { DzpjKpJgConfig, DzpjKpJgid } from "../../type"
+import { DZPJ_PZXX_URL } from "../var"
 
-export function setKpJgConfig(jgid: KpJgid): Promise<KpJgConfig> {
-  return ajaxPost(PZXX_URL, { jgid }).then((res: any) => {
+export function setKpJgConfig(jgid: DzpjKpJgid): Promise<DzpjKpJgConfig> {
+  return ajaxPost(DZPJ_PZXX_URL, { jgid }).then((res: any) => {
     if (res.code == '1' && res.data && res.data.length) {
       let data = res.data, resultVal = {} as any
       resultVal.url = data[0].dz.replace(/\/$/, '')

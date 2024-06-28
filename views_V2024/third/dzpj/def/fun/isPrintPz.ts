@@ -1,7 +1,7 @@
 import { bbPrint, confirmMsg } from "../../../../g-lobal"
-import { KpIsPrint, KpPrintParam } from "../../type"
+import { DzpjKpIsPrint, DzpjKpPrintParam } from "../../type"
 
-export function isPrintPz(bbid: string | undefined, data: any, isPrint: KpIsPrint, msg: string, printParam: KpPrintParam) {
+export function isPrintPz(bbid: string | undefined, data: any, isPrint: DzpjKpIsPrint, msg: string, printParam: DzpjKpPrintParam) {
   if (bbid) {
     if (isPrint == '提示') {
       confirmMsg(msg, ['是', '否']).then(() => {

@@ -21,7 +21,7 @@ export function convertToAbsoluteUrl(relativeUrl: string, base?: string | URL | 
   const baseAddress = getUrl(base);
   if (/^\//.test(relativeUrl)) return baseAddress.origin + relativeUrl
   // 分割基础URL的路径并过滤掉空字符串
-  let pathParts = baseAddress.pathname.split('/').filter(Boolean);
+  let pathParts = baseAddress.pathname.replace(/\/[^/]+\.[^/]+$/, '').split('/').filter(Boolean);
   // 清理relativeUrl，移除开头的"./"
   relativeUrl = relativeUrl.replace(/^\.\//, '');
   // 处理relativeUrl中的"../"，计算需要上溯的层数

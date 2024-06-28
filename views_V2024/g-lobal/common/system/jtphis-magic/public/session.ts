@@ -1,5 +1,5 @@
-import { SYSTEM } from "../../server";
 import { WEB_NAME } from "../../../../util/var"
+import { SYSTEM } from "../var/server"
 /**
  * @description 提供一种便捷的方式来读取、写入或删除浏览器sessionStorage中的数据，同时支持对存储键名进行前缀处理，增强数据管理的灵活性和区分度
  * 

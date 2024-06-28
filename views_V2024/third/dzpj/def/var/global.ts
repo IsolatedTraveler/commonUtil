@@ -1,10 +1,10 @@
-import { KpConfig, KpIsPrint, KpParam } from "../../type"
+import { DzpjKpConfig, DzpjKpIsPrint, DzpjKpParam } from "../../type"
 
 // 首行内容
-export var kpConfig: KpConfig = {}, sync: boolean, isPrint: KpIsPrint, kpParam: KpParam = {}
-export function setSync(a: boolean) {
-  return sync = a
+export var dzpjKpConfig: DzpjKpConfig = {}, dzpjKpSync: boolean, dzpjKpIsPrint: DzpjKpIsPrint, dzpjKpParam: DzpjKpParam = {}
+export function setDzpjKpSync(a: boolean) {
+  return dzpjKpSync = a
 }
-export function setIsPrint(a: KpIsPrint) {
-  return isPrint = a
+export function setDzpjKpIsPrint(a: DzpjKpIsPrint) {
+  return dzpjKpIsPrint = a
 }

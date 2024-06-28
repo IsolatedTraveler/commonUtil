@@ -1,29 +1,29 @@
 
 // 开票结算id
-export type KpJsId = string
+export type DzPjKpJsId = string
 // 开票单位名称
-export type KpDw = string
+export type DzPjKpDw = string
 // 退票原因
-export type KpTpMsg = string
+export type DzPjKpTpMsg = string
 // 开票单位类型，默认个人   个人 | 机构
-export type KpDwLx = 1 | 2
-export interface KpRquestParam {
-  jsid: KpJsId
-  pjmc: KpDw
-  kplx?: KpDwLx
-  tpyy?: KpTpMsg
+export type DzPjKpDwLx = 1 | 2
+export interface DzPjKpRquestParam {
+  jsid: DzPjKpJsId
+  pjmc: DzPjKpDw
+  kplx?: DzPjKpDwLx
+  tpyy?: DzPjKpTpMsg
 }
 // 开票来源   门诊 | 住院 | 挂号
 export type DzPjKpLy = 'mz' | 'zy' | 'gh'
 // 开票类型   开票 | 退票
 export type DzPjKpLx = 'kp' | 'tp'
-export interface KpPzCs {
+export interface DzPjKpPzCs {
   url: string,
   bbid?: string
 }
-export type KpPzLx = {
-  [index in DzPjKpLy]: KpPzCs
+export type DzPjKpPzLx = {
+  [index in DzPjKpLy]: DzPjKpPzCs
 }
 export type DzPjKpPz = {
-  [index in DzPjKpLx]: KpPzLx
+  [index in DzPjKpLx]: DzPjKpPzLx
 }
