@@ -1,6 +1,6 @@
 import { DzPjKpPz } from "../../type";
 
-export const dzpjKppz: DzPjKpPz = {
+export const DZPJ_KPPZ: DzPjKpPz = {
   kp: {
     mz: {
       url: 'magic/yy201-dzpj/dzpj/m-mzkp',
@@ -24,4 +24,5 @@ export const dzpjKppz: DzPjKpPz = {
       url: 'magic/yy201-dzpj/dzpj/m-mzch'
     }
   }
-}
+},
+  PZXX_URL = 'magic/yy201-dzpj/dzpj/s-pzxx'

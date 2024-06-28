@@ -7,6 +7,8 @@ export function buildAbsoluteUrl(targetUrl: string, urlType?: UrlType): string {
     return targetUrl;
   } else if (urlType === 'origin') {
     return convertToAbsoluteUrl(targetUrl, getAppBaseUrl());
+  } else if (urlType === 'local') {
+    return convertToAbsoluteUrl(targetUrl, location.href);
   } else {
     return convertToAbsoluteUrl(targetUrl, getServerUrl());
   }

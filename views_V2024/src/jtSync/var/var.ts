@@ -7,7 +7,7 @@ export var organization: string, region: string, startRule: StartRule = {}
   , isInitJtSync: Promise<any>
 export function initJtSync() {
   if (!isInitJtSync) {
-    isInitJtSync = Promise.all([setStartRule(), getFbdq(), initLayui()])
+    isInitJtSync = Promise.all([setStartRule(), getFbdq(), initLayui(['layer'])])
   }
   return isInitJtSync
 }
