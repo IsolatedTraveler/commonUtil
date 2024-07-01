@@ -7,7 +7,7 @@ export interface DzpjKpJgConfig {
   jkdm: string
 }
 export interface DzpjKpConfig {
-  [index: DzpjKpJgid]: Promise<DzpjKpJgConfig>
+  [index: DzpjKpJgid]: Promise<[DzpjKpJgConfig, DzpjKpJgParam]> | undefined
 }
 export interface DzpjKpJgParam {
   sync: boolean

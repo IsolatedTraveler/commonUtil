@@ -1,5 +1,3 @@
-export * from './getDzpjConfig'
-export * from './getDzpjKpJgConfig'
 export * from './getDzpjKpRes'
 export * from './isOpenFp'
 export * from './isPrintPz'

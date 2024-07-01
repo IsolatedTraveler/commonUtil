@@ -74,9 +74,19 @@ export class XMLHttpRequest {
     } else if (new RegExp(CONFIG_URL).test(this.url)) {
       data = config
     } else {
-      const url = sessionStorage.getItem('xhrUrl') || ''
-      const i = sessionStorage.getItem(url)
-      data = JSON.parse(sessionStorage.getItem('session' + i) as string)
+      let url = this.url.split('magic')[1]
+      try {
+        if (url) {
+          data = JSON.parse(sessionStorage.getItem(url) as string || "''")
+        }
+      } catch (e) {
+        data = null
+      }
+      if (!data) {
+        url = sessionStorage.getItem('xhrUrl') || ''
+        const i = sessionStorage.getItem(url)
+        data = JSON.parse(sessionStorage.getItem('session' + i) as string)
+      }
     }
     this.responseText = data ? JSON.stringify(data) : str
   }
@@ -145,5 +155,25 @@ export function setXmlRes(data: any[]) {
 export function setXmlResMagicFormat(data: any[]) {
   data.forEach((it, i) => {
     sessionStorage.setItem('session' + (i + 1), JSON.stringify({ code: 1, data: { list: it }, message: 'cs' }))
+  })
+}
+export function setXmlResFormat(data: any[]) {
+  data.forEach((it, i) => {
+    if (it == -1) {
+      sessionStorage.setItem('session' + (i + 1), JSON.stringify({ code: -1, data: [], message: 'xmlRes' }))
+    } else {
+      sessionStorage.setItem('session' + (i + 1), JSON.stringify({ code: 1, data: it, message: 'xmlRes' }))
+    }
+  })
+}
+export function setXmlResFormatUrl(urls: string[], data: any[]) {
+  urls.forEach((url, i) => {
+    url = url.split('magic')[1]
+    var it = data[i]
+    if (it == -1) {
+      sessionStorage.setItem(url, JSON.stringify({ code: -1, data: [], message: 'xmlRes' }))
+    } else {
+      sessionStorage.setItem(url, JSON.stringify({ code: 1, data: it, message: 'xmlRes' }))
+    }
   })
 }

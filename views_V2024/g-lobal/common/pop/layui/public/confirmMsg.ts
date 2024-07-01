@@ -15,30 +15,22 @@ export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'
   return new Promise((resolve, reject) => {
     if (window.layer) {
       var len = btn.length, judge = true
-      window.layer.confirm(msg, {
-        title,
-        btn,
-        btn3(i: string) {
-          judge = judgeConfig(i, 3, len, resolve, reject)
-        },
-        btn4(i: string) {
-          judge = judgeConfig(i, 4, len, resolve, reject)
-        },
-        btn5(i: string) {
-          judge = judgeConfig(i, 5, len, resolve, reject)
-        },
-        btn6(i: string) {
-          judge = judgeConfig(i, 6, len, resolve, reject)
-        },
+      const param: any = {
+        title, btn,
         end() {
           judge && reject()
           judge = false
         }
-      }, function (i: string) {
-        judge = judgeConfig(i, 1, len, resolve, reject)
-      }, function (i: string) {
-        judge = judgeConfig(i, 2, len, resolve, reject)
-      })
+      }
+      btn.forEach((it, j) => {
+        const z = j + 1;
+        param[j === 0 ? 'yes' : `btn${z}`] = (layerIndex: number) => {
+          judge = judgeConfig(layerIndex, z, len, resolve, reject)
+        }
+      });
+      window.layer.confirm(msg, param)
+    } else if (btn.length == 2 && (<any>$).messager && (<any>$).messager.confirm) {
+      (<any>$).messager.confirm(title, msg, (res: boolean) => res ? resolve(1) : reject())
     } else {
       window.alert('未提供弹出层解决方案：' + msg)
       reject('未提供弹出层解决方案：' + msg)
