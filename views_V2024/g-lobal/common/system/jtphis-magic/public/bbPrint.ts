@@ -29,5 +29,5 @@ export function bbPrint(reportid: string, obj: any, printCs: any = {}) {
         printCs
       )
     );
-  getSystemVal('printreport', [data])
+  return getSystemVal('printreport', [data])
 }

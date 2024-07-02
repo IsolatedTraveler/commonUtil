@@ -18,10 +18,10 @@ export function isPrintPz(bbid: string | undefined, data: any, isPrint: DzpjKpIs
   if (bbid) {
     if (isPrint == '提示') {
       return confirmMsg(msg, ['是', '否']).then(() => {
-        return bbPrint(bbid || '', data, printParam)
+        return bbPrint(bbid, data, printParam)
       })
     } else if (isPrint == '是') {
-      return Promise.resolve(bbPrint(bbid || '', data, printParam))
+      return Promise.resolve(bbPrint(bbid, data, printParam))
     }
   }
   return Promise.resolve()

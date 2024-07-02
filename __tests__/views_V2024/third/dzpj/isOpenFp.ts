@@ -1,4 +1,4 @@
-import { DZPJ_PZXX_URL, XTCS_URL, isOpenFp, dzpjKpSync, dzpjKpIsPrint, setKpJgConfig, dzpjKpConfig, setUser } from '../../../../views_V2024/main'
+import { DZPJ_PZXX_URL, XTCS_URL, isOpenFp, dzpjKpSync, dzpjKpIsPrint, dzpjKpConfig, setUser } from '../../../../views_V2024/main'
 import { XMLHttpRequest, setXmlResFormatUrl } from "../../../../__mocks__/XMLHttpRequest"
 import { setLoaction } from "../../../../__mocks__/location";
 global.XMLHttpRequest = XMLHttpRequest as any

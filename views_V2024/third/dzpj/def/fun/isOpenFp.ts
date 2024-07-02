@@ -16,7 +16,6 @@ import { setKpJgConfig } from "./setKpJgConfig"
 export function isOpenFp() {
   // 获取开票参数信息，判断是否开票
   const { jgid } = getUser()
-  console.log(jgid)
   if (!dzpjKpConfig[jgid]) {
     dzpjKpConfig[jgid] = Promise.all([setKpJgConfig(jgid), setDzpjConfig(jgid)])
   }
