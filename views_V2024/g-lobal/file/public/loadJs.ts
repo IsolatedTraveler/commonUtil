@@ -1,4 +1,4 @@
-import { buildUrlWithQueryParams, convertToAbsoluteUrl, getAppBaseUrl } from "../../url/main"
+import { buildUrlWithQueryParams, getAppBaseUrl } from "../../url/main"
 import { elemLoaded } from "../fun"
 /**
  * @description 动态加载指定URL的JavaScript文件。
@@ -13,7 +13,7 @@ export function loadJs(url: string): Promise<null> {
     useHead = document.getElementsByTagName('head')[0]
   return new Promise((resolve, reject) => {
     node.async = true
-    node.src = buildUrlWithQueryParams({ v: new Date().getTime() }, convertToAbsoluteUrl(url, getAppBaseUrl()))
+    node.src = buildUrlWithQueryParams({ v: new Date().getTime() }, new URL(url, getAppBaseUrl()).href)
     useHead.appendChild(node)
     $(node).on('load', function (this: any, e: any) {
       elemLoaded.call(this as any, e, resolve, reject);

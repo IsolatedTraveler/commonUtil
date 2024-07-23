@@ -10,7 +10,7 @@ export const dbnr: Dbnr = {
   third: ['dzpj'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 }
-export const dbdq: InstitutionCode[] = ['smq', 'erdss']
+export const dbdq: InstitutionCode[] = ['smq', 'wsq']
 export const siteVesion = 'V2024'
 // export const siteVesion = ''
 export const sfys = false

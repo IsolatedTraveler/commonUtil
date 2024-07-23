@@ -1,5 +1,5 @@
 export function firstUpper(str: string, judge: boolean = true) {
-  return judge ? (str.substr(0, 1).toUpperCase() + str.substr(1)) : str
+  return judge ? (str.substring(0, 1).toUpperCase() + str.substring(1)) : str
 }
 export function firstUppers(str: string, judge: boolean) {
   let arr = str.split('-')

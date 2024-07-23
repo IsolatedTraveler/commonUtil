@@ -1,6 +1,5 @@
 import { alertMsg } from "./alertMsg";
 import { setCloseFun } from "../var";
-import { convertToAbsoluteUrl } from "../../../../url/fun";
 import { buildUrlWithQueryParams } from "../../../../url/public/buildUrlWithQueryParams";
 import { getAppBaseUrl } from "../../../../url/public/getAppBaseUrl";
 /**
@@ -20,7 +19,7 @@ import { getAppBaseUrl } from "../../../../url/public/getAppBaseUrl";
 export function openDialog(url: string, data: any, width: string | number, height: string | number, btn = ['确定', '取消'], title?: string) {
   return new Promise((resolve, reject) => {
     if (url === 'xtcs.html') {
-      url = convertToAbsoluteUrl('webs/xtcs/xtcs.html', getAppBaseUrl())
+      url = new URL('webs/xtcs/xtcs.html', getAppBaseUrl()).href
     }
     if (!isNaN(width as number)) {
       width += 'px'
