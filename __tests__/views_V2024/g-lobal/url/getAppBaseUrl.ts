@@ -9,11 +9,11 @@ describe('getAppBaseUrl Function', () => {
   });
   it('应正确获取基础URL，当URL包含特定前缀时', () => {
     const result = getAppBaseUrl()
-    expect(result).toBe('http://127.0.0.1:8020/his-flie/sc');
+    expect(result).toBe('http://127.0.0.1:8020/his-flie/sc/');
     href = 'http://example.com/webs/another/path/to/page.html'
   });
   it('应正确获取基础URL，当URL不包含特定前缀时', () => {
     const result = getAppBaseUrl()
-    expect(result).toBe('http://example.com');
+    expect(result).toBe('http://example.com/');
   });
 });

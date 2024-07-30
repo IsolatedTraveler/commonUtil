@@ -16,15 +16,14 @@ export function buildAbsoluteUrl(targetUrl: string, urlType?: UrlType): string {
   let baseUrl;
   switch (urlType) {
     case 'origin':
-      baseUrl = getAppBaseUrl() + '/';
+      baseUrl = getAppBaseUrl();
       break;
     case 'local':
       baseUrl = location.href;
       break;
     default:
       baseUrl = getServerUrl();
-      if (!/\/$/.test(baseUrl))
-        baseUrl += '/'
+      baseUrl = baseUrl.endsWith('/') || /\.[^/]+$/.test(baseUrl) ? baseUrl : `${baseUrl}/`
       break;
   }
   return new URL(targetUrl, baseUrl).href;

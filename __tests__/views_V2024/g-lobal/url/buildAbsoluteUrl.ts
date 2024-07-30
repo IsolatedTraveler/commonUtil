@@ -14,7 +14,7 @@ describe('buildAbsoluteUrl Function', () => {
   it('未指定URL类型时，能正确处理包含"./"的相对路径', () => {
     const relativePath = './relative/path';
     const result = buildAbsoluteUrl(relativePath);
-    expect(appBaseUrl).toBe('http://127.0.0.1:8020/his-flie/sc');
+    expect(appBaseUrl).toBe('http://127.0.0.1:8020/his-flie/sc/');
     expect(result).toBe('http://127.0.0.1:8020/his-flie/sc/relative/path');
   });
   it('未指定URL类型时，能正确处理包含""的相对路径', () => {

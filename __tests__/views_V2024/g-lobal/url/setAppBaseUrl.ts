@@ -8,11 +8,11 @@ describe('setAppBaseUrl Function', () => {
     jest.clearAllMocks();
   });
   it('应正确获取基础URL，当URL包含特定前缀时', () => {
-    expect(setAppBaseUrl()).toBe('http://example.com/zshis');
+    expect(setAppBaseUrl()).toBe('http://example.com/zshis/');
     href = 'http://example.com/webs/another/path/to/page.html'
   });
   it('应正确获取基础URL，当URL不包含特定前缀时', () => {
-    expect(setAppBaseUrl()).toBe('http://example.com');
+    expect(setAppBaseUrl()).toBe('http://example.com/');
     href = false
   });
   it('当URL为空时返回空', () => {
