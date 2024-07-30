@@ -6,7 +6,9 @@ export var serverUrl = ''
   , SYSTEM: any = getSystem()
 
 export function setServerUrl(): string {
-  return extractPrimaryUrl(hisConfig.magicServer || getAppBaseUrl())
+  serverUrl = extractPrimaryUrl(hisConfig.magicServer || getAppBaseUrl())
+  serverUrl = serverUrl.endsWith('/') || /\.[^/]+$/.test(serverUrl) ? serverUrl : `${serverUrl}/`
+  return serverUrl
 }
 export function getSystem() {
   try {
