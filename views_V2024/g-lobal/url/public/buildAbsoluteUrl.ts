@@ -23,7 +23,6 @@ export function buildAbsoluteUrl(targetUrl: string, urlType?: UrlType): string {
       break;
     default:
       baseUrl = getServerUrl();
-      baseUrl = baseUrl.endsWith('/') || /\.[^/]+$/.test(baseUrl) ? baseUrl : `${baseUrl}/`
       break;
   }
   return new URL(targetUrl, baseUrl).href;
