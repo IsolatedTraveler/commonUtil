@@ -1,5 +1,5 @@
-import { ClodopPrintParam } from "../../type";
-import { setClodop } from "../var";
+import { ClodopPrintParam } from "../../../type";
+import { setClodop } from "../../var";
 
 export function print(obj: ClodopPrintParam = {} as any) {
   return setClodop().then((res) => {

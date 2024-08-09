@@ -1,2 +1,1 @@
-export * from './getPrint'
-export * from './print'
+export * from './ignore'

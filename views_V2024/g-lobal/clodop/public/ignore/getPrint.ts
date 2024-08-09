@@ -1,4 +1,4 @@
-import { setClodop } from "../var";
+import { setClodop } from "../../var";
 
 export function getPrint() {
   return setClodop().then(res => {
