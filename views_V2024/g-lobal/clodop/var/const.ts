@@ -1,0 +1,1 @@
+export const CLODOP_URL = 'http://localhost:8000/CLodopfuncs.js'

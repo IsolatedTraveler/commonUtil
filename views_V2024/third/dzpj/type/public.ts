@@ -13,8 +13,8 @@ export interface DzPjKpRquestParam {
   kplx?: DzPjKpDwLx
   tpyy?: DzPjKpTpMsg
 }
-// 开票来源   门诊 | 住院 | 挂号
-export type DzPjKpLy = 'mz' | 'zy' | 'gh'
+// 开票来源   门诊 | 住院 | 挂号 | 门特
+export type DzPjKpLy = 'mz' | 'zy' | 'gh' | 'mt'
 // 开票类型   开票 | 退票
 export type DzPjKpLx = 'kp' | 'tp'
 export interface DzPjKpPzCs {

@@ -11,6 +11,9 @@ export const DZPJ_KPPZ: DzPjKpPz = {
     },
     gh: {
       url: 'magic/yy201-dzpj/dzpj/m-mzkp'
+    },
+    mt: {
+      url: 'magic/yy201-dzpj/dzpj/m-mtkp'
     }
   },
   tp: {
@@ -22,6 +25,9 @@ export const DZPJ_KPPZ: DzPjKpPz = {
     },
     gh: {
       url: 'magic/yy201-dzpj/dzpj/m-mzch'
+    },
+    mt: {
+      url: 'magic/yy201-dzpj/dzpj/m-mtch'
     }
   }
 },

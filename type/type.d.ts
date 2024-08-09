@@ -4,4 +4,5 @@ declare interface Window {
   layui: any
   MODULENAME: any
   jthisJsObject: any
+  getClodop: any
 }
