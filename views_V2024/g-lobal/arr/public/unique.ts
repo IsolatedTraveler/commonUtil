@@ -9,6 +9,6 @@
 export function unique(arr: any[], isPrimitiveTypes: boolean = true) {
   if (isPrimitiveTypes) return [...new Set(arr)]
   const uni = new Map<string, any>()
-  arr.forEach(it => uni.set(it.toString(), it))
+  arr.forEach(it => uni.set(JSON.stringify(it), it))
   return [...uni.values()]
 }

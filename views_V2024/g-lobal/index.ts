@@ -1,3 +1,4 @@
+export * from './arr'
 export * from './common'
 export * from './file'
 export * from './layer'
