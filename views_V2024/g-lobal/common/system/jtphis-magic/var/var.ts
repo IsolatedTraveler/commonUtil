@@ -1,5 +1,6 @@
 import { getXhr } from "../../../../xhr/fun/getXhr"
 import { session } from "../public/session"
+import { hisConfig, setConfig } from "./config"
 import { CONFIG_URL } from "./const"
 import { SYSTEM } from "./server"
 
@@ -27,5 +28,9 @@ export function setUser(): any {
  * 4. 函数返回configData的设置操作，虽然实际上此返回值在异步操作的上下文中可能不会被直接使用，因为getAjax方法通常是异步的。
  */
 export function setConfigData() {
-  return configData = getXhr(CONFIG_URL, {}, { v: new Date() }, 'GET', 'origin', {})
+  if (JSON.stringify(hisConfig) != '{}') {
+    return configData = Promise.resolve(hisConfig)
+  } else {
+    return configData = getXhr(CONFIG_URL, {}, { v: new Date() }, 'GET', 'origin', {}).then(setConfig)
+  }
 }

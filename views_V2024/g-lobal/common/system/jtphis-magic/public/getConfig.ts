@@ -1,5 +1,4 @@
 import { setPageTemp } from "../../../../util/public/setPageTemp"
-import { setConfig } from "../var"
 import { configData, setConfigData } from "../var/var"
 /**
  * @description 获取配置信息。如果尚未设置，此函数会触发应用程序配置信息的初始化过程。
@@ -10,5 +9,5 @@ import { configData, setConfigData } from "../var/var"
  */
 export function getConfig(key: string = ''): any {
   setPageTemp(configData, setConfigData)
-  return configData.then(setConfig).then((res: any) => key ? res[key] : res)
+  return configData.then((res: any) => key ? res[key] : res)
 }
