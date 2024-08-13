@@ -12,7 +12,9 @@ export default async function () {
     const [key, gn] = keys[i], fun = (build as any)[key]
     if (gn && fun) {
       for (const funcName of gn) {
-        await funcName && fun(version, funcName);
+        if (funcName) {
+          await fun(version, funcName)
+        }
       }
     }
   }

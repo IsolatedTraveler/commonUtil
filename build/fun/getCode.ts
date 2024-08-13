@@ -32,6 +32,26 @@ function dealCode(code: string) {
     return Promise.resolve(code)
   }
 }
+function getFile(res: string, moduleName: string, moduleFile: string, src: string, name: string, external?: string[]) {
+  src = fileExit(moduleFile, src)
+  if (!external) {
+    const ModuleName = firstUppers(moduleName, true)
+    external = ['G' + ModuleName, 'GM' + ModuleName, 'Src' + ModuleName, 'Third' + ModuleName]
+  }
+  if (src) {
+    return contantFileCode(src, res.replace(/([ \t]*\/\/[ ]*)@CODEMODULE([\r\n]+)/g, '$1@CODE$2').replace(/(?<!new[ \t]+)Class/g, name), moduleFile, moduleName, external)
+  } else {
+    return Promise.reject(new Error('未添加module项目，如不添加请替换wrapper模板'))
+  }
+}
+function contantFileCode(url: string, wrap: string, moduleFile: string, moduleName: string, external?: string[]): Promise<string> {
+  return getFileCode(url, wrap, external).then((res: string) => {
+    if (/[ \t]*\/\/[ ]*@CODEMODULE[\r\n]+/.test(res)) {
+      return getFile(res, moduleName, moduleFile, 'module/index', 'FIRSTMODULENAME', external)
+    }
+    return res.replace(/([\n\r][ \t]*)+([\n\r])/g, '$2')
+  })
+}
 export function getCode(
   name: string,
   src: string,
@@ -43,10 +63,10 @@ export function getCode(
     , outName = (fileName || name) + outAddName + '.js'
   reName = reName || name
   console.log(ly, moduleName)
-  return renderModule(moduleFile, reName).then((back: any) => {
+  return renderModule(moduleFile, reName).then(() => {
     let wrap = fileExit(moduleFile, 'wrapper') || fileExit(src, 'wrapper')
     return fileRead(wrap).then((wrap: string) => {
-      return getFileCode(fileExit(moduleFile, 'index'), wrap).then((res: string) => {
+      return contantFileCode(fileExit(moduleFile, 'index'), wrap, moduleFile, moduleName).then((res: string) => {
         const Name = firstUppers(reName, true)
         code = res.replace(/@VERSION/g, version).replace(/@DATE/g, date)
           .replace(/w\.FIRSTMODULENAME/g, 'w.jt' + Name)
@@ -60,27 +80,19 @@ export function getCode(
         return dealCode(code).then((code) => {
           return Promise.all(printSrc.map(it => {
             let outFile = path.resolve(it, outName)
-            return writeFile(outFile, code).catch(() => { }).then(() => {
-              console.log(outFile)
+            return writeFile(outFile, code).then(() => {
+              console.log('success: ' + outFile)
+            }, () => {
+              console.log('failed: ' + outFile)
             })
-          })).then(() => {
-            return { back, code, url: outName }
-          })
+          }))
         })
-      }).catch((e: any) => {
-        console.log(moduleName + ':Failed')
-        return { back, code, url: outName }
       })
     })
-  }).then(({ back, code, url }) => {
-    if (back) {
-      return writeFile(back.url, back.code).catch(() => { }).then(() => {
-        console.log(moduleName + ':Finnsh')
-        return { code, url }
-      })
-    } else {
-      console.log(moduleName + ':Finnsh')
-      return { code, URL }
-    }
+  }).then(() => {
+    console.log(moduleName + ':Finnsh')
+  }, (e: any) => {
+    console.log(moduleName + ':Failed ' + e.message)
+    console.log(e)
   })
 }
