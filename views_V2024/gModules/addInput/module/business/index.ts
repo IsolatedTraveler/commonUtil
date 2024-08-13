@@ -1,4 +1,4 @@
 import { Class } from "../core";
-import { cs } from "../public";
+import { reload } from "../public";
 
-Class.prototype.cs = cs
+Class.prototype.reload = reload

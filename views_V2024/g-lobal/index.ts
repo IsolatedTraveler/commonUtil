@@ -1,6 +1,7 @@
 export * from './arr'
 export * from './clodop'
 export * from './common'
+export * from './dom'
 export * from './file'
 export * from './layer'
 export * from './type'
