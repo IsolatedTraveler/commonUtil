@@ -1,14 +1,16 @@
 declare module 'GMAddInput' {
   export interface TableCol {
-    label: string
-    name: string
+    field?: string | number
+    title: string
     def?: string | number
     type?: 'input'
+    placeholder?: string
   }
   export interface TableColDate extends TableCol {
-    type: 'date'
-    min: string
-    max: string
+    type: 'date' | 'datetime'
+    min?: string
+    max?: string
+    format?: string
   }
   export interface TableColSelect extends TableCol {
     type: 'select'
@@ -23,5 +25,5 @@ declare module 'GMAddInput' {
     selectIndex?: number
   }
   export let config: AddInputConfig
-  export { ADD_INPUT_IDS } from './index'
+  export { ADD_INPUT_IDS, uuid } from './index'
 }
