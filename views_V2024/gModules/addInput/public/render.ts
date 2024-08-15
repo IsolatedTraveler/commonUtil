@@ -1,15 +1,7 @@
 import { AddInputConfig } from "GMAddInput";
-import { uuid } from "../../../g-lobal/util/public/uuid";
-import { ADD_INPUT_IDS } from "../var";
+import { ADD_INPUT_IDS, id, setAddInutId } from "../var";
 
 export function render(config: AddInputConfig) {
-  let id = $(config.elem)[0].dataset.id
-  if (!id) {
-    id = uuid()
-    while (ADD_INPUT_IDS[id]) {
-      id = uuid()
-    }
-    ADD_INPUT_IDS[id] = new Render(config)
-  }
+  setAddInutId(config)
   return ADD_INPUT_IDS[id]
 }

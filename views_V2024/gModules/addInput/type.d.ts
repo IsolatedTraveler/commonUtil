@@ -22,8 +22,8 @@ declare module 'GMAddInput' {
   export interface AddInputConfig {
     elem: string
     cols: TableColSet[]
-    selectIndex?: number
+    index?: number
   }
   export let config: AddInputConfig
-  export { ADD_INPUT_IDS, uuid } from './index'
+  export { ADD_INPUT_IDS, id, TABLE_EVENT_ID, FIXED, STYLE } from './index'
 }

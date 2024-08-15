@@ -20,14 +20,17 @@ export const FIXED = 'z-fixed'
     background:#fff;
     max-height: 90%;
   }
+  .z-fixed .layui-form{
+    display:flex;
+    flex-wrap:wrap;
+  }
   .z-fixed .layui-form .layui-form-item{
     width:calc(33.33333333333333% - 8px);
-    display:inline-block;
+    display:flex;
     margin-bottom:8px
   }
-  .z-fixed .layui-form .layui-btn{
-    height: 25px;
-    line-height: 25px;
+  .z-fixed .layui-form .layui-form-item .layui-input-line{
+    flex:auto;
   }
   .z-fixed .z-bot{
     width:100%;

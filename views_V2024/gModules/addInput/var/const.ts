@@ -1,1 +1,1 @@
-export const ADD_INPUT_IDS: any = {}
+export const ADD_INPUT_IDS: any = {}, TABLE_EVENT_ID = 'addInputTableEvent'
