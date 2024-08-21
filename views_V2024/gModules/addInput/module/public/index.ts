@@ -1,1 +1,2 @@
-export * from './reload'
+export * from './reload';
+export * from './val';

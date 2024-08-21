@@ -1,2 +1,2 @@
-export * from './const'
-export * from './var'
+export * from './const';
+// export * from './var'

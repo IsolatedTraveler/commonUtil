@@ -1,12 +1,9 @@
-import { id } from "GMAddInput";
-import { popElem, valInput } from "../var";
+import {val} from '../public/val';
+import {currentTable, popElem, id} from '../var';
 
-export function hide() {
-  popElem.hide()
-  if (window.layui && window.layui.table) {
-    const data = window.layui.table.cache[id] || []
-    valInput.val(data.map((it: any) => {
-
-    }))
+export function hide(judge: boolean = false) {
+  popElem.hide();
+  if (judge && currentTable) {
+    val(window.layui.table.cache[id] || []);
   }
 }

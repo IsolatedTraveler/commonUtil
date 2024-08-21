@@ -1,4 +1,4 @@
-import { Class } from "../core";
-import { reload } from "../public";
+import {Class} from '../core';
+import {val} from '../public';
 
-Class.prototype.reload = reload
+Class.prototype.val = val;

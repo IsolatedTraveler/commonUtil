@@ -1,5 +1,5 @@
-export const FIXED = 'z-fixed'
-  , STYLE = `
+export const FIXED = 'z-fixed',
+  STYLE = `
   .z-fixed{
     position: fixed;
     z-index: 999999;
@@ -38,4 +38,26 @@ export const FIXED = 'z-fixed'
     display:flex;
     justify-content: flex-end;
   }
-  `
+  .multi-item{
+    margin: 3px;
+    background: #eeeeee;
+    display: inline-block;
+    line-height: 16px;
+    font-size: 12px;
+    padding-left: 6px;
+    padding-right: 19px;
+    padding-top: 1px;
+    position: relative;
+    border-radius: 1px;
+  }
+  .multi-item .layui-layer-ico{
+    position: absolute;
+    right: 2px;
+    top: 0;
+    width: 18px;
+    height: 16px;
+    background-position: 6px -26px;
+    cursor: pointer;
+    background-size: 158px auto;
+  }
+  `;

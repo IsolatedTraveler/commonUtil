@@ -1,7 +1,10 @@
-import { AddInputConfig } from "GMAddInput";
-import { ADD_INPUT_IDS, id, setAddInutId } from "../var";
+import {AddInputConfig} from 'GMAddInput';
+import {ADD_INPUT_IDS} from '../var';
 
 export function render(config: AddInputConfig) {
-  setAddInutId(config)
-  return ADD_INPUT_IDS[id]
+  const id = $(config.elem)[0].dataset.id || '';
+  if (id) {
+    return ADD_INPUT_IDS[id];
+  }
+  return (ADD_INPUT_IDS[id] = new Render(config));
 }
