@@ -78,4 +78,19 @@ describe('alertMsg function', () => {
     alertMsg('Fallback Message');
     expect(window.alert).toHaveBeenCalledWith('该方法依赖layer或jQuery messager，请引用相关依赖。\n消息内容：Fallback Message');
   });
+
+  it('当msg是普通字符串且layer存在且有自定义标题，应调用layer.alert', () => {
+    (window as any).layer = layer;
+    alertMsg('Test Message', '自定义标题');
+    expect(layer.alert).toHaveBeenCalledWith('Test Message');
+  });
+
+  it('当msg是具有message属性的对象且layer存在且有自定义标题，应调用console.error，然后调用layer.alert', () => {
+    (window as any).layer = layer;
+    (window as any).console = console;
+    const errorMsg = {message: 'Error occurred!'};
+    alertMsg(errorMsg, '自定义标题');
+    expect(layer.alert).toHaveBeenCalledWith(errorMsg.message);
+    expect(console.error).toHaveBeenCalledWith(errorMsg);
+  });
 });
