@@ -1,26 +1,28 @@
 // 定义开发代码存储位置的代码类型
-type DeploymentSiteCode = 'sc' | 'nm' | 'yq'
+type DeploymentSiteCode = 'sc' | 'nm' | 'yq' | 'bx';
 // 分别定义不同开发代码在各地区的发版服务器代码类型，如：四川版本代码发布了驷马桥、达州、肖家河
-type ScFbdq = 'smq' | 'dz' | 'xjh'
-type NmDbqq = 'kbs' | 'wsq' | 'dsq' | 'etkq' | 'etkqq' | 'yq'
+type ScFbdq = 'smq' | 'dz' | 'xjh';
+type NmDbqq = 'kbs' | 'wsq' | 'dsq' | 'etkq' | 'etkqq' | 'yq';
+type QtDbqq = 'bx';
 /**
  * 映射部署站点代码到其对应的本地文件系统路径。
  */
 type DeploymentDirectories = {
-  [key in DeploymentSiteCode]: string
-}
+  [key in DeploymentSiteCode]: string;
+};
 /**
  * 组织机构代码，包含了所有地区的发版服务器代码。
  */
-export type InstitutionCode = ScFbdq | NmDbqq;
+export type InstitutionCode = ScFbdq | NmDbqq | QtDbqq;
 /**
  * 部署目录配置，根据开发代码存储位置代码映射到实际的文件系统路径。
  */
 export const deploymentDirectories: DeploymentDirectories = {
   sc: 'E:/jtGit/web/his-flie/sc/lib23/js/', // 四川
   nm: 'E:/jtGit/web/his-flie/nm/lib23/js/', // 内蒙
-  yq: 'E:/jtGit/web/his-flie/yq/lib23/js/' // 伊旗
-}
+  yq: 'E:/jtGit/web/his-flie/yq/lib23/js/', // 伊旗
+  bx: 'E:/jtGit/web/his-flie/bx/lib23/js/' // 博兴
+};
 /**
  * 机构部署映射关系，用于确定每个具体发版服务器代码所归属的开发代码存储位置。
  */
@@ -35,5 +37,6 @@ export const institutionDeploymentMapping: Record<InstitutionCode | DeploymentSi
   dsq: 'nm',
   etkq: 'nm',
   etkqq: 'nm',
-  yq: 'nm'
-}
+  yq: 'nm',
+  bx: 'bx'
+};

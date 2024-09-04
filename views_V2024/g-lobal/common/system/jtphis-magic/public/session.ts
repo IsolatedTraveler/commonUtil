@@ -1,9 +1,9 @@
-import { WEB_NAME } from "../../../../util/var";
-import { SYSTEM } from "../var/server";
+import {WEB_NAME} from '../../../../util/var';
+import {SYSTEM} from '../var/server';
 
 /**
  * @description 提供一种便捷的方式来读取、写入或删除浏览器sessionStorage中的数据，同时支持对存储键名进行前缀处理，增强数据管理的灵活性和区分度
- * 
+ *
  * @param {string} name - 用于sessionStorage的键名。
  * @param {any} [val]  - 如果省略或为undefined，函数将尝试获取指定键名的值。
  *                     - 如果为null，函数将删除该键名对应的sessionStorage项。
@@ -12,25 +12,25 @@ import { SYSTEM } from "../var/server";
  *                如果是设置或删除操作，则返回传入的val。
  */
 export function session(name: string, val?: any | undefined | null): any {
-  const name1: string = WEB_NAME + name
+  const name1: string = WEB_NAME + name;
   if (val === undefined) {
     if (SYSTEM) {
-      return JSON.parse(SYSTEM.varget('that', name) || 'null')
+      return JSON.parse(SYSTEM.varget('that', name) || 'null');
     } else {
-      return JSON.parse(sessionStorage.getItem(name1) || 'null')
+      return JSON.parse(sessionStorage.getItem(name1) || 'null');
     }
   } else if (val === null) {
     if (SYSTEM) {
-      SYSTEM.varpost('that', name, JSON.stringify(val))
+      SYSTEM.varpost('that', name, JSON.stringify(val));
     } else {
-      sessionStorage.removeItem(name1)
+      sessionStorage.removeItem(name1);
     }
   } else {
     if (SYSTEM) {
-      SYSTEM.varpost('that', name, JSON.stringify(val))
+      SYSTEM.varpost('that', name, JSON.stringify(val));
     } else {
-      sessionStorage.setItem(name1, JSON.stringify(val))
+      sessionStorage.setItem(name1, JSON.stringify(val));
     }
   }
-  return val
+  return val;
 }

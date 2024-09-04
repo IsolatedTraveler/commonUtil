@@ -1,5 +1,5 @@
-import { AjaxRequestOption } from "../../../../type/xhr"
-import { getUser } from "../../../system/jtphis-magic/public/getUser"
+import type {AjaxRequestOption} from '../../../../type/xhr';
+import {getUser} from '../../../system/jtphis-magic/public/getUser';
 /**
  * 处理请求数据，根据配置选项对数据进行预处理。
  *
@@ -17,23 +17,27 @@ import { getUser } from "../../../system/jtphis-magic/public/getUser"
  */
 export function dealRequestData(data: any, option: AjaxRequestOption = {}) {
   if (!option.isNotGetUser) {
-    const user = getUser()
-    data = Object.assign({}, {
-      czryid: user.ryid,
-      czryjgid: user.jgid,
-      czryjgmc: user.jgmc,
-      czryjgjc: user.jgjc,
-      czryyhm: user.yhm,
-      czryxm: user.xm || user.username,
-      superadmin: user.superadmin
-    }, data)
+    const user = getUser();
+    data = Object.assign(
+      {},
+      {
+        czryid: user.ryid,
+        czryjgid: user.jgid,
+        czryjgmc: user.jgmc,
+        czryjgjc: user.jgjc,
+        czryyhm: user.yhm,
+        czryxm: user.xm || user.username,
+        superadmin: user.superadmin
+      },
+      data
+    );
   }
   if (data.pageSize || data.pageNumber) {
-    data.page = data.page || data.pageNumber
-    data.size = data.size || data.pageSize
+    data.page = data.page || data.pageNumber;
+    data.size = data.size || data.pageSize;
   }
   if (option.isNotWrapped) {
-    return JSON.stringify(data)
+    return JSON.stringify(data);
   }
-  return JSON.stringify({ data })
+  return JSON.stringify({data});
 }

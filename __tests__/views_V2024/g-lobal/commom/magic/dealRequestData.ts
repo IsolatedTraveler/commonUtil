@@ -1,5 +1,5 @@
-import { setLoaction } from '../../../../../__mocks__/location';
-import { dealRequestData, session } from '../../../../../views_V2024/g-lobal';
+import {setLoaction} from '../../../../../__mocks__/location';
+import {dealRequestData, session} from '../../../../../views_V2024/g-lobal';
 describe('dealRequestData Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {
@@ -16,15 +16,15 @@ describe('dealRequestData Function', () => {
       username: '张三',
       superadmin: false
     }
-  })
+  });
   it('不包含用户信息且不处理分页参数，直接包装数据', () => {
-    const data = { key: 'value' };
-    const result = dealRequestData(data, { isNotGetUser: true });
+    const data = {key: 'value'};
+    const result = dealRequestData(data, {isNotGetUser: true});
     expect(result).toBe('{"data":{"key":"value"}}');
   });
 
   it('包含用户信息，应合并用户信息', () => {
-    const data = { otherKey: 'otherValue' };
+    const data = {otherKey: 'otherValue'};
     const result = dealRequestData(data);
     expect(result).toContain('"czryid":"123"');
     expect(result).toContain('"czryjgid":"456"');
@@ -37,15 +37,21 @@ describe('dealRequestData Function', () => {
   });
 
   it('处理分页参数，应转换为 page 和 size', () => {
-    const data = { pageNumber: 2, pageSize: 10 };
+    const data = {pageNumber: 2, pageSize: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
+  it('处理分页参数，应转换为 page 和 size', () => {
+    const data = {page: 2, size: 10};
     const result = dealRequestData(data);
     expect(result).toContain('"page":2');
     expect(result).toContain('"size":10');
   });
 
   it('指定不包装数据，应直接返回未经包装的JSON字符串', () => {
-    const data = { testKey: 'testValue' };
-    const option = { isNotWrapped: true, isNotGetUser: true };
+    const data = {testKey: 'testValue'};
+    const option = {isNotWrapped: true, isNotGetUser: true};
     const result = dealRequestData(data, option);
     expect(result).toBe('{"testKey":"testValue"}');
   });

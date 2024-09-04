@@ -6,18 +6,18 @@
  */
 export function alertMsg(msg: any, title: string = '提示信息') {
   if (msg.message) {
-    console.error(msg)
-    msg = msg.message
+    console.error(msg);
+    msg = msg.message;
   }
   if (window.layer) {
-    window.layer.alert(msg)
+    window.layer.alert(msg);
   } else if ((<any>$).messager && (<any>$).messager.alert) {
     (<any>$).messager.alert({
       title,
       msg,
       icon: 'warning'
-    })
+    });
   } else {
-    window.alert('该方法依赖layer或jQuery messager，请引用相关依赖。\n消息内容：' + msg)
+    window.alert('该方法依赖layer或jQuery messager，请引用相关依赖。\n消息内容：' + msg);
   }
 }
