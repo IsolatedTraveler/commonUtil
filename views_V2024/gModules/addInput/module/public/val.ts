@@ -19,6 +19,7 @@ export function val(v?: string | any[]) {
       str = v;
     } else {
       strArr = v
+        .filter(it => it[cols[0].field || 0])
         .map((it: any) => {
           const v = cols.map(({field = ''}) => {
               return it[field] || '';
@@ -26,14 +27,13 @@ export function val(v?: string | any[]) {
             s = v.join(split[0] || '|');
           html += getSpan(s);
           return s;
-        })
-        .filter(it => it);
+        });
       arr = v;
       str = strArr.join(split[1] || '||');
     }
     valInput.val(str);
     contentElem.html(html);
-    currentTable.reload({data: arr});
-    setValArr(strArr);
+    currentTable && currentTable.reload({data: arr});
+    setValArr(strArr, arr);
   }
 }

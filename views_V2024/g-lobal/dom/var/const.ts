@@ -2,7 +2,7 @@ export const FIXED = 'z-fixed',
   STYLE = `
   .z-fixed{
     position: fixed;
-    z-index: 999999;
+    z-index: 98;
     top: 0;
     left: 0;
     right: 0;

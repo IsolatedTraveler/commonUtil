@@ -14,7 +14,8 @@ export let valInput: JQuery<HTMLInputElement>,
   split: string[] = ['|', '||'],
   index: number = 0,
   currentTable: any,
-  id: string;
+  id: string,
+  data: any;
 export function initAdInput(config: AddInputConfig) {
   valInput = $(config.elem);
   boxInput = valInput.parent();
@@ -49,10 +50,11 @@ export function setTrData(v: any) {
 export function setCurrentTable(layTable: any) {
   currentTable = layTable.render({
     elem: '#' + id,
-    data: [[]],
+    data: data || [[]],
     cols: [[].concat(cols as any, [{title: '操作', templet: `#${TABLE_EVENT_ID}`, align: 'center', width: '100'}] as any)]
   });
 }
-export function setValArr(v: string[]) {
+export function setValArr(v: string[], arr?: any) {
   valArr = v;
+  data = arr;
 }
