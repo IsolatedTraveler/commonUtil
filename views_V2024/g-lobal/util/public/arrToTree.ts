@@ -1,5 +1,5 @@
-import { TreeNode } from "../../../main";
-import { alertMsg } from "../../common/pop";
+import {TreeNode} from '../../../main';
+import {alertMsg} from '../../common/pop';
 
 /**
  * @description 初始化树形数据结构
@@ -8,11 +8,7 @@ import { alertMsg } from "../../common/pop";
  * @param parentIdKey 父键字段，默认'fid'
  * @returns 初始化后的树形数据
  */
-export function arrToTree<T extends TreeNode>(
-  data: T[],
-  idKey: keyof T = 'id',
-  parentIdKey: keyof T = 'fid'
-): T[] {
+export function arrToTree<T extends TreeNode>(data: T[], idKey: keyof T = 'id', parentIdKey: keyof T = 'fid'): T[] {
   try {
     if (data.length < 2) return data;
     // 使用一个映射来存储所有节点，键为id，值为节点对象
@@ -22,7 +18,7 @@ export function arrToTree<T extends TreeNode>(
     // 遍历数据，填充nodeMap并处理根节点
     data.forEach(item => {
       // 保存节点到映射中
-      nodeMap.set(item[idKey], { ...item, children: item.children || [] }); // 每个节点初始化一个空的children数组
+      nodeMap.set(item[idKey], {...item, children: item.children || []}); // 每个节点初始化一个空的children数组
     });
 
     // 构建树形结构，通过pid找到父节点并添加子节点
@@ -38,7 +34,7 @@ export function arrToTree<T extends TreeNode>(
     });
     return tree;
   } catch (e: any) {
-    alertMsg(e)
-    return data
+    alertMsg(e);
+    return data;
   }
 }

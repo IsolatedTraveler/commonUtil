@@ -1,11 +1,11 @@
 import {setLoaction} from '../../../../../__mocks__/location';
-import {dealRequestData, session} from '../../../../../views_V2024/g-lobal';
+import {dealRequestData, session, setUser} from '../../../../../views_V2024/g-lobal';
 describe('dealRequestData Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {
-    // 确保每次测试后清理模拟，避免测试间互相影响
     jest.clearAllMocks();
   });
+
   session('userinfo', {
     ryxx: {
       ryid: '123',
@@ -17,6 +17,7 @@ describe('dealRequestData Function', () => {
       superadmin: false
     }
   });
+
   it('不包含用户信息且不处理分页参数，直接包装数据', () => {
     const data = {key: 'value'};
     const result = dealRequestData(data, {isNotGetUser: true});
@@ -42,6 +43,7 @@ describe('dealRequestData Function', () => {
     expect(result).toContain('"page":2');
     expect(result).toContain('"size":10');
   });
+
   it('处理分页参数，应转换为 page 和 size', () => {
     const data = {page: 2, size: 10};
     const result = dealRequestData(data);
@@ -55,9 +57,53 @@ describe('dealRequestData Function', () => {
     const result = dealRequestData(data, option);
     expect(result).toBe('{"testKey":"testValue"}');
   });
-});
 
-// 清理模拟的 getUser 函数
-afterAll(() => {
-  jest.restoreAllMocks();
+  it('当用户信息不存在时，不合并用户信息', () => {
+    const data = {otherKey: 'otherValue'};
+    const option = {isNotGetUser: false};
+    session('userinfo', {ryxx: null}); // 模拟用户信息不存在
+    setUser();
+    const result = dealRequestData(data, option);
+    expect(result).toBe('{"data":{"otherKey":"otherValue"}}');
+  });
+
+  it('当分页参数都不存在时，不修改分页参数', () => {
+    const data = {otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"otherKey":"otherValue"');
+    expect(result).not.toContain('"page":1');
+    expect(result).not.toContain('"size":10');
+  });
+
+  it('当分页参数page和size都存在时，不修改分页参数', () => {
+    const data = {page: 2, size: 10, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数pageNumber和pageSize都存在时，不修改分页参数', () => {
+    const data = {pageNumber: 2, pageSize: 10, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数只有page存在时，不修改分页参数', () => {
+    const data = {page: 2, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).not.toContain('"size":10');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数只有size存在时，不修改分页参数', () => {
+    const data = {size: 10, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).not.toContain('"page":1');
+    expect(result).toContain('"size":10');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
 });

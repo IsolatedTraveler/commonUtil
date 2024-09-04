@@ -1,6 +1,6 @@
-import { errFormat } from "../../util/public/errFormat"
-import { AJAX_RES } from "../var"
-/* 
+import {errFormat} from '../../util/public/errFormat';
+import {AJAX_RES} from '../var';
+/*
  * 处理 XMLHttpRequest 响应的函数。
  *
  * @param {XMLHttpRequest} xhr - XMLHttpRequest 实例，包含了从服务器返回的全部响应信息。
@@ -22,14 +22,14 @@ import { AJAX_RES } from "../var"
 export function dealXhrRes(xhr: XMLHttpRequest): any {
   if (xhr.status >= 200 && xhr.status < 300) {
     try {
-      var data = JSON.parse(xhr.responseText)
-      data.message = data.message || data.msg
-      data.code = data.code === '1' ? 1 : data.code
-      return data
+      var data = JSON.parse(xhr.responseText);
+      data.message = data.message || data.msg;
+      data.code = data.code === '1' ? 1 : data.code;
+      return data;
     } catch (e) {
-      return xhr.responseText
+      return xhr.responseText;
     }
   } else {
-    return errFormat('请求失败：' + AJAX_RES[xhr.status])
+    return errFormat('请求失败：' + AJAX_RES[xhr.status]);
   }
 }

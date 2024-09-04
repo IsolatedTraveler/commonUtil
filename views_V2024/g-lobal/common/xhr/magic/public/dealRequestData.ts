@@ -17,7 +17,7 @@ import {getUser} from '../../../system/jtphis-magic/public/getUser';
  */
 export function dealRequestData(data: any, option: AjaxRequestOption = {}) {
   if (!option.isNotGetUser) {
-    const user = getUser();
+    const user = getUser() || {};
     data = Object.assign(
       {},
       {
