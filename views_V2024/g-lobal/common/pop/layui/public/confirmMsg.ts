@@ -1,4 +1,4 @@
-import { judgeConfig } from "../fun/judgeConfig"
+import {judgeConfig} from '../fun/judgeConfig';
 /**
  * @description 显示确认消息框并根据用户选择返回Promise结果。
  *
@@ -14,26 +14,28 @@ import { judgeConfig } from "../fun/judgeConfig"
 export function confirmMsg(msg: string, btn: Array<string> = ['确定', '取消'], title: string = '提示') {
   return new Promise((resolve, reject) => {
     if (window.layer) {
-      var len = btn.length, judge = true
+      var len = btn.length,
+        judge = true;
       const param: any = {
-        title, btn,
+        title,
+        btn,
         end() {
-          judge && reject()
-          judge = false
+          judge && reject();
+          judge = false;
         }
-      }
+      };
       btn.forEach((it, j) => {
         const z = j + 1;
         param[j === 0 ? 'yes' : `btn${z}`] = (layerIndex: number) => {
-          judge = judgeConfig(layerIndex, z, len, resolve, reject)
-        }
+          judge = judgeConfig(layerIndex, z, len, resolve, reject);
+        };
       });
-      window.layer.confirm(msg, param)
+      window.layer.confirm(msg, param);
     } else if (btn.length == 2 && (<any>$).messager && (<any>$).messager.confirm) {
-      (<any>$).messager.confirm(title, msg, (res: boolean) => res ? resolve(1) : reject())
+      (<any>$).messager.confirm(title, msg, (res: boolean) => (res ? resolve(1) : reject()));
     } else {
-      window.alert('未提供弹出层解决方案：' + msg)
-      reject('未提供弹出层解决方案：' + msg)
+      window.alert('未提供弹出层解决方案：' + msg);
+      reject('未提供弹出层解决方案：' + msg);
     }
-  })
+  });
 }
