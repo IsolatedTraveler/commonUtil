@@ -22,85 +22,97 @@ describe('confirmMsg function', () => {
     jest.spyOn(console, 'error').mockImplementation(error as any);
     window.alert = jest.fn(alert);
   });
+
   afterEach(() => {
     (window as any).layer = undefined;
     (window as any).$ = undefined;
     (window as any).console = undefined;
     jest.clearAllMocks();
   });
+
   it('点击确定按钮应解析Promise', async () => {
     (window as any).layer = layer;
     const result = confirmMsg('测试消息');
+    btnName = 'yes'; // 模拟点击确定按钮
     await expect(result).resolves.toBe(1);
     expect(layer.confirm).toHaveBeenCalled();
   });
-  it('点击取消按钮应解析Promise', async () => {
+
+  it('点击取消按钮应拒绝Promise', async () => {
     (window as any).layer = layer;
-    btnName = 'btn2';
+    btnName = 'btn2'; // 模拟点击取消按钮
     const result = confirmMsg('测试消息');
     await expect(result).rejects.toBeUndefined();
   });
+
   it('自定义按钮3处理', async () => {
     (window as any).layer = layer;
-    btnName = 'btn2';
+    btnName = 'btn2'; // 模拟点击第二个按钮
     const customButtons = ['同意', '稍后再说', '了解更多'];
     const promise = confirmMsg('自定义按钮', customButtons);
     await expect(promise).resolves.toBe(2);
   });
+
   it('自定义按钮4处理', async () => {
     (window as any).layer = layer;
-    btnName = 'btn3';
+    btnName = 'btn3'; // 模拟点击第三个按钮
     const customButtons = ['同意', '稍后再说', '了解更多', ''];
     const promise = confirmMsg('自定义按钮', customButtons);
     await expect(promise).resolves.toBe(3);
   });
+
   it('自定义按钮5处理', async () => {
     (window as any).layer = layer;
-    btnName = 'btn4';
+    btnName = 'btn4'; // 模拟点击第四个按钮
     const customButtons = ['同意', '稍后再说', '了解更多', '', ''];
     const promise = confirmMsg('自定义按钮', customButtons);
     await expect(promise).resolves.toBe(4);
   });
+
   it('自定义按钮6处理', async () => {
     (window as any).layer = layer;
-    btnName = 'btn5';
+    btnName = 'btn5'; // 模拟点击第五个按钮
     const customButtons = ['同意', '稍后再说', '了解更多', '', '', ''];
     const promise = confirmMsg('自定义按钮', customButtons);
     await expect(promise).resolves.toBe(5);
   });
-  it('自定义按钮6处理', async () => {
+
+  it('自定义按钮超过6个时应只处理前六个', async () => {
     (window as any).layer = layer;
-    btnName = 'btn6';
-    const customButtons = ['同意', '稍后再说', '了解更多', '', '', ''];
+    btnName = 'btn6'; // 模拟点击第六个按钮
+    const customButtons = ['同意', '稍后再说', '了解更多', '', '', '', ''];
     const promise = confirmMsg('自定义按钮', customButtons);
-    await expect(promise).rejects.toBeUndefined();
+    await expect(promise).resolves.toBe(6);
   });
-  it('点击右上角关闭按钮应解析Promise', async () => {
+
+  it('点击右上角关闭按钮应拒绝Promise', async () => {
     (window as any).layer = layer;
-    btnName = 'end';
+    btnName = 'end'; // 模拟点击关闭按钮
     const customButtons = ['同意', '稍后再说'];
     const promise = confirmMsg('自定义按钮', customButtons);
     await expect(promise).rejects.toBeUndefined();
   });
+
   it('无layer且存在$.message.confirm点击确定按钮应解析Promise', async () => {
     (window as any).$ = $;
-    btnName = true;
+    btnName = true; // 模拟点击确定按钮
     const result = confirmMsg('测试消息');
     await expect(result).resolves.toBe(1);
     expect($.messager.confirm).toHaveBeenCalled();
   });
-  it('无layer且存在$.message.confirm点击取消按钮应解析Promise', async () => {
+
+  it('无layer且存在$.message.confirm点击取消按钮应拒绝Promise', async () => {
     (window as any).$ = $;
-    btnName = false;
+    btnName = false; // 模拟点击取消按钮
     const result = confirmMsg('测试消息');
     await expect(result).rejects.toBeUndefined();
   });
+
   it('无layer时应使用alert并拒绝Promise', async () => {
+    (window as any).layer = undefined;
+    (window as any).$ = {};
     const promise = confirmMsg('无layer提示', ['1', '2', '3']);
-    try {
-      await expect(promise).rejects.toEqual('未提供弹出层解决方案：无layer提示');
-    } catch (e) {
-      expect(window.alert).toHaveBeenCalledWith('未提供弹出层解决方案：无layer提示');
-    }
+    await expect(promise).rejects.toEqual('未提供弹出层解决方案：无layer提示');
+    expect(window.alert).toHaveBeenCalledWith('未提供弹出层解决方案：无layer提示');
   });
 });
