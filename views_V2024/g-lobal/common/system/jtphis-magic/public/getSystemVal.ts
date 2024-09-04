@@ -14,7 +14,7 @@ import {SYSTEM} from '../var';
  * 如果`SYSTEM`对象不存在或`name`方法未定义：
  *   - 将显示警告消息，提示用户联系技术支持或说明该方法依赖于专用浏览器。
  */
-export function getSystemVal(name: string, param: Array<any> | undefined = undefined) {
+export function getSystemVal(name: string, param?: Array<any>) {
   if (SYSTEM) {
     if (SYSTEM[name]) {
       if (param) {

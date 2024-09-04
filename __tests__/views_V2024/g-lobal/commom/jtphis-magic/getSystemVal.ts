@@ -17,6 +17,7 @@ describe('getSystemVal function', () => {
     jest.spyOn(jthis, 'printreport').mockImplementation(printreport as any);
     window.alert = jest.fn(alert);
   });
+
   afterEach(() => {
     (window as any).layer = undefined;
     (window as any).$ = undefined;
@@ -24,12 +25,14 @@ describe('getSystemVal function', () => {
     (window as any).jthisJsObject = undefined;
     jest.clearAllMocks();
   });
+
   it('如未定义window.jthisJsObject时应报错', () => {
     (window as any).layer = layer;
     getSystem();
     getSystemVal('printreport', []);
     expect(layer.alert).toHaveBeenCalledWith('该方法依赖专有浏览器，请在专有浏览器中使用');
   });
+
   it('如已定义window.jthisJsObject.jthis时且未定义指定方法应报错', () => {
     (window as any).layer = layer;
     (window as any).jthisJsObject = jthisJsObject;
@@ -37,16 +40,32 @@ describe('getSystemVal function', () => {
     getSystemVal('printreport1', []);
     expect(layer.alert).toHaveBeenCalledWith('当前浏览器未定义该方法（printreport1），请联系厂家提供技术支持');
   });
-  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法', () => {
+
+  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法 (带参数)', () => {
     (window as any).jthisJsObject = jthisJsObject;
     getSystem();
     getSystemVal('printreport', ['123']);
     expect(jthis.printreport).toHaveBeenCalledWith('123');
   });
-  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法', () => {
+
+  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法 (无参数)', () => {
     (window as any).jthisJsObject = jthisJsObject;
     getSystem();
     getSystemVal('printreport');
+    expect(jthis.printreport).toHaveBeenCalled();
+  });
+
+  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法 (参数为undefined)', () => {
+    (window as any).jthisJsObject = jthisJsObject;
+    getSystem();
+    getSystemVal('printreport', undefined);
+    expect(jthis.printreport).toHaveBeenCalled();
+  });
+
+  it('如已定义window.jthisJsObject.jthis时且已定义指定方法应调用该方法 (参数为空数组)', () => {
+    (window as any).jthisJsObject = jthisJsObject;
+    getSystem();
+    getSystemVal('printreport', []);
     expect(jthis.printreport).toHaveBeenCalledWith();
   });
 });
