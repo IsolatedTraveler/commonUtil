@@ -1,5 +1,6 @@
 import {setLoaction} from '../../../../../__mocks__/location';
 import {dealRequestData, session, setUser} from '../../../../../views_V2024/g-lobal';
+
 describe('dealRequestData Function', () => {
   beforeEach(() => setLoaction());
   afterEach(() => {
@@ -105,5 +106,54 @@ describe('dealRequestData Function', () => {
     expect(result).not.toContain('"page":1');
     expect(result).toContain('"size":10');
     expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数同时包含pageNumber和pageSize时，应转换为page和size', () => {
+    const data = {pageNumber: 2, pageSize: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
+
+  it('当分页参数只包含pageNumber时，应转换为page', () => {
+    const data = {pageNumber: 2};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).not.toContain('"size":10');
+  });
+
+  it('当分页参数只包含pageSize时，应转换为size', () => {
+    const data = {pageSize: 10};
+    const result = dealRequestData(data);
+    expect(result).not.toContain('"page":1');
+    expect(result).toContain('"size":10');
+  });
+
+  it('当分页参数同时包含page和pageSize时，应保持page和size不变', () => {
+    const data = {page: 2, pageSize: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
+
+  it('当分页参数同时包含page和size时，应保持page和size不变', () => {
+    const data = {page: 2, size: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
+
+  it('当分页参数同时包含pageNumber和size时，应转换为page并保持size', () => {
+    const data = {pageNumber: 2, size: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
+
+  it('当分页参数同时包含page和pageSize时，应转换为page并保持size', () => {
+    const data = {page: 2, pageSize: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
   });
 });

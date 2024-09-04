@@ -1,7 +1,7 @@
-import { checkAuth } from "../../common/xhr"
-import { XHR_JQ_CODE } from "../../common/xhr/magic/var"
-import { AjaxRequestConfig, AjaxRequestOption, AjaxRequestType, XhrRes } from "../../type"
-import { getXhr } from "./getXhr"
+import {checkAuth} from '../../common/xhr';
+import {XHR_JQ_CODE} from '../../common/xhr/magic/var';
+import {AjaxRequestConfig, AjaxRequestOption, AjaxRequestType, XhrRes} from '../../type';
+import {getXhr} from './getXhr';
 
 /**
  * @description 发起一个异步HTTP请求，包含鉴权逻辑处理。
@@ -20,19 +20,20 @@ export function setXhr(
   data: any,
   param: any,
   type: AjaxRequestType,
-  { urlType, isCheck }: AjaxRequestOption,
-  config: AjaxRequestConfig = {}
-  , reset?: Boolean): Promise<XhrRes> {
+  {urlType, isCheck}: AjaxRequestOption,
+  config: AjaxRequestConfig = {},
+  reset?: Boolean
+): Promise<XhrRes> {
   // 是否鉴权
-  return checkAuth(url, config, { isCheck, reset }).then((isRest) => {
+  return checkAuth(url, config, {isCheck, reset}).then(isRest => {
     // 获取远程数据
-    return getXhr(url, data, param, type, urlType, config).then((res) => {
+    return getXhr(url, data, param, type, urlType, config).then(res => {
       // 判断是否因未鉴权报错 不是直接返回
-      if (res.code !== XHR_JQ_CODE) return res
+      if (res.code !== XHR_JQ_CODE) return res;
       // 判断本次请求是否刷新鉴权信息，是直接返回
-      if (reset || isRest) return res
+      if (reset || isRest) return res;
       // 在次请求 本次请求强制刷新鉴权信息
-      return setXhr(url, data, param, type, { urlType, isCheck: true }, config, true)
-    })
-  })
+      return setXhr(url, data, param, type, {urlType, isCheck: true}, config, true);
+    });
+  });
 }

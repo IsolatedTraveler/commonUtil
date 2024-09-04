@@ -57,4 +57,21 @@ describe('extractPrimaryUrl Function', () => {
     const urlsArray = ['http://example.com/path', ''];
     expect(extractPrimaryUrl(urlsArray)).toBe('http://example.com/path');
   });
+
+  it('当数组中第一个URL就是当前页面起源的URL时，应返回该URL', () => {
+    const urlsArray = ['http://example.com/path', 'http://other.com/path'];
+    expect(extractPrimaryUrl(urlsArray)).toBe('http://example.com/path');
+    href = 'http://example.com/zshis123/webs/some/path/index.html';
+  });
+
+  it('当数组中最后一个URL是当前页面起源的URL时，应返回该URL', () => {
+    const urlsArray = ['http://other.com/path', 'http://example.com/path'];
+    expect(extractPrimaryUrl(urlsArray)).toBe('http://example.com/path');
+    href = 'http://example.com/zshis123/webs/some/path/index.html';
+  });
+
+  it('当数组中第一个URL不是当前页面起源的URL时，应返回数组中的第一个URL', () => {
+    const urlsArray = ['http://other.com/path', 'http://example1.com/path'];
+    expect(extractPrimaryUrl(urlsArray)).toBe('http://other.com/path');
+  });
 });
