@@ -1,6 +1,6 @@
 import {checkAuth} from '../../common/xhr';
 import {XHR_JQ_CODE} from '../../common/xhr/magic/var';
-import {AjaxRequestConfig, AjaxRequestOption, AjaxRequestType, XhrRes} from '../../type';
+import type {AjaxRequestConfig, AjaxRequestOption, AjaxRequestType, XhrRes} from '../../type';
 import {getXhr} from './getXhr';
 
 /**

@@ -156,4 +156,35 @@ describe('dealRequestData Function', () => {
     expect(result).toContain('"page":2');
     expect(result).toContain('"size":10');
   });
+  it('当分页参数同时包含page和pageNumber时，应优先使用page', () => {
+    const data = {page: 2, pageNumber: 3, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"pageNumber":3');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数同时包含size和pageSize时，应优先使用size', () => {
+    const data = {size: 10, pageSize: 15, otherKey: 'otherValue'};
+    const result = dealRequestData(data);
+    expect(result).toContain('"size":10');
+    expect(result).toContain('"pageSize":15');
+    expect(result).toContain('"otherKey":"otherValue"');
+  });
+
+  it('当分页参数同时包含page、size、pageNumber和pageSize时，应优先使用page和size', () => {
+    const data = {page: 2, size: 10, pageNumber: 3, pageSize: 15};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+    expect(result).toContain('"pageNumber":3');
+    expect(result).toContain('"pageSize":15');
+  });
+
+  it('当分页参数同时包含page和size时，应保持page和size不变', () => {
+    const data = {page: 2, size: 10};
+    const result = dealRequestData(data);
+    expect(result).toContain('"page":2');
+    expect(result).toContain('"size":10');
+  });
 });

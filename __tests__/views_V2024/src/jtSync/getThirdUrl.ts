@@ -1,15 +1,15 @@
-import { getThirdUrl, setOrganization, setRegion, startRule } from "../../../../views_V2024/main";
-(window as any).jt_third_cs = { init() { } }
+import {getThirdUrl, setOrganization, setRegion, startRule} from '../../../../views_V2024/main';
+(window as any).jt_third_cs = {init() {}};
 describe('getThirdUrl function', () => {
   beforeEach(() => {
     // 在每个测试开始前重置全局变量状态
-    setOrganization('org1')
-    setRegion('reg1')
+    setOrganization('org1');
+    setRegion('reg1');
     startRule.reg1 = {
-      org1: { libA: true },
-      def: { libB: true }
-    }
-    startRule.def = { libC: true }
+      org1: {libA: true},
+      def: {libB: true}
+    };
+    startRule.def = {libC: true};
   });
 
   it('should return URL for specific organization and region rule', () => {
@@ -18,12 +18,12 @@ describe('getThirdUrl function', () => {
   });
 
   it('should return URL for specific organization and region rule', () => {
-    setOrganization('org2')
+    setOrganization('org2');
     const url = getThirdUrl('libA');
     expect(url).toBe('');
   });
   it('should return URL for specific organization and region rule', () => {
-    setRegion('reg2')
+    setRegion('reg2');
     const url = getThirdUrl('libA');
     expect(url).toBe('');
   });
@@ -39,7 +39,7 @@ describe('getThirdUrl function', () => {
   });
 
   it('should return URL using global default rule', () => {
-    startRule.def = undefined
+    startRule.def = undefined;
     const url = getThirdUrl('libC');
     expect(url).toBe('');
   });

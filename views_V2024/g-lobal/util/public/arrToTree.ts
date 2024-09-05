@@ -1,4 +1,4 @@
-import {TreeNode} from '../../../main';
+import type {TreeNode} from '../../../main';
 import {alertMsg} from '../../common/pop';
 
 /**
@@ -18,6 +18,9 @@ export function arrToTree<T extends TreeNode>(data: T[], idKey: keyof T = 'id', 
     // 遍历数据，填充nodeMap并处理根节点
     data.forEach(item => {
       // 保存节点到映射中
+      if (nodeMap.has(item[idKey])) {
+        throw new Error(`不能有两个相同的主键【${item[idKey]}】。`);
+      }
       nodeMap.set(item[idKey], {...item, children: item.children || []}); // 每个节点初始化一个空的children数组
     });
 
