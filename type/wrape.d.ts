@@ -1,8 +1,6 @@
-export { }
+export {};
 declare global {
   class Render {
-    constructor(config: any) {
-
-    }
+    constructor(config?: any) {}
   }
 }

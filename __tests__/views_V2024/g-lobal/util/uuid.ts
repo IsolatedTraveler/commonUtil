@@ -20,7 +20,6 @@ describe('uuid function', () => {
   it('should support custom template strings', () => {
     const customTemplate = 'xxxx-xxxx-xxxx-xxxx-xxxx';
     const generatedUuid = uuid(customTemplate);
-    console.log(generatedUuid);
     expect(generatedUuid).toMatch(new RegExp('^' + customTemplate.replace(/[x]/g, '[0-9a-f]') + '$', 'i'));
   });
 

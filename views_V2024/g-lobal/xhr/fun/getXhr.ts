@@ -1,11 +1,11 @@
-import { CONTENTTYPE } from "../../common/xhr/magic/var/const"
-import { AjaxRequestConfig, AjaxRequestType, UrlType, XhrRes } from "../../type"
-import { buildAbsoluteUrl } from "../../url/public/buildAbsoluteUrl"
-import { buildUrlWithQueryParams } from "../../url/public/buildUrlWithQueryParams"
-import { errFormat } from "../../util/public/errFormat"
-import { AJAX_TIMEOUT } from "../var"
-import { dealXhrRes } from "./dealXhrRes"
-import { setXhrKeyVal } from "./setXhrKeyVal"
+import {CONTENTTYPE} from '../../common/xhr/magic/var/const';
+import {AjaxRequestConfig, AjaxRequestType, UrlType, XhrRes} from '../../type';
+import {buildAbsoluteUrl} from '../../url/public/buildAbsoluteUrl';
+import {buildUrlWithQueryParams} from '../../url/public/buildUrlWithQueryParams';
+import {errFormat} from '../../util/public/errFormat';
+import {AJAX_TIMEOUT} from '../var';
+import {dealXhrRes} from './dealXhrRes';
+import {setXhrKeyVal} from './setXhrKeyVal';
 
 /**
  * 发起一个Ajax请求的通用函数，支持GET和POST等HTTP方法。
@@ -28,28 +28,29 @@ export function getXhr(
   param: any,
   type: AjaxRequestType = 'GET',
   urlType: UrlType = 'origin',
-  config: AjaxRequestConfig = {}): Promise<XhrRes> {
+  config: AjaxRequestConfig = {}
+): Promise<XhrRes> {
   return new Promise((resolve, reject) => {
     try {
-      url = buildAbsoluteUrl(url, urlType)
-      url = buildUrlWithQueryParams(param, url)
-      const xhr = new XMLHttpRequest()
-      xhr.open(type, url, true)
-      xhr.setRequestHeader('Content-Type', CONTENTTYPE)
-      setXhrKeyVal(xhr, 'setRequestHeader', config.headers)
-      xhr.timeout = AJAX_TIMEOUT
+      url = buildAbsoluteUrl(url, urlType);
+      url = buildUrlWithQueryParams(param, url);
+      const xhr = new XMLHttpRequest();
+      xhr.open(type, url, true);
+      xhr.setRequestHeader('Content-Type', (config.contentType as string) || CONTENTTYPE);
+      setXhrKeyVal(xhr, 'setRequestHeader', config.headers);
+      xhr.timeout = AJAX_TIMEOUT;
       xhr.onload = () => {
-        resolve(dealXhrRes(xhr))
+        resolve(dealXhrRes(xhr));
       };
       xhr.onerror = () => {
-        reject(errFormat('请求失败：网络错误'))
+        reject(errFormat('请求失败：网络错误'));
       };
       xhr.ontimeout = () => {
-        reject(errFormat('请求失败：网络连接超时'))
-      }
+        reject(errFormat('请求失败：网络连接超时'));
+      };
       xhr.send(data);
     } catch (e: any) {
-      reject(errFormat('请求过程中发生错误：' + (e.message || e)))
+      reject(errFormat('请求过程中发生错误：' + (e.message || e)));
     }
-  })
+  });
 }

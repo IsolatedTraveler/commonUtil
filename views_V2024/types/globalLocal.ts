@@ -4,6 +4,6 @@ import {
   setConfigData, setUser, user, SYSTEM, getSystem, serverUrl, setServerUrl, hisConfig, setConfig, checkAuth, 
   dealRequestData, bindSelectClick, selectClick, loadJs, closeParentPop, initLayui, openMsgBox, 
   buildAbsoluteUrl, buildUrlWithQueryParams, convertObjectToQueryString, getAppBaseUrl, getServerUrl, 
-  getUrlParams, arrToTree, debounce, divideString, errFormat, setPageTemp, toDecimalNumber, uuid, ajaxGet, 
-  ajaxPost
+  getUrlParams, arrToTree, debounce, divideString, errFormat, setPageTemp, throttle, toDecimalNumber, uuid, 
+  ajaxGet, ajaxPost, ajaxPost1
 } from '../g-lobal'

@@ -1,6 +1,6 @@
-import { dealRequestData } from "../../common/xhr";
-import { AjaxRequestConfig, AjaxRequestOption } from "../../type";
-import { setXhr } from "../fun";
+import {dealRequestData} from '../../common/xhr';
+import {AjaxRequestConfig, AjaxRequestOption} from '../../type';
+import {setXhr, getXhr} from '../fun';
 /**
  * 封装用于发起POST类型的Ajax请求。
  *
@@ -15,6 +15,17 @@ import { setXhr } from "../fun";
  *
  * @returns {Promise<XhrRes>} - 返回一个包含POST请求响应的Promise对象，响应结构遵循`XhrRes`定义。
  */
-export function ajaxPost(url: string, data: any, option: AjaxRequestOption = { urlType: 'service' }, config?: AjaxRequestConfig) {
-  return setXhr(url, dealRequestData(data, option), option.param, 'POST', option, config)
+export function ajaxPost(url: string, data: any, option: AjaxRequestOption = {urlType: 'service'}, config?: AjaxRequestConfig) {
+  return setXhr(url, dealRequestData(data, option), option.param, 'POST', option, config);
+}
+export function ajaxPost1(url: string, data: any, option: AjaxRequestOption = {urlType: 'service'}, config?: AjaxRequestConfig) {
+  option.isNotWrapped = true;
+  return getXhr(
+    url,
+    `data=${dealRequestData(data, option)}`,
+    option.param,
+    'POST',
+    option.urlType || 'service',
+    config || {contentType: 'application/x-www-form-urlencoded; charset=UTF-8'}
+  );
 }

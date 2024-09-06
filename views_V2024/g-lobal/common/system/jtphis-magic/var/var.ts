@@ -1,25 +1,25 @@
-import { getXhr } from "../../../../xhr/fun/getXhr"
-import { session } from "../public/session"
-import { hisConfig, setConfig } from "./config"
-import { CONFIG_URL } from "./const"
-import { SYSTEM } from "./server"
+import {getXhr} from '../../../../xhr/fun/getXhr';
+import {session} from '../public/session';
+import {hisConfig, setConfig} from './config';
+import {CONFIG_URL} from './const';
+import {SYSTEM} from './server';
 
-export var user: any // 用户信息
-  , configData: any // 应用配置
+export var user: any, // 用户信息
+  configData: any; // 应用配置
 /**
-* @description 
-* @author 何波
-* @date 2024-04-29 10:01:38
-*/
+ * @description
+ * @author 何波
+ * @date 2024-04-29 10:01:38
+ */
 export function setUser(): any {
   if (SYSTEM) {
-    return user = JSON.parse(SYSTEM.varget('0', 'ryxx'))
+    return (user = JSON.parse(SYSTEM.varget('0', 'ryxx')));
   }
-  return user = session('userinfo').ryxx
+  return (user = (session('userinfo') || {}).ryxx);
 }
 /**
  * @description 同步获取应用的配置信息。
- * 
+ *
  * 函数执行过程：
  * 1. 向'/public/data/config.json'发起GET请求，该请求包含一个查询参数v，其值为当前时间的时间戳，用以防止浏览器缓存旧的配置信息。
  * 2. 请求配置的同时，传入一个配置对象，指定了错误提示信息前缀、请求的URL类型为'origin'（通常意味着直接使用当前页面的协议和主机），
@@ -29,8 +29,8 @@ export function setUser(): any {
  */
 export function setConfigData() {
   if (JSON.stringify(hisConfig) != '{}') {
-    return configData = Promise.resolve(hisConfig)
+    return (configData = Promise.resolve(hisConfig));
   } else {
-    return configData = getXhr(CONFIG_URL, {}, { v: new Date() }, 'GET', 'origin', {}).then(setConfig)
+    return (configData = getXhr(CONFIG_URL, {}, {v: new Date()}, 'GET', 'origin', {}).then(setConfig));
   }
 }

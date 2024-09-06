@@ -4,9 +4,9 @@ interface Dbnr {
 }
 export const dbnr: Dbnr = {
   // cs: ['gncs'],
-  gModules: ['addInput'],
+  gModules: ['addInput', 'blmb'],
   // layModules: [],
-  src: ['jtUtil', 'jtSync']
+  src: ['jtUtil']
   // third: ['dzpj'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 };
