@@ -39,7 +39,7 @@ export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | st
         <div class="${BLMB_TYPE_CLASS[1]}-xhx">
           ${getTextXh(nr)}
         </div>
-        <textarea class="${BLMB_TYPE_CLASS[1]}" title="${bt}" data-name="${id}" data-type="${BLMB_TYPE[1]}" rows="${nr}"></textarea>
+        <textarea class="${BLMB_TYPE_CLASS[1]}" title="${bt}" data-type="${BLMB_TYPE[1]}" data-name="${id}" rows="${nr}"></textarea>
       </div>`;
     case 'bt':
       return nr

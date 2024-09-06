@@ -7,4 +7,5 @@ export * from './getTitle';
 export * from './initEvent';
 export * from './setHtml';
 export * from './setMx';
+export * from './setVal';
 export * from './wrapPage';

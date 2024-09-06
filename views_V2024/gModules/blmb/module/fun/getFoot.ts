@@ -1,4 +1,4 @@
-import type {BlmbMxCol} from 'GMBlmb';
+import {BLMB_TYPE, type BlmbMxCol} from 'GMBlmb';
 import {pageFootStyle, pageId} from '../var';
 import {getCol} from './getCol';
 
@@ -17,14 +17,14 @@ export function getFoot(cols: BlmbMxCol[]): string {
         <div class="jt-flex print-abs">
           <div class="jt-grow1">
             <div class="jt-flex-r print-abs" alignstart>
-              <p class="jt-grow1"><span>医生 / 指导人员签名：</span><span data-name="jzysxm"></span></p>
+              <p class="jt-grow1"><span>医生 / 指导人员签名：</span><span data-type="html" data-name="jzysxm"></span></p>
               <p><span>咨询电话：</span>
-                <span class="print-tel" data-name="zxdh"></span>
+                <span class="print-tel" data-type="html" data-name="zxdh"></span>
               </p>
               <p>
-                <span>日期：</span><input class="print-year" data-name="year"/><span>年</span>
-                <input class="print-month" data-name="month"><span>月</span>
-                <input class="print-day" data-name="day"><span>日</span>
+                <span>日期：</span><input class="print-year" data-type="${BLMB_TYPE[2]}" data-name="year"/><span>年</span>
+                <input class="print-month" data-type="${BLMB_TYPE[2]}" data-name="month"/><span>月</span>
+                <input class="print-day" data-type="${BLMB_TYPE[2]}" data-name="day"/><span>日</span>
               </p>
               </div>
             </div>

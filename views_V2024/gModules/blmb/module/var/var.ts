@@ -10,7 +10,8 @@ export let titleHtml = '',
   pageFootStyle = '',
   optionId = '',
   pageVal: any = {},
-  pageElem = document.createElement('div');
+  pageElem = document.createElement('div'),
+  jqueryPageElem = $(pageElem);
 export function setTitleHtml(v: string) {
   titleHtml = v;
 }
