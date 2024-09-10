@@ -15,6 +15,8 @@ export function getTitle(nr: string): string {
           <p class="print-min-w25-i"><span>诊断：</span><span data-type="html" data-name="mzzdxx"></span></p>
         </div>
       </div>`;
+    case '1':
+      return `<p class="print-head-1" data-type="html" data-name="cfbt">${nr}</p>`;
     default:
       return `未设置该类型【${pageHeadStyle}】顶部样式`;
   }

@@ -1,6 +1,7 @@
 import {Class} from '../core';
-import {render, val, add, alertCol, del, keys, reload, disabled, edit} from '../public';
+import {render, val, add, alertCol, del, keys, reload, disabled, edit, addCol} from '../public';
 Class.prototype.add = add;
+Class.prototype.addCol = addCol;
 Class.prototype.alertCol = alertCol;
 Class.prototype.del = del;
 Class.prototype.disabled = disabled;

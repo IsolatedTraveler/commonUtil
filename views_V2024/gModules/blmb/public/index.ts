@@ -1,4 +1,5 @@
 export * from './add';
+export * from './addCol';
 export * from './alertCol';
 export * from './del';
 export * from './disabled';

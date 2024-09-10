@@ -11,11 +11,14 @@ export let titleHtml = '',
   optionId = '',
   pageVal: any = {},
   pageElem = document.createElement('div'),
-  jqueryPageElem = $(pageElem);
+  jqueryPageElem = $(pageElem),
+  judge: boolean = false;
 export function setTitleHtml(v: string) {
+  judge = judge || titleHtml != v;
   titleHtml = v;
 }
 export function setFootHtml(v: string) {
+  judge = judge || footHtml != v;
   footHtml = v;
 }
 export function setOptionId(v: string) {
@@ -24,13 +27,17 @@ export function setOptionId(v: string) {
 export function setPageVal(v: any) {
   pageVal = Object.assign({}, pageVal, v);
 }
-export function setPageHtml(id: string, size: string, ztsl: string, ztys: string, cols: any[], mbjcxxys: string, mbjwxxys: string) {
+export function setPageHtml(size: string, ztsl: string, ztys: string, cols: any[], mbjcxxys: string, mbjwxxys: string, id: string) {
+  let back: string = pageHtml;
+  judge = false;
+  judge = judge || pageSize != size || fontNum != ztsl || pageBj != ztys || pageHeadStyle != mbjcxxys || pageFootStyle != mbjwxxys;
   pageSize = size || pageSize;
   fontNum = ztsl || fontNum;
   pageBj = ztys || pageBj;
   pageCols = cols || pageCols;
-  pageId = id || pageId;
+  pageId = pageId || id;
   pageHeadStyle = mbjcxxys || pageHeadStyle;
   pageFootStyle = mbjwxxys || pageFootStyle;
   pageHtml = `<page size="${pageSize}" class="pd-${pageBj} jt-flex" font-num="${fontNum}" jt-page-id="${id}">`;
+  judge = judge || pageHtml != back;
 }

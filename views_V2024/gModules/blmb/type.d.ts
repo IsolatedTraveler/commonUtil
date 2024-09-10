@@ -8,6 +8,8 @@ declare module 'GMBlmb' {
     mbztys: string; // 模板主体样式（纸张内边距）
     mbdyzz: string; // 纸张大小
     elem: string; // 父元素
+    disabled: boolean;
+    isEdit: boolean;
     cols: BlmbMxCol[];
     footCols?: BlmbMxCol[];
   }
@@ -30,5 +32,5 @@ declare module 'GMBlmb' {
     ys?: string;
   }
   export const config: BlmbConfig;
-  export {buildAbsoluteUrl, BLMB_PAGE_WRAP, BLMB_TYPE, BLMB_SELECTED, BLMB_TYPE_CLASS} from './index';
+  export {buildAbsoluteUrl, BLMB_PAGE_WRAP, BLMB_TYPE, BLMB_SELECTED, BLMB_TYPE_CLASS, BLMB_LX} from './index';
 }
