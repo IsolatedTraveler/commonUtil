@@ -1,8 +1,9 @@
 import {optionId, setOptionId} from '../var';
+import {getArr} from './getArr';
 
 export function getOption({nr, cla, id, judge}: any): string {
-  return (nr || [])
-    .map((option: any, i: number) => {
+  try {
+    const data = getArr(nr).map((option: any) => {
       if (option) {
         let html,
           v = '',
@@ -25,9 +26,13 @@ export function getOption({nr, cla, id, judge}: any): string {
           className = 'print-add ' + cla;
         }
         setOptionId(v);
-        return `<div class="${className}-option" data-name="${id}" data-val="${v}"><span class="print-square"><span class="print-right">✓</span></span>${html}</div>`;
+        return `<div class="${className}-option print-option" data-name="${id}" data-val="${v}"><span class="print-square"><span class="print-right">✓</span></span>${html}</div>`;
       }
       return '';
-    })
-    .join('');
+    });
+    return data.join('');
+  } catch (e) {
+    console.log(id, nr, typeof nr);
+    return '';
+  }
 }

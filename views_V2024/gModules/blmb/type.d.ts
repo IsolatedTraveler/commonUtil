@@ -24,7 +24,7 @@ declare module 'GMBlmb' {
   // 13 自由录入     nr 为自由录入可录入行   ys 为自由录入打印展示样式
   export interface BlmbMxCol {
     bt?: string; // 标题
-    id: string; // 唯一id
+    id: string | number; // 唯一id
     lx: string; // 类型
     mbid: string; // 模板id
     nr: any; // 内容
@@ -32,5 +32,18 @@ declare module 'GMBlmb' {
     ys?: string;
   }
   export const config: BlmbConfig;
-  export {buildAbsoluteUrl, BLMB_PAGE_WRAP, BLMB_TYPE, BLMB_SELECTED, BLMB_TYPE_CLASS, BLMB_LX} from './index';
+  export {
+    buildAbsoluteUrl,
+    BLMB_PAGE_WRAP,
+    BLMB_TYPE,
+    BLMB_SELECTED,
+    BLMB_TYPE_CLASS,
+    BLMB_LX,
+    BLMB_PAGE_WIDTH,
+    getOption,
+    getTextXh,
+    wrapPage,
+    getRow,
+    uuid
+  } from './index';
 }

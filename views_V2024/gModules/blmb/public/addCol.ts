@@ -16,5 +16,5 @@ export function addCol(elem: JQuery, lx: boolean) {
   <td><input type="text" class="layui-input" autocomplete="off" name="ys"></td><td lay-evnet="del">删除</td>`;
   elem.append(tr);
   window.layui.form.render('select', elem);
-  return elem;
+  return $(tr);
 }

@@ -17,6 +17,8 @@ export function getTitle(nr: string): string {
       </div>`;
     case '1':
       return `<p class="print-head-1" data-type="html" data-name="cfbt">${nr}</p>`;
+    case '2':
+      return `<p class="print-head-1"><span data-type="html" data-name="jgmc"></span><span data-type="html" data-name="cfbt">${nr}</span></p>`;
     default:
       return `未设置该类型【${pageHeadStyle}】顶部样式`;
   }

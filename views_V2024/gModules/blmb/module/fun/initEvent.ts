@@ -16,6 +16,20 @@ export function initEvent() {
       pageVal[name].push(val);
     }
   });
+  // 单选事件
+  jqueryPageElem.on('click', `[data-name][data-val].${BLMB_TYPE_CLASS[3]}`, (e: JQuery.ClickEvent) => {
+    const el = e.currentTarget,
+      {name, val} = el.dataset,
+      els = jqueryPageElem.find(`[data-name="${name}"][data-val="${val}"]`);
+    if (els.hasClass(BLMB_SELECTED)) {
+      els.removeClass(BLMB_SELECTED);
+      pageVal[name] = '';
+    } else {
+      jqueryPageElem.find(`[data-name="${name}"]`).removeClass(BLMB_SELECTED);
+      els.addClass(BLMB_SELECTED);
+      pageVal[name] = val;
+    }
+  });
   // input输入框事件
   jqueryPageElem.on('change', `[data-name].${BLMB_TYPE_CLASS[1]}`, (e: JQuery.ChangeEvent) => {
     const el = e.currentTarget,
