@@ -1,6 +1,6 @@
 import type {BlmbMxCol} from 'GMBlmb';
 import {BLMB_PAGE_WRAP, buildAbsoluteUrl, BLMB_TYPE, BLMB_TYPE_CLASS, getOption, getTextXh, wrapPage, getRow, uuid} from 'GMBlmb';
-import {pageId} from '../var';
+import {pageId, pageVal} from '../var';
 
 export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | string[] {
   id = id || uuid();
@@ -22,6 +22,7 @@ export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | st
       </div>`;
     case '11':
       // 多选
+      pageVal[id] = [];
       let c = `print ${BLMB_TYPE_CLASS[0]} ${BLMB_TYPE_CLASS[0]}-${ys}`;
       if (sffy && sffy > '0') {
         return wrapPage(BLMB_TYPE[0], sffy, {nr, id, bt}, c, getOption);
@@ -34,9 +35,12 @@ export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | st
       }
     case '12':
       // 单选
+      pageVal[id] = '';
       let select = `print ${BLMB_TYPE_CLASS[3]} ${BLMB_TYPE_CLASS[3]}`;
       return `<div data-type="${BLMB_TYPE[3]}" data-name="${id}" class="${select}-${ys}">${bt}<div class="options">${getOption({nr: nr || [], cla: `${select}-${ys}`, id})}</div></div>`;
     case '13':
+      // 多行文本
+      pageVal[id] = '';
       let cla = `print ${BLMB_TYPE_CLASS[1]} ${BLMB_TYPE_CLASS[1]}`;
       return `<div class="${cla}-${ys}">
       <p class="${cla}-title"><span>${bt}<span></p>
@@ -47,8 +51,9 @@ export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | st
         <textarea class="${cla}-${ys}" title="${bt}" data-type="${BLMB_TYPE[1]}" data-name="${id}" rows="${nr}"></textarea>
       </div></div>`;
     case '14':
+      pageVal[id] = {};
       let row = `print ${BLMB_TYPE_CLASS[4]} ${BLMB_TYPE_CLASS[4]}`;
-      return `<div class="${row}-${ys}" data-type="${BLMB_TYPE[4]}" data-name="${id}">${getRow(bt, nr)}</div>`;
+      return `<div class="${row}-${ys}" data-type="${BLMB_TYPE[4]}" data-name="${id}">${getRow(bt, nr, pageVal[id])}</div>`;
     case '15':
       return `<style>${nr}</style>`;
     case '16':

@@ -17,9 +17,9 @@ export function val(v: any) {
     });
     $(`[data-type="${BLMB_TYPE[4]}"]`).each((_i, el) => {
       const name = el.dataset.name as string;
-      const data = pageVal[name] || [];
-      el.querySelectorAll('input').forEach((el, i) => {
-        data[i] = el.value;
+      const data = pageVal[name] || {};
+      el.querySelectorAll('input').forEach(el => {
+        data[el.name] = el.value;
       });
       pageVal[name] = data;
     });

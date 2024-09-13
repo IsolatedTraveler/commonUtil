@@ -1,8 +1,9 @@
-import {pageHeadStyle} from '../var';
+import {pageHeadStyle, pageVal} from '../var';
 
 export function getTitle(nr: string): string {
   switch (pageHeadStyle) {
     case '0':
+      Object.assign(pageVal, {id: '', spzdxx: '', hzxb: '', cfbt: '', hzxm: '', hzxb_mc: '', hznl: '', mzzdxx: ''});
       return `<div class="print-head-0">
         <div style="display:none" data-type="html" data-name="id"></div>
         <div style="display:none" data-type="html" data-name="spzdxx"></div>
@@ -16,8 +17,10 @@ export function getTitle(nr: string): string {
         </div>
       </div>`;
     case '1':
+      pageVal.cfbt = '';
       return `<p class="print-head-1" data-type="html" data-name="cfbt">${nr}</p>`;
     case '2':
+      Object.assign(pageVal, {jgmc: '', cfbt: ''});
       return `<p class="print-head-1"><span data-type="html" data-name="jgmc"></span><span data-type="html" data-name="cfbt">${nr}</span></p>`;
     default:
       return `未设置该类型【${pageHeadStyle}】顶部样式`;

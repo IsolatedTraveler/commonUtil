@@ -1,5 +1,5 @@
 import {BLMB_TYPE, type BlmbMxCol} from 'GMBlmb';
-import {pageFootStyle, pageId} from '../var';
+import {pageFootStyle, pageId, pageVal} from '../var';
 import {getCol} from './getCol';
 
 export function getFoot(cols: BlmbMxCol[]): string {
@@ -13,6 +13,7 @@ export function getFoot(cols: BlmbMxCol[]): string {
         d.push(it);
       });
       const keys = Object.keys(obj);
+      Object.assign(pageVal, {jzysxm: '', zxdh: '', year: '', month: '', day: ''});
       return `<div class="print-foot-0 jt-grow1 print-foot">
         <div class="jt-flex print-abs">
           <div class="jt-grow1">
