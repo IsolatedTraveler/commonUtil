@@ -5,8 +5,9 @@ import {val} from './val';
 import {disabled} from './disabled';
 import {edit} from './edit';
 
-export function reload({cfbt, mbjcxxys, mbdyzz, mbztsl, mbztys, cols, mbjwxxys, footCols, disabled: isDisabled, isEdit, id}: BlmbConfig) {
+export function reload({cfbt, mbjcxxys, mbdyzz, mbztsl, mbztys, cols, mbjwxxys, footCols, disabled: isDisabled, isEdit, id}: BlmbConfig, judge1 = false) {
   setPageHtml(mbdyzz, mbztsl, mbztys, cols, mbjcxxys, mbjwxxys, id);
+  let judge2 = false;
   if (cfbt) {
     setTitleHtml(getTitle(cfbt));
   } else {
@@ -18,12 +19,14 @@ export function reload({cfbt, mbjcxxys, mbdyzz, mbztsl, mbztys, cols, mbjwxxys, 
     setFootHtml('');
   }
   if (cols) {
+    judge2 = true;
     setMx(cols);
+  }
+  if (judge || judge2) {
     setHtml();
-    val(pageVal);
-  } else if (judge) {
-    setHtml();
-    val(pageVal);
+    if (!judge1) {
+      val(pageVal);
+    }
   }
   if (isDisabled) {
     disabled();

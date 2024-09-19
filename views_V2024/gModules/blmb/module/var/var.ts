@@ -22,9 +22,6 @@ export function setFootHtml(v: string) {
   judge = judge || footHtml != v;
   footHtml = v;
 }
-export function setPageVal(v: any) {
-  pageVal = Object.assign({}, pageVal, v);
-}
 export function setPageHtml(size: string, ztsl: string, ztys: string, cols: any[], mbjcxxys: string, mbjwxxys: string, id: string) {
   let back: string = pageHtml;
   judge = false;
