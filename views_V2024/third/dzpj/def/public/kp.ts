@@ -5,13 +5,22 @@ export function kp(data: DzPjKpRquestParam, ly: DzPjKpLy, lx: DzPjKpLx, printPar
   let user = getUser() || {}
   return getConfig().then(() => {
     // 判断是否开票
-    return isOpenFp().then((res: DzpjKpJgConfig) => {
+    printParam = printParam || {}
+    return isOpenFp(printParam).then((res: DzpjKpJgConfig) => {
       // 开票
-      return kpIng(Object.assign({
-        kpdbm: res.kpdbm,
-        jkdm: res.jkdm,
-        jgid: user.jgid
-      }, data), lx, ly, printParam)
-    })
+      return kpIng(
+        Object.assign(
+          {
+            kpdbm: res.kpdbm,
+            jkdm: res.jkdm,
+            jgid: user.jgid
+          },
+          data
+        ),
+        lx,
+        ly,
+        printParam
+      );
+    });
   }).catch(() => { })
 }

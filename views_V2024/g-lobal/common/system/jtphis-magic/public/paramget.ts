@@ -1,5 +1,5 @@
 import {ajaxPost} from '../../../../xhr';
-import {XTCS, XTCS_URL} from '../var';
+import {SYSTEM, XTCS, XTCS_URL} from '../var';
 /**
  * @function paramget
  * 根据指定的模块代码获取参数配置或特定参数值。
@@ -15,13 +15,21 @@ import {XTCS, XTCS_URL} from '../var';
  */
 export function paramget(mkdm: string, bh: string | number | undefined = undefined) {
   if (!XTCS[mkdm]) {
-    XTCS[mkdm] = ajaxPost(XTCS_URL, {mkdm, jqm: ''}).then(({data = []}) => {
-      const res: any = {};
-      (data as any).forEach((it: any) => {
-        res[it.xh] = it.csz;
+    let res:any
+    if (SYSTEM) {
+      res = SYSTEM.paramget(mkdm);
+    }
+    if (res) {
+      XTCS[mkdm] = Promise.resolve(JSON.parse(res));
+    } else {
+      XTCS[mkdm] = ajaxPost(XTCS_URL, { mkdm, jqm: '' }).then(({ data = [] }) => {
+         res = {};
+        (data as any).forEach((it: any) => {
+          res[it.xh] = it.csz;
+        });
+        return res;
       });
-      return res;
-    });
+    }
   }
   return XTCS[mkdm].then((res: any) => {
     return bh ? res[bh] : res;

@@ -13,18 +13,22 @@ import { setKpJgConfig } from "./setKpJgConfig"
  *
  * 注意：此函数使用Promise.all处理多个异步操作，确保所有必要的配置信息都被获取后再返回结果。这确保了在进一步处理前，所有配置信息都已准备就绪。
  */
-export function isOpenFp() {
+export function isOpenFp(printParam: any) {
   // 获取开票参数信息，判断是否开票
-  const { jgid } = getUser()
+  const {jgid} = getUser();
   if (!dzpjKpConfig[jgid]) {
-    dzpjKpConfig[jgid] = Promise.all([setKpJgConfig(jgid), setDzpjConfig(jgid)])
+    dzpjKpConfig[jgid] = Promise.all([setKpJgConfig(jgid), setDzpjConfig(jgid)]);
   }
-  return (dzpjKpConfig[jgid] as Promise<[DzpjKpJgConfig, DzpjKpJgParam]>).then(res => {
-    setDzpjKpSync(res[1].sync)
-    setDzpjKpIsPrint(res[1].isPrint)
-    return res[0]
-  }, (res) => {
-    dzpjKpConfig[jgid] = undefined
-    return Promise.reject(res)
-  })
+  return (dzpjKpConfig[jgid] as Promise<[DzpjKpJgConfig, DzpjKpJgParam]>).then(
+    res => {
+      setDzpjKpSync(res[1].sync);
+      setDzpjKpIsPrint(res[1].isPrint);
+      printParam.printer = res[1].print || ""
+      return res[0];
+    },
+    res => {
+      dzpjKpConfig[jgid] = undefined;
+      return Promise.reject(res);
+    }
+  );
 }

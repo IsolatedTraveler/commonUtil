@@ -27,7 +27,7 @@ describe('isOpenFp function', () => {
         id1: 'value1',
         id2: 'value2',
       };
-      const res = await isOpenFp();
+      const res = await isOpenFp({});
       expect(dzpjKpSync).toBe(true)
       expect(dzpjKpIsPrint).toBe('是')
       expect(res).toEqual(expectedConfig);
@@ -43,7 +43,7 @@ describe('isOpenFp function', () => {
       session('userinfo', { ryxx })
       try {
         setUser()
-        await isOpenFp();
+        await isOpenFp({});
         expect(1).toBe(2)
       } catch (e: any) {
         expect(dzpjKpConfig['71']).toEqual(undefined)

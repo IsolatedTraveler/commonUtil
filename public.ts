@@ -6,8 +6,8 @@ export const dbnr: Dbnr = {
   // cs: ['gncs'],
   gModules: ['addInput', 'blmb'],
   // layModules: [],
-  src: ['jtUtil']
-  // third: ['dzpj'],
+  src: ['jtUtil'],
+  third: ['dzpj'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 };
 export const dbdq: InstitutionCode[] = ['smq', 'wsq', 'bx'];

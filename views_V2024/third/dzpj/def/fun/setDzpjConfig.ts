@@ -18,7 +18,8 @@ export function setDzpjConfig(jgid: string): Promise<DzpjKpJgParam> {
     return paramget('201021000').then((val: any) => {
       return dzpjKpParam[jgid] = {
         sync: val[1] == '同步',
-        isPrint: val[2]
+        isPrint: val[2],
+        print: val[3]
       }
     }).catch(() => ({ sync: true, isPrint: '是' }))
   }

@@ -12,6 +12,7 @@ export interface DzpjKpConfig {
 export interface DzpjKpJgParam {
   sync: boolean
   isPrint: DzpjKpIsPrint
+  print: string
 }
 export interface DzpjKpParam {
   [index: DzpjKpJgid]: DzpjKpJgParam
