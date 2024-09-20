@@ -29,7 +29,7 @@ export function setVal(el: JQuery<HTMLElement>, key: string, type: string, impor
         selectElems.removeClass(BLMB_SELECTED);
         selectElems.filter(`[data-val="${val || ''}"]`).addClass(BLMB_SELECTED);
       }
-      exportVal[key] = JSON.stringify([].map.call(selectElems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val)[0]);
+      exportVal[key] = [].map.call(selectElems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val)[0];
       break;
     case BLMB_TYPE[4]: //print-row
       const rowElems = el.find('[name]');
