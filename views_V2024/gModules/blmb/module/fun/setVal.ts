@@ -13,7 +13,7 @@ export function setVal(el: JQuery<HTMLElement>, key: string, type: string, impor
           elems.filter(`[data-val="${it}"]`).addClass(BLMB_SELECTED);
         });
       }
-      exportVal[key] = [].map.call(elems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val);
+      exportVal[key] = JSON.stringify([].map.call(elems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val));
       break;
     case BLMB_TYPE[1]: //textarea
     case BLMB_TYPE[2]: // input
@@ -29,7 +29,7 @@ export function setVal(el: JQuery<HTMLElement>, key: string, type: string, impor
         selectElems.removeClass(BLMB_SELECTED);
         selectElems.filter(`[data-val="${val || ''}"]`).addClass(BLMB_SELECTED);
       }
-      exportVal[key] = [].map.call(selectElems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val)[0];
+      exportVal[key] = JSON.stringify([].map.call(selectElems.filter(`.${BLMB_SELECTED}`), (el: HTMLElement) => el.dataset.val)[0]);
       break;
     case BLMB_TYPE[4]: //print-row
       const rowElems = el.find('[name]');
@@ -45,7 +45,7 @@ export function setVal(el: JQuery<HTMLElement>, key: string, type: string, impor
       rowElems.each((_i, e: any) => {
         val[e.name] = e.value || '';
       });
-      exportVal[key] = val;
+      exportVal[key] = JSON.stringify(val);
       break;
     default:
       if (importVal && val !== undefined) {

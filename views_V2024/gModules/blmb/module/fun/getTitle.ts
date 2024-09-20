@@ -5,7 +5,6 @@ export function getTitle(nr: string): string {
     case '0':
       Object.assign(pageVal, {id: '', spzdxx: '', hzxb: '', cfbt: '', hzxm: '', hzxb_mc: '', hznl: '', mzzdxx: ''});
       return `<div class="print-head-0">
-        <div style="display:none" data-type="html" data-name="id"></div>
         <div style="display:none" data-type="html" data-name="spzdxx"></div>
         <div style="display:none" data-type="html" data-name="hzxb"></div>
         <p class="print-head-title" data-type="html" data-name="cfbt">${nr}</p>

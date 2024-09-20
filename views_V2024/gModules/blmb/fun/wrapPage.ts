@@ -8,7 +8,7 @@ export function wrapPage(type: string, lx: string, {nr, id, bt}: any, cla: strin
       return [];
     case '3':
       let first = nr.shift() || [],
-        title = '';
+        title = `<input type="hidden" data-type="${type}" data-name="${id}">`;
       if (bt) {
         title = `<p data-type="${type}" data-name="${id}" class="${cla}-title"><span class="print-circle">●</span><span>${bt}</span></p>`;
       }

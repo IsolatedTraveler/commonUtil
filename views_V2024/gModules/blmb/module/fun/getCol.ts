@@ -27,7 +27,7 @@ export function getCol({bt, id, mbid, lx, nr, sffy, ys}: BlmbMxCol): string | st
       if (sffy && sffy > '0') {
         return wrapPage(BLMB_TYPE[0], sffy, {nr, id, bt}, c, getOption);
       } else {
-        let title = '';
+        let title = `<input type="hidden" data-type="${BLMB_TYPE[0]}" data-name="${id}">`;
         if (bt) {
           title = `<p data-type="${BLMB_TYPE[0]}" data-name="${id}" class="${c}-title"><span class="print-circle">●</span><span>${bt}</span></p>`;
         }
