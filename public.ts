@@ -5,13 +5,14 @@ interface Dbnr {
 export const dbnr: Dbnr = {
   // cs: ['gncs'],
   // gModules: ['addInput'],
-  gModules: [ 'blmb'],
+  // gModules: [ 'blmb'],
   // layModules: [],
   // src: ['jtUtil'],
-  // third: ['dzpj'],
+  third: ['dzpj'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 };
-export const dbdq: InstitutionCode[] = ['smq', 'wsq', 'bx'];
+// export const dbdq: InstitutionCode[] = ['smq', 'wsq', 'bx'];
+export const dbdq: InstitutionCode[] = ['yq'];
 export const siteVesion = 'V2024';
 // export const siteVesion = ''
 // 是否压缩  false  不压缩    true   压缩

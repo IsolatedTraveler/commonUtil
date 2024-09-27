@@ -2,7 +2,8 @@
 type DeploymentSiteCode = 'sc' | 'nm' | 'yq' | 'bx';
 // 分别定义不同开发代码在各地区的发版服务器代码类型，如：四川版本代码发布了驷马桥、达州、肖家河
 type ScFbdq = 'smq' | 'dz' | 'xjh';
-type NmDbqq = 'kbs' | 'wsq' | 'dsq' | 'etkq' | 'etkqq' | 'yq';
+type NmDbqq = 'kbs' | 'wsq' | 'dsq' | 'etkq' | 'etkqq';
+type YqDbqq = 'yq';
 type QtDbqq = 'bx';
 /**
  * 映射部署站点代码到其对应的本地文件系统路径。
@@ -13,7 +14,7 @@ type DeploymentDirectories = {
 /**
  * 组织机构代码，包含了所有地区的发版服务器代码。
  */
-export type InstitutionCode = ScFbdq | NmDbqq | QtDbqq;
+export type InstitutionCode = ScFbdq | NmDbqq | QtDbqq | YqDbqq;
 /**
  * 部署目录配置，根据开发代码存储位置代码映射到实际的文件系统路径。
  */
@@ -37,6 +38,6 @@ export const institutionDeploymentMapping: Record<InstitutionCode | DeploymentSi
   dsq: 'nm',
   etkq: 'nm',
   etkqq: 'nm',
-  yq: 'nm',
+  yq: 'yq',
   bx: 'bx'
 };
