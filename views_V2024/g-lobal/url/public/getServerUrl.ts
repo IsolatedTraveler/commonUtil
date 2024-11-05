@@ -1,4 +1,4 @@
-import { serverUrl, setServerUrl } from "../../common/system/server";
+import { newServerUrl, serverUrl, setNewServerUrl, setServerUrl } from "../../common/system/server";
 import { setPageTemp } from "../../util/public/setPageTemp";
 
 /**
@@ -7,4 +7,7 @@ import { setPageTemp } from "../../util/public/setPageTemp";
  */
 export function getServerUrl(): string {
   return setPageTemp(serverUrl, setServerUrl)
+}
+export function getNewServerUrl(): string {
+  return setPageTemp(newServerUrl, setNewServerUrl);
 }

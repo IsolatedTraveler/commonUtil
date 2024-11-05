@@ -1,5 +1,5 @@
 import {
-  buildAbsoluteUrl, buildUrlWithQueryParams, convertObjectToQueryString, getAppBaseUrl, getServerUrl, getUrlParams
+  buildAbsoluteUrl, buildUrlWithQueryParams, convertObjectToQueryString, getAppBaseUrl, getNewServerUrl, getServerUrl, getUrlParams
 } from '../../g-lobal/url'
 declare global {
   interface GLOBAL$URL$V2024$TYPE {
@@ -7,6 +7,7 @@ declare global {
     buildUrlWithQueryParams: typeof buildUrlWithQueryParams
     convertObjectToQueryString: typeof convertObjectToQueryString
     getAppBaseUrl: typeof getAppBaseUrl
+    getNewServerUrl: typeof getNewServerUrl
     getServerUrl: typeof getServerUrl
     getUrlParams: typeof getUrlParams
   }

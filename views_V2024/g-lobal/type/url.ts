@@ -1,1 +1,1 @@
-export type UrlType = 'origin' | 'service' | 'local' | undefined
+export type UrlType = 'origin' | 'service' | 'local' | 'new_server' | undefined

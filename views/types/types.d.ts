@@ -5,13 +5,13 @@ declare global {
     new(): any;
   }
   interface Window {
-    jthisJsObject: any
-    wdphisJsObject: any
-    commonUtil: any
-    FIRSTMODULENAME: any
-    MODULENAME: any
-    $: any
-    hex_md5: any
+    jthisJsObject: any;
+    wdphisJsObject: any;
+    commonUtil: any;
+    FIRSTMODULENAME: any;
+    MODULENAME: any;
+    $: any;
+    hex_md5: any;
   }
   let w: Window
   let layui: any
@@ -20,7 +20,6 @@ declare global {
   let MODULENAME: any
   let FIRSTMODULENAME: any
   let sha256: any
-  let $: any
   let Base64: any
   const Class: any
 }

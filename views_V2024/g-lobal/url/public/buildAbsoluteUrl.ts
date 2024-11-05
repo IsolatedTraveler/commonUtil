@@ -1,6 +1,6 @@
 import { UrlType } from "../../type";
 import { getAppBaseUrl } from "./getAppBaseUrl";
-import { getServerUrl } from "./getServerUrl";
+import { getNewServerUrl, getServerUrl } from "./getServerUrl";
 /**
  * 构建一个绝对URL。
  * 
@@ -20,6 +20,9 @@ export function buildAbsoluteUrl(targetUrl: string, urlType?: UrlType): string {
       break;
     case 'local':
       baseUrl = location.href;
+      break;
+    case 'new_server':
+      baseUrl = getNewServerUrl();
       break;
     default:
       baseUrl = getServerUrl();
