@@ -9,9 +9,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": [
-    "views_V2024/**/*.ts",
-    "w/**/*.ts",
-    "type/*.d.ts"
-  ]
+  "include": ["views_V2024/**/*.ts", "w/**/*.ts", "type/*.d.ts"],
+  "exclude": ["node_modules"]
 }

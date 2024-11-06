@@ -1,1 +1,1 @@
-export { Class } from './math'
+export { Class } from './crb'
