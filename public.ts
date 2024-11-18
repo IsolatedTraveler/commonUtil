@@ -7,12 +7,12 @@ export const dbnr: Dbnr = {
   // gModules: ['addInput'],
   // gModules: [ 'blmb'],
   // layModules: [],
-  src: ['crb'],
+  src: ['jtSync'],
   // third: ['dzpj'],
   // webs: ['his\\ypgl\\pdgl\\pdjl']
 };
 // export const dbdq: InstitutionCode[] = ['smq', 'wsq', 'bx'];
-export const dbdq: InstitutionCode[] = ['smq'];
+export const dbdq: InstitutionCode[] = ['wsq'];
 export const siteVesion = 'V2024';
 // export const siteVesion = ''
 // 是否压缩  false  不压缩    true   压缩

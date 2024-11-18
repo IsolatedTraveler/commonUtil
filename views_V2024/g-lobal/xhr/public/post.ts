@@ -29,3 +29,15 @@ export function ajaxPost1(url: string, data: any, option: AjaxRequestOption = {u
     config || {contentType: 'application/x-www-form-urlencoded; charset=UTF-8'}
   );
 }
+export function ajaxPostXml(url: string, data: any, option: AjaxRequestOption = {urlType: 'service'}, config?: AjaxRequestConfig) {
+  option.isNotWrapped = true;
+  return getXhr(
+    url,
+    data,
+    option.param,
+    'POST',
+    option.urlType || 'service',
+    config || {contentType: 'text/xml; charset=UTF-8'}
+  );
+}
+

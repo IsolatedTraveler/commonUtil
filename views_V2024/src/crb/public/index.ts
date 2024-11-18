@@ -1,1 +1,1 @@
-export * from '../fun/generateSignature'
+export * from './upload'

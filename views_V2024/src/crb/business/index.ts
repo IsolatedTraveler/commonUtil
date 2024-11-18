@@ -1,3 +1,3 @@
-import { Class } from "../core";
-import { generateSignature } from "../public";
-Class.prototype.generateSignature = generateSignature;
+import {Class} from '../core';
+import { upload } from '../public';
+Class.prototype.upload = upload;

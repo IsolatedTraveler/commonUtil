@@ -5,5 +5,5 @@ import {
   hisConfig, setConfig, checkAuth, dealRequestData, bindSelectClick, selectClick, loadJs, closeParentPop, 
   initLayui, openMsgBox, buildAbsoluteUrl, buildUrlWithQueryParams, convertObjectToQueryString, 
   getAppBaseUrl, getNewServerUrl, getServerUrl, getUrlParams, arrToTree, debounce, divideString, errFormat, 
-  setPageTemp, throttle, toDecimalNumber, uuid, ajaxGet, ajaxPost, ajaxPost1
+  setPageTemp, throttle, toDecimalNumber, uuid, ajaxGet, ajaxPost, ajaxPost1, ajaxPostXml
 } from '../g-lobal'
